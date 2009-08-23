@@ -181,8 +181,10 @@ public class DefaultResultSetHandler implements ResultSetHandler {
     // Automap remaining results
     for (String key : autoMappings.keySet()) {
       ResultMapping autoMapping = autoMappings.get(key);
-      resultObject = processResult(rs, rm, autoMapping, lazyLoader, resultObject, foundValues);
-      appliedResultMappings.add(autoMapping);
+      if (autoMapping.getTypeHandler() != null) {
+        resultObject = processResult(rs, rm, autoMapping, lazyLoader, resultObject, foundValues);
+        appliedResultMappings.add(autoMapping);
+      }
     }
     return resultObject;
   }
