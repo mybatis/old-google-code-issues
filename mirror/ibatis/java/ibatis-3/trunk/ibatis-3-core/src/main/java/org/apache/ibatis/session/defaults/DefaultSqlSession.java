@@ -1,6 +1,7 @@
 package org.apache.ibatis.session.defaults;
 
 import org.apache.ibatis.exceptions.ExceptionFactory;
+import org.apache.ibatis.exceptions.TooManyResultsException;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.executor.result.ResultHandler;
 import org.apache.ibatis.mapping.*;
@@ -29,11 +30,15 @@ public class DefaultSqlSession implements SqlSession {
   }
 
   public Object selectOne(String statement, Object parameter) {
+    // Popular vote was to return null on 0 results and throw exception on too many.
     List list = selectList(statement, parameter);
-    if (list.size() != 1) {
-      throw new SessionException("Expected one result to be returned by selectOne(), but found: " + list.size());
+    if (list.size() == 1) {
+      return list.get(0);
+    } else if (list.size() > 1) {
+      throw new TooManyResultsException("Expected one result (or null) to be returned by selectOne(), but found: " + list.size());
+    } else {
+      return null;
     }
-    return list.get(0);
   }
 
   public List selectList(String statement) {
