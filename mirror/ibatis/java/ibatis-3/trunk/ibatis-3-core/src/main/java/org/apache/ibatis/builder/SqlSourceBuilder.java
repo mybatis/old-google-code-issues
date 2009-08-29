@@ -41,7 +41,9 @@ public class SqlSourceBuilder extends BaseBuilder {
 
     private ParameterMapping buildParameterMapping(String content) {
       StringTokenizer parameterMappingParts = new StringTokenizer(content, ", ");
-      String property = parameterMappingParts.nextToken();
+      String propertyWithJdbcType = parameterMappingParts.nextToken();
+      String property = extractPropertyName(propertyWithJdbcType);
+      String jdbcType = extractJdbcType(propertyWithJdbcType);
       Class propertyType;
       MetaClass metaClass = MetaClass.forClass(parameterType);
       if (typeHandlerRegistry.hasTypeHandler(parameterType)) {
@@ -52,6 +54,9 @@ public class SqlSourceBuilder extends BaseBuilder {
         propertyType = Object.class;
       }
       ParameterMapping.Builder builder = new ParameterMapping.Builder(configuration, property, propertyType);
+      if (jdbcType != null) {
+        builder.jdbcType(resolveJdbcType(jdbcType));
+      }
       while (parameterMappingParts.hasMoreTokens()) {
         String attribute = parameterMappingParts.nextToken();
         StringTokenizer attributeParts = new StringTokenizer(attribute, "=");
@@ -77,7 +82,27 @@ public class SqlSourceBuilder extends BaseBuilder {
       }
       return builder.build();
     }
+
+    private String extractPropertyName(String property) {
+      if (property.contains(":")) {
+        StringTokenizer simpleJdbcTypeParser = new StringTokenizer(property,": ");
+        if (simpleJdbcTypeParser.countTokens() == 2) {
+          return simpleJdbcTypeParser.nextToken();
+        }
+      }
+      return property;
+    }
+
+    private String extractJdbcType(String property) {
+      if (property.contains(":")) {
+        StringTokenizer simpleJdbcTypeParser = new StringTokenizer(property,": ");
+        if (simpleJdbcTypeParser.countTokens() == 2) {
+          simpleJdbcTypeParser.nextToken();
+          return simpleJdbcTypeParser.nextToken();
+        }
+      }
+      return null;
+    }
+
   }
-
-
 }
