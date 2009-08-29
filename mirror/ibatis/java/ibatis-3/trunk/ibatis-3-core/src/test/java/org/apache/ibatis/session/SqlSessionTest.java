@@ -395,12 +395,7 @@ public class SqlSessionTest extends BaseDataTest {
       AuthorMapper mapper = session.getMapper(AuthorMapper.class);
       int count = mapper.deleteAuthor(101);
       assertEquals(1, count);
-      try {
-        mapper.selectAuthor(101);
-        fail("Expected exception.");
-      } catch (Exception e) {
-        assertEquals(SessionException.class, e.getClass());
-      }
+      assertNull(mapper.selectAuthor(101));
     } finally {
       session.close();
     }
