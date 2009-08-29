@@ -10,7 +10,7 @@
 	</resultMap>
 
 	<select id="find" parameterType="long" resultMap="UserResult">
-		SELECT * FROM user WHERE id = #{id,jdbcType=BIGINT}
+		SELECT * FROM user WHERE id = #{id:BIGINT}
 	</select>
 
 	<select id="version" parameterType="long" resultType="int">
@@ -18,7 +18,7 @@
 	</select>
 
 	<delete id="delete" parameterType="UserAlias">
-		DELETE FROM user WHERE id = #{id,jdbcType=BIGINT}
+		DELETE FROM user WHERE id = #{id:BIGINT}
 	</delete>
 
 	<insert id="insert" parameterType="UserAlias" useGeneratedKeys="false">
@@ -31,7 +31,7 @@
 		VALUES 
 		( #{id},
 			#{username,jdbcType=VARCHAR}, 
-			#{password.encrypted,jdbcType=VARCHAR},
+			#{password.encrypted:VARCHAR},
             #{administrator,jdbcType=BIT}
 		)
 	</insert>
