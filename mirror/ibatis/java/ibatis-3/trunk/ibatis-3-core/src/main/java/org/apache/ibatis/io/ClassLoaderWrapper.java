@@ -1,6 +1,7 @@
 package org.apache.ibatis.io;
 
-import org.apache.log4j.Logger;
+import org.apache.ibatis.logging.Log;
+import org.apache.ibatis.logging.LogFactory;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -9,7 +10,7 @@ import java.net.URL;
  * A class to wrap access to multiple class loaders making them work as one
  */
 public class ClassLoaderWrapper {
-  private static final Logger log = Logger.getLogger(ClassLoaderWrapper.class);
+  private static final Log log = LogFactory.getLog(ClassLoaderWrapper.class);
 
   ClassLoader defaultClassLoader;
 
