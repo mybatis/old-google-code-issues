@@ -33,6 +33,7 @@
 
   <resultMap id="joinedComment" type="domain.blog.Comment">
     <id property="id" column="comment_id"/>
+    <!--<association property="post" column="post_id" resultMap="joinedPost"/>-->
   </resultMap>
 
   <resultMap id="joinedTag" type="domain.blog.Tag">
