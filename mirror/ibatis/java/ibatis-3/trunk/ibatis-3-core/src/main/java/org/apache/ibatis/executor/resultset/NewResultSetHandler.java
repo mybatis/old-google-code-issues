@@ -9,12 +9,12 @@ import org.apache.ibatis.executor.ExecutorException;
 import org.apache.ibatis.executor.parameter.ParameterHandler;
 import org.apache.ibatis.executor.result.DefaultResultHandler;
 import org.apache.ibatis.executor.result.ResultHandler;
-import org.apache.ibatis.executor.result.ResultContext;
 import org.apache.ibatis.executor.result.DefaultResultContext;
 
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.HashMap;
 import java.sql.*;
 
 public class NewResultSetHandler implements ResultSetHandler {
@@ -26,6 +26,7 @@ public class NewResultSetHandler implements ResultSetHandler {
   private final ResultHandler resultHandler;
   private final BoundSql boundSql;
   private final TypeHandlerRegistry typeHandlerRegistry;
+  private final ObjectFactory objectFactory;
 
   public NewResultSetHandler(MappedStatement mappedStatement, ParameterHandler parameterHandler, ResultHandler resultHandler, BoundSql boundSql, int offset, int limit) {
     this.configuration = mappedStatement.getConfiguration();
@@ -35,7 +36,12 @@ public class NewResultSetHandler implements ResultSetHandler {
     this.resultHandler = resultHandler;
     this.boundSql = boundSql;
     this.typeHandlerRegistry = configuration.getTypeHandlerRegistry();
+    this.objectFactory = configuration.getObjectFactory();
   }
+
+  //
+  // HANDLE OUTPUT PARAMETER
+  //
 
   public void handleOutputParameters(CallableStatement cs) throws SQLException {
     final Object parameterObject = parameterHandler.getParameterObject();
@@ -45,7 +51,7 @@ public class NewResultSetHandler implements ResultSetHandler {
       final ParameterMapping parameterMapping = parameterMappings.get(i);
       if (parameterMapping.getMode() == ParameterMode.OUT || parameterMapping.getMode() == ParameterMode.INOUT) {
         if ("java.sql.ResultSet".equalsIgnoreCase(parameterMapping.getJavaType().getName())) {
-          handleResultSetOutputParameter(cs, parameterMapping, i, metaParam);
+          handleRefCursorOutputParameter(cs, parameterMapping, i, metaParam);
         } else {
           metaParam.setValue(parameterMapping.getProperty(), parameterMapping.getTypeHandler().getResult(cs, i + 1));
         }
@@ -53,7 +59,7 @@ public class NewResultSetHandler implements ResultSetHandler {
     }
   }
 
-  private void handleResultSetOutputParameter(CallableStatement cs, ParameterMapping parameterMapping, int parameterMappingIndex, MetaObject metaParam) throws SQLException {
+  private void handleRefCursorOutputParameter(CallableStatement cs, ParameterMapping parameterMapping, int parameterMappingIndex, MetaObject metaParam) throws SQLException {
     final ResultSet rs = (ResultSet) cs.getObject(parameterMappingIndex + 1);
     final String resultMapId = parameterMapping.getResultMapId();
     if (resultMapId != null) {
@@ -66,6 +72,10 @@ public class NewResultSetHandler implements ResultSetHandler {
     }
     rs.close();
   }
+
+  //
+  // HANDLE RESULT SETS
+  //
 
   public List handleResultSets(Statement stmt) throws SQLException {
     final List multipleResults = new ArrayList();
@@ -124,11 +134,32 @@ public class NewResultSetHandler implements ResultSetHandler {
     }
   }
 
+  private ResultSet getNextResultSet(Statement stmt) throws SQLException {
+    // Making this method tolerant of bad JDBC drivers
+    try {
+      if (stmt.getConnection().getMetaData().supportsMultipleResultSets()) {
+        // Crazy Standard JDBC way of determining if there are more results
+        if (!((!stmt.getMoreResults()) && (stmt.getUpdateCount() == -1))) {
+          return stmt.getResultSet();
+        }
+      }
+    } catch (Exception e) {
+      // Intentionally ignored.
+    }
+    return null;
+  }
+
+  //
+  // PROPERTY MAPPINGS
+  //
+
   private void applyPropertyMappings(ResultSet rs, ResultMap resultMap, List<String> mappedColumnNames, MetaObject metaObject) throws SQLException {
     final List<ResultMapping> propertyMappings = resultMap.getPropertyResultMappings();
     for (ResultMapping propertyMapping : propertyMappings) {
       final TypeHandler typeHandler = propertyMapping.getTypeHandler();
-      if (typeHandler != null) {
+      if (propertyMapping.getNestedQueryId() != null) {
+
+      } else if (typeHandler != null) {
         final String property = propertyMapping.getProperty();
         final String column = propertyMapping.getColumn();
         if (mappedColumnNames.contains(column.toUpperCase())) {
@@ -170,31 +201,88 @@ public class NewResultSetHandler implements ResultSetHandler {
     }
   }
 
+  //
+  // INSTANTIATION & CONSTRUCTOR MAPPING
+  //
+
   private Object createResultObject(ResultSet rs, ResultMap resultMap) throws SQLException {
     final Class resultType = resultMap.getType();
-    final ObjectFactory objectFactory = configuration.getObjectFactory();
     final List<ResultMapping> constructorMappings = resultMap.getConstructorResultMappings();
     if (typeHandlerRegistry.hasTypeHandler(resultType)) {
-      final ResultSetMetaData rsmd = rs.getMetaData();
-      final String columnName = configuration.isUseColumnLabel() ? rsmd.getColumnLabel(1) : rsmd.getColumnName(1);
-      final TypeHandler typeHandler = typeHandlerRegistry.getTypeHandler(resultType);
-      return typeHandler.getResult(rs,columnName);
+      return createPrimitiveResultObject(rs, resultType);
     } else if (constructorMappings.size() > 0) {
-      final List<Class> parameterTypes = new ArrayList<Class>();
-      final List<Object> parameterValues = new ArrayList<Object>();
-      for(ResultMapping constructorMapping : constructorMappings) {
-        final Class parameterType = constructorMapping.getJavaType();
-        final TypeHandler typeHandler = constructorMapping.getTypeHandler();
-        final String column = constructorMapping.getColumn();
-        final Object value = typeHandler.getResult(rs, column);
-        parameterTypes.add(parameterType);
-        parameterValues.add(value);
-      }
-      return objectFactory.create(resultType, parameterTypes, parameterValues);
+      return createParameterizedResultObject(rs, resultType, constructorMappings);
     } else {
       return objectFactory.create(resultType);
     }
   }
+
+  private Object createParameterizedResultObject(ResultSet rs, Class resultType, List<ResultMapping> constructorMappings) throws SQLException {
+    final List<Class> parameterTypes = new ArrayList<Class>();
+    final List<Object> parameterValues = new ArrayList<Object>();
+    for(ResultMapping constructorMapping : constructorMappings) {
+      final Class parameterType = constructorMapping.getJavaType();
+      final TypeHandler typeHandler = constructorMapping.getTypeHandler();
+      final String column = constructorMapping.getColumn();
+      final Object value = typeHandler.getResult(rs, column);
+      parameterTypes.add(parameterType);
+      parameterValues.add(value);
+    }
+    return objectFactory.create(resultType, parameterTypes, parameterValues);
+  }
+
+  private Object createPrimitiveResultObject(ResultSet rs, Class resultType) throws SQLException {
+    final ResultSetMetaData rsmd = rs.getMetaData();
+    final String columnName = configuration.isUseColumnLabel() ? rsmd.getColumnLabel(1) : rsmd.getColumnName(1);
+    final TypeHandler typeHandler = typeHandlerRegistry.getTypeHandler(resultType);
+    return typeHandler.getResult(rs,columnName);
+  }
+
+  //
+  // NESTED QUERY
+  //
+
+  private Object prepareParameterForNestedQuery(ResultSet rs, ResultMapping resultMapping, Class parameterType) throws SQLException {
+    if (resultMapping.isCompositeResult()) {
+      return prepareCompositeKeyParameter(rs, resultMapping, parameterType);
+    } else {
+      return prepareSimpleKeyParameter(rs, resultMapping, parameterType);
+    }
+  }
+
+  private Object prepareSimpleKeyParameter(ResultSet rs, ResultMapping resultMapping, Class parameterType) throws SQLException {
+    final TypeHandler typeHandler;
+    if (typeHandlerRegistry.hasTypeHandler(parameterType)) {
+      typeHandler = typeHandlerRegistry.getTypeHandler(parameterType);
+    } else {
+      typeHandler = typeHandlerRegistry.getUnkownTypeHandler();
+    }
+    return typeHandler.getResult(rs, resultMapping.getColumn());
+  }
+
+  private Object prepareCompositeKeyParameter(ResultSet rs, ResultMapping resultMapping, Class parameterType) throws SQLException {
+    final Object parameterObject = instantiateParameterObject(parameterType);
+    final MetaObject metaObject = MetaObject.forObject(parameterObject);
+    for (ResultMapping innerResultMapping : resultMapping.getComposites()) {
+      final Class propType = metaObject.getSetterType(innerResultMapping.getProperty());
+      final TypeHandler typeHandler = typeHandlerRegistry.getTypeHandler(propType);
+      final Object propValue = typeHandler.getResult(rs, innerResultMapping.getColumn());
+      metaObject.setValue(innerResultMapping.getProperty(), propValue);
+    }
+    return parameterObject;
+  }
+
+  private Object instantiateParameterObject(Class parameterType) {
+    if (parameterType == null) {
+      return new HashMap();
+    } else {
+      return objectFactory.create(parameterType);
+    }
+  }
+
+  //
+  // DISCRIMINATOR
+  //
 
    public ResultMap resolveDiscriminatedResultMap(ResultSet rs, ResultMap resultMap) throws SQLException {
     final Discriminator discriminator = resultMap.getDiscriminator();
@@ -216,21 +304,6 @@ public class NewResultSetHandler implements ResultSetHandler {
     } else {
       throw new ExecutorException("No type handler could be found to map the property '" + resultMapping.getProperty() + "' to the column '" + resultMapping.getColumn() + "'.  One or both of the types, or the combination of types is not supported.");
     }
-  }
-
-  private ResultSet getNextResultSet(Statement stmt) throws SQLException {
-    // Making this method tolerant of bad JDBC drivers
-    try {
-      if (stmt.getConnection().getMetaData().supportsMultipleResultSets()) {
-        // Crazy Standard JDBC way of determining if there are more results
-        if (!((!stmt.getMoreResults()) && (stmt.getUpdateCount() == -1))) {
-          return stmt.getResultSet();
-        }
-      }
-    } catch (Exception e) {
-      // Intentionally ignored.
-    }
-    return null;
   }
 
 }
