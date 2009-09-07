@@ -41,11 +41,11 @@ public class NewResultSetHandler implements ResultSetHandler {
 
   public void handleOutputParameters(CallableStatement cs) throws SQLException {
     ErrorContext.instance().activity("handling output parameters");
-    Object parameterObject = parameterHandler.getParameterObject();
-    MetaObject metaParam = MetaObject.forObject(parameterObject);
-    List<ParameterMapping> parameterMappings = boundSql.getParameterMappings();
+    final Object parameterObject = parameterHandler.getParameterObject();
+    final MetaObject metaParam = MetaObject.forObject(parameterObject);
+    final List<ParameterMapping> parameterMappings = boundSql.getParameterMappings();
     for (int i = 0; i < parameterMappings.size(); i++) {
-      ParameterMapping parameterMapping = parameterMappings.get(i);
+      final ParameterMapping parameterMapping = parameterMappings.get(i);
       if (parameterMapping.getMode() == ParameterMode.OUT || parameterMapping.getMode() == ParameterMode.INOUT) {
         if ("java.sql.ResultSet".equalsIgnoreCase(parameterMapping.getJavaType().getName())) {
           handleResultSetOutputParameter(cs, parameterMapping, i, metaParam);
@@ -57,11 +57,11 @@ public class NewResultSetHandler implements ResultSetHandler {
   }
 
   private void handleResultSetOutputParameter(CallableStatement cs, ParameterMapping parameterMapping, int parameterMappingIndex, MetaObject metaParam) throws SQLException {
-    ResultSet rs = (ResultSet) cs.getObject(parameterMappingIndex + 1);
-    String resultMapId = parameterMapping.getResultMapId();
+    final ResultSet rs = (ResultSet) cs.getObject(parameterMappingIndex + 1);
+    final String resultMapId = parameterMapping.getResultMapId();
     if (resultMapId != null) {
-      ResultMap resultMap = mappedStatement.getConfiguration().getResultMap(resultMapId);
-      DefaultResultHandler resultHandler = new DefaultResultHandler();
+      final ResultMap resultMap = mappedStatement.getConfiguration().getResultMap(resultMapId);
+      final DefaultResultHandler resultHandler = new DefaultResultHandler();
       handleResultSet(rs, resultMap, resultHandler, new RowLimit());
       metaParam.setValue(parameterMapping.getProperty(), resultHandler.getResultList());
     } else {
