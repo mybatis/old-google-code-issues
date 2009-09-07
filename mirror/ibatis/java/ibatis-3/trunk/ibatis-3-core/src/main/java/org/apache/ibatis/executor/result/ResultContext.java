@@ -1,37 +1,13 @@
 package org.apache.ibatis.executor.result;
 
-public class ResultContext {
+public interface ResultContext {
 
-  private Object resultObject;
-  private int resultCount;
-  private boolean stopped;
+  Object getResultObject();
 
-  public ResultContext() {
-    resultObject = null;
-    resultCount = 0;
-    stopped = false;
-  }
+  int getResultCount();
 
-  public Object getResultObject() {
-    return resultObject;
-  }
+  boolean isStopped();
 
-  public int getResultCount() {
-    return resultCount;
-  }
-
-  public boolean isStopped() {
-    return stopped;
-  }
-
-  public void nextResultObject(Object resultObject) {
-    resultCount++;
-    this.resultObject = resultObject;
-  }
-
-  public void stop() {
-    this.stopped = true;
-  }
-
+  void stop();
 
 }

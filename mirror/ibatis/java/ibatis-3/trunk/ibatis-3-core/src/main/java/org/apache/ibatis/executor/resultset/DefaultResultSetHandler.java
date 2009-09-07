@@ -108,7 +108,7 @@ public class DefaultResultSetHandler implements ResultSetHandler {
   private void handleResults(ResultSet rs, ResultMap resultMap, ResultHandler resultHandler, int skipResults, int maxResults) throws SQLException {
     if (resultMap != null) {
       skipResults(rs, skipResults);
-      ResultContext context = new ResultContext();
+      DefaultResultContext context = new DefaultResultContext();
       while ((maxResults == Executor.NO_ROW_LIMIT || context.getResultCount() < maxResults)
           && !context.isStopped() && rs.next()) {
         ResultMap rm = discriminatorHandler.resolveSubMap(rs, resultMap);
