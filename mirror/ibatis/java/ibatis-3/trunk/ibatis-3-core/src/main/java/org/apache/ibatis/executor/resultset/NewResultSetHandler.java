@@ -96,12 +96,15 @@ public class NewResultSetHandler implements ResultSetHandler {
 
   private void handleResultSet(ResultSet rs, ResultMap resultMap, ResultHandler resultHandler, RowLimit rowLimit) throws SQLException {
     final ResultContext resultContext = new ResultContext();
-    final List<String> unmappedColumnNames = getUnmappedColumnNames(rs, resultMap);
+    final List<String> mappedColumnNames = new ArrayList<String>();
+    final List<String> unmappedColumnNames = new ArrayList<String>();
     skipRows(rs, rowLimit);
     while (shouldProcessMoreRows(rs, resultContext.getResultCount(), rowLimit)) {
-      final Object resultObject = createResultObject(rs, resultMap);
+      final ResultMap discriminatedResultMap = resolveDiscriminatedResultMap(rs, resultMap);
+      final Object resultObject = createResultObject(rs, discriminatedResultMap );
       final MetaObject metaObject = MetaObject.forObject(resultObject);
-      applyPropertyMappings(rs, resultMap, metaObject);
+      getMappedAndUnmappedColumnNames(rs, discriminatedResultMap, mappedColumnNames, unmappedColumnNames);
+      applyPropertyMappings(rs, discriminatedResultMap , mappedColumnNames, metaObject);
       applyAutomaticMappings(rs, unmappedColumnNames, metaObject);
       resultContext.nextResultObject(resultObject);
       resultHandler.handleResult(resultContext);
@@ -120,15 +123,17 @@ public class NewResultSetHandler implements ResultSetHandler {
     }
   }
 
-  private void applyPropertyMappings(ResultSet rs, ResultMap resultMap, MetaObject metaObject) throws SQLException {
+  private void applyPropertyMappings(ResultSet rs, ResultMap resultMap, List<String> mappedColumnNames, MetaObject metaObject) throws SQLException {
     final List<ResultMapping> propertyMappings = resultMap.getPropertyResultMappings();
     for (ResultMapping propertyMapping : propertyMappings) {
       final TypeHandler typeHandler = propertyMapping.getTypeHandler();
       if (typeHandler != null) {
         final String property = propertyMapping.getProperty();
         final String column = propertyMapping.getColumn();
-        final Object value = typeHandler.getResult(rs, column);
-        metaObject.setValue(property, value);
+        if (mappedColumnNames.contains(column.toUpperCase())) {
+          final Object value = typeHandler.getResult(rs, column);
+          metaObject.setValue(property, value);
+        }
       }
     }
   }
@@ -147,19 +152,21 @@ public class NewResultSetHandler implements ResultSetHandler {
     }
   }
 
-  private List<String> getUnmappedColumnNames(ResultSet rs, ResultMap resultMap) throws SQLException {
+  private void getMappedAndUnmappedColumnNames(ResultSet rs, ResultMap resultMap, List<String> mappedColumnNames, List<String> unmappedColumnNames) throws SQLException {
+    mappedColumnNames.clear();
+    unmappedColumnNames.clear();
     final ResultSetMetaData rsmd = rs.getMetaData();
     final int columnCount = rsmd.getColumnCount();
-    final List<String> columnNames = new ArrayList<String>();
     final Set<String> mappedColumns = resultMap.getMappedColumns();
     for(int i=1; i<=columnCount; i++) {
       final String columnName = configuration.isUseColumnLabel() ? rsmd.getColumnLabel(i) : rsmd.getColumnName(i);
       final String upperColumnName = columnName.toUpperCase();
-      if (!mappedColumns.contains(upperColumnName)) {
-        columnNames.add(columnName);
+      if (mappedColumns.contains(upperColumnName)) {
+        mappedColumnNames.add(columnName);
+      } else {
+        unmappedColumnNames.add(columnName);
       }
     }
-    return columnNames;
   }
 
   private Object createResultObject(ResultSet rs, ResultMap resultMap) throws SQLException {
@@ -185,6 +192,28 @@ public class NewResultSetHandler implements ResultSetHandler {
       return objectFactory.create(resultType, parameterTypes, parameterValues);
     } else {
       return objectFactory.create(resultType);
+    }
+  }
+
+   public ResultMap resolveDiscriminatedResultMap(ResultSet rs, ResultMap resultMap) throws SQLException {
+    final Discriminator discriminator = resultMap.getDiscriminator();
+    if (discriminator != null) {
+      final Object value = getDiscriminatorValue(rs, discriminator);
+      final String discriminatedMapId = discriminator.getMapIdFor(String.valueOf(value));
+      if (configuration.hasResultMap(discriminatedMapId)) {
+        return configuration.getResultMap(discriminatedMapId);
+      }
+    }
+    return resultMap;
+  }
+
+  private Object getDiscriminatorValue(ResultSet rs, Discriminator discriminator) throws SQLException {
+    final ResultMapping resultMapping = discriminator.getResultMapping();
+    final TypeHandler typeHandler = resultMapping.getTypeHandler();
+    if (typeHandler != null) {
+      return typeHandler.getResult(rs, resultMapping.getColumn());
+    } else {
+      throw new ExecutorException("No type handler could be found to map the property '" + resultMapping.getProperty() + "' to the column '" + resultMapping.getColumn() + "'.  One or both of the types, or the combination of types is not supported.");
     }
   }
 
