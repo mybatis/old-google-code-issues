@@ -124,10 +124,12 @@ public class NewResultSetHandler implements ResultSetHandler {
     final List<ResultMapping> propertyMappings = resultMap.getPropertyResultMappings();
     for (ResultMapping propertyMapping : propertyMappings) {
       final TypeHandler typeHandler = propertyMapping.getTypeHandler();
-      final String property = propertyMapping.getProperty();
-      final String column = propertyMapping.getColumn();
-      final Object value = typeHandler.getResult(rs, column);
-      metaObject.setValue(property, value);
+      if (typeHandler != null) {
+        final String property = propertyMapping.getProperty();
+        final String column = propertyMapping.getColumn();
+        final Object value = typeHandler.getResult(rs, column);
+        metaObject.setValue(property, value);
+      }
     }
   }
 
@@ -136,9 +138,11 @@ public class NewResultSetHandler implements ResultSetHandler {
       final String property = metaObject.findProperty(columnName);
       if (property != null) {
         final Class propertyType = metaObject.getSetterType(property);
-        final TypeHandler typeHandler = typeHandlerRegistry.getTypeHandler(propertyType);
-        final Object value = typeHandler.getResult(rs, columnName);
-        metaObject.setValue(property, value);
+        if (typeHandlerRegistry.hasTypeHandler(propertyType)) {
+          final TypeHandler typeHandler = typeHandlerRegistry.getTypeHandler(propertyType);
+          final Object value = typeHandler.getResult(rs, columnName);
+          metaObject.setValue(property, value);
+        }
       }
     }
   }
@@ -167,9 +171,7 @@ public class NewResultSetHandler implements ResultSetHandler {
       final String columnName = configuration.isUseColumnLabel() ? rsmd.getColumnLabel(1) : rsmd.getColumnName(1);
       final TypeHandler typeHandler = typeHandlerRegistry.getTypeHandler(resultType);
       return typeHandler.getResult(rs,columnName);
-    } else if (constructorMappings.size() == 0) {
-      return objectFactory.create(resultType);
-    } else {
+    } else if (constructorMappings.size() > 0) {
       final List<Class> parameterTypes = new ArrayList<Class>();
       final List<Object> parameterValues = new ArrayList<Object>();
       for(ResultMapping constructorMapping : constructorMappings) {
@@ -181,6 +183,8 @@ public class NewResultSetHandler implements ResultSetHandler {
         parameterValues.add(value);
       }
       return objectFactory.create(resultType, parameterTypes, parameterValues);
+    } else {
+      return objectFactory.create(resultType);
     }
   }
 
