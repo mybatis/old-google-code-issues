@@ -10,6 +10,7 @@ public class ResultMap {
   private List<ResultMapping> idResultMappings;
   private List<ResultMapping> constructorResultMappings;
   private List<ResultMapping> propertyResultMappings;
+  private Set<String> mappedColumns;
   private Discriminator discriminator;
 
   private ResultMap() {
@@ -34,10 +35,15 @@ public class ResultMap {
     }
 
     public ResultMap build() {
+      resultMap.mappedColumns = new HashSet<String>();
       resultMap.idResultMappings = new ArrayList<ResultMapping>();
       resultMap.constructorResultMappings = new ArrayList<ResultMapping>();
       resultMap.propertyResultMappings = new ArrayList<ResultMapping>();
       for (ResultMapping resultMapping : resultMap.resultMappings) {
+        final String column = resultMapping.getColumn();
+        if (column != null) {
+          resultMap.mappedColumns.add(column.toUpperCase());
+        }
         if (resultMapping.getFlags().contains(ResultFlag.CONSTRUCTOR)) {
           resultMap.constructorResultMappings.add(resultMapping);
         } else {
@@ -55,6 +61,7 @@ public class ResultMap {
       resultMap.idResultMappings = Collections.unmodifiableList(resultMap.idResultMappings);
       resultMap.constructorResultMappings = Collections.unmodifiableList(resultMap.constructorResultMappings);
       resultMap.propertyResultMappings = Collections.unmodifiableList(resultMap.propertyResultMappings);
+      resultMap.mappedColumns = Collections.unmodifiableSet(resultMap.mappedColumns);
       return resultMap;
     }
   }
@@ -82,6 +89,10 @@ public class ResultMap {
 
   public List<ResultMapping> getIdResultMappings() {
     return idResultMappings;
+  }
+
+  public Set<String> getMappedColumns() {
+    return mappedColumns;
   }
 
   public Discriminator getDiscriminator() {
