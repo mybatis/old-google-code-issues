@@ -34,6 +34,17 @@ public class SqlSessionTest extends BaseDataTest {
   }
 
   @Test
+  public void shouldSelectCountOfPosts() throws Exception {
+    SqlSession session = sqlMapper.openSession();
+    try {
+      int count = (Integer) session.selectOne("domain.blog.mappers.BlogMapper.selectCountOfPosts");
+      assertEquals(5, count);
+    } finally {
+      session.close();
+    }
+  }
+
+  @Test
   public void shouldSelectOneAuthor() throws Exception {
     SqlSession session = sqlMapper.openSession();
     try {
