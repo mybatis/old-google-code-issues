@@ -22,6 +22,10 @@
     select * from Post where blog_id = #{blog_id}
   </select>
 
+  <select id="selectCountOfPosts" resultType="int">
+    select count(1) from post
+  </select>
+
   <resultMap id="joinedAuthor" type="domain.blog.Author">
     <id property="id" column="author_id"/>
     <result property="username" column="author_username"/>

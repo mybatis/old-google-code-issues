@@ -24,10 +24,10 @@ public class NewResultSetHandler implements ResultSetHandler {
   private final ParameterHandler parameterHandler;
   private final ResultHandler resultHandler;
   private final BoundSql boundSql;
-  private TypeHandlerRegistry typeHandlerRegistry;
+  private final TypeHandlerRegistry typeHandlerRegistry;
 
-  public NewResultSetHandler(Configuration configuration, MappedStatement mappedStatement, ParameterHandler parameterHandler, ResultHandler resultHandler, BoundSql boundSql, int offset, int limit) {
-    this.configuration = configuration;
+  public NewResultSetHandler(MappedStatement mappedStatement, ParameterHandler parameterHandler, ResultHandler resultHandler, BoundSql boundSql, int offset, int limit) {
+    this.configuration = mappedStatement.getConfiguration();
     this.mappedStatement = mappedStatement;
     this.rowLimit = new RowLimit(offset, limit);
     this.parameterHandler = parameterHandler;
@@ -162,7 +162,12 @@ public class NewResultSetHandler implements ResultSetHandler {
     final Class resultType = resultMap.getType();
     final ObjectFactory objectFactory = configuration.getObjectFactory();
     final List<ResultMapping> constructorMappings = resultMap.getConstructorResultMappings();
-    if (constructorMappings.size() == 0) {
+    if (typeHandlerRegistry.hasTypeHandler(resultType)) {
+      final ResultSetMetaData rsmd = rs.getMetaData();
+      final String columnName = configuration.isUseColumnLabel() ? rsmd.getColumnLabel(1) : rsmd.getColumnName(1);
+      final TypeHandler typeHandler = typeHandlerRegistry.getTypeHandler(resultType);
+      return typeHandler.getResult(rs,columnName);
+    } else if (constructorMappings.size() == 0) {
       return objectFactory.create(resultType);
     } else {
       final List<Class> parameterTypes = new ArrayList<Class>();
