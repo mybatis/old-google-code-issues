@@ -10,6 +10,7 @@ import org.apache.ibatis.executor.parameter.ParameterHandler;
 import org.apache.ibatis.executor.result.DefaultResultHandler;
 import org.apache.ibatis.executor.result.ResultHandler;
 import org.apache.ibatis.executor.result.ResultContext;
+import org.apache.ibatis.executor.result.DefaultResultContext;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -95,7 +96,7 @@ public class NewResultSetHandler implements ResultSetHandler {
   }
 
   private void handleResultSet(ResultSet rs, ResultMap resultMap, ResultHandler resultHandler, RowLimit rowLimit) throws SQLException {
-    final ResultContext resultContext = new ResultContext();
+    final DefaultResultContext resultContext = new DefaultResultContext();
     final List<String> mappedColumnNames = new ArrayList<String>();
     final List<String> unmappedColumnNames = new ArrayList<String>();
     skipRows(rs, rowLimit);
