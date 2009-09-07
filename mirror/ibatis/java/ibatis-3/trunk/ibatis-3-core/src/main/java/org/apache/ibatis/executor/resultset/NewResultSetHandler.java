@@ -5,8 +5,6 @@ import org.apache.ibatis.type.TypeHandler;
 import org.apache.ibatis.type.TypeHandlerRegistry;
 import org.apache.ibatis.reflection.factory.ObjectFactory;
 import org.apache.ibatis.reflection.MetaObject;
-import org.apache.ibatis.executor.resultset.RowLimit;
-import org.apache.ibatis.executor.ErrorContext;
 import org.apache.ibatis.executor.ExecutorException;
 import org.apache.ibatis.executor.parameter.ParameterHandler;
 import org.apache.ibatis.executor.result.DefaultResultHandler;
@@ -28,7 +26,6 @@ public class NewResultSetHandler implements ResultSetHandler {
   private final BoundSql boundSql;
   private TypeHandlerRegistry typeHandlerRegistry;
 
-
   public NewResultSetHandler(Configuration configuration, MappedStatement mappedStatement, ParameterHandler parameterHandler, ResultHandler resultHandler, BoundSql boundSql, int offset, int limit) {
     this.configuration = configuration;
     this.mappedStatement = mappedStatement;
@@ -40,7 +37,6 @@ public class NewResultSetHandler implements ResultSetHandler {
   }
 
   public void handleOutputParameters(CallableStatement cs) throws SQLException {
-    ErrorContext.instance().activity("handling output parameters");
     final Object parameterObject = parameterHandler.getParameterObject();
     final MetaObject metaParam = MetaObject.forObject(parameterObject);
     final List<ParameterMapping> parameterMappings = boundSql.getParameterMappings();
