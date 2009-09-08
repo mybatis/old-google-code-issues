@@ -130,7 +130,7 @@ public class DefaultResultSetHandler implements ResultSetHandler {
     }
     Object resultObject = createResultObject(rs, rm);
     ResultLoaderRegistry lazyLoader = null;
-    if (this.mappedStatement.getConfiguration().isEnhancementEnabled()) {
+    if (this.mappedStatement.getConfiguration().isLazyLoadingEnabled()) {
       lazyLoader = new ResultLoaderRegistry();
       resultObject = ResultObjectProxy.createProxy(rm.getType(), resultObject, lazyLoader);
     }

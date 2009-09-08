@@ -7,13 +7,12 @@ import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.transaction.Transaction;
 import org.apache.ibatis.type.TypeHandlerRegistry;
+import static org.apache.ibatis.executor.ExecutionPlaceholder.*;
 
 import java.sql.*;
 import java.util.*;
 
 public abstract class BaseExecutor implements Executor {
-
-  private static final Object EXECUTION_PLACEHOLDER = new Object();
 
   protected Transaction transaction;
 

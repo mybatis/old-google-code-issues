@@ -23,7 +23,6 @@ public class IbatisConfig {
       Environment environment = new Environment("Production", transactionFactory, dataSource);
       Configuration configuration = new Configuration(environment);
       configuration.setLazyLoadingEnabled(true);
-      configuration.setEnhancementEnabled(true);
       configuration.getTypeAliasRegistry().registerAlias(Blog.class);
       configuration.getTypeAliasRegistry().registerAlias(Post.class);
       configuration.getTypeAliasRegistry().registerAlias(Author.class);
