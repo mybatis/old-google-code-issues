@@ -29,8 +29,8 @@ public class DefaultResultSetHandler implements ResultSetHandler {
   private final NestedResultSetHandler nestedResultSetHandler;
   private final DiscriminatorHandler discriminatorHandler;
 
-  public DefaultResultSetHandler(Configuration configuration, Executor executor, MappedStatement mappedStatement, ParameterHandler parameterHandler, int rowOffset, int rowLimit, ResultHandler resultHandler, BoundSql boundSql) {
-    this.configuration = configuration;
+  public DefaultResultSetHandler(Executor executor, MappedStatement mappedStatement, ParameterHandler parameterHandler, ResultHandler resultHandler, BoundSql boundSql, int rowOffset, int rowLimit) {
+    this.configuration = mappedStatement.getConfiguration();
     this.objectFactory = mappedStatement.getConfiguration().getObjectFactory();
     this.typeHandlerRegistry = mappedStatement.getConfiguration().getTypeHandlerRegistry();
     this.mappedStatement = mappedStatement;
