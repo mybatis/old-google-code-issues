@@ -6,10 +6,15 @@ import org.apache.ibatis.type.TypeHandlerRegistry;
 import org.apache.ibatis.reflection.factory.ObjectFactory;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.executor.ExecutorException;
+import org.apache.ibatis.executor.Executor;
+import org.apache.ibatis.executor.loader.ResultLoader;
+import org.apache.ibatis.executor.loader.ResultLoaderRegistry;
+import org.apache.ibatis.executor.loader.ResultObjectProxy;
 import org.apache.ibatis.executor.parameter.ParameterHandler;
 import org.apache.ibatis.executor.result.DefaultResultHandler;
 import org.apache.ibatis.executor.result.ResultHandler;
 import org.apache.ibatis.executor.result.DefaultResultContext;
+import org.apache.ibatis.cache.CacheKey;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -19,6 +24,7 @@ import java.sql.*;
 
 public class NewResultSetHandler implements ResultSetHandler {
 
+  private Executor executor;
   private final Configuration configuration;
   private final MappedStatement mappedStatement;
   private final RowLimit rowLimit;
@@ -28,7 +34,8 @@ public class NewResultSetHandler implements ResultSetHandler {
   private final TypeHandlerRegistry typeHandlerRegistry;
   private final ObjectFactory objectFactory;
 
-  public NewResultSetHandler(MappedStatement mappedStatement, ParameterHandler parameterHandler, ResultHandler resultHandler, BoundSql boundSql, int offset, int limit) {
+  public NewResultSetHandler(Executor executor, MappedStatement mappedStatement, ParameterHandler parameterHandler, ResultHandler resultHandler, BoundSql boundSql, int offset, int limit) {
+    this.executor = executor;
     this.configuration = mappedStatement.getConfiguration();
     this.mappedStatement = mappedStatement;
     this.rowLimit = new RowLimit(offset, limit);
@@ -112,10 +119,11 @@ public class NewResultSetHandler implements ResultSetHandler {
     skipRows(rs, rowLimit);
     while (shouldProcessMoreRows(rs, resultContext.getResultCount(), rowLimit)) {
       final ResultMap discriminatedResultMap = resolveDiscriminatedResultMap(rs, resultMap);
-      final Object resultObject = createResultObject(rs, discriminatedResultMap );
+      final ResultLoaderRegistry lazyLoader = new ResultLoaderRegistry();
+      final Object resultObject = createResultObject(rs, discriminatedResultMap, lazyLoader);
       final MetaObject metaObject = MetaObject.forObject(resultObject);
       getMappedAndUnmappedColumnNames(rs, discriminatedResultMap, mappedColumnNames, unmappedColumnNames);
-      applyPropertyMappings(rs, discriminatedResultMap , mappedColumnNames, metaObject);
+      applyPropertyMappings(rs, discriminatedResultMap , mappedColumnNames, metaObject, lazyLoader);
       applyAutomaticMappings(rs, unmappedColumnNames, metaObject);
       resultContext.nextResultObject(resultObject);
       resultHandler.handleResult(resultContext);
@@ -153,20 +161,54 @@ public class NewResultSetHandler implements ResultSetHandler {
   // PROPERTY MAPPINGS
   //
 
-  private void applyPropertyMappings(ResultSet rs, ResultMap resultMap, List<String> mappedColumnNames, MetaObject metaObject) throws SQLException {
+  private void applyPropertyMappings(ResultSet rs, ResultMap resultMap, List<String> mappedColumnNames, MetaObject metaObject, ResultLoaderRegistry lazyLoader) throws SQLException {
     final List<ResultMapping> propertyMappings = resultMap.getPropertyResultMappings();
     for (ResultMapping propertyMapping : propertyMappings) {
-      final TypeHandler typeHandler = propertyMapping.getTypeHandler();
-      if (propertyMapping.getNestedQueryId() != null) {
-
-      } else if (typeHandler != null) {
-        final String property = propertyMapping.getProperty();
-        final String column = propertyMapping.getColumn();
-        if (mappedColumnNames.contains(column.toUpperCase())) {
-          final Object value = typeHandler.getResult(rs, column);
-          metaObject.setValue(property, value);
+      final String column = propertyMapping.getColumn();
+      if (column != null && mappedColumnNames.contains(column.toUpperCase())) {
+        final TypeHandler typeHandler = propertyMapping.getTypeHandler();
+        if (propertyMapping.getNestedQueryId() != null) {
+          applyNestedQueryMapping(rs, metaObject, resultMap, propertyMapping, lazyLoader);
+        } else if (typeHandler != null) {
+          applySimplePropertyMapping(rs, metaObject, propertyMapping);
         }
       }
+    }
+  }
+
+  private void applySimplePropertyMapping(ResultSet rs, MetaObject metaObject, ResultMapping propertyMapping) throws SQLException {
+    final TypeHandler typeHandler = propertyMapping.getTypeHandler();
+    final String column = propertyMapping.getColumn();
+    final String property = propertyMapping.getProperty();
+    final Object value = typeHandler.getResult(rs, column);
+    metaObject.setValue(property, value);
+  }
+
+  private void applyNestedQueryMapping(ResultSet rs, MetaObject metaResultObject, ResultMap resultMap, ResultMapping propertyMapping, ResultLoaderRegistry lazyLoader) throws SQLException {
+    final String nestedQueryId = propertyMapping.getNestedQueryId();
+    final String property = propertyMapping.getProperty();
+    final MappedStatement nestedQuery = configuration.getMappedStatement(nestedQueryId);
+    final Class nestedQueryParameterType = nestedQuery.getParameterMap().getType();
+    final Object nestedQueryParameterObject = prepareParameterForNestedQuery(rs, propertyMapping, nestedQueryParameterType);
+
+    Object value = null;
+    if (nestedQueryParameterObject != null) {
+      final CacheKey key = executor.createCacheKey(nestedQuery, nestedQueryParameterObject, RowLimit.NO_ROW_OFFSET, RowLimit.NO_ROW_LIMIT);
+      if (executor.isCached(nestedQuery, key)) {
+        executor.deferLoad(nestedQuery, metaResultObject, property, key);
+      } else {
+        final ResultLoader resultLoader = new ResultLoader(configuration, executor, nestedQuery, nestedQueryParameterObject, propertyMapping.getJavaType());
+        if (configuration.isLazyLoadingEnabled()) {
+          lazyLoader.registerLoader(property, metaResultObject, resultLoader);
+        } else {
+          value = resultLoader.loadResult();
+        }
+      }
+    }
+    if (typeHandlerRegistry.hasTypeHandler(resultMap.getType())) {
+      //resultObject = value;
+    } else if (value != null) {
+      metaResultObject.setValue(property, value);
     }
   }
 
@@ -204,6 +246,14 @@ public class NewResultSetHandler implements ResultSetHandler {
   //
   // INSTANTIATION & CONSTRUCTOR MAPPING
   //
+
+  private Object createResultObject(ResultSet rs, ResultMap resultMap, ResultLoaderRegistry lazyLoader) throws SQLException {
+    final Object resultObject = createResultObject(rs, resultMap);
+    if (configuration.isLazyLoadingEnabled()) {
+      return ResultObjectProxy.createProxy(resultMap.getType(), resultObject, lazyLoader);
+    }
+    return resultObject;
+  }
 
   private Object createResultObject(ResultSet rs, ResultMap resultMap) throws SQLException {
     final Class resultType = resultMap.getType();

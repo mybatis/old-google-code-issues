@@ -98,9 +98,6 @@ public class XmlSqlMapConfigParser {
     boolean lazyLoadingEnabled = context.getBooleanAttribute("lazyLoadingEnabled", true);
     config.setLazyLoadingEnabled(lazyLoadingEnabled);
 
-    boolean enhancementEnabled = context.getBooleanAttribute("enhancementEnabled", true);
-    config.setEnhancementEnabled(enhancementEnabled);
-
     boolean statementCachingEnabled = context.getBooleanAttribute("statementCachingEnabled", true);
     if (statementCachingEnabled) {
       config.setDefaultExecutorType(ExecutorType.REUSE);

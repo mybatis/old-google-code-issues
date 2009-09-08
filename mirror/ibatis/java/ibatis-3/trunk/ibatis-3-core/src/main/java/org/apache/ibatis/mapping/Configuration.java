@@ -29,7 +29,6 @@ public class Configuration {
   private Environment environment;
 
   private boolean lazyLoadingEnabled = true;
-  private boolean enhancementEnabled = false;
   private boolean multipleResultSetsEnabled = true;
   private boolean useGeneratedKeys = false;
   private boolean useColumnLabel = true;
@@ -93,14 +92,6 @@ public class Configuration {
 
   public void setLazyLoadingEnabled(boolean lazyLoadingEnabled) {
     this.lazyLoadingEnabled = lazyLoadingEnabled;
-  }
-
-  public boolean isEnhancementEnabled() {
-    return enhancementEnabled;
-  }
-
-  public void setEnhancementEnabled(boolean enhancementEnabled) {
-    this.enhancementEnabled = enhancementEnabled;
   }
 
   public boolean isMultipleResultSetsEnabled() {
@@ -182,7 +173,7 @@ public class Configuration {
   }
 
   public ResultSetHandler newResultSetHandler(Executor executor, MappedStatement mappedStatement, int rowOffset, int rowLimit, ParameterHandler parameterHandler, ResultHandler resultHandler, BoundSql boundSql) {
-    ResultSetHandler resultSetHandler = new DefaultResultSetHandler(this, executor, mappedStatement, parameterHandler, rowOffset, rowLimit, resultHandler, boundSql);
+    ResultSetHandler resultSetHandler = new NewResultSetHandler(executor, mappedStatement, parameterHandler, resultHandler, boundSql, rowOffset, rowLimit);
     resultSetHandler = (ResultSetHandler) interceptorChain.pluginAll(resultSetHandler);
     return resultSetHandler;
   }

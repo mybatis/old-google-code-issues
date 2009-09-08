@@ -13,12 +13,11 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.util.*;
 
-public abstract class BaseExecutorTest extends BaseDataTest {
+public class BaseExecutorTest extends BaseDataTest {
   private final Configuration config;
 
-  protected BaseExecutorTest() {
+  public BaseExecutorTest() {
     config = new Configuration();
-    config.setEnhancementEnabled(true);
     config.setLazyLoadingEnabled(true);
     config.setUseGeneratedKeys(false);
     config.setMultipleResultSetsEnabled(true);
@@ -359,7 +358,7 @@ public abstract class BaseExecutorTest extends BaseDataTest {
       MappedStatement selectPosts = ExecutorTestHelper.prepareSelectPostsForBlogMappedStatement(config);
       config.addMappedStatement(selectBlog);
       config.addMappedStatement(selectPosts);
-      config.setLazyLoadingEnabled(false);
+      config.setLazyLoadingEnabled(true);
       List<Blog> blogs = executor.query(selectBlog, 1, Executor.NO_ROW_OFFSET, Executor.NO_ROW_LIMIT, Executor.NO_RESULT_HANDLER);
       executor.flushStatements();
       assertEquals(1, blogs.size());
@@ -393,6 +392,8 @@ public abstract class BaseExecutorTest extends BaseDataTest {
     }
   }
 
-  protected abstract Executor createExecutor(Transaction transaction);
+  protected Executor createExecutor(Transaction transaction) {
+    return new SimpleExecutor(transaction);
+  }
 
 }
