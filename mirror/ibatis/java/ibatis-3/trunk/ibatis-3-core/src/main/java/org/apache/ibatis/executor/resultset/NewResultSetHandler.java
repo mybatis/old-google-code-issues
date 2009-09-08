@@ -119,7 +119,7 @@ public class NewResultSetHandler implements ResultSetHandler {
     skipRows(rs, rowLimit);
     while (shouldProcessMoreRows(rs, resultContext.getResultCount(), rowLimit)) {
       final ResultMap discriminatedResultMap = resolveDiscriminatedResultMap(rs, resultMap);
-      final ResultLoaderRegistry lazyLoader = new ResultLoaderRegistry();
+      final ResultLoaderRegistry lazyLoader = instantiateResultLoaderRegistry();
       final Object resultObject = createResultObject(rs, discriminatedResultMap, lazyLoader);
       final MetaObject metaObject = MetaObject.forObject(resultObject);
       getMappedAndUnmappedColumnNames(rs, discriminatedResultMap, mappedColumnNames, unmappedColumnNames);
@@ -127,6 +127,14 @@ public class NewResultSetHandler implements ResultSetHandler {
       applyAutomaticMappings(rs, unmappedColumnNames, metaObject);
       resultContext.nextResultObject(resultObject);
       resultHandler.handleResult(resultContext);
+    }
+  }
+
+  private ResultLoaderRegistry instantiateResultLoaderRegistry() {
+    if (configuration.isLazyLoadingEnabled()) {
+      return new ResultLoaderRegistry();
+    } else {
+      return null;
     }
   }
 
