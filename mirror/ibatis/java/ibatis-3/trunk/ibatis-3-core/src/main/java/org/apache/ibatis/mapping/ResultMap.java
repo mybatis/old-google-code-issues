@@ -43,6 +43,13 @@ public class ResultMap {
         final String column = resultMapping.getColumn();
         if (column != null) {
           resultMap.mappedColumns.add(column.toUpperCase());
+        } else if (resultMapping.isCompositeResult()) {
+          for (ResultMapping compositeResultMapping : resultMapping.getComposites()) {
+            final String compositeColumn = compositeResultMapping.getColumn();
+            if (compositeColumn != null) {
+              resultMap.mappedColumns.add(compositeColumn.toUpperCase());
+            }
+          }
         }
         if (resultMapping.getFlags().contains(ResultFlag.CONSTRUCTOR)) {
           resultMap.constructorResultMappings.add(resultMapping);
