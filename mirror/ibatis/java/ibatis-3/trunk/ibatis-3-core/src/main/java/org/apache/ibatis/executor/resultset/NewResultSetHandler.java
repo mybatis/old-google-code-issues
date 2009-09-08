@@ -119,11 +119,13 @@ public class NewResultSetHandler implements ResultSetHandler {
       final ResultMap discriminatedResultMap = resolveDiscriminatedResultMap(rs, resultMap);
       final ResultLoaderRegistry lazyLoader = instantiateResultLoaderRegistry();
       final Object resultObject = createResultObject(rs, discriminatedResultMap, lazyLoader);
-      final MetaObject metaObject = MetaObject.forObject(resultObject);
-      getMappedAndUnmappedColumnNames(rs, discriminatedResultMap, mappedColumnNames, unmappedColumnNames);
-      applyPropertyMappings(rs, discriminatedResultMap, mappedColumnNames, metaObject, lazyLoader);
-      applyAutomaticMappings(rs, unmappedColumnNames, metaObject);
-      processNestedJoinResults(rs, resultMap, resultObject);
+      if (!typeHandlerRegistry.hasTypeHandler(resultMap.getType())) {
+        final MetaObject metaObject = MetaObject.forObject(resultObject);
+        getMappedAndUnmappedColumnNames(rs, discriminatedResultMap, mappedColumnNames, unmappedColumnNames);
+        applyPropertyMappings(rs, discriminatedResultMap, mappedColumnNames, metaObject, lazyLoader);
+        applyAutomaticMappings(rs, unmappedColumnNames, metaObject);
+        processNestedJoinResults(rs, resultMap, resultObject);
+      }
       resultContext.nextResultObject(resultObject);
       resultHandler.handleResult(resultContext);
     }
