@@ -173,8 +173,8 @@ public class Configuration {
   }
 
   public ResultSetHandler newResultSetHandler(Executor executor, MappedStatement mappedStatement, int rowOffset, int rowLimit, ParameterHandler parameterHandler, ResultHandler resultHandler, BoundSql boundSql) {
-    ResultSetHandler defaultResultSetHandler = new DefaultResultSetHandler(executor, mappedStatement, parameterHandler, resultHandler, boundSql, rowOffset, rowLimit);
-    ResultSetHandler resultSetHandler =            new NewResultSetHandler(executor, mappedStatement, parameterHandler, resultHandler, boundSql, rowOffset, rowLimit);
+    ResultSetHandler resultSetHandler = new DefaultResultSetHandler(executor, mappedStatement, parameterHandler, resultHandler, boundSql, rowOffset, rowLimit);
+    //ResultSetHandler resultSetHandler =            new NewResultSetHandler(executor, mappedStatement, parameterHandler, resultHandler, boundSql, rowOffset, rowLimit);
     resultSetHandler = (ResultSetHandler) interceptorChain.pluginAll(resultSetHandler);
     return resultSetHandler;
   }
