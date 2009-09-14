@@ -2,6 +2,7 @@ package org.apache.ibatis.executor;
 
 import domain.blog.*;
 import org.apache.ibatis.BaseDataTest;
+import org.apache.ibatis.logging.jdbc.ConnectionLogger;
 import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.transaction.Transaction;
 import org.apache.ibatis.transaction.jdbc.JdbcTransaction;
@@ -284,6 +285,7 @@ public class BaseExecutorTest extends BaseDataTest {
   public void shouldFetchPostsForBlog() throws Exception {
     DataSource ds = createBlogDataSource();
     Connection connection = ds.getConnection();
+    connection = ConnectionLogger.newInstance(connection);     
     try {
       Executor executor = createExecutor(new JdbcTransaction(connection, false));
       MappedStatement selectBlog = ExecutorTestHelper.prepareComplexSelectBlogMappedStatement(config);

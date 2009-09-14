@@ -9,10 +9,13 @@ import java.util.*;
 public class MapWrapper extends BaseWrapper {
 
   private Map map;
+  private Object[] keyArray;
+
 
   public MapWrapper(MetaObject metaObject, Map map) {
     super(metaObject);
     this.map = map;
+    updateKeyArray();
   }
 
   public Object get(PropertyTokenizer prop) {
@@ -31,9 +34,19 @@ public class MapWrapper extends BaseWrapper {
     } else {
       map.put(prop.getName(), value);
     }
+    updateKeyArray();
   }
 
   public String findProperty(String name) {
+    updateKeyArray();
+    final int index = Arrays.binarySearch(keyArray, name, new Comparator() {
+      public int compare(Object o1, Object o2) {
+        return ((String)o1).toLowerCase().compareTo(((String)o2).toLowerCase());
+      }
+    });
+    if (index > -1) {
+      return (String)keyArray[index];
+    }
     return name;
   }
 
@@ -108,4 +121,10 @@ public class MapWrapper extends BaseWrapper {
     set(prop, map);
     return MetaObject.forObject(map);
   }
+
+  private void updateKeyArray() {
+    keyArray = map.keySet().toArray();
+    Arrays.sort(keyArray);
+  }
+
 }

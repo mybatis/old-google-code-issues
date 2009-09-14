@@ -22,7 +22,7 @@ import java.sql.*;
 
 public class NewResultSetHandler implements ResultSetHandler {
 
-  private Executor executor;
+  private final Executor executor;
   private final Configuration configuration;
   private final MappedStatement mappedStatement;
   private final RowLimit rowLimit;
@@ -98,6 +98,7 @@ public class NewResultSetHandler implements ResultSetHandler {
       }
       rs = getNextResultSet(stmt);
       count++;
+      nestedResultObjects.clear();
     }
     return collapseSingleResultList(multipleResults);
   }
@@ -112,20 +113,26 @@ public class NewResultSetHandler implements ResultSetHandler {
 
   private void handleResultSet(ResultSet rs, ResultMap resultMap, ResultHandler resultHandler, RowLimit rowLimit) throws SQLException {
     final DefaultResultContext resultContext = new DefaultResultContext();
-    final List<String> mappedColumnNames = new ArrayList<String>();
-    final List<String> unmappedColumnNames = new ArrayList<String>();
     skipRows(rs, rowLimit);
     while (shouldProcessMoreRows(rs, resultContext.getResultCount(), rowLimit)) {
-      final ResultMap discriminatedResultMap = resolveDiscriminatedResultMap(rs, resultMap);
-      final ResultLoaderRegistry lazyLoader = instantiateResultLoaderRegistry();
-      final Object resultObject = createResultObject(rs, discriminatedResultMap, lazyLoader);
-      if (!typeHandlerRegistry.hasTypeHandler(resultMap.getType())) {
-        final MetaObject metaObject = MetaObject.forObject(resultObject);
-        getMappedAndUnmappedColumnNames(rs, discriminatedResultMap, mappedColumnNames, unmappedColumnNames);
-        applyPropertyMappings(rs, discriminatedResultMap, mappedColumnNames, metaObject, lazyLoader);
-        applyAutomaticMappings(rs, unmappedColumnNames, metaObject);
-        processNestedJoinResults(rs, resultMap, resultObject);
-      }
+      loadObject(rs, resultMap, resultHandler, resultContext);
+    }
+  }
+
+  private void loadObject(ResultSet rs, ResultMap resultMap, ResultHandler resultHandler, DefaultResultContext resultContext) throws SQLException {
+    final List<String> mappedColumnNames = new ArrayList<String>();
+    final List<String> unmappedColumnNames = new ArrayList<String>();
+    final ResultMap discriminatedResultMap = resolveDiscriminatedResultMap(rs, resultMap);
+    final ResultLoaderRegistry lazyLoader = instantiateResultLoaderRegistry();
+    Object resultObject = createResultObject(rs, discriminatedResultMap, lazyLoader);
+    if (!typeHandlerRegistry.hasTypeHandler(resultMap.getType())) {
+      final MetaObject metaObject = MetaObject.forObject(resultObject);
+      getMappedAndUnmappedColumnNames(rs, discriminatedResultMap, mappedColumnNames, unmappedColumnNames);
+      applyPropertyMappings(rs, discriminatedResultMap, mappedColumnNames, metaObject, lazyLoader);
+      applyAutomaticMappings(rs, unmappedColumnNames, metaObject);
+      resultObject = processNestedJoinResults(rs, resultMap, resultObject);
+    }
+    if (resultObject != NO_VALUE) {
       resultContext.nextResultObject(resultObject);
       resultHandler.handleResult(resultContext);
     }
@@ -190,7 +197,9 @@ public class NewResultSetHandler implements ResultSetHandler {
     final String column = propertyMapping.getColumn();
     final String property = propertyMapping.getProperty();
     final Object value = typeHandler.getResult(rs, column);
-    metaObject.setValue(property, value);
+    if (value != null) {
+      metaObject.setValue(property, value);
+    }
   }
 
   private void applyNestedQueryMapping(ResultSet rs, MetaObject metaResultObject, ResultMap resultMap, ResultMapping propertyMapping, ResultLoaderRegistry lazyLoader) throws SQLException {
@@ -214,9 +223,7 @@ public class NewResultSetHandler implements ResultSetHandler {
         }
       }
     }
-    if (typeHandlerRegistry.hasTypeHandler(resultMap.getType())) {
-      //resultObject = value;
-    } else if (value != null) {
+    if (value != null) {
       metaResultObject.setValue(property, value);
     }
   }
@@ -405,7 +412,7 @@ public class NewResultSetHandler implements ResultSetHandler {
           final Reference<Boolean> foundValues = new Reference(false);
 
           final DefaultResultHandler defaultResultHandler = new DefaultResultHandler();
-          handleResultSet(rs, nestedResultMap, defaultResultHandler, new RowLimit());
+          loadObject(rs, nestedResultMap, defaultResultHandler, new DefaultResultContext());
           final List nestedResults = defaultResultHandler.getResultList();
 
           if (propertyValue != null && propertyValue instanceof Collection) {
@@ -416,7 +423,7 @@ public class NewResultSetHandler implements ResultSetHandler {
             if (nestedResults.size() == 1) {
               final Object nestedResultObject = nestedResults.get(0);
               metaObject.setValue(resultMapping.getProperty(), nestedResultObject);
-            } else {
+            } else if (nestedResults.size() > 1) {              
               throw new ExecutorException("Expected exactly 1 or 0 results for '" + resultMapping.getProperty() + "', but found "+nestedResults.size()+".");
             }
           }
@@ -479,15 +486,38 @@ public class NewResultSetHandler implements ResultSetHandler {
 
   private void updateCacheKeyForComplexResultObject(ResultMap resultMap, Object resultObject, CacheKey cacheKey) {
     final MetaObject metaResultObject = MetaObject.forObject(resultObject);
-    for (ResultMapping resultMapping : resultMap.getIdResultMappings()) {
+    final List<ResultMapping> idMappings = resultMap.getIdResultMappings();
+    if (idMappings.size() > 0) {
+      updateCacheKeyFromIDMappings(cacheKey, metaResultObject, idMappings);
+    } else {
+      updateCacheKeyFromAllAvailableProperties(cacheKey, metaResultObject);
+    }
+  }
+
+  private void updateCacheKeyFromIDMappings(CacheKey cacheKey, MetaObject metaResultObject, List<ResultMapping> idMappings) {
+    for (ResultMapping resultMapping : idMappings) {
       if (resultMapping.getNestedQueryId() == null && resultMapping.getNestedResultMapId() == null) {
-        final String propName = resultMapping.getProperty();
-        if (propName != null) {
-          final Object value = metaResultObject.getValue(propName);
-          if (value != null) {
-            cacheKey.update(propName);
-            cacheKey.update(value);
+        if (resultMapping.getProperty() != null) {
+          final String propName = metaResultObject.findProperty(resultMapping.getProperty());
+          if (propName != null) {
+            final Object value = metaResultObject.getValue(propName);
+            if (value != null) {
+              cacheKey.update(propName);
+              cacheKey.update(value);
+            }
           }
+        }
+      }
+    }
+  }
+
+  private void updateCacheKeyFromAllAvailableProperties(CacheKey cacheKey, MetaObject metaResultObject) {
+    for (String propName : metaResultObject.getGetterNames()) {
+      if (propName != null) {
+        final Object value = metaResultObject.getValue(propName);
+        if (value != null) {
+          cacheKey.update(propName);
+          cacheKey.update(value);
         }
       }
     }
