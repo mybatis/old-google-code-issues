@@ -8,7 +8,6 @@ import java.util.*;
 public class BaseJdbcLogger {
 
   protected static final Set<String> SET_METHODS = new HashSet<String>();
-  protected static final Set<String> GET_METHODS = new HashSet<String>();
   protected static final Set<String> EXECUTE_METHODS = new HashSet<String>();
 
   private Map<Object, Object> columnMap = new HashMap<Object, Object>();
@@ -45,28 +44,6 @@ public class BaseJdbcLogger {
     SET_METHODS.add("setObject");
     SET_METHODS.add("setNull");
 
-    GET_METHODS.add("getString");
-    GET_METHODS.add("getInt");
-    GET_METHODS.add("getByte");
-    GET_METHODS.add("getShort");
-    GET_METHODS.add("getLong");
-    GET_METHODS.add("getDouble");
-    GET_METHODS.add("getFloat");
-    GET_METHODS.add("getTimestamp");
-    GET_METHODS.add("getDate");
-    GET_METHODS.add("getTime");
-    GET_METHODS.add("getArray");
-    GET_METHODS.add("getBigDecimal");
-    GET_METHODS.add("getAsciiStream");
-    GET_METHODS.add("getBinaryStream");
-    GET_METHODS.add("getBlob");
-    GET_METHODS.add("getBoolean");
-    GET_METHODS.add("getBytes");
-    GET_METHODS.add("getCharacterStream");
-    GET_METHODS.add("getClob");
-    GET_METHODS.add("getObject");
-    GET_METHODS.add("getNull");
-
     EXECUTE_METHODS.add("execute");
     EXECUTE_METHODS.add("executeUpdate");
     EXECUTE_METHODS.add("executeQuery");
@@ -83,20 +60,17 @@ public class BaseJdbcLogger {
     return columnMap.get(key);
   }
 
-  protected String getValueString() {
-    return columnValues.toString();
-  }
-
-  protected String getTypeString() {
+  protected String getParameterValueString() {
     List<Object> typeList = new ArrayList<Object>(columnValues.size());
     for (Object value : columnValues) {
       if (value == null) {
         typeList.add("null");
       } else {
-        typeList.add(value.getClass().getName());
+        typeList.add(value + "(" + value.getClass().getSimpleName() + ")");
       }
     }
-    return typeList.toString();
+    final String parameters = typeList.toString();
+    return parameters.substring(1,parameters.length() - 1);
   }
 
   protected String getColumnString() {
