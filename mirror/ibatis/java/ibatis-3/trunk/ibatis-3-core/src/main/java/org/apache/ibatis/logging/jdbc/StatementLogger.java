@@ -24,7 +24,7 @@ public class StatementLogger extends BaseJdbcLogger implements InvocationHandler
     try {
       if (EXECUTE_METHODS.contains(method.getName())) {
         if (log.isDebugEnabled()) {
-          log.debug("==> Executing: " + removeBreakingWhitespace((String) params[0]));
+          log.debug("==>  Executing: " + removeBreakingWhitespace((String) params[0]));
         }
         if ("executeQuery".equals(method.getName())) {
           ResultSet rs = (ResultSet) method.invoke(statement, params);
