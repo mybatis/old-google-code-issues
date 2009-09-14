@@ -27,14 +27,16 @@ public class ResultSetLogger extends BaseJdbcLogger implements InvocationHandler
     try {
       Object o = method.invoke(rs, params);
       if ("next".equals(method.getName())) {
-        ResultSetMetaData rsmd = rs.getMetaData();
-        final int columnCount = rsmd.getColumnCount();
-        if (log.isDebugEnabled()) {
-          if (first) {
-            first = false;
-            printColumnHeaders(rsmd, columnCount);
+        if (((Boolean)o)) {
+          ResultSetMetaData rsmd = rs.getMetaData();
+          final int columnCount = rsmd.getColumnCount();
+          if (log.isDebugEnabled()) {
+            if (first) {
+              first = false;
+              printColumnHeaders(rsmd, columnCount);
+            }
+            printColumnValues(columnCount);
           }
-          printColumnValues(columnCount);
         }
       }
       clearColumnInfo();
