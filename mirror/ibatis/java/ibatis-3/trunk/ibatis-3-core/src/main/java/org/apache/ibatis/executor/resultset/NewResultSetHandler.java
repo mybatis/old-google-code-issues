@@ -208,7 +208,7 @@ public class NewResultSetHandler implements ResultSetHandler {
     for (ResultMapping propertyMapping : propertyMappings) {
       final String column = propertyMapping.getColumn();
       if (propertyMapping.isCompositeResult() || (column != null && mappedColumnNames.contains(column.toUpperCase()))) {
-        Object value = getPropertyMappingValue(rs, metaObject, resultMap, propertyMapping, lazyLoader);
+        Object value = getPropertyMappingValue(rs, metaObject, propertyMapping, lazyLoader);
         if (value != null) {
           final String property = propertyMapping.getProperty();
           metaObject.setValue(property, value);
@@ -217,10 +217,10 @@ public class NewResultSetHandler implements ResultSetHandler {
     }
   }
 
-  private Object getPropertyMappingValue(ResultSet rs, MetaObject metaResultObject, ResultMap resultMap, ResultMapping propertyMapping, ResultLoaderRegistry lazyLoader) throws SQLException {
+  private Object getPropertyMappingValue(ResultSet rs, MetaObject metaResultObject, ResultMapping propertyMapping, ResultLoaderRegistry lazyLoader) throws SQLException {
     final TypeHandler typeHandler = propertyMapping.getTypeHandler();
     if (propertyMapping.getNestedQueryId() != null) {
-      return getNestedQueryMappingValue(rs, metaResultObject, resultMap, propertyMapping, lazyLoader);
+      return getNestedQueryMappingValue(rs, metaResultObject, propertyMapping, lazyLoader);
     } else if (typeHandler != null) {
       final String column = propertyMapping.getColumn();
       return typeHandler.getResult(rs, column);
@@ -310,7 +310,7 @@ public class NewResultSetHandler implements ResultSetHandler {
   // NESTED QUERY
   //
 
-  private Object getNestedQueryMappingValue(ResultSet rs, MetaObject metaResultObject, ResultMap resultMap, ResultMapping propertyMapping, ResultLoaderRegistry lazyLoader) throws SQLException {
+  private Object getNestedQueryMappingValue(ResultSet rs, MetaObject metaResultObject, ResultMapping propertyMapping, ResultLoaderRegistry lazyLoader) throws SQLException {
     final String nestedQueryId = propertyMapping.getNestedQueryId();
     final String property = propertyMapping.getProperty();
     final MappedStatement nestedQuery = configuration.getMappedStatement(nestedQueryId);
@@ -458,59 +458,75 @@ public class NewResultSetHandler implements ResultSetHandler {
 
   private CacheKey createRowKey(ResultMap resultMap, ResultSet rs) throws SQLException {
     final CacheKey cacheKey = new CacheKey();
+    List<ResultMapping> resultMappings = getResultMappingsForRowKey(resultMap);
+    cacheKey.update(resultMap.getId());
+    if (resultMappings.size() == 0) {
+      if (Map.class.isAssignableFrom(resultMap.getType())) {
+        createRowKeyForMap(rs, cacheKey);
+      } else {
+        createRowKeyForUnmappedProperties(resultMap, rs, cacheKey);
+      }
+    } else {
+      createRowKeyForMappedProperties(rs, cacheKey, resultMappings);
+    }
+    return cacheKey;
+  }
+
+  private List<ResultMapping> getResultMappingsForRowKey(ResultMap resultMap) {
     List<ResultMapping> resultMappings = resultMap.getIdResultMappings();
     if (resultMappings.size() == 0) {
       resultMappings = resultMap.getPropertyResultMappings();
     }
-    cacheKey.update(resultMap.getId());
-    if (resultMappings.size() == 0) {
-      if (Map.class.isAssignableFrom(resultMap.getType())) {
-        final ResultSetMetaData rsmd = rs.getMetaData();
-        final int columnCount = rsmd.getColumnCount();
-        final Set<String> mappedColumns = resultMap.getMappedColumns();
-        for (int i = 1; i <= columnCount; i++) {
-          final String columnName = configuration.isUseColumnLabel() ? rsmd.getColumnLabel(i) : rsmd.getColumnName(i);
-          final String value = rs.getString(columnName);
-          if (value != null) {
-            cacheKey.update(columnName);
-            cacheKey.update(value);
-          }
-        }
-      } else {
-        final MetaClass metaType = MetaClass.forClass(resultMap.getType());
-        final List<String> mappedColumnNames = new ArrayList<String>();
-        final List<String> unmappedColumnNames = new ArrayList<String>();
-        loadMappedAndUnmappedColumnNames(rs, resultMap, mappedColumnNames, unmappedColumnNames);
-        for (String column : unmappedColumnNames) {
-          if (metaType.findProperty(column) != null) {
-            String value = rs.getString(column);
+    return resultMappings;
+  }
+
+  private void createRowKeyForMappedProperties(ResultSet rs, CacheKey cacheKey, List<ResultMapping> resultMappings) {
+    for (ResultMapping resultMapping : resultMappings) {
+      if (resultMapping.getNestedQueryId() == null && resultMapping.getNestedResultMapId() == null) {
+        final String column = resultMapping.getColumn();
+        final TypeHandler th = resultMapping.getTypeHandler();
+        if (column != null) {
+          try {
+            final Object value = th.getResult(rs, column);
             if (value != null) {
               cacheKey.update(column);
               cacheKey.update(value);
             }
-          }
-        }
-      }
-    } else {
-      for (ResultMapping resultMapping : resultMappings) {
-        if (resultMapping.getNestedQueryId() == null && resultMapping.getNestedResultMapId() == null) {
-          final String column = resultMapping.getColumn();
-          final TypeHandler th = resultMapping.getTypeHandler();
-          if (column != null) {
-            try {
-              final Object value = th.getResult(rs, column);
-              if (value != null) {
-                cacheKey.update(column);
-                cacheKey.update(value);
-              }
-            } catch (Exception e) {
-              //ignore
-            }
+          } catch (Exception e) {
+            //ignore
           }
         }
       }
     }
-    return cacheKey;
+  }
+
+  private void createRowKeyForUnmappedProperties(ResultMap resultMap, ResultSet rs, CacheKey cacheKey) throws SQLException {
+    final MetaClass metaType = MetaClass.forClass(resultMap.getType());
+    final List<String> mappedColumnNames = new ArrayList<String>();
+    final List<String> unmappedColumnNames = new ArrayList<String>();
+    loadMappedAndUnmappedColumnNames(rs, resultMap, mappedColumnNames, unmappedColumnNames);
+    for (String column : unmappedColumnNames) {
+      if (metaType.findProperty(column) != null) {
+        String value = rs.getString(column);
+        if (value != null) {
+          cacheKey.update(column);
+          cacheKey.update(value);
+        }
+      }
+    }
+  }
+
+  private void createRowKeyForMap(ResultSet rs, CacheKey cacheKey) throws SQLException {
+    final ResultSetMetaData rsmd = rs.getMetaData();
+    final int columnCount = rsmd.getColumnCount();
+    for (int i = 1; i <= columnCount; i++) {
+      final String columnName = configuration.isUseColumnLabel() ? rsmd.getColumnLabel(i) : rsmd.getColumnName(i);
+      final String value = rs.getString(columnName);
+      if (value != null) {
+        cacheKey.update(columnName);
+        cacheKey.update(value);
+      }
+    }
   }
 
 }

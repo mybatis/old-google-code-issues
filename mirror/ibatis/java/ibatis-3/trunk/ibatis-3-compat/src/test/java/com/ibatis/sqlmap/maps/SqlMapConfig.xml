@@ -17,7 +17,7 @@
   <settings
       cacheModelsEnabled="true"
       enhancementEnabled="false"
-      lazyLoadingEnabled="true"
+      lazyLoadingEnabled="false"
       statementCachingEnabled="false"
       useStatementNamespaces="false"
       />

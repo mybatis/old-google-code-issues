@@ -9,7 +9,7 @@
   <typeAlias alias="account" type="testdomain.Account"/>
 
   <resultMap id="account-result" class="account">
-    <result property="id" column="ACC_ID"/>
+    <result property="id" column="id"/>
     <result property="firstName" column="ACC_FIRST_NAME"/>
     <result property="lastName" column="ACC_LAST_NAME"/>
     <result property="emailAddress" column="ACC_EMAIL"/>
