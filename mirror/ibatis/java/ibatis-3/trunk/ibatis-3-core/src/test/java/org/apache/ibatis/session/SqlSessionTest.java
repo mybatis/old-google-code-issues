@@ -244,7 +244,10 @@ public class SqlSessionTest extends BaseDataTest {
       assertEquals("Corn nuts", post.getSubject());
 
       final List<Comment> comments = post.getComments();
-      assertEquals(1, comments.size());
+      assertEquals(2, comments.size());
+
+      final List<Tag> tags= post.getTags();
+      assertEquals(3, tags.size());
 
       final Comment comment = comments.get(0);
       assertEquals(1, comment.getId());
@@ -276,7 +279,10 @@ public class SqlSessionTest extends BaseDataTest {
       assertEquals("Corn nuts", post.getSubject());
 
       final List<Comment> comments = post.getComments();
-      assertEquals(1, comments.size());
+      assertEquals(2, comments.size());
+
+      final List<Tag> tags= post.getTags();
+      assertEquals(3, tags.size());
 
       final Comment comment = comments.get(0);
       assertEquals(1, comment.getId());
