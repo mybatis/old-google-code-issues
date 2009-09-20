@@ -25,6 +25,10 @@ public class CacheKey {
     updateAll(objects);
   }
 
+  public int getUpdateCount() {
+    return updateList.size();
+  }
+
   public void update(Object object) {
     int baseHashCode = object == null ? 1 : object.hashCode();
 
