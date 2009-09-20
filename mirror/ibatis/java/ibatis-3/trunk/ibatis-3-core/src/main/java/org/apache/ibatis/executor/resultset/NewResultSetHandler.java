@@ -34,6 +34,7 @@ public class NewResultSetHandler implements ResultSetHandler {
   private final ObjectFactory objectFactory;
 
   private final Map rowValueCache = new HashMap();
+  private static final CacheKey NULL_ROW_KEY = new CacheKey();
 
   public NewResultSetHandler(Executor executor, MappedStatement mappedStatement, ParameterHandler parameterHandler, ResultHandler resultHandler, BoundSql boundSql, int offset, int limit) {
     this.executor = executor;
@@ -186,7 +187,9 @@ public class NewResultSetHandler implements ResultSetHandler {
         applyAutomaticMappings(rs, unmappedColumnNames, metaObject);
         applyNestedResultMappings(rs, resultMap, metaObject);
       }
-      rowValueCache.put(rowKey, resultObject);
+      if (rowKey != NULL_ROW_KEY) {
+        rowValueCache.put(rowKey, resultObject);
+      }
       return resultObject;
     }
   }
@@ -468,6 +471,9 @@ public class NewResultSetHandler implements ResultSetHandler {
       }
     } else {
       createRowKeyForMappedProperties(rs, cacheKey, resultMappings);
+    }
+    if (cacheKey.getUpdateCount() < 2) {
+      return NULL_ROW_KEY;
     }
     return cacheKey;
   }
