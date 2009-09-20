@@ -114,8 +114,8 @@ public class DefaultResultSetHandler implements ResultSetHandler {
         ResultMap rm = discriminatorHandler.resolveSubMap(rs, resultMap);
         Object resultObject = loadResultObject(rs, rm, new Reference(false));
         if (resultObject != NO_VALUE) {
-          if (resultObject instanceof PlatformTypeHolder) {
-            resultObject = ((PlatformTypeHolder) resultObject).get(null);
+          if (resultObject instanceof PlatformType) {
+            resultObject = ((PlatformType) resultObject).get(null);
           }
           context.nextResultObject(resultObject);
           resultHandler.handleResult(context);
@@ -197,8 +197,8 @@ public class DefaultResultSetHandler implements ResultSetHandler {
   }
 
   private Object createResultObject(ResultSet rs, ResultMap rm) throws SQLException {
-    if (PlatformTypeHolder.isPlatformType(rm.getType())) {
-      return new PlatformTypeHolder();
+    if (PlatformType.isPlatformType(rm.getType())) {
+      return new PlatformType();
     }
     Object resultObject;
     if (rm.getConstructorResultMappings().size() > 0) {

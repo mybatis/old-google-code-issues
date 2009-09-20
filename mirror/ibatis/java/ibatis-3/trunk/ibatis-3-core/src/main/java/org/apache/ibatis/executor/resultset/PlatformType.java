@@ -3,7 +3,7 @@ package org.apache.ibatis.executor.resultset;
 import java.math.BigDecimal;
 import java.util.*;
 
-public class PlatformTypeHolder implements Map {
+public class PlatformType implements Map {
 
   private static final Set<Class> platformTypes = new HashSet<Class>() {
     {
