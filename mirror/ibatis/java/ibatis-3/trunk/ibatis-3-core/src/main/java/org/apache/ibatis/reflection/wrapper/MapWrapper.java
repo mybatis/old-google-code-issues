@@ -39,11 +39,23 @@ public class MapWrapper extends BaseWrapper {
 
   public String findProperty(String name) {
     updateKeyArray();
-    final int index = Arrays.binarySearch(keyArray, name, new Comparator() {
-      public int compare(Object o1, Object o2) {
-        return ((String)o1).toLowerCase().compareTo(((String)o2).toLowerCase());
-      }
-    });
+    final int index = -1;
+    if (name != null) {
+      Arrays.binarySearch(keyArray, name, new Comparator() {
+        public int compare(Object o1, Object o2) {
+          if (o1 == o2) {
+            return 0;
+          } else if (o1 == null && o2 == null) {
+            return 0;
+          } else if (o1 == null) {
+            return -1;
+          } else if (o2 == null) {
+            return 1;
+          }
+          return ((String)o1).toLowerCase().compareTo(((String)o2).toLowerCase());
+        }
+      });
+    }
     if (index > -1) {
       return (String)keyArray[index];
     }
