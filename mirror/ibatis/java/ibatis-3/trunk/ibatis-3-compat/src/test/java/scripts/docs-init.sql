@@ -34,8 +34,8 @@ create table Document_Attributes (
   attribute varchar(50) not null
 );
 
-insert into Document_Attributes values (1, 'English');
-insert into Document_Attributes values (1, 'Sci-Fi');
-insert into Document_Attributes values (2, 'French');
-insert into Document_Attributes values (3, 'English');
-insert into Document_Attributes values (3, 'Fantasy');
+insert into Document_Attributes(document_id, attribute) values (1, 'English');
+insert into Document_Attributes(document_id, attribute) values (1, 'Sci-Fi');
+insert into Document_Attributes(document_id, attribute) values (2, 'French');
+insert into Document_Attributes(document_id, attribute) values (3, 'English');
+insert into Document_Attributes(document_id, attribute) values (3, 'Fantasy');

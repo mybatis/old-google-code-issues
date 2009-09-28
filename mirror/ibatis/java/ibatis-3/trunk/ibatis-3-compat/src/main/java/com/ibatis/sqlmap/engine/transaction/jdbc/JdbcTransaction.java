@@ -5,6 +5,7 @@ import com.ibatis.sqlmap.engine.transaction.IsolationLevel;
 import com.ibatis.sqlmap.engine.transaction.TransactionException;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.Configuration;
+import org.apache.ibatis.logging.jdbc.ConnectionLogger;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -30,6 +31,7 @@ public class JdbcTransaction extends BaseTransaction {
   private void init() throws SQLException, TransactionException {
     // Open JDBC Transaction
     Connection connection = dataSource.getConnection();
+    connection = ConnectionLogger.newInstance(connection);        
     if (connection == null) {
       throw new TransactionException("JdbcTransaction could not start transaction.  Cause: The DataSource returned a null connection.");
     }
