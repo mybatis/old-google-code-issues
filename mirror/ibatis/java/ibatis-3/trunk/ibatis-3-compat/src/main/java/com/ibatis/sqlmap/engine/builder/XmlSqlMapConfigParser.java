@@ -111,7 +111,7 @@ public class XmlSqlMapConfigParser {
     boolean cacheModelsEnabled = context.getBooleanAttribute("cacheModelsEnabled", true);
     config.setCacheEnabled(cacheModelsEnabled);
 
-    boolean useColumnLabel = context.getBooleanAttribute("useColumnLabel", true);
+    boolean useColumnLabel = context.getBooleanAttribute("useColumnLabel", false);
     config.setUseColumnLabel(useColumnLabel);
 
     boolean forceMultipleResultSetSupport = context.getBooleanAttribute("forceMultipleResultSetSupport", true);

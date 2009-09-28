@@ -414,9 +414,11 @@ public class DefaultResultSetHandler implements ResultSetHandler {
           final CacheKey rowKey = createRowKey(nestedResultMap, rs);
           final boolean knownValue = rowValueCache.containsKey(rowKey);
           Object rowValue = getRowValue(rs, nestedResultMap, rowKey);
-          if (!knownValue && rowValue != null && rowValue != NO_VALUE) {
+          if (rowValue != null && rowValue != NO_VALUE) {
             if (collectionProperty != null && collectionProperty instanceof Collection) {
-              ((Collection) collectionProperty).add(rowValue);
+              if (!knownValue) {
+                ((Collection) collectionProperty).add(rowValue);
+              }
             } else {
               metaObject.setValue(resultMapping.getProperty(), rowValue);
             }
