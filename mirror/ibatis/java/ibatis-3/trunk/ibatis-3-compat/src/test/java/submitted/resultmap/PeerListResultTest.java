@@ -105,13 +105,13 @@ public class PeerListResultTest extends TestCase {
       assertEquals(2, list.size());
       Person person = (Person) list.get(0);
       assertEquals("Fred", person.getName());
-      assertEquals(person.getAddresses().size(), 1);
-      assertEquals(person.getPhoneNumbers().size(), 2);
+      assertEquals(1, person.getAddresses().size());
+      assertEquals(2, person.getPhoneNumbers().size());
 
       person = (Person) list.get(1);
       assertEquals("Wilma", person.getName());
-      assertEquals(person.getAddresses().size(), 2);
-      assertEquals(person.getPhoneNumbers().size(), 1);
+      assertEquals(2, person.getAddresses().size());
+      assertEquals(1, person.getPhoneNumbers().size());
     } catch (Exception e) {
       fail(e.getMessage());
     }
