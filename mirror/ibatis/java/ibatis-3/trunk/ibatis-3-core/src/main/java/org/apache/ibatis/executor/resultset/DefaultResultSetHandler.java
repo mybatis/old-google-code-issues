@@ -288,7 +288,7 @@ public class DefaultResultSetHandler implements ResultSetHandler {
     final Class resultType = resultMap.getType();
     final List<ResultMapping> constructorMappings = resultMap.getConstructorResultMappings();
     if (PlatformType.isPlatformType(resultType)) {
-      return createPrimitiveResultObject(rs, resultType);
+      return createPrimitiveResultObject(rs, resultMap);
     } else if (constructorMappings.size() > 0) {
       return createParameterizedResultObject(rs, resultType, constructorMappings);
     } else {
@@ -312,9 +312,17 @@ public class DefaultResultSetHandler implements ResultSetHandler {
     return foundValues ? objectFactory.create(resultType, parameterTypes, parameterValues) : null;
   }
 
-  private Object createPrimitiveResultObject(ResultSet rs, Class resultType) throws SQLException {
-    final ResultSetMetaData rsmd = rs.getMetaData();
-    final String columnName = configuration.isUseColumnLabel() ? rsmd.getColumnLabel(1) : rsmd.getColumnName(1);
+  private Object createPrimitiveResultObject(ResultSet rs, ResultMap resultMap) throws SQLException {
+    final Class resultType = resultMap.getType();
+    final String columnName;
+    if (resultMap.getResultMappings().size() > 0) {
+      final List<ResultMapping> resultMappingList = resultMap.getResultMappings();
+      final ResultMapping mapping = resultMappingList.get(0);
+      columnName = mapping.getColumn();
+    } else {
+      final ResultSetMetaData rsmd = rs.getMetaData();
+      columnName = configuration.isUseColumnLabel() ? rsmd.getColumnLabel(1) : rsmd.getColumnName(1);
+    }
     final TypeHandler typeHandler = typeHandlerRegistry.getTypeHandler(resultType);
     return typeHandler.getResult(rs, columnName);
   }
