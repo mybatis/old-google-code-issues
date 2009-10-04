@@ -52,11 +52,10 @@ public class DefaultSqlSessionFactory implements SqlSessionFactory {
   }
 
   private DataSource getDataSourceFromEnvironment(Environment environment) {
-    final DataSource dataSource = environment.getDataSource();
-    if (dataSource == null) {
+    if (environment == null || environment.getDataSource() == null) {
       throw new SessionException("Configuration does not include an environment with a DataSource, so session cannot be created unless a connection is passed in.");
     }
-    return dataSource;
+    return environment.getDataSource();
   }
 
   private TransactionFactory getTransactionFactoryFromEnvironment(Environment environment) {
