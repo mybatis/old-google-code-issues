@@ -72,7 +72,7 @@ public class DefaultResultSetHandler implements ResultSetHandler {
     final ResultSet rs = (ResultSet) cs.getObject(parameterMappingIndex + 1);
     final String resultMapId = parameterMapping.getResultMapId();
     if (resultMapId != null) {
-      final ResultMap resultMap = mappedStatement.getConfiguration().getResultMap(resultMapId);
+      final ResultMap resultMap = configuration.getResultMap(resultMapId);
       final DefaultResultHandler resultHandler = new DefaultResultHandler();
       handleRowValues(rs, resultMap, resultHandler, new RowLimit());
       metaParam.setValue(parameterMapping.getProperty(), resultHandler.getResultList());
