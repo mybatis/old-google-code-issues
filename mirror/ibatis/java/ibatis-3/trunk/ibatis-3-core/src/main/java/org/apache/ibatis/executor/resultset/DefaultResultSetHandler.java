@@ -8,7 +8,6 @@ import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.MetaClass;
 import org.apache.ibatis.executor.ExecutorException;
 import org.apache.ibatis.executor.Executor;
-import static org.apache.ibatis.executor.resultset.NoValue.NO_VALUE;
 import org.apache.ibatis.executor.loader.ResultLoader;
 import org.apache.ibatis.executor.loader.ResultLoaderRegistry;
 import org.apache.ibatis.executor.loader.ResultObjectProxy;
@@ -440,7 +439,7 @@ public class DefaultResultSetHandler implements ResultSetHandler {
           localRowValueCache.add(rowKey);
           Object rowValue = getRowValue(rs, nestedResultMap, rowKey);
 
-          if (rowValue != null && rowValue != NO_VALUE) {
+          if (rowValue != null) {
             if (collectionProperty != null && collectionProperty instanceof Collection) {
               if (!knownValue) {
                 ((Collection) collectionProperty).add(rowValue);
