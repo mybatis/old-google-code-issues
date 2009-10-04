@@ -6,6 +6,7 @@ import org.apache.ibatis.mapping.Configuration;
 import org.apache.ibatis.session.defaults.DefaultSqlSessionFactory;
 
 import java.io.Reader;
+import java.io.IOException;
 import java.util.Properties;
 
 public class SqlSessionFactoryBuilder {
@@ -29,6 +30,12 @@ public class SqlSessionFactoryBuilder {
       return build(config);
     } catch (Exception e) {
       throw ExceptionFactory.wrapException("Error building SqlSession.", e);
+    } finally {
+      try {
+        reader.close();
+      } catch (IOException e) {
+        // Intentionally ignore.  Prefer previous error.
+      }
     }
   }
 
