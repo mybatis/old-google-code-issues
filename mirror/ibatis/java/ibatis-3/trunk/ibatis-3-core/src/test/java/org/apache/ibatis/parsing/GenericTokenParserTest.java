@@ -26,6 +26,7 @@ public class GenericTokenParserTest {
         put("first_name", "James");
         put("initial", "T");
         put("last_name", "Kirk");
+        put("", "");
       }
     }));
 
@@ -33,6 +34,16 @@ public class GenericTokenParserTest {
     assertEquals("Hello captain James T Kirk", parser.parse("Hello captain ${first_name} ${initial} ${last_name}"));
     assertEquals("James T Kirk", parser.parse("${first_name} ${initial} ${last_name}"));
     assertEquals("JamesTKirk", parser.parse("${first_name}${initial}${last_name}"));
+    assertEquals("{}JamesTKirk", parser.parse("{}${first_name}${initial}${last_name}"));
+    assertEquals("}JamesTKirk", parser.parse("}${first_name}${initial}${last_name}"));
+
+    assertEquals("}James{{T}}Kirk", parser.parse("}${first_name}{{${initial}}}${last_name}"));
+    assertEquals("}James}T{Kirk", parser.parse("}${first_name}}${initial}{${last_name}"));
+    assertEquals("}James}T{Kirk", parser.parse("}${first_name}}${initial}{${last_name}"));
+    assertEquals("}James}T{Kirk{{}}", parser.parse("}${first_name}}${initial}{${last_name}{{}}"));
+    assertEquals("}James}T{Kirk{{}}", parser.parse("}${first_name}}${initial}{${last_name}{{}}${}"));
+
+    assertEquals("{$$something}JamesTKirk", parser.parse("{$$something}${first_name}${initial}${last_name}"));
     assertEquals("${", parser.parse("${"));
     assertEquals("}", parser.parse("}"));
     assertEquals("Hello ${ this is a test.", parser.parse("Hello ${ this is a test."));
