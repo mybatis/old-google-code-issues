@@ -33,8 +33,8 @@ public class DefaultResultSetHandler implements ResultSetHandler {
   private final TypeHandlerRegistry typeHandlerRegistry;
   private final ObjectFactory objectFactory;
 
-  private final Map<CacheKey,Set<CacheKey>> localRowValueCaches = new HashMap<CacheKey,Set<CacheKey>>();
-  private final Map<CacheKey,Object> globalRowValueCache = new HashMap<CacheKey,Object>();
+  private final Map<CacheKey,Set<CacheKey>> localRowValueCaches;
+  private final Map<CacheKey,Object> globalRowValueCache;
   private static final CacheKey NULL_ROW_KEY = new CacheKey();
 
   public DefaultResultSetHandler(Executor executor, MappedStatement mappedStatement, ParameterHandler parameterHandler, ResultHandler resultHandler, BoundSql boundSql, int offset, int limit) {
@@ -47,6 +47,8 @@ public class DefaultResultSetHandler implements ResultSetHandler {
     this.typeHandlerRegistry = configuration.getTypeHandlerRegistry();
     this.objectFactory = configuration.getObjectFactory();
     this.resultHandler = resultHandler;
+    this.localRowValueCaches = new HashMap<CacheKey,Set<CacheKey>>();
+    this.globalRowValueCache = new HashMap<CacheKey,Object>();
   }
 
   //
