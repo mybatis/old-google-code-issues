@@ -181,7 +181,7 @@ public class DefaultResultSetHandler implements ResultSetHandler {
       final List<String> unmappedColumnNames = new ArrayList<String>();
       final ResultLoaderRegistry lazyLoader = instantiateResultLoaderRegistry();
       Object resultObject = createResultObject(rs, resultMap, lazyLoader);
-      if (resultObject != null && !PlatformType.isPlatformType(resultMap.getType())) {
+      if (resultObject != null && !typeHandlerRegistry.hasTypeHandler(resultMap.getType())) {
         final MetaObject metaObject = MetaObject.forObject(resultObject);
         loadMappedAndUnmappedColumnNames(rs, resultMap, mappedColumnNames, unmappedColumnNames);
         boolean foundValues = resultMap.getConstructorResultMappings().size() > 0;
@@ -288,7 +288,7 @@ public class DefaultResultSetHandler implements ResultSetHandler {
   private Object createResultObject(ResultSet rs, ResultMap resultMap) throws SQLException {
     final Class resultType = resultMap.getType();
     final List<ResultMapping> constructorMappings = resultMap.getConstructorResultMappings();
-    if (PlatformType.isPlatformType(resultType)) {
+    if (typeHandlerRegistry.hasTypeHandler(resultType)) {
       return createPrimitiveResultObject(rs, resultMap);
     } else if (constructorMappings.size() > 0) {
       return createParameterizedResultObject(rs, resultType, constructorMappings);
