@@ -35,7 +35,6 @@ public class DefaultResultSetHandler implements ResultSetHandler {
 
   private final Map<CacheKey,Set<CacheKey>> localRowValueCaches;
   private final Map<CacheKey,Object> globalRowValueCache;
-  private static final CacheKey NULL_ROW_KEY = new CacheKey();
 
   public DefaultResultSetHandler(Executor executor, MappedStatement mappedStatement, ParameterHandler parameterHandler, ResultHandler resultHandler, BoundSql boundSql, int offset, int limit) {
     this.executor = executor;
@@ -192,7 +191,7 @@ public class DefaultResultSetHandler implements ResultSetHandler {
         foundValues = applyNestedResultMappings(rs, resultMap, metaObject) || foundValues;
         resultObject = foundValues ? resultObject : null;
       }
-      if (rowKey != NULL_ROW_KEY) {
+      if (rowKey != CacheKey.NULL_CACHE_KEY) {
         globalRowValueCache.put(rowKey, resultObject);
       }
       return resultObject;
@@ -513,7 +512,7 @@ public class DefaultResultSetHandler implements ResultSetHandler {
       createRowKeyForMappedProperties(rs, cacheKey, resultMappings);
     }
     if (cacheKey.getUpdateCount() < 2) {
-      return NULL_ROW_KEY;
+      return CacheKey.NULL_CACHE_KEY;
     }
     return cacheKey;
   }
