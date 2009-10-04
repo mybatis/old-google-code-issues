@@ -17,20 +17,11 @@ public class DefaultSqlSessionFactory implements SqlSessionFactory {
   private static final Log log = LogFactory.getLog(Connection.class);
 
   private final Configuration configuration;
-  private Environment environment;
-  private DataSource dataSource;
-  private TransactionFactory transactionFactory;
+  private final TransactionFactory managedTransactionFactory;
 
   public DefaultSqlSessionFactory(Configuration configuration) {
     this.configuration = configuration;
-    this.environment = configuration.getEnvironment();
-    if (environment == null) {
-      this.dataSource = null;
-      this.transactionFactory = new ManagedTransactionFactory();
-    } else {
-      this.dataSource = environment.getDataSource();
-      this.transactionFactory = environment.getTransactionFactory();
-    }
+    this.managedTransactionFactory = new ManagedTransactionFactory();
   }
 
   public SqlSession openSession() {
@@ -47,9 +38,9 @@ public class DefaultSqlSessionFactory implements SqlSessionFactory {
 
   public SqlSession openSession(ExecutorType execType, boolean autoCommit) {
     try {
-      if (dataSource == null) {
-        throw new SessionException("Configuration does not include an environment with a DataSource, so session cannot be created unless a connection is passed in.");
-      }
+      final Environment environment = configuration.getEnvironment();
+      final DataSource dataSource = getDataSourceFromEnvironment(environment);
+      TransactionFactory transactionFactory = getTransactionFactoryFromEnvironment(environment);
       Connection connection = dataSource.getConnection();
       connection = wrapConnection(connection);
       Transaction tx = transactionFactory.newTransaction(connection, autoCommit);
@@ -58,6 +49,21 @@ public class DefaultSqlSessionFactory implements SqlSessionFactory {
     } catch (SQLException e) {
       throw ExceptionFactory.wrapException("Error opening session.  Cause: " + e, e);
     }
+  }
+
+  private DataSource getDataSourceFromEnvironment(Environment environment) {
+    final DataSource dataSource = environment.getDataSource();
+    if (dataSource == null) {
+      throw new SessionException("Configuration does not include an environment with a DataSource, so session cannot be created unless a connection is passed in.");
+    }
+    return dataSource;
+  }
+
+  private TransactionFactory getTransactionFactoryFromEnvironment(Environment environment) {
+    if (environment == null || environment.getTransactionFactory() == null) {
+      return managedTransactionFactory;
+    }
+    return environment.getTransactionFactory();
   }
 
   public SqlSession openSession(Connection connection) {
@@ -75,6 +81,8 @@ public class DefaultSqlSessionFactory implements SqlSessionFactory {
         autoCommit = true;
       }
       connection = wrapConnection(connection);
+      final Environment environment = configuration.getEnvironment();
+      final TransactionFactory transactionFactory = getTransactionFactoryFromEnvironment(environment);
       Transaction tx = transactionFactory.newTransaction(connection, autoCommit);
       Executor executor = configuration.newExecutor(tx, execType);
       return new DefaultSqlSession(configuration, executor, autoCommit);
