@@ -131,7 +131,7 @@ public class DefaultResultSetHandler implements ResultSetHandler {
       final ResultMap discriminatedResultMap = resolveDiscriminatedResultMap(rs, resultMap);
       final CacheKey rowKey = createRowKey(discriminatedResultMap, rs);
       final boolean knownValue = globalRowValueCache.containsKey(rowKey);
-      Object rowValue = getRowValue(rs, discriminatedResultMap, rowKey, globalRowValueCache);
+      Object rowValue = getRowValue(rs, discriminatedResultMap, rowKey);
       if (!knownValue) {
         resultContext.nextResultObject(rowValue);
         resultHandler.handleResult(resultContext);
@@ -170,9 +170,9 @@ public class DefaultResultSetHandler implements ResultSetHandler {
   // GET VALUE FROM ROW
   //
 
-  private Object getRowValue(ResultSet rs, ResultMap resultMap, CacheKey rowKey, Map cache) throws SQLException {
-    if (cache.containsKey(rowKey)) {
-      final Object resultObject = cache.get(rowKey);
+  private Object getRowValue(ResultSet rs, ResultMap resultMap, CacheKey rowKey) throws SQLException {
+    if (globalRowValueCache.containsKey(rowKey)) {
+      final Object resultObject = globalRowValueCache.get(rowKey);
       final MetaObject metaObject = MetaObject.forObject(resultObject);
       applyNestedResultMappings(rs, resultMap, metaObject);
       return resultObject;
@@ -191,7 +191,7 @@ public class DefaultResultSetHandler implements ResultSetHandler {
         resultObject = foundValues ? resultObject : null;
       }
       if (rowKey != NULL_ROW_KEY) {
-        cache.put(rowKey, resultObject);
+        globalRowValueCache.put(rowKey, resultObject);
       }
       return resultObject;
     }
@@ -431,11 +431,14 @@ public class DefaultResultSetHandler implements ResultSetHandler {
         try {
           final ResultMap nestedResultMap = getNestedResultMap(rs, nestedResultMapId);
           final Object collectionProperty = instantiateCollectionPropertyIfAppropriate(resultMapping, metaObject);
+
           final CacheKey parentRowKey = createRowKey(resultMap, rs);
           final CacheKey rowKey = createRowKey(nestedResultMap, rs);
-          final Map localRowValueCache = getRowValueCache(parentRowKey);
-          final boolean knownValue = localRowValueCache .containsKey(rowKey);
-          Object rowValue = getRowValue(rs, nestedResultMap, rowKey, localRowValueCache);
+          final Set localRowValueCache = getRowValueCache(parentRowKey);
+          final boolean knownValue = localRowValueCache .contains(rowKey);
+          localRowValueCache.add(rowKey);
+          Object rowValue = getRowValue(rs, nestedResultMap, rowKey);
+
           if (rowValue != null && rowValue != NO_VALUE) {
             if (collectionProperty != null && collectionProperty instanceof Collection) {
               if (!knownValue) {
@@ -455,10 +458,10 @@ public class DefaultResultSetHandler implements ResultSetHandler {
     return foundValues;
   }
 
-  private Map getRowValueCache(CacheKey rowKey) {
-    Map cache = (Map) localRowValueCaches.get(rowKey);
+  private Set getRowValueCache(CacheKey rowKey) {
+    Set cache = (Set) localRowValueCaches.get(rowKey);
     if (cache == null) {
-      cache = new HashMap();
+      cache = new HashSet();
       localRowValueCaches.put(rowKey,cache);
     }
     return cache;
