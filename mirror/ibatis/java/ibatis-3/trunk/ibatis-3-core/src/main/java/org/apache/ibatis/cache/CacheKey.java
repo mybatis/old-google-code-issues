@@ -4,6 +4,8 @@ import java.util.*;
 
 public class CacheKey {
 
+  public static final CacheKey NULL_CACHE_KEY = new CacheKey();
+
   private static final int DEFAULT_MULTIPLYER = 37;
   private static final int DEFAULT_HASHCODE = 17;
 
