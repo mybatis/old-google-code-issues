@@ -33,8 +33,8 @@ public class DefaultResultSetHandler implements ResultSetHandler {
   private final TypeHandlerRegistry typeHandlerRegistry;
   private final ObjectFactory objectFactory;
 
-  private final Map localRowValueCaches = new HashMap();
-  private final Map globalRowValueCache = new HashMap();
+  private final Map<CacheKey,Set<CacheKey>> localRowValueCaches = new HashMap<CacheKey,Set<CacheKey>>();
+  private final Map<CacheKey,Object> globalRowValueCache = new HashMap<CacheKey,Object>();
   private static final CacheKey NULL_ROW_KEY = new CacheKey();
 
   public DefaultResultSetHandler(Executor executor, MappedStatement mappedStatement, ParameterHandler parameterHandler, ResultHandler resultHandler, BoundSql boundSql, int offset, int limit) {
@@ -434,7 +434,7 @@ public class DefaultResultSetHandler implements ResultSetHandler {
 
           final CacheKey parentRowKey = createRowKey(resultMap, rs);
           final CacheKey rowKey = createRowKey(nestedResultMap, rs);
-          final Set localRowValueCache = getRowValueCache(parentRowKey);
+          final Set<CacheKey> localRowValueCache = getRowValueCache(parentRowKey);
           final boolean knownValue = localRowValueCache .contains(rowKey);
           localRowValueCache.add(rowKey);
           Object rowValue = getRowValue(rs, nestedResultMap, rowKey);
@@ -458,10 +458,10 @@ public class DefaultResultSetHandler implements ResultSetHandler {
     return foundValues;
   }
 
-  private Set getRowValueCache(CacheKey rowKey) {
-    Set cache = (Set) localRowValueCaches.get(rowKey);
+  private Set<CacheKey> getRowValueCache(CacheKey rowKey) {
+    Set<CacheKey> cache = localRowValueCaches.get(rowKey);
     if (cache == null) {
-      cache = new HashSet();
+      cache = new HashSet<CacheKey>();
       localRowValueCaches.put(rowKey,cache);
     }
     return cache;
