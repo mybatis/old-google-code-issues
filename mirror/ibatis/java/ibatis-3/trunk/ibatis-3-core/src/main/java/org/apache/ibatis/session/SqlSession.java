@@ -4,6 +4,7 @@ import org.apache.ibatis.executor.result.ResultHandler;
 import org.apache.ibatis.mapping.Configuration;
 
 import java.util.List;
+import java.sql.Connection;
 
 public interface SqlSession {
 
@@ -47,4 +48,5 @@ public interface SqlSession {
 
   <T> T getMapper(Class<T> type);
 
+  Connection getConnection();
 }
