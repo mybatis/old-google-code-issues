@@ -266,8 +266,10 @@ public class DefaultResultSetHandler implements ResultSetHandler {
       final String columnName = configuration.isUseColumnLabel() ? rsmd.getColumnLabel(i) : rsmd.getColumnName(i);
       final String upperColumnName = columnName.toUpperCase();
       if (mappedColumns.contains(upperColumnName)) {
+        mappedColumnNames.add(upperColumnName);
         mappedColumnNames.add(columnName);
       } else {
+        unmappedColumnNames.add(upperColumnName);
         unmappedColumnNames.add(columnName);
       }
     }
