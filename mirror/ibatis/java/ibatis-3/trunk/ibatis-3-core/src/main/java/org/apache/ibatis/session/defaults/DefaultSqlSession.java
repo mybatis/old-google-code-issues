@@ -9,6 +9,7 @@ import org.apache.ibatis.session.*;
 
 import java.util.List;
 import java.util.HashMap;
+import java.sql.Connection;
 
 public class DefaultSqlSession implements SqlSession {
 
@@ -146,6 +147,10 @@ public class DefaultSqlSession implements SqlSession {
 
   public <T> T getMapper(Class<T> type) {
     return configuration.getMapper(type, this);
+  }
+
+  public Connection getConnection() {
+    return executor.getTransaction().getConnection();
   }
 
   private boolean isCommitOrRollbackRequired(boolean force) {
