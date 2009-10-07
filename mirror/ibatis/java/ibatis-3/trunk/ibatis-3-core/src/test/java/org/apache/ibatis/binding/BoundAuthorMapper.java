@@ -64,5 +64,8 @@ public interface BoundAuthorMapper {
 
   //======================================================
 
-  List<Post> findThreeSpecificPosts(int one, RowLimit rowLimit, int two, int three);
+  List<Post> findThreeSpecificPosts(@Param("one") int one,
+                                    RowLimit rowLimit,
+                                    @Param("two") int two,
+                                    int three);
 }
