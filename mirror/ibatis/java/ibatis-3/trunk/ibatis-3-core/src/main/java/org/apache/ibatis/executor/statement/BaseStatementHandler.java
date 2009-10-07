@@ -4,6 +4,7 @@ import org.apache.ibatis.executor.*;
 import org.apache.ibatis.executor.parameter.ParameterHandler;
 import org.apache.ibatis.executor.result.ResultHandler;
 import org.apache.ibatis.executor.resultset.ResultSetHandler;
+import org.apache.ibatis.executor.resultset.RowLimit;
 import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.reflection.factory.ObjectFactory;
 import org.apache.ibatis.type.TypeHandlerRegistry;
@@ -20,16 +21,14 @@ public abstract class BaseStatementHandler implements StatementHandler {
 
   protected final Executor executor;
   protected final MappedStatement mappedStatement;
-  protected final int rowOffset;
-  protected final int rowLimit;
+  protected final RowLimit rowLimit;
 
   protected final BoundSql boundSql;
 
-  protected BaseStatementHandler(Executor executor, MappedStatement mappedStatement, Object parameterObject, int rowOffset, int rowLimit, ResultHandler resultHandler) {
+  protected BaseStatementHandler(Executor executor, MappedStatement mappedStatement, Object parameterObject, RowLimit rowLimit, ResultHandler resultHandler) {
     this.configuration = mappedStatement.getConfiguration();
     this.executor = executor;
     this.mappedStatement = mappedStatement;
-    this.rowOffset = rowOffset;
     this.rowLimit = rowLimit;
 
     this.typeHandlerRegistry = configuration.getTypeHandlerRegistry();
@@ -38,7 +37,7 @@ public abstract class BaseStatementHandler implements StatementHandler {
     this.boundSql = mappedStatement.getBoundSql(parameterObject);
 
     this.parameterHandler = configuration.newParameterHandler(mappedStatement, parameterObject, boundSql);
-    this.resultSetHandler = configuration.newResultSetHandler(executor, mappedStatement, rowOffset, rowLimit, parameterHandler, resultHandler, boundSql);
+    this.resultSetHandler = configuration.newResultSetHandler(executor, mappedStatement, rowLimit, parameterHandler, resultHandler, boundSql);
   }
 
   public BoundSql getBoundSql() {

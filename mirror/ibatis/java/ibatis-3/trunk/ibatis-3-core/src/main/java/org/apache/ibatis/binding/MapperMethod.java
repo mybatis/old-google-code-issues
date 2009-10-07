@@ -1,6 +1,7 @@
 package org.apache.ibatis.binding;
 
 import org.apache.ibatis.executor.Executor;
+import org.apache.ibatis.executor.resultset.RowLimit;
 import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.session.SqlSession;
 
@@ -95,16 +96,13 @@ public class MapperMethod {
     Object result;
     if (hasListBounds) {
       Object param = getParam(args);
-      int offset = Executor.NO_ROW_OFFSET;
-      int limit = Executor.NO_ROW_LIMIT;
+      RowLimit rowLimit = RowLimit.DEFAULT;
       if (args.length == 3) {
-        offset = ((Integer) args[1]);
-        limit = ((Integer) args[2]);
+        rowLimit = new RowLimit((Integer) args[1], (Integer) args[2]);
       } else if (args.length == 2) {
-        offset = ((Integer) args[0]);
-        limit = ((Integer) args[1]);
+        rowLimit = new RowLimit((Integer) args[0], (Integer) args[1]);
       }
-      result = sqlSession.selectList(commandName, param, offset, limit);
+      result = sqlSession.selectList(commandName, param, rowLimit);
     } else {
       Object param = getParam(args);
       result = sqlSession.selectList(commandName, param);

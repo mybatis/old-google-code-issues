@@ -4,6 +4,7 @@ public class RowLimit {
 
   public final static int NO_ROW_OFFSET = 0;
   public final static int NO_ROW_LIMIT = Integer.MAX_VALUE;
+  public final static RowLimit DEFAULT = new RowLimit();
 
   private int offset;
   private int limit;

@@ -35,11 +35,11 @@ public class DefaultResultSetHandler implements ResultSetHandler {
   private final Map<CacheKey,Set<CacheKey>> localRowValueCaches;
   private final Map<CacheKey,Object> globalRowValueCache;
 
-  public DefaultResultSetHandler(Executor executor, MappedStatement mappedStatement, ParameterHandler parameterHandler, ResultHandler resultHandler, BoundSql boundSql, int offset, int limit) {
+  public DefaultResultSetHandler(Executor executor, MappedStatement mappedStatement, ParameterHandler parameterHandler, ResultHandler resultHandler, BoundSql boundSql, RowLimit rowLimit) {
     this.executor = executor;
     this.configuration = mappedStatement.getConfiguration();
     this.mappedStatement = mappedStatement;
-    this.rowLimit = new RowLimit(offset, limit);
+    this.rowLimit = rowLimit;
     this.parameterHandler = parameterHandler;
     this.boundSql = boundSql;
     this.typeHandlerRegistry = configuration.getTypeHandlerRegistry();
@@ -342,7 +342,7 @@ public class DefaultResultSetHandler implements ResultSetHandler {
     final Object nestedQueryParameterObject = prepareParameterForNestedQuery(rs, propertyMapping, nestedQueryParameterType);
     Object value = null;
     if (nestedQueryParameterObject != null) {
-      final CacheKey key = executor.createCacheKey(nestedQuery, nestedQueryParameterObject, RowLimit.NO_ROW_OFFSET, RowLimit.NO_ROW_LIMIT);
+      final CacheKey key = executor.createCacheKey(nestedQuery, nestedQueryParameterObject, RowLimit.DEFAULT);
       if (executor.isCached(nestedQuery, key)) {
         executor.deferLoad(nestedQuery, metaResultObject, property, key);
       } else {

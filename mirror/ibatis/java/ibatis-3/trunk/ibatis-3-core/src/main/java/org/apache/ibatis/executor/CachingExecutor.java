@@ -2,6 +2,7 @@ package org.apache.ibatis.executor;
 
 import org.apache.ibatis.cache.*;
 import org.apache.ibatis.executor.result.ResultHandler;
+import org.apache.ibatis.executor.resultset.RowLimit;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.transaction.Transaction;
@@ -36,7 +37,7 @@ public class CachingExecutor implements Executor {
   }
 
 
-  public List query(MappedStatement ms, Object parameterObject, int offset, int limit, ResultHandler resultHandler) throws SQLException {
+  public List query(MappedStatement ms, Object parameterObject, RowLimit rowLimit, ResultHandler resultHandler) throws SQLException {
     if (ms != null) {
       Cache cache = ms.getCache();
       if (cache != null) {
@@ -44,23 +45,23 @@ public class CachingExecutor implements Executor {
         cache.getReadWriteLock().readLock().lock();
         try {
           if (ms.isUseCache()) {
-            CacheKey key = createCacheKey(ms, parameterObject, offset, limit);
+            CacheKey key = createCacheKey(ms, parameterObject, rowLimit);
             if (cache.hasKey(key)) {
               return (List) cache.getObject(key);
             } else {
-              List list = delegate.query(ms, parameterObject, offset, limit, resultHandler);
+              List list = delegate.query(ms, parameterObject, rowLimit, resultHandler);
               tcm.putObject(cache, key, list);
               return list;
             }
           } else {
-            return delegate.query(ms, parameterObject, offset, limit, resultHandler);
+            return delegate.query(ms, parameterObject, rowLimit, resultHandler);
           }
         } finally {
           cache.getReadWriteLock().readLock().unlock();
         }
       }
     }
-    return delegate.query(ms, parameterObject, offset, limit, resultHandler);
+    return delegate.query(ms, parameterObject, rowLimit, resultHandler);
   }
 
   public List flushStatements() throws SQLException {
@@ -80,8 +81,8 @@ public class CachingExecutor implements Executor {
     }
   }
 
-  public CacheKey createCacheKey(MappedStatement ms, Object parameterObject, int offset, int limit) {
-    return delegate.createCacheKey(ms, parameterObject, offset, limit);
+  public CacheKey createCacheKey(MappedStatement ms, Object parameterObject, RowLimit rowLimit) {
+    return delegate.createCacheKey(ms, parameterObject, rowLimit);
   }
 
   public boolean isCached(MappedStatement ms, CacheKey key) {

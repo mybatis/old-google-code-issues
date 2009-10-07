@@ -3,6 +3,7 @@ package org.apache.ibatis.session.defaults;
 import org.apache.ibatis.exceptions.ExceptionFactory;
 import org.apache.ibatis.exceptions.TooManyResultsException;
 import org.apache.ibatis.executor.Executor;
+import org.apache.ibatis.executor.resultset.RowLimit;
 import org.apache.ibatis.executor.result.ResultHandler;
 import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.session.*;
@@ -47,26 +48,26 @@ public class DefaultSqlSession implements SqlSession {
   }
 
   public List selectList(String statement, Object parameter) {
-    return selectList(statement, parameter, Executor.NO_ROW_OFFSET, Executor.NO_ROW_LIMIT);
+    return selectList(statement, parameter, RowLimit.DEFAULT);
   }
 
-  public List selectList(String statement, Object parameter, int offset, int limit) {
+  public List selectList(String statement, Object parameter, RowLimit rowLimit) {
     try {
       MappedStatement ms = configuration.getMappedStatement(statement);
-      return executor.query(ms, wrapCollection(parameter), offset, limit, Executor.NO_RESULT_HANDLER);
+      return executor.query(ms, wrapCollection(parameter), rowLimit, Executor.NO_RESULT_HANDLER);
     } catch (Exception e) {
       throw ExceptionFactory.wrapException("Error querying database.  Cause: " + e, e);
     }
   }
 
   public void select(String statement, Object parameter, ResultHandler handler) {
-    select(statement, parameter, Executor.NO_ROW_OFFSET, Executor.NO_ROW_LIMIT, handler);
+    select(statement, parameter, RowLimit.DEFAULT, handler);
   }
 
-  public void select(String statement, Object parameter, int offset, int limit, ResultHandler handler) {
+  public void select(String statement, Object parameter, RowLimit rowLimit, ResultHandler handler) {
     try {
       MappedStatement ms = configuration.getMappedStatement(statement);
-      executor.query(ms, wrapCollection(parameter), offset, limit, handler);
+      executor.query(ms, wrapCollection(parameter), rowLimit, handler);
     } catch (Exception e) {
       throw ExceptionFactory.wrapException("Error querying database.  Cause: " + e, e);
     }
@@ -86,7 +87,6 @@ public class DefaultSqlSession implements SqlSession {
 
   public int update(String statement, Object parameter) {
     try {
-      //TODO: Need commitRequired option at the statement level
       dirty = true;
       MappedStatement ms = configuration.getMappedStatement(statement);
       return executor.update(ms, wrapCollection(parameter));

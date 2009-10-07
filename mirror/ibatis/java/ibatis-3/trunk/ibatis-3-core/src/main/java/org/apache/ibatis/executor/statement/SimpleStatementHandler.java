@@ -1,6 +1,7 @@
 package org.apache.ibatis.executor.statement;
 
 import org.apache.ibatis.executor.Executor;
+import org.apache.ibatis.executor.resultset.RowLimit;
 import org.apache.ibatis.executor.keygen.*;
 import org.apache.ibatis.executor.result.ResultHandler;
 import org.apache.ibatis.mapping.MappedStatement;
@@ -10,8 +11,8 @@ import java.util.List;
 
 public class SimpleStatementHandler extends BaseStatementHandler {
 
-  public SimpleStatementHandler(Executor executor, MappedStatement mappedStatement, Object parameter, int rowOffset, int rowLimit, ResultHandler resultHandler) {
-    super(executor, mappedStatement, parameter, rowOffset, rowLimit, resultHandler);
+  public SimpleStatementHandler(Executor executor, MappedStatement mappedStatement, Object parameter, RowLimit rowLimit, ResultHandler resultHandler) {
+    super(executor, mappedStatement, parameter, rowLimit, resultHandler);
   }
 
   public int update(Statement statement)

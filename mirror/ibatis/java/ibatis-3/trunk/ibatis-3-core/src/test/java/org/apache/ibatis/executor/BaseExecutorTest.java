@@ -2,6 +2,7 @@ package org.apache.ibatis.executor;
 
 import domain.blog.*;
 import org.apache.ibatis.BaseDataTest;
+import org.apache.ibatis.executor.resultset.RowLimit;
 import org.apache.ibatis.logging.jdbc.ConnectionLogger;
 import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.transaction.Transaction;
@@ -36,7 +37,7 @@ public class BaseExecutorTest extends BaseDataTest {
       MappedStatement insertStatement = ExecutorTestHelper.prepareInsertAuthorMappedStatement(config);
       MappedStatement selectStatement = ExecutorTestHelper.prepareSelectOneAuthorMappedStatement(config);
       int rows = executor.update(insertStatement, author);
-      List<Author> authors = executor.query(selectStatement, 99, Executor.NO_ROW_OFFSET, Executor.NO_ROW_LIMIT, Executor.NO_RESULT_HANDLER);
+      List<Author> authors = executor.query(selectStatement, 99, RowLimit.DEFAULT, Executor.NO_RESULT_HANDLER);
       executor.flushStatements();
       executor.rollback(true);
       assertEquals(1, authors.size());
@@ -54,7 +55,7 @@ public class BaseExecutorTest extends BaseDataTest {
     try {
       Executor executor = createExecutor(new JdbcTransaction(connection, false));
       MappedStatement selectStatement = ExecutorTestHelper.prepareSelectAllAuthorsAutoMappedStatement(config);
-      List<Author> authors = executor.query(selectStatement, null, Executor.NO_ROW_OFFSET, Executor.NO_ROW_LIMIT, Executor.NO_RESULT_HANDLER);
+      List<Author> authors = executor.query(selectStatement, null, RowLimit.DEFAULT, Executor.NO_RESULT_HANDLER);
       assertEquals(2, authors.size());
       Author author = authors.get(0);
       // id,username, password, email, bio, favourite_section
@@ -86,7 +87,7 @@ public class BaseExecutorTest extends BaseDataTest {
       }
       assertTrue(-1 != author.getId());
       if (author.getId() != BatchExecutor.BATCH_UPDATE_RETURN_VALUE) {
-        List<Author> authors = executor.query(selectStatement, author.getId(), Executor.NO_ROW_OFFSET, Executor.NO_ROW_LIMIT, Executor.NO_RESULT_HANDLER);
+        List<Author> authors = executor.query(selectStatement, author.getId(), RowLimit.DEFAULT, Executor.NO_RESULT_HANDLER);
         executor.rollback(true);
         assertEquals(1, authors.size());
         assertEquals(author.toString(), authors.get(0).toString());
@@ -108,7 +109,7 @@ public class BaseExecutorTest extends BaseDataTest {
       MappedStatement insertStatement = ExecutorTestHelper.prepareInsertAuthorProc(config);
       MappedStatement selectStatement = ExecutorTestHelper.prepareSelectOneAuthorMappedStatement(config);
       int rows = executor.update(insertStatement, author);
-      List<Author> authors = executor.query(selectStatement, 97, Executor.NO_ROW_OFFSET, Executor.NO_ROW_LIMIT, Executor.NO_RESULT_HANDLER);
+      List<Author> authors = executor.query(selectStatement, 97, RowLimit.DEFAULT, Executor.NO_RESULT_HANDLER);
       executor.flushStatements();
       executor.rollback(true);
       assertEquals(1, authors.size());
@@ -129,7 +130,7 @@ public class BaseExecutorTest extends BaseDataTest {
       MappedStatement insertStatement = ExecutorTestHelper.createInsertAuthorWithIDof99MappedStatement(config);
       MappedStatement selectStatement = ExecutorTestHelper.createSelectAuthorWithIDof99MappedStatement(config);
       int rows = executor.update(insertStatement, null);
-      List<Author> authors = executor.query(selectStatement, 99, Executor.NO_ROW_OFFSET, Executor.NO_ROW_LIMIT, Executor.NO_RESULT_HANDLER);
+      List<Author> authors = executor.query(selectStatement, 99, RowLimit.DEFAULT, Executor.NO_RESULT_HANDLER);
       executor.flushStatements();
       executor.rollback(true);
       assertEquals(1, authors.size());
@@ -151,7 +152,7 @@ public class BaseExecutorTest extends BaseDataTest {
       MappedStatement updateStatement = ExecutorTestHelper.prepareUpdateAuthorMappedStatement(config);
       MappedStatement selectStatement = ExecutorTestHelper.prepareSelectOneAuthorMappedStatement(config);
       int rows = executor.update(updateStatement, author);
-      List<Author> authors = executor.query(selectStatement, 101, Executor.NO_ROW_OFFSET, Executor.NO_ROW_LIMIT, Executor.NO_RESULT_HANDLER);
+      List<Author> authors = executor.query(selectStatement, 101, RowLimit.DEFAULT, Executor.NO_RESULT_HANDLER);
       executor.flushStatements();
       executor.rollback(true);
       assertEquals(1, authors.size());
@@ -173,7 +174,7 @@ public class BaseExecutorTest extends BaseDataTest {
       MappedStatement deleteStatement = ExecutorTestHelper.prepareDeleteAuthorMappedStatement(config);
       MappedStatement selectStatement = ExecutorTestHelper.prepareSelectOneAuthorMappedStatement(config);
       int rows = executor.update(deleteStatement, author);
-      List<Author> authors = executor.query(selectStatement, 101, Executor.NO_ROW_OFFSET, Executor.NO_ROW_LIMIT, Executor.NO_RESULT_HANDLER);
+      List<Author> authors = executor.query(selectStatement, 101, RowLimit.DEFAULT, Executor.NO_RESULT_HANDLER);
       executor.flushStatements();
       executor.rollback(true);
       assertEquals(0, authors.size());
@@ -191,7 +192,7 @@ public class BaseExecutorTest extends BaseDataTest {
     try {
       Executor executor = createExecutor(new JdbcTransaction(connection, false));
       MappedStatement selectStatement = ExecutorTestHelper.prepareSelectDiscriminatedProduct(config);
-      List<Map> products = executor.query(selectStatement, null, Executor.NO_ROW_OFFSET, Executor.NO_ROW_LIMIT, Executor.NO_RESULT_HANDLER);
+      List<Map> products = executor.query(selectStatement, null, RowLimit.DEFAULT, Executor.NO_RESULT_HANDLER);
       connection.rollback();
       assertEquals(16, products.size());
       for (Map m : products) {
@@ -214,7 +215,7 @@ public class BaseExecutorTest extends BaseDataTest {
     try {
       Executor executor = createExecutor(new JdbcTransaction(connection, false));
       MappedStatement selectStatement = ExecutorTestHelper.prepareSelectDiscriminatedProduct(config);
-      List<Map> products = executor.query(selectStatement, null, 4, 10, Executor.NO_RESULT_HANDLER);
+      List<Map> products = executor.query(selectStatement, null, new RowLimit(4, 10), Executor.NO_RESULT_HANDLER);
       connection.rollback();
       assertEquals(10, products.size());
       for (Map m : products) {
@@ -244,7 +245,7 @@ public class BaseExecutorTest extends BaseDataTest {
           put("id1", 101);
           put("id2", 102);
         }
-      }, Executor.NO_ROW_OFFSET, Executor.NO_ROW_LIMIT, Executor.NO_RESULT_HANDLER);
+      }, RowLimit.DEFAULT, Executor.NO_RESULT_HANDLER);
       connection.rollback();
       assertEquals(2, authorSets.size());
       for (List authors : authorSets) {
@@ -268,7 +269,7 @@ public class BaseExecutorTest extends BaseDataTest {
       Executor executor = createExecutor(new JdbcTransaction(connection, false));
       MappedStatement selectStatement = ExecutorTestHelper.prepareSelectAuthorViaOutParams(config);
       Author author = new Author(102, null, null, null, null, null);
-      executor.query(selectStatement, author, Executor.NO_ROW_OFFSET, Executor.NO_ROW_LIMIT, Executor.NO_RESULT_HANDLER);
+      executor.query(selectStatement, author, RowLimit.DEFAULT, Executor.NO_RESULT_HANDLER);
       connection.rollback();
 
       assertEquals("sally", author.getUsername());
@@ -292,7 +293,7 @@ public class BaseExecutorTest extends BaseDataTest {
       MappedStatement selectPosts = ExecutorTestHelper.prepareSelectPostsForBlogMappedStatement(config);
       config.addMappedStatement(selectBlog);
       config.addMappedStatement(selectPosts);
-      List<Post> posts = executor.query(selectPosts, 1, Executor.NO_ROW_OFFSET, Executor.NO_ROW_LIMIT, Executor.NO_RESULT_HANDLER);
+      List<Post> posts = executor.query(selectPosts, 1, RowLimit.DEFAULT, Executor.NO_RESULT_HANDLER);
       executor.flushStatements();
       assertEquals(2, posts.size());
       assertNotNull(posts.get(1).getBlog());
@@ -314,7 +315,7 @@ public class BaseExecutorTest extends BaseDataTest {
       MappedStatement selectPost = ExecutorTestHelper.prepareSelectPostMappedStatement(config);
       config.addMappedStatement(selectBlog);
       config.addMappedStatement(selectPost);
-      List<Post> posts = executor.query(selectPost, 5, Executor.NO_ROW_OFFSET, Executor.NO_ROW_LIMIT, Executor.NO_RESULT_HANDLER);
+      List<Post> posts = executor.query(selectPost, 5, RowLimit.DEFAULT, Executor.NO_RESULT_HANDLER);
       executor.flushStatements();
       executor.rollback(true);
       assertEquals(1, posts.size());
@@ -336,7 +337,7 @@ public class BaseExecutorTest extends BaseDataTest {
       MappedStatement selectPost = ExecutorTestHelper.prepareSelectPostWithBlogByAuthorMappedStatement(config);
       config.addMappedStatement(selectBlog);
       config.addMappedStatement(selectPost);
-      List<Post> posts = executor.query(selectPost, 2, Executor.NO_ROW_OFFSET, Executor.NO_ROW_LIMIT, Executor.NO_RESULT_HANDLER);
+      List<Post> posts = executor.query(selectPost, 2, RowLimit.DEFAULT, Executor.NO_RESULT_HANDLER);
       executor.flushStatements();
       assertEquals(1, posts.size());
       Post post = posts.get(0);
@@ -361,7 +362,7 @@ public class BaseExecutorTest extends BaseDataTest {
       config.addMappedStatement(selectBlog);
       config.addMappedStatement(selectPosts);
       config.setLazyLoadingEnabled(true);
-      List<Blog> blogs = executor.query(selectBlog, 1, Executor.NO_ROW_OFFSET, Executor.NO_ROW_LIMIT, Executor.NO_RESULT_HANDLER);
+      List<Blog> blogs = executor.query(selectBlog, 1, RowLimit.DEFAULT, Executor.NO_RESULT_HANDLER);
       executor.flushStatements();
       assertEquals(1, blogs.size());
       assertEquals(2, blogs.get(0).getPosts().size());
@@ -381,7 +382,7 @@ public class BaseExecutorTest extends BaseDataTest {
     try {
       Executor executor = createExecutor(new JdbcTransaction(connection, false));
       MappedStatement selectStatement = ExecutorTestHelper.prepareSelectOneAuthorMappedStatementWithConstructorResults(config);
-      List<Author> authors = executor.query(selectStatement, 102, Executor.NO_ROW_OFFSET, Executor.NO_ROW_LIMIT, Executor.NO_RESULT_HANDLER);
+      List<Author> authors = executor.query(selectStatement, 102, RowLimit.DEFAULT, Executor.NO_RESULT_HANDLER);
       executor.flushStatements();
       executor.rollback(true);
       assertEquals(1, authors.size());
