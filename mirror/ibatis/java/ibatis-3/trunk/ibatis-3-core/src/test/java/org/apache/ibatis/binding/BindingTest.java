@@ -2,6 +2,7 @@ package org.apache.ibatis.binding;
 
 import domain.blog.*;
 import org.apache.ibatis.session.*;
+import org.apache.ibatis.executor.resultset.RowLimit;
 import static org.junit.Assert.*;
 import org.junit.*;
 
@@ -58,6 +59,20 @@ public class BindingTest {
       Integer[] params = new Integer[] {1,3,5};
       List<Post> posts = mapper.findPostsInArray(params);
       assertEquals(3,posts.size());
+      session.rollback();
+    } finally {
+      session.close();
+    }
+  }
+
+  @Test
+  public void shouldfindThreeSpecificPosts() throws Exception {
+    SqlSession session = sqlSessionFactory.openSession();
+    try {
+      BoundAuthorMapper mapper = session.getMapper(BoundAuthorMapper.class);
+      List<Post> posts = mapper.findThreeSpecificPosts(1,new RowLimit(1,1),3,5);
+      assertEquals(1,posts.size());
+      assertEquals(3,posts.get(0).getId());
       session.rollback();
     } finally {
       session.close();

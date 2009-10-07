@@ -3,6 +3,7 @@ package org.apache.ibatis.session;
 import domain.blog.*;
 import domain.blog.mappers.*;
 import org.apache.ibatis.BaseDataTest;
+import org.apache.ibatis.executor.resultset.RowLimit;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.mapping.Configuration;
 import static org.junit.Assert.*;
@@ -439,7 +440,7 @@ public class SqlSessionTest extends BaseDataTest {
     SqlSession session = sqlMapper.openSession();
     try {
       BlogMapper mapper = session.getMapper(BlogMapper.class);
-      List<Map> posts = mapper.selectAllPosts(null);
+      List<Map> posts = mapper.selectAllPosts();
       assertEquals(5, posts.size());
     } finally {
       session.close();
@@ -451,7 +452,7 @@ public class SqlSessionTest extends BaseDataTest {
     SqlSession session = sqlMapper.openSession();
     try {
       BlogMapper mapper = session.getMapper(BlogMapper.class);
-      List<Map> posts = mapper.selectAllPosts(null, 0, 2);
+      List<Map> posts = mapper.selectAllPosts(new RowLimit(0, 2), null);
       assertEquals(2, posts.size());
       assertEquals(1, posts.get(0).get("ID"));
       assertEquals(2, posts.get(1).get("ID"));
@@ -465,7 +466,7 @@ public class SqlSessionTest extends BaseDataTest {
     SqlSession session = sqlMapper.openSession();
     try {
       BlogMapper mapper = session.getMapper(BlogMapper.class);
-      List<Map> posts = mapper.selectAllPosts(2, 3);
+      List<Map> posts = mapper.selectAllPosts(new RowLimit(2, 3));
       assertEquals(3, posts.size());
       assertEquals(3, posts.get(0).get("ID"));
       assertEquals(4, posts.get(1).get("ID"));

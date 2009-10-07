@@ -26,5 +26,10 @@
     where id in (#{array[0]},#{array[1]},#{array[2]})
   </select>
 
+  <select id="findThreeSpecificPosts" parameterType="map" resultType="domain.blog.Post">
+    select * from post
+    where id in (#{0},#{1},#{2})
+  </select>
+
 
 </mapper>
