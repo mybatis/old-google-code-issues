@@ -1,13 +1,15 @@
 package domain.blog.mappers;
 
+import org.apache.ibatis.executor.resultset.RowLimit;
+
 import java.util.*;
 
 public interface BlogMapper {
 
-  List<Map> selectAllPosts(Object param);
+  List<Map> selectAllPosts();
 
-  List<Map> selectAllPosts(int offset, int limit);
+  List<Map> selectAllPosts(RowLimit rowLimit);
 
-  List<Map> selectAllPosts(Object param, int offset, int limit);
+  List<Map> selectAllPosts(RowLimit rowLimit, Object param);
 
 }
