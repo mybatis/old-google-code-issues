@@ -3,6 +3,7 @@ package org.apache.ibatis.binding;
 import org.apache.ibatis.executor.resultset.RowLimit;
 import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.annotations.Param;
 
 import java.lang.reflect.Method;
 import java.sql.SQLException;
@@ -106,11 +107,22 @@ public class MapperMethod {
       if (RowLimit.class.isAssignableFrom(argTypes[i])) {
         rowLimitIndex = i;
       } else {
-        final String paramName = String.valueOf(paramPositions.size());
+        String paramName = String.valueOf(paramPositions.size());
+        paramName = getParamNameFromAnnotation(i, paramName);
         paramNames.add(paramName);
         paramPositions.add(i);
       }
     }
+  }
+
+  private String getParamNameFromAnnotation(int i, String paramName) {
+    Object[] paramAnnos = method.getParameterAnnotations()[i];
+    for (int j=0;j<paramAnnos.length;j++) {
+      if (paramAnnos[j] instanceof Param) {
+        paramName = ((Param)paramAnnos[j]).value();
+      }
+    }
+    return paramName;
   }
 
   private void setupCommandType() {

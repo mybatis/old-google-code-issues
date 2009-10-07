@@ -28,7 +28,7 @@
 
   <select id="findThreeSpecificPosts" parameterType="map" resultType="domain.blog.Post">
     select * from post
-    where id in (#{0},#{1},#{2})
+    where id in (#{one},#{two},#{2})
   </select>
 
 
