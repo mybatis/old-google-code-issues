@@ -63,6 +63,24 @@
     </testResources>
   </build>
   <dependencies>
+        <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.13</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.1.1</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>cglib</groupId>
+      <artifactId>cglib</artifactId>
+      <version>2.1_3</version>
+      <scope>provided</scope>
+    </dependency>
     <dependency>
       <groupId>org.apache.ibatis</groupId>
       <artifactId>ibatis-3-core</artifactId>
@@ -73,13 +91,13 @@
       <groupId>commons-dbcp</groupId>
       <artifactId>commons-dbcp</artifactId>
       <version>1.2.1</version>
-      <scope>compile</scope>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>javax.transaction</groupId>
       <artifactId>jta</artifactId>
       <version>1.0.1B</version>
-      <scope>compile</scope>
+      <scope>provided</scope>
     </dependency>
     <!-- Test Dependencies -->
     <dependency>
