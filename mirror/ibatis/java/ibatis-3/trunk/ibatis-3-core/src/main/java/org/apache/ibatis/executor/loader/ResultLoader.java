@@ -1,6 +1,7 @@
 package org.apache.ibatis.executor.loader;
 
 import org.apache.ibatis.executor.*;
+import org.apache.ibatis.executor.resultset.RowLimit;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.Configuration;
 import org.apache.ibatis.mapping.Environment;
@@ -63,7 +64,7 @@ public class ResultLoader {
       localExecutor = newExecutor();
     }
     try {
-      return localExecutor.query(mappedStatement, parameterObject, Executor.NO_ROW_OFFSET, Executor.NO_ROW_LIMIT, Executor.NO_RESULT_HANDLER);
+      return localExecutor.query(mappedStatement, parameterObject, RowLimit.DEFAULT, Executor.NO_RESULT_HANDLER);
     } finally {
       if (executor.isClosed()) {
         localExecutor.close();

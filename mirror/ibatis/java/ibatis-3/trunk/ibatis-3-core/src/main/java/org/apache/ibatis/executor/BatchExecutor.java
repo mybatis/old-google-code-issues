@@ -3,6 +3,7 @@ package org.apache.ibatis.executor;
 import org.apache.ibatis.executor.keygen.*;
 import org.apache.ibatis.executor.result.ResultHandler;
 import org.apache.ibatis.executor.statement.StatementHandler;
+import org.apache.ibatis.executor.resultset.RowLimit;
 import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.transaction.Transaction;
 
@@ -24,7 +25,7 @@ public class BatchExecutor extends BaseExecutor {
   public int doUpdate(MappedStatement ms, Object parameterObject)
       throws SQLException {
     Configuration configuration = ms.getConfiguration();
-    StatementHandler handler = configuration.newStatementHandler(this, ms, parameterObject, Executor.NO_ROW_OFFSET, Executor.NO_ROW_LIMIT, null);
+    StatementHandler handler = configuration.newStatementHandler(this, ms, parameterObject, RowLimit.DEFAULT, null);
     BoundSql boundSql = handler.getBoundSql();
     String sql = boundSql.getSql();
     Statement stmt;
@@ -43,11 +44,11 @@ public class BatchExecutor extends BaseExecutor {
     return BATCH_UPDATE_RETURN_VALUE;
   }
 
-  public List doQuery(MappedStatement ms, Object parameterObject, int rowOffset, int rowLimit, ResultHandler resultHandler)
+  public List doQuery(MappedStatement ms, Object parameterObject, RowLimit rowLimit, ResultHandler resultHandler)
       throws SQLException {
     flushStatements();
     Configuration configuration = ms.getConfiguration();
-    StatementHandler handler = configuration.newStatementHandler(this, ms, parameterObject, rowOffset, rowLimit, resultHandler);
+    StatementHandler handler = configuration.newStatementHandler(this, ms, parameterObject, rowLimit, resultHandler);
     Connection connection = transaction.getConnection();
     Statement stmt = handler.prepare(connection);
     handler.parameterize(stmt);

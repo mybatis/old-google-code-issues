@@ -1,6 +1,7 @@
 package org.apache.ibatis.session;
 
 import org.apache.ibatis.executor.result.ResultHandler;
+import org.apache.ibatis.executor.resultset.RowLimit;
 import org.apache.ibatis.mapping.Configuration;
 
 import java.util.List;
@@ -16,11 +17,11 @@ public interface SqlSession {
 
   List selectList(String statement, Object parameter);
 
-  List selectList(String statement, Object parameter, int offset, int limit);
+  List selectList(String statement, Object parameter, RowLimit rowLimit);
 
   void select(String statement, Object parameter, ResultHandler handler);
 
-  void select(String statement, Object parameter, int offset, int limit, ResultHandler handler);
+  void select(String statement, Object parameter, RowLimit rowLimit, ResultHandler handler);
 
   int insert(String statement);
 
