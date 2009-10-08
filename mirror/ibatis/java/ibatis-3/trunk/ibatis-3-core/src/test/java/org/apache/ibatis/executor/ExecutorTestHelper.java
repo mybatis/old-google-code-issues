@@ -2,10 +2,13 @@ package org.apache.ibatis.executor;
 
 import domain.blog.*;
 import org.apache.ibatis.builder.StaticSqlSource;
+import org.apache.ibatis.builder.xml.dynamic.DynamicSqlSource;
+import org.apache.ibatis.builder.xml.dynamic.TextSqlNode;
 import org.apache.ibatis.cache.Cache;
 import org.apache.ibatis.cache.decorators.*;
 import org.apache.ibatis.cache.impl.PerpetualCache;
 import org.apache.ibatis.executor.keygen.Jdbc3KeyGenerator;
+import org.apache.ibatis.executor.keygen.SelectKeyGenerator;
 import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.type.*;
 
@@ -594,5 +597,40 @@ public class ExecutorTestHelper {
           }
         }).build();
   }
+
+
+  public static MappedStatement prepareInsertAuthorMappedStatementWithBeforeAutoKey(final Configuration config) {
+    final TypeHandlerRegistry registry = config.getTypeHandlerRegistry();
+    final ResultMap rm = new ResultMap.Builder(config, "keyResultMap", Integer.class, new ArrayList<ResultMapping>())
+        .build();
+
+    MappedStatement kms = new MappedStatement.Builder(config, "insertAuthor!selectKey", new StaticSqlSource("SELECT 123456 as id FROM SYSIBM.SYSDUMMY1"), SqlCommandType.SELECT)
+        .keyProperty("id")
+        .resultMaps(new ArrayList<ResultMap>() {
+          {
+            add(rm);
+          }
+        })
+        .build();
+    config.addMappedStatement(kms);
+    MappedStatement ms = new MappedStatement.Builder(config, "insertAuthor", new DynamicSqlSource(config, new TextSqlNode("INSERT INTO author (id,username,password,email,bio,favourite_section) values(#{id},#{username},#{password},#{email},#{bio:VARCHAR},#{favouriteSection})")), SqlCommandType.INSERT)
+        .parameterMap(
+            new ParameterMap.Builder(config, "defaultParameterMap", Author.class, new ArrayList<ParameterMapping>() {
+              {
+                add(new ParameterMapping.Builder(config, "id", registry.getTypeHandler(Integer.class)).build());
+                add(new ParameterMapping.Builder(config, "username", registry.getTypeHandler(String.class)).build());
+                add(new ParameterMapping.Builder(config, "password", registry.getTypeHandler(String.class)).build());
+                add(new ParameterMapping.Builder(config, "email", registry.getTypeHandler(String.class)).build());
+                add(new ParameterMapping.Builder(config, "bio", registry.getTypeHandler(String.class)).jdbcType(JdbcType.VARCHAR).build());
+                add(new ParameterMapping.Builder(config, "favouriteSection", registry.getTypeHandler(Section.class)).jdbcType(JdbcType.VARCHAR).build());
+              }
+            }).build())
+        .cache(authorCache)
+        .keyGenerator(new SelectKeyGenerator(kms, true))
+        .keyProperty("id")
+        .build();
+    return ms;
+  }
+
 
 }

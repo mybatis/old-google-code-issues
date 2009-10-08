@@ -54,6 +54,7 @@ public class CallableStatementHandler extends BaseStatementHandler {
   public void parameterize(Statement statement) throws SQLException {
     KeyGenerator keyGenerator = mappedStatement.getKeyGenerator();
     keyGenerator.processBefore(executor, mappedStatement, statement, boundSql.getParameterObject());
+    rebindGeneratedKey();
     registerOutputParameters((CallableStatement) statement);
     parameterHandler.setParameters((CallableStatement) statement);
   }

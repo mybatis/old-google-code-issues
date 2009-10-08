@@ -25,6 +25,7 @@ public class CachingExecutor implements Executor {
 
   public void close() {
     delegate.close();
+    tcm.commit();
   }
 
   public boolean isClosed() {
