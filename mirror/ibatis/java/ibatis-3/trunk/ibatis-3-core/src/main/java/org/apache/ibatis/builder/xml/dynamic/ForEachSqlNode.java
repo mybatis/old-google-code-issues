@@ -5,6 +5,8 @@ import org.apache.ibatis.parsing.GenericTokenParser;
 import java.util.Map;
 
 public class ForEachSqlNode implements SqlNode {
+  public static final String ITEM_PREFIX = "__frch_";
+  
   private ExpressionEvaluator evaluator;
   private String collectionExpression;
   private SqlNode contents;
@@ -80,10 +82,8 @@ public class ForEachSqlNode implements SqlNode {
   }
 
   private static String itemizeItem(String item, int i) {
-    return new StringBuilder("__").append(item).append("_").append(i).toString();
+    return new StringBuilder(ITEM_PREFIX).append(item).append("_").append(i).toString();
   }
-
-
   
   private static class FilteredDynamicContext extends DynamicContext {
     private DynamicContext delegate;
