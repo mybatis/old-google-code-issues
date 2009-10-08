@@ -54,6 +54,7 @@ public class PreparedStatementHandler extends BaseStatementHandler {
       throws SQLException {
     KeyGenerator keyGenerator = mappedStatement.getKeyGenerator();    
     keyGenerator.processBefore(executor, mappedStatement, statement, boundSql.getParameterObject());
+    rebindGeneratedKey();
     parameterHandler.setParameters((PreparedStatement) statement);
   }
 

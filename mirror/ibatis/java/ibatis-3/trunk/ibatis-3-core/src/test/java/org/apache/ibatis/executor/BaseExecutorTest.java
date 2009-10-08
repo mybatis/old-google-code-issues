@@ -27,6 +27,34 @@ public class BaseExecutorTest extends BaseDataTest {
     config.setDefaultStatementTimeout(5000);
   }
 
+    @Test
+  public void shouldInsertNewAuthorWithBeforeAutoKey() throws Exception {
+    DataSource ds = createBlogDataSource();
+    Connection connection = ds.getConnection();
+    try {
+      Executor executor = createExecutor(new JdbcTransaction(connection, false));
+      Author author = new Author(-1, "someone", "******", "someone@apache.org", null, Section.NEWS);
+      MappedStatement insertStatement = ExecutorTestHelper.prepareInsertAuthorMappedStatementWithBeforeAutoKey(config);
+      MappedStatement selectStatement = ExecutorTestHelper.prepareSelectOneAuthorMappedStatement(config);
+      int rows = executor.update(insertStatement, author);
+      assertTrue(rows > 0 || rows == BatchExecutor.BATCH_UPDATE_RETURN_VALUE);
+      if (rows == BatchExecutor.BATCH_UPDATE_RETURN_VALUE) {
+        executor.flushStatements();
+      }
+      assertEquals(123456, author.getId());
+      if (author.getId() != BatchExecutor.BATCH_UPDATE_RETURN_VALUE) {
+        List<Author> authors = executor.query(selectStatement, author.getId(), RowLimit.DEFAULT, Executor.NO_RESULT_HANDLER);
+        executor.rollback(true);
+        assertEquals(1, authors.size());
+        assertEquals(author.toString(), authors.get(0).toString());
+        assertTrue(author.getId() >= 10000);
+      }
+    } finally {
+      connection.rollback();
+      connection.close();
+    }
+  }
+
   @Test
   public void shouldInsertNewAuthor() throws Exception {
     DataSource ds = createBlogDataSource();
