@@ -201,9 +201,9 @@ public class DynamicSqlSourceTest extends BaseDataTest {
     BoundSql boundSql = source.getBoundSql(parameterObject);
     assertEquals(expected, boundSql.getSql());
     assertEquals(3, boundSql.getParameterMappings().size());
-    assertEquals("__item_0", boundSql.getParameterMappings().get(0).getProperty());
-    assertEquals("__item_1", boundSql.getParameterMappings().get(1).getProperty());
-    assertEquals("__item_2", boundSql.getParameterMappings().get(2).getProperty());
+    assertEquals("__frch_item_0", boundSql.getParameterMappings().get(0).getProperty());
+    assertEquals("__frch_item_1", boundSql.getParameterMappings().get(1).getProperty());
+    assertEquals("__frch_item_2", boundSql.getParameterMappings().get(2).getProperty());     
   }
 
   private DynamicSqlSource createDynamicSqlSource(SqlNode... contents) throws IOException, SQLException {

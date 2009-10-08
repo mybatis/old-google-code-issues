@@ -3,7 +3,9 @@ package org.apache.ibatis.executor.parameter;
 import org.apache.ibatis.executor.*;
 import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.reflection.MetaObject;
+import org.apache.ibatis.reflection.property.PropertyTokenizer;
 import org.apache.ibatis.type.*;
+import org.apache.ibatis.builder.xml.dynamic.ForEachSqlNode;
 
 import java.sql.*;
 import java.util.List;
@@ -39,12 +41,19 @@ public class DefaultParameterHandler implements ParameterHandler {
         if (parameterMapping.getMode() != ParameterMode.OUT) {
           Object value;
           String propertyName = parameterMapping.getProperty();
+          PropertyTokenizer prop = new PropertyTokenizer(propertyName);
           if (parameterObject == null) {
             value = null;
           } else if (typeHandlerRegistry.hasTypeHandler(parameterObject.getClass())) {
             value = parameterObject;
           } else if (boundSql.hasAdditionalParameter(propertyName)) {
             value = boundSql.getAdditionalParameter(propertyName);
+          } else if (propertyName.startsWith(ForEachSqlNode.ITEM_PREFIX)
+              && boundSql.hasAdditionalParameter(prop.getName())) {
+            value = boundSql.getAdditionalParameter(prop.getName());
+            if (value != null) {
+              value = MetaObject.forObject(value).getValue(propertyName.substring(prop.getName().length()));
+            }
           } else {
             value = metaObject == null ? null : metaObject.getValue(propertyName);
           }
