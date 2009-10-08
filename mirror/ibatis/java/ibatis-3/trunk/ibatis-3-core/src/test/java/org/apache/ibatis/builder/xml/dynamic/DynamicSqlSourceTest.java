@@ -194,7 +194,7 @@ public class DynamicSqlSourceTest extends BaseDataTest {
     final HashMap<String,String[]> parameterObject = new HashMap() {{
         put("array", new String[]{"one", "two", "three"});
       }};
-    final String expected = "SELECT * FROM BLOG WHERE ID in ( one = ? AND two = ? AND three = ? )";
+    final String expected = "SELECT * FROM BLOG WHERE ID in (  one = ? AND two = ? AND three = ? )";
     DynamicSqlSource source = createDynamicSqlSource(
         new TextSqlNode("SELECT * FROM BLOG WHERE ID in"),
         new ForEachSqlNode(mixedContents(new TextSqlNode("${item} = #{item}")),"array","index","item","(",")","AND"));

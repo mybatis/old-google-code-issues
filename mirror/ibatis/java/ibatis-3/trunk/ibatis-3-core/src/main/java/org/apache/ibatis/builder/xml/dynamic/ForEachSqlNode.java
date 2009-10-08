@@ -34,11 +34,21 @@ public class ForEachSqlNode implements SqlNode {
     applyOpen(context);
     int i = 0;
     for (Object o : iterable) {
-      first = applySeparator(context, first);
+      DynamicContext oldContext = context;
+      if (first) {
+        first = false;
+        context = new PrefixedContext(context, "");
+      } else {
+        if (separator != null) {
+          context = new PrefixedContext(context, separator);
+        }
+      }
       int uniqueNumber = context.getUniqueNumber();
       applyItem(context, o, uniqueNumber);
       applyIndex(context, i);
       contents.apply(new FilteredDynamicContext(context, item, uniqueNumber));
+      first = !((PrefixedContext)context).isPrefixApplied();
+      context = oldContext;
       i++;
     }
     applyClose(context);
@@ -62,17 +72,6 @@ public class ForEachSqlNode implements SqlNode {
     if (open != null) {
       context.appendSql(open);
     }
-  }
-
-  private boolean applySeparator(DynamicContext context, boolean first) {
-    if (first) {
-      first = false;
-    } else {
-      if (separator != null) {
-        context.appendSql(separator);
-      }
-    }
-    return first;
   }
 
   private void applyClose(DynamicContext context) {
@@ -125,6 +124,43 @@ public class ForEachSqlNode implements SqlNode {
       return delegate.getUniqueNumber();
     }
 
+  }
+
+
+  private class PrefixedContext extends DynamicContext {
+    private DynamicContext delegate;
+    private String prefix;
+    private boolean prefixApplied;
+    public PrefixedContext (DynamicContext delegate, String prefix) {
+      super(null);
+      this.delegate = delegate;
+      this.prefix = prefix;
+      this.prefixApplied = false;
+    }
+
+    public boolean isPrefixApplied() {
+      return prefixApplied;
+    }
+
+    public Map<String, Object> getBindings() {
+      return delegate.getBindings();
+    }
+    public void bind(String name, Object value) {
+      delegate.bind(name, value);
+    }
+    public void appendSql(String sql) {
+      if (!prefixApplied && sql != null && sql.trim().length() > 0) {
+        delegate.appendSql(prefix);
+        prefixApplied = true;
+      }
+      delegate.appendSql(sql);
+    }
+    public String getSql() {
+      return delegate.getSql();
+    }
+    public int getUniqueNumber() {
+      return delegate.getUniqueNumber();
+    }
   }
 
 }

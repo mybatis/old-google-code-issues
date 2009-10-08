@@ -39,4 +39,16 @@
           #{item}
     </foreach>
   </select>
+
+  <select id="selectOddPostsIn" resultType="domain.blog.Post">
+    SELECT *
+    FROM POST P
+    WHERE ID in
+    <foreach item="item" index="index" collection="list"
+        open="(" separator="," close=")">
+        <if test="index / 2 != 0">
+          #{item}          
+        </if>
+    </foreach>
+  </select>
 </mapper>

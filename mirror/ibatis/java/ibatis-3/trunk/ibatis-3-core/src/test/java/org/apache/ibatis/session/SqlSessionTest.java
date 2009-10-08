@@ -582,4 +582,22 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
+  @Test
+  public void shouldFindOddPostsInList() throws Exception {
+    SqlSession session = sqlMapper.openSession();
+    try {
+      List<Post> posts = session.selectList("domain.blog.mappers.PostMapper.selectOddPostsIn",
+          new ArrayList(){{
+              add(1);
+              add(2);
+              add(3);
+              add(4);
+              add(5);
+            }});
+      assertEquals(3, posts.size());
+    } finally {
+      session.close();
+    }
+  }
+
 }
