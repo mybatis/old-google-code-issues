@@ -1,10 +1,17 @@
 package org.apache.ibatis.migration.commands;
 
-import org.apache.ibatis.migration.*;
+import org.apache.ibatis.migration.Change;
+import org.apache.ibatis.migration.MigrationException;
+import org.apache.ibatis.migration.MigrationReader;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Properties;
+import java.util.StringTokenizer;
 
 public class ScriptCommand extends BaseCommand {
 
@@ -44,7 +51,7 @@ public class ScriptCommand extends BaseCommand {
           out.print(new String(cbuf, 0, l - 1));
           out.println();
           out.println();
-          out.println(undo?generateVersionDelete(change):generateVersionInsert(change));
+          out.println(undo ? generateVersionDelete(change) : generateVersionInsert(change));
           out.println();
         }
       }

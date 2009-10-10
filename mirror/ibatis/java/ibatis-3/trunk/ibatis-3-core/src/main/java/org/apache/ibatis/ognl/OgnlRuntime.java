@@ -30,9 +30,13 @@
 //--------------------------------------------------------------------------
 package org.apache.ibatis.ognl;
 
-import java.beans.*;
+import java.beans.IndexedPropertyDescriptor;
+import java.beans.IntrospectionException;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
 import java.lang.reflect.*;
-import java.math.*;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.security.Permission;
 import java.util.*;
 

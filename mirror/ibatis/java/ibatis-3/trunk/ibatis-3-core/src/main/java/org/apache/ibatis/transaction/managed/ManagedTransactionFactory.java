@@ -1,6 +1,7 @@
 package org.apache.ibatis.transaction.managed;
 
-import org.apache.ibatis.transaction.*;
+import org.apache.ibatis.transaction.Transaction;
+import org.apache.ibatis.transaction.TransactionFactory;
 
 import java.sql.Connection;
 import java.util.Properties;

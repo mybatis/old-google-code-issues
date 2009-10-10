@@ -35,6 +35,6 @@
 -- database change management.
 
 create table BOOTSTRAP (
-  ID NUMERIC(8,0),
-  PRIMARY KEY(ID)
+ID NUMERIC(8,0),
+PRIMARY KEY(ID)
 )

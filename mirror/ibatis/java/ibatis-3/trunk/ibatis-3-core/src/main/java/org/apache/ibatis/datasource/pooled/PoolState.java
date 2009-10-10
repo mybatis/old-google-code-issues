@@ -1,6 +1,7 @@
 package org.apache.ibatis.datasource.pooled;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PoolState {
 

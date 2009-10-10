@@ -2,15 +2,18 @@ package org.apache.ibatis.executor;
 
 import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.cache.impl.PerpetualCache;
-import org.apache.ibatis.session.ResultHandler;
-import org.apache.ibatis.mapping.*;
+import static org.apache.ibatis.executor.ExecutionPlaceholder.EXECUTION_PLACEHOLDER;
+import org.apache.ibatis.mapping.BoundSql;
+import org.apache.ibatis.mapping.MappedStatement;
+import org.apache.ibatis.mapping.ParameterMapping;
 import org.apache.ibatis.reflection.MetaObject;
+import org.apache.ibatis.session.ResultHandler;
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.transaction.Transaction;
 import org.apache.ibatis.type.TypeHandlerRegistry;
-import static org.apache.ibatis.executor.ExecutionPlaceholder.*;
-import org.apache.ibatis.session.RowBounds;
 
-import java.sql.*;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.*;
 
 public abstract class BaseExecutor implements Executor {

@@ -5,7 +5,8 @@ import domain.misc.RichType;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MetaObjectTest {
 
@@ -209,8 +210,8 @@ public class MetaObjectTest {
     assertEquals(3, metaMap.getGetterNames().length);
     assertEquals(3, metaMap.getSetterNames().length);
 
-    Map name = (Map)metaMap.getValue("name");
-    Map address = (Map)metaMap.getValue("address");
+    Map name = (Map) metaMap.getValue("name");
+    Map address = (Map) metaMap.getValue("address");
 
     assertEquals("Clinton", name.get("first"));
     assertEquals("1 Some Street", address.get("street"));

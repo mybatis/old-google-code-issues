@@ -2,7 +2,8 @@ package org.apache.ibatis.logging.jdk14;
 
 import org.apache.ibatis.logging.Log;
 
-import java.util.logging.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Jdk14LoggingImpl implements Log {
 

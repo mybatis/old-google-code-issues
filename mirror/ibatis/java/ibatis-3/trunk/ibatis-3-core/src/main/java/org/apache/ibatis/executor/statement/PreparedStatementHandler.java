@@ -1,10 +1,11 @@
 package org.apache.ibatis.executor.statement;
 
 import org.apache.ibatis.executor.Executor;
-import org.apache.ibatis.session.RowBounds;
-import org.apache.ibatis.executor.keygen.*;
-import org.apache.ibatis.session.ResultHandler;
+import org.apache.ibatis.executor.keygen.Jdbc3KeyGenerator;
+import org.apache.ibatis.executor.keygen.KeyGenerator;
 import org.apache.ibatis.mapping.MappedStatement;
+import org.apache.ibatis.session.ResultHandler;
+import org.apache.ibatis.session.RowBounds;
 
 import java.sql.*;
 import java.util.List;
@@ -52,7 +53,7 @@ public class PreparedStatementHandler extends BaseStatementHandler {
 
   public void parameterize(Statement statement)
       throws SQLException {
-    KeyGenerator keyGenerator = mappedStatement.getKeyGenerator();    
+    KeyGenerator keyGenerator = mappedStatement.getKeyGenerator();
     keyGenerator.processBefore(executor, mappedStatement, statement, boundSql.getParameterObject());
     rebindGeneratedKey();
     parameterHandler.setParameters((PreparedStatement) statement);

@@ -1,7 +1,8 @@
 package org.apache.ibatis.builder.xml.dynamic;
 
 import org.apache.ibatis.builder.SqlSourceBuilder;
-import org.apache.ibatis.mapping.*;
+import org.apache.ibatis.mapping.BoundSql;
+import org.apache.ibatis.mapping.SqlSource;
 import org.apache.ibatis.session.Configuration;
 
 import java.util.Map;
@@ -23,8 +24,8 @@ public class DynamicSqlSource implements SqlSource {
     Class parameterType = parameterObject == null ? Object.class : parameterObject.getClass();
     SqlSource sqlSource = sqlSourceParser.parse(context.getSql(), parameterType);
     BoundSql boundSql = sqlSource.getBoundSql(parameterObject);
-    for (Map.Entry<String,Object> entry : context.getBindings().entrySet()) {
-      boundSql.setAdditionalParameter(entry.getKey(),entry.getValue());
+    for (Map.Entry<String, Object> entry : context.getBindings().entrySet()) {
+      boundSql.setAdditionalParameter(entry.getKey(), entry.getValue());
     }
     return boundSql;
   }

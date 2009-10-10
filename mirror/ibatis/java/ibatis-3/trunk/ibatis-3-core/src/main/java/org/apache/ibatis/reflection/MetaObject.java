@@ -1,11 +1,11 @@
 package org.apache.ibatis.reflection;
 
+import org.apache.ibatis.reflection.factory.DefaultObjectFactory;
+import org.apache.ibatis.reflection.factory.ObjectFactory;
+import org.apache.ibatis.reflection.property.PropertyTokenizer;
 import org.apache.ibatis.reflection.wrapper.BeanWrapper;
 import org.apache.ibatis.reflection.wrapper.MapWrapper;
 import org.apache.ibatis.reflection.wrapper.ObjectWrapper;
-import org.apache.ibatis.reflection.property.PropertyTokenizer;
-import org.apache.ibatis.reflection.factory.ObjectFactory;
-import org.apache.ibatis.reflection.factory.DefaultObjectFactory;
 
 import java.util.Map;
 
@@ -24,7 +24,7 @@ public class MetaObject {
     if (object instanceof ObjectWrapper) {
       this.objectWrapper = (ObjectWrapper) object;
     } else if (object instanceof Map) {
-      this.objectWrapper = new MapWrapper(this, (Map)object);
+      this.objectWrapper = new MapWrapper(this, (Map) object);
     } else {
       this.objectWrapper = new BeanWrapper(this, object);
     }

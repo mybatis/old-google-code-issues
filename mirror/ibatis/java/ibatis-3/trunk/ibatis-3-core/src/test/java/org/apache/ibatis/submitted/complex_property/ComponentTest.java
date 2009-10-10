@@ -1,22 +1,19 @@
 package org.apache.ibatis.submitted.complex_property;
 
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
+import static junit.framework.Assert.assertNotNull;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.jdbc.ScriptRunner;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import java.io.IOException;
+import java.io.Reader;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.io.Reader;
-import java.io.IOException;
-
-import static junit.framework.Assert.*;
-
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.jdbc.ScriptRunner;
-import org.apache.ibatis.io.Resources;
-import org.junit.Test;
-import org.junit.BeforeClass;
+import java.util.Calendar;
 
 public class ComponentTest {
   private static SqlSessionFactory sqlSessionFactory;
@@ -29,29 +26,29 @@ public class ComponentTest {
 
 
   @Test
-	public void shouldInsertNestedPasswordFieldOfComplexType() throws Exception{
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		try {
-			//Create User
-			User user = new User();
+  public void shouldInsertNestedPasswordFieldOfComplexType() throws Exception {
+    SqlSession sqlSession = sqlSessionFactory.openSession();
+    try {
+      //Create User
+      User user = new User();
       user.setId(500000L);
-			user.setPassword(new EncryptedString("secret"));
-			user.setUsername("johnny"+Calendar.getInstance().getTimeInMillis());//random
-			user.setAdministrator(true);
-			
-			sqlSession.insert("User.insert", user);
+      user.setPassword(new EncryptedString("secret"));
+      user.setUsername("johnny" + Calendar.getInstance().getTimeInMillis());//random
+      user.setAdministrator(true);
 
-			//Retrieve User
-			user = (User) sqlSession.selectOne("User.find", user.getId());
-			
-			assertNotNull(user.getId());
+      sqlSession.insert("User.insert", user);
 
-			sqlSession.rollback();
-		} finally {
-			sqlSession.close();
-		}
-	}
-  
+      //Retrieve User
+      user = (User) sqlSession.selectOne("User.find", user.getId());
+
+      assertNotNull(user.getId());
+
+      sqlSession.rollback();
+    } finally {
+      sqlSession.close();
+    }
+  }
+
   private static void runDBScript() throws SQLException, IOException {
     Connection conn = sqlSessionFactory.getConfiguration().getEnvironment().getDataSource().getConnection();
     ScriptRunner runner = new ScriptRunner(conn);

@@ -1,10 +1,10 @@
 package org.apache.ibatis.builder;
 
-import static org.junit.Assert.*;
-import org.junit.Test;
 import org.apache.ibatis.builder.xml.XMLConfigBuilder;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.Configuration;
+import static org.junit.Assert.assertNotNull;
+import org.junit.Test;
 
 import java.io.Reader;
 

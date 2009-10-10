@@ -2,7 +2,10 @@ package domain.jpetstore;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 
 public class Order implements Serializable {

@@ -1,12 +1,17 @@
 package org.apache.ibatis.binding;
 
 import domain.blog.*;
-import org.apache.ibatis.session.*;
 import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import static org.junit.Assert.*;
-import org.junit.*;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class BindingTest {
   private static SqlSessionFactory sqlSessionFactory;
@@ -39,12 +44,12 @@ public class BindingTest {
     SqlSession session = sqlSessionFactory.openSession();
     try {
       BoundAuthorMapper mapper = session.getMapper(BoundAuthorMapper.class);
-      List<Post> posts = mapper.findPostsInList(new ArrayList<Integer>(){{
+      List<Post> posts = mapper.findPostsInList(new ArrayList<Integer>() {{
         add(1);
         add(3);
         add(5);
       }});
-      assertEquals(3,posts.size());
+      assertEquals(3, posts.size());
       session.rollback();
     } finally {
       session.close();
@@ -56,9 +61,9 @@ public class BindingTest {
     SqlSession session = sqlSessionFactory.openSession();
     try {
       BoundAuthorMapper mapper = session.getMapper(BoundAuthorMapper.class);
-      Integer[] params = new Integer[] {1,3,5};
+      Integer[] params = new Integer[]{1, 3, 5};
       List<Post> posts = mapper.findPostsInArray(params);
-      assertEquals(3,posts.size());
+      assertEquals(3, posts.size());
       session.rollback();
     } finally {
       session.close();
@@ -70,9 +75,9 @@ public class BindingTest {
     SqlSession session = sqlSessionFactory.openSession();
     try {
       BoundAuthorMapper mapper = session.getMapper(BoundAuthorMapper.class);
-      List<Post> posts = mapper.findThreeSpecificPosts(1,new RowBounds(1,1),3,5);
-      assertEquals(1,posts.size());
-      assertEquals(3,posts.get(0).getId());
+      List<Post> posts = mapper.findThreeSpecificPosts(1, new RowBounds(1, 1), 3, 5);
+      assertEquals(1, posts.size());
+      assertEquals(3, posts.get(0).getId());
       session.rollback();
     } finally {
       session.close();
@@ -84,9 +89,9 @@ public class BindingTest {
     SqlSession session = sqlSessionFactory.openSession();
     try {
       BoundAuthorMapper mapper = session.getMapper(BoundAuthorMapper.class);
-      Author author = new Author(-1,"cbegin","******","cbegin@nowhere.com","N/A",Section.NEWS);
+      Author author = new Author(-1, "cbegin", "******", "cbegin@nowhere.com", "N/A", Section.NEWS);
       int rows = mapper.insertAuthor(author);
-      assertEquals(1,rows);
+      assertEquals(1, rows);
       session.rollback();
     } finally {
       session.close();

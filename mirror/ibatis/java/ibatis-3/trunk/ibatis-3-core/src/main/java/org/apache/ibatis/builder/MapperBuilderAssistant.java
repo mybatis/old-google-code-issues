@@ -7,8 +7,9 @@ import org.apache.ibatis.executor.ErrorContext;
 import org.apache.ibatis.executor.keygen.KeyGenerator;
 import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.reflection.MetaClass;
-import org.apache.ibatis.type.*;
 import org.apache.ibatis.session.Configuration;
+import org.apache.ibatis.type.JdbcType;
+import org.apache.ibatis.type.TypeHandler;
 
 import java.util.*;
 
@@ -56,11 +57,11 @@ public class MapperBuilderAssistant extends BaseBuilder {
   }
 
   public Cache useNewCache(Class typeClass,
-                    Class evictionClass,
-                    Long flushInterval,
-                    Integer size,
-                    boolean readOnly,
-                    Properties props) {
+                           Class evictionClass,
+                           Long flushInterval,
+                           Integer size,
+                           boolean readOnly,
+                           Properties props) {
     typeClass = valueOrDefault(typeClass, PerpetualCache.class);
     evictionClass = valueOrDefault(evictionClass, LruCache.class);
     Cache cache = new CacheBuilder(currentNamespace)
@@ -169,11 +170,11 @@ public class MapperBuilderAssistant extends BaseBuilder {
         null,
         typeHandler,
         new ArrayList<ResultFlag>());
-    Map<String,String> namespaceDiscriminatorMap = new HashMap<String,String>();
-    for (Map.Entry<String,String> e: discriminatorMap.entrySet()) {
+    Map<String, String> namespaceDiscriminatorMap = new HashMap<String, String>();
+    for (Map.Entry<String, String> e : discriminatorMap.entrySet()) {
       String resultMap = e.getValue();
       resultMap = applyCurrentNamespace(resultMap);
-      namespaceDiscriminatorMap .put(e.getKey(), resultMap);
+      namespaceDiscriminatorMap.put(e.getKey(), resultMap);
     }
     Discriminator.Builder discriminatorBuilder = new Discriminator.Builder(configuration, resultMapping, namespaceDiscriminatorMap);
     return discriminatorBuilder.build();

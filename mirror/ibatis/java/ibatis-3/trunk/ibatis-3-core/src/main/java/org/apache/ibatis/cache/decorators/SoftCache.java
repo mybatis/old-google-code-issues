@@ -2,7 +2,8 @@ package org.apache.ibatis.cache.decorators;
 
 import org.apache.ibatis.cache.Cache;
 
-import java.lang.ref.*;
+import java.lang.ref.ReferenceQueue;
+import java.lang.ref.SoftReference;
 import java.util.LinkedList;
 import java.util.concurrent.locks.ReadWriteLock;
 

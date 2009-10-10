@@ -3,7 +3,8 @@ package org.apache.ibatis.reflection;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
-import java.lang.reflect.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.UndeclaredThrowableException;
 
 public class ExceptionUtilTest {
 

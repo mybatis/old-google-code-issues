@@ -30,7 +30,9 @@
 //--------------------------------------------------------------------------
 package org.apache.ibatis.ognl;
 
-import java.lang.reflect.*;
+import java.lang.reflect.AccessibleObject;
+import java.lang.reflect.Member;
+import java.lang.reflect.Modifier;
 import java.util.Map;
 
 /**

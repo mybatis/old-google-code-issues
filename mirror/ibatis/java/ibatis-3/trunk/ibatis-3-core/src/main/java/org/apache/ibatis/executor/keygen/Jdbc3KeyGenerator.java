@@ -1,12 +1,16 @@
 package org.apache.ibatis.executor.keygen;
 
-import org.apache.ibatis.executor.*;
-import org.apache.ibatis.mapping.*;
+import org.apache.ibatis.executor.Executor;
+import org.apache.ibatis.executor.ExecutorException;
+import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.reflection.MetaObject;
-import org.apache.ibatis.type.*;
 import org.apache.ibatis.session.Configuration;
+import org.apache.ibatis.type.TypeHandler;
+import org.apache.ibatis.type.TypeHandlerRegistry;
 
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
 
 public class Jdbc3KeyGenerator implements KeyGenerator {
 
@@ -22,7 +26,7 @@ public class Jdbc3KeyGenerator implements KeyGenerator {
         final MetaObject metaParam = MetaObject.forObject(parameter);
         if (keyProperty != null && metaParam.hasSetter(keyProperty)) {
           Class keyPropertyType = metaParam.getSetterType(keyProperty);
-          TypeHandler th =  typeHandlerRegistry.getTypeHandler(keyPropertyType);
+          TypeHandler th = typeHandlerRegistry.getTypeHandler(keyPropertyType);
           if (th != null) {
             ResultSet rs = stmt.getGeneratedKeys();
             try {
@@ -31,8 +35,8 @@ public class Jdbc3KeyGenerator implements KeyGenerator {
               if (colCount > 0) {
                 String colName = rsmd.getColumnName(1);
                 while (rs.next()) {
-                  Object value = th.getResult(rs,colName);
-                  metaParam.setValue(keyProperty,value);
+                  Object value = th.getResult(rs, colName);
+                  metaParam.setValue(keyProperty, value);
                 }
               }
             } finally {

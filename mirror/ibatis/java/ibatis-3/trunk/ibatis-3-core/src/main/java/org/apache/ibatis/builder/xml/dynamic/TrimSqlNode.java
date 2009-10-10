@@ -28,10 +28,12 @@ public class TrimSqlNode implements SqlNode {
   private List<String> parseOverrides(String overrides) {
     if (overrides != null) {
       final StringTokenizer parser = new StringTokenizer(overrides, "|", false);
-      return new ArrayList<String>() {{
+      return new ArrayList<String>() {
+        {
           while (parser.hasMoreTokens()) {
             add(parser.nextToken().toUpperCase());
-          }}
+          }
+        }
       };
     }
     return Collections.EMPTY_LIST;
@@ -51,7 +53,7 @@ public class TrimSqlNode implements SqlNode {
       this.sqlBuffer = new StringBuilder();
     }
 
-    public void applyAll(){
+    public void applyAll() {
       sqlBuffer = new StringBuilder(sqlBuffer.toString().trim());
       String trimmedUppercaseSql = sqlBuffer.toString().toUpperCase();
       if (trimmedUppercaseSql.length() > 0) {
@@ -91,8 +93,8 @@ public class TrimSqlNode implements SqlNode {
           }
         }
         if (prefix != null) {
-          sql.insert(0," ");
-          sql.insert(0,prefix);
+          sql.insert(0, " ");
+          sql.insert(0, prefix);
         }
       }
     }

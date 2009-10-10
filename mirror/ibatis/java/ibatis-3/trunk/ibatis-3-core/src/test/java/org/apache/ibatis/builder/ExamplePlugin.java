@@ -1,6 +1,9 @@
 package org.apache.ibatis.builder;
 
-import org.apache.ibatis.plugin.*;
+import org.apache.ibatis.plugin.Interceptor;
+import org.apache.ibatis.plugin.Intercepts;
+import org.apache.ibatis.plugin.Invocation;
+import org.apache.ibatis.plugin.Plugin;
 
 import java.util.Properties;
 

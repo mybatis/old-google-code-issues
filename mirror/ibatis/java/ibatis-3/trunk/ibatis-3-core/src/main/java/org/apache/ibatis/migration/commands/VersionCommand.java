@@ -1,6 +1,7 @@
 package org.apache.ibatis.migration.commands;
 
-import org.apache.ibatis.migration.*;
+import org.apache.ibatis.migration.Change;
+import org.apache.ibatis.migration.MigrationException;
 
 import java.io.File;
 import java.math.BigDecimal;

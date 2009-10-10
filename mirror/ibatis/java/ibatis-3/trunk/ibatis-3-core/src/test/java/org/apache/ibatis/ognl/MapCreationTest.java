@@ -33,7 +33,10 @@ package org.apache.ibatis.ognl;
 import junit.framework.TestSuite;
 import org.apache.ibatis.ognl.objects.Root;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class MapCreationTest extends OgnlTestCase {
   private static Root ROOT = new Root();

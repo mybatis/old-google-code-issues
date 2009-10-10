@@ -1,9 +1,12 @@
 package org.apache.ibatis.plugin;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import org.junit.Test;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 
 public class PluginTest {
 
@@ -22,7 +25,7 @@ public class PluginTest {
   }
 
   @Intercepts({
-    @Signature(type = Map.class, method = "get", args = {Object.class})})
+      @Signature(type = Map.class, method = "get", args = {Object.class})})
   public static class AlwaysMapPlugin implements Interceptor {
     public Object intercept(Invocation invocation) throws Throwable {
       return "Always";

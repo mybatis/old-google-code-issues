@@ -1,7 +1,8 @@
 package org.apache.ibatis.transaction.managed;
 
 import org.apache.ibatis.BaseDataTest;
-import org.apache.ibatis.transaction.*;
+import org.apache.ibatis.transaction.Transaction;
+import org.apache.ibatis.transaction.TransactionFactory;
 import org.jmock.Mockery;
 import org.jmock.lib.legacy.ClassImposteriser;
 import static org.junit.Assert.assertEquals;

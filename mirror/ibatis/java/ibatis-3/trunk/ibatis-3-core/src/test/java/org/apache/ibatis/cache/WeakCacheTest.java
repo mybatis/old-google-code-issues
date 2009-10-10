@@ -1,13 +1,16 @@
 package org.apache.ibatis.cache;
 
-import org.apache.ibatis.cache.decorators.*;
+import org.apache.ibatis.cache.decorators.SerializedCache;
+import org.apache.ibatis.cache.decorators.WeakCache;
 import org.apache.ibatis.cache.impl.PerpetualCache;
 import static org.junit.Assert.*;
-import org.junit.*;
+import org.junit.Ignore;
+import org.junit.Test;
 
 public class WeakCacheTest {
 
-  @Test @Ignore
+  @Test
+  @Ignore
   public void shouldDemonstrateObjectsBeingCollectedAsNeeded() {
     final int N = 300000;
     WeakCache cache = new WeakCache(new PerpetualCache("default"));

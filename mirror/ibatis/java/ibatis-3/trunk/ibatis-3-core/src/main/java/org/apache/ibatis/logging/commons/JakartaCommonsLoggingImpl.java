@@ -1,6 +1,7 @@
 package org.apache.ibatis.logging.commons;
 
-import org.apache.commons.logging.*;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class JakartaCommonsLoggingImpl implements org.apache.ibatis.logging.Log {
 

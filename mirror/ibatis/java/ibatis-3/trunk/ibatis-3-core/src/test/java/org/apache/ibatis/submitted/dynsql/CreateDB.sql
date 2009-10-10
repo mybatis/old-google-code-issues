@@ -1,8 +1,8 @@
 create schema ibtest authorization dba;
 
 create table ibtest.names (
-  id int,
-  description varchar(20)
+id int,
+description varchar(20)
 );
 
 insert into ibtest.names (id, description) values(1, 'Fred');

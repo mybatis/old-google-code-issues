@@ -1,7 +1,8 @@
 package org.apache.ibatis.io;
 
 import java.io.*;
-import java.net.*;
+import java.net.URL;
+import java.net.URLConnection;
 import java.nio.charset.Charset;
 import java.util.Properties;
 
@@ -18,7 +19,8 @@ public class Resources {
    */
   private static Charset charset;
 
-  Resources() {}
+  Resources() {
+  }
 
   /**
    * Returns the default classloader (may be null).

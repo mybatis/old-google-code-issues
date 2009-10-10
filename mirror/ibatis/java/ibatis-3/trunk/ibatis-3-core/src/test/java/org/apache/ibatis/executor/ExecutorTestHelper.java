@@ -5,13 +5,17 @@ import org.apache.ibatis.builder.StaticSqlSource;
 import org.apache.ibatis.builder.xml.dynamic.DynamicSqlSource;
 import org.apache.ibatis.builder.xml.dynamic.TextSqlNode;
 import org.apache.ibatis.cache.Cache;
-import org.apache.ibatis.cache.decorators.*;
+import org.apache.ibatis.cache.decorators.LoggingCache;
+import org.apache.ibatis.cache.decorators.ScheduledCache;
+import org.apache.ibatis.cache.decorators.SerializedCache;
+import org.apache.ibatis.cache.decorators.SynchronizedCache;
 import org.apache.ibatis.cache.impl.PerpetualCache;
 import org.apache.ibatis.executor.keygen.Jdbc3KeyGenerator;
 import org.apache.ibatis.executor.keygen.SelectKeyGenerator;
 import org.apache.ibatis.mapping.*;
-import org.apache.ibatis.type.*;
 import org.apache.ibatis.session.Configuration;
+import org.apache.ibatis.type.JdbcType;
+import org.apache.ibatis.type.TypeHandlerRegistry;
 
 import java.util.*;
 

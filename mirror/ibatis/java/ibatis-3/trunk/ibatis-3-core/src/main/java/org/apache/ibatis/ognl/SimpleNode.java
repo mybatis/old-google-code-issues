@@ -30,7 +30,8 @@
 //--------------------------------------------------------------------------
 package org.apache.ibatis.ognl;
 
-import java.io.*;
+import java.io.PrintWriter;
+import java.io.Serializable;
 
 /**
  * @author Luke Blanshard (blanshlu@netscape.net)

@@ -1,7 +1,9 @@
 package org.apache.ibatis.mapping;
 
-import org.apache.ibatis.type.*;
 import org.apache.ibatis.session.Configuration;
+import org.apache.ibatis.type.JdbcType;
+import org.apache.ibatis.type.TypeHandler;
+import org.apache.ibatis.type.TypeHandlerRegistry;
 
 public class ParameterMapping {
 

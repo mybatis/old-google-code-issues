@@ -1,28 +1,32 @@
 package org.apache.ibatis.builder.xml;
 
-import org.apache.ibatis.builder.*;
+import org.apache.ibatis.builder.BaseBuilder;
+import org.apache.ibatis.builder.BuilderException;
 import org.apache.ibatis.datasource.DataSourceFactory;
 import org.apache.ibatis.executor.ErrorContext;
 import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.mapping.*;
-import org.apache.ibatis.parsing.*;
+import org.apache.ibatis.mapping.Environment;
+import org.apache.ibatis.parsing.XNode;
+import org.apache.ibatis.parsing.XPathParser;
 import org.apache.ibatis.plugin.Interceptor;
-import org.apache.ibatis.reflection.*;
+import org.apache.ibatis.reflection.MetaClass;
 import org.apache.ibatis.reflection.factory.ObjectFactory;
+import org.apache.ibatis.session.Configuration;
+import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.transaction.TransactionFactory;
 import org.apache.ibatis.type.TypeHandler;
-import org.apache.ibatis.session.ExecutorType;
-import org.apache.ibatis.session.Configuration;
 
 import java.io.Reader;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 
 public class XMLConfigBuilder extends BaseBuilder {
 
   private boolean parsed;
   private XPathParser parser;
   private String environment;
-  private Map<String, XNode> sqlFragments = new HashMap<String, XNode>();  
+  private Map<String, XNode> sqlFragments = new HashMap<String, XNode>();
 
   public XMLConfigBuilder(Reader reader) {
     this(reader, null, null);

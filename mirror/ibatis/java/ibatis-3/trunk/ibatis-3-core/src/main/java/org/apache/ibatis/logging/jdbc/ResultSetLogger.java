@@ -1,9 +1,12 @@
 package org.apache.ibatis.logging.jdbc;
 
-import org.apache.ibatis.logging.*;
+import org.apache.ibatis.logging.Log;
+import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.reflection.ExceptionUtil;
 
-import java.lang.reflect.*;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -27,7 +30,7 @@ public class ResultSetLogger extends BaseJdbcLogger implements InvocationHandler
     try {
       Object o = method.invoke(rs, params);
       if ("next".equals(method.getName())) {
-        if (((Boolean)o)) {
+        if (((Boolean) o)) {
           ResultSetMetaData rsmd = rs.getMetaData();
           final int columnCount = rsmd.getColumnCount();
           if (log.isDebugEnabled()) {
@@ -49,7 +52,7 @@ public class ResultSetLogger extends BaseJdbcLogger implements InvocationHandler
   private void printColumnHeaders(ResultSetMetaData rsmd, int columnCount) throws SQLException {
     StringBuilder row = new StringBuilder();
     row.append("<==    Columns: ");
-    for (int i=1; i <= columnCount; i++) {
+    for (int i = 1; i <= columnCount; i++) {
       String colname = rsmd.getColumnName(i);
       row.append(colname);
       if (i != columnCount) row.append(", ");
@@ -60,7 +63,7 @@ public class ResultSetLogger extends BaseJdbcLogger implements InvocationHandler
   private void printColumnValues(int columnCount) throws SQLException {
     StringBuilder row = new StringBuilder();
     row.append("<==        Row: ");
-    for (int i=1; i <= columnCount; i++) {
+    for (int i = 1; i <= columnCount; i++) {
       String colname = rs.getString(i);
       row.append(colname);
       if (i != columnCount) row.append(", ");

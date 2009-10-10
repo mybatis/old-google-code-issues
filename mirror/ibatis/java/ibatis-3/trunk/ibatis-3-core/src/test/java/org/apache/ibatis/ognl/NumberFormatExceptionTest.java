@@ -33,7 +33,8 @@ package org.apache.ibatis.ognl;
 import junit.framework.TestSuite;
 import org.apache.ibatis.ognl.objects.Simple;
 
-import java.math.*;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 
 public class NumberFormatExceptionTest extends OgnlTestCase {
   private static Simple SIMPLE = new Simple();

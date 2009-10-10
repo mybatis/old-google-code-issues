@@ -52,7 +52,7 @@ public class Author implements Serializable {
     this.favouriteSection = favouriteSection;
   }
 
-   public int getId() {
+  public int getId() {
     return id;
   }
 

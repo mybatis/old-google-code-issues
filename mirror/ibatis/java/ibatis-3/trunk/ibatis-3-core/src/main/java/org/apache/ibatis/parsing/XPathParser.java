@@ -1,14 +1,21 @@
 package org.apache.ibatis.parsing;
 
 import org.apache.ibatis.builder.BuilderException;
-import org.w3c.dom.*;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.*;
 
 import javax.xml.namespace.QName;
-import javax.xml.parsers.*;
-import javax.xml.xpath.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathFactory;
 import java.io.Reader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 
 public class XPathParser {
 
@@ -55,7 +62,7 @@ public class XPathParser {
   }
 
   public Boolean evalBoolean(Object root, String expression) {
-    return (Boolean)evaluate(expression, root, XPathConstants.BOOLEAN);
+    return (Boolean) evaluate(expression, root, XPathConstants.BOOLEAN);
   }
 
   public Double evalDouble(String expression) {
@@ -63,7 +70,7 @@ public class XPathParser {
   }
 
   public Double evalDouble(Object root, String expression) {
-    return (Double)evaluate(expression, root, XPathConstants.NUMBER);
+    return (Double) evaluate(expression, root, XPathConstants.NUMBER);
   }
 
   public List<XNode> evalNodes(String expression) {
@@ -73,8 +80,8 @@ public class XPathParser {
   public List<XNode> evalNodes(Object root, String expression) {
     List<XNode> xnodes = new ArrayList<XNode>();
     NodeList nodes = (NodeList) evaluate(expression, root, XPathConstants.NODESET);
-    for(int i = 0; i < nodes.getLength(); i++) {
-      xnodes.add(new XNode(this,nodes.item(i),variables));
+    for (int i = 0; i < nodes.getLength(); i++) {
+      xnodes.add(new XNode(this, nodes.item(i), variables));
     }
     return xnodes;
   }
@@ -87,8 +94,8 @@ public class XPathParser {
     Node node = (Node) evaluate(expression, root, XPathConstants.NODE);
     if (node == null) {
       return null;
-    } 
-    return new XNode(this,node,variables);
+    }
+    return new XNode(this, node, variables);
   }
 
   private Object evaluate(String expression, Object root, QName returnType) {

@@ -3,7 +3,9 @@ package org.apache.ibatis.datasource.pooled;
 import org.apache.ibatis.datasource.DataSourceException;
 import org.apache.ibatis.reflection.ExceptionUtil;
 
-import java.lang.reflect.*;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 import java.sql.Connection;
 
 class PooledConnection implements InvocationHandler {

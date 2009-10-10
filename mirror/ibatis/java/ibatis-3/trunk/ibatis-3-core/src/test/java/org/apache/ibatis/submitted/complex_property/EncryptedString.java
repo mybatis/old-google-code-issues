@@ -1,22 +1,29 @@
 package org.apache.ibatis.submitted.complex_property;
 
 public class EncryptedString {
-	private String encrypted;
-	
-	public EncryptedString(){
-		setEncrypted( null );
-	}
+  private String encrypted;
 
-	public EncryptedString(String message){
-		this();
-		
-		//encrypt the message.
-		setEncrypted( message );//TODO:encrypt
-	}
+  public EncryptedString() {
+    setEncrypted(null);
+  }
 
-	public String decrypt() { return encrypted; }//TODO:decrypt
+  public EncryptedString(String message) {
+    this();
 
-	public String getEncrypted() { return encrypted; }
-	public void setEncrypted(String arg) { this.encrypted = arg; }
+    //encrypt the message.
+    setEncrypted(message);//TODO:encrypt
+  }
+
+  public String decrypt() {
+    return encrypted;
+  }//TODO:decrypt
+
+  public String getEncrypted() {
+    return encrypted;
+  }
+
+  public void setEncrypted(String arg) {
+    this.encrypted = arg;
+  }
 
 }

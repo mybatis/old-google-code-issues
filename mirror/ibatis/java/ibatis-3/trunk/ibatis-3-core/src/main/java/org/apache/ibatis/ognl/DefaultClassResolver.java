@@ -30,7 +30,8 @@
 //--------------------------------------------------------------------------
 package org.apache.ibatis.ognl;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Default class resolution.  Uses Class.forName() to look up classes by name.

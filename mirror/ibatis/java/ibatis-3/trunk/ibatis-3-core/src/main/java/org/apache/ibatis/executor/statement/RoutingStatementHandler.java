@@ -1,12 +1,16 @@
 package org.apache.ibatis.executor.statement;
 
-import org.apache.ibatis.executor.*;
-import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.executor.Executor;
+import org.apache.ibatis.executor.ExecutorException;
 import org.apache.ibatis.executor.parameter.ParameterHandler;
+import org.apache.ibatis.mapping.BoundSql;
+import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.session.ResultHandler;
-import org.apache.ibatis.mapping.*;
+import org.apache.ibatis.session.RowBounds;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 public class RoutingStatementHandler implements StatementHandler {

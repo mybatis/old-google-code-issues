@@ -1,19 +1,14 @@
 package org.apache.ibatis.submitted.null_associations;
 
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.apache.ibatis.jdbc.SqlRunner;
-import org.apache.ibatis.jdbc.ScriptRunner;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 
-import java.sql.Connection;
 import java.io.Reader;
+import java.sql.Connection;
 
 public class FooMapperTest {
 

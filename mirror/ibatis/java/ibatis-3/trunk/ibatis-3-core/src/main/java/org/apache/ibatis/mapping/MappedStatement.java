@@ -1,10 +1,14 @@
 package org.apache.ibatis.mapping;
 
 import org.apache.ibatis.cache.Cache;
-import org.apache.ibatis.executor.keygen.*;
+import org.apache.ibatis.executor.keygen.Jdbc3KeyGenerator;
+import org.apache.ibatis.executor.keygen.KeyGenerator;
+import org.apache.ibatis.executor.keygen.NoKeyGenerator;
 import org.apache.ibatis.session.Configuration;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class MappedStatement {
 
@@ -98,7 +102,7 @@ public class MappedStatement {
       return this;
     }
 
-    public Builder keyGenerator (KeyGenerator keyGenerator) {
+    public Builder keyGenerator(KeyGenerator keyGenerator) {
       mappedStatement.keyGenerator = keyGenerator;
       return this;
     }

@@ -33,7 +33,8 @@ package org.apache.ibatis.ognl;
 import junit.framework.TestSuite;
 import org.apache.ibatis.ognl.objects.Simple;
 
-import java.lang.reflect.*;
+import java.lang.reflect.Member;
+import java.lang.reflect.Method;
 import java.util.Map;
 
 public class MemberAccessTest extends OgnlTestCase {

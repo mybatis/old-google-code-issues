@@ -7,8 +7,10 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.junit.Test;
 
 import javax.sql.DataSource;
-import java.io.*;
-import java.sql.*;
+import java.io.IOException;
+import java.io.Reader;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Properties;
 
 public class BaseDataTest {

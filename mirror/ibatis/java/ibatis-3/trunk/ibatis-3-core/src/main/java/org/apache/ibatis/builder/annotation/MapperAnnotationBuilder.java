@@ -2,17 +2,24 @@ package org.apache.ibatis.builder.annotation;
 
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.binding.BindingException;
-import org.apache.ibatis.builder.*;
+import org.apache.ibatis.builder.BuilderException;
+import org.apache.ibatis.builder.MapperBuilderAssistant;
+import org.apache.ibatis.builder.SqlSourceBuilder;
 import org.apache.ibatis.builder.xml.XMLMapperBuilder;
-import org.apache.ibatis.executor.keygen.*;
+import org.apache.ibatis.executor.keygen.Jdbc3KeyGenerator;
+import org.apache.ibatis.executor.keygen.KeyGenerator;
+import org.apache.ibatis.executor.keygen.NoKeyGenerator;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.mapping.*;
-import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.session.Configuration;
+import org.apache.ibatis.type.JdbcType;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.Reader;
 import java.lang.annotation.Annotation;
-import java.lang.reflect.*;
+import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.*;
 
 public class MapperAnnotationBuilder {
@@ -140,7 +147,7 @@ public class MapperAnnotationBuilder {
       JdbcType jdbcType = discriminator.jdbcType() == JdbcType.UNDEFINED ? null : discriminator.jdbcType();
       Class typeHandler = discriminator.typeHandler() == void.class ? null : discriminator.typeHandler();
       Case[] cases = discriminator.cases();
-      Map<String, String> discriminatorMap = new HashMap<String,String>();
+      Map<String, String> discriminatorMap = new HashMap<String, String>();
       for (Case c : cases) {
         String value = c.value();
         String caseResultMapId = resultMapId + "-" + value;
@@ -253,7 +260,7 @@ public class MapperAnnotationBuilder {
 
   private SqlCommandType getSqlCommandType(Method method) {
     Class[] types = {Select.class, Insert.class, Update.class, Delete.class,
-            SelectProvider.class, InsertProvider.class, UpdateProvider.class, DeleteProvider.class};
+        SelectProvider.class, InsertProvider.class, UpdateProvider.class, DeleteProvider.class};
     Class type = chooseAnnotationType(method, types);
     if (type != null) {
       if (type == SelectProvider.class) {
@@ -261,9 +268,9 @@ public class MapperAnnotationBuilder {
       } else if (type == InsertProvider.class) {
         type = Insert.class;
       } else if (type == UpdateProvider.class) {
-          type = Update.class;
+        type = Update.class;
       } else if (type == DeleteProvider.class) {
-          type = Delete.class;
+        type = Delete.class;
       }
       return SqlCommandType.valueOf(type.getSimpleName().toUpperCase());
     }

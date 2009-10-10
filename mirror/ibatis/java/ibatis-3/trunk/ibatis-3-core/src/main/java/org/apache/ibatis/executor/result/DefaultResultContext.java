@@ -4,7 +4,7 @@ import org.apache.ibatis.session.ResultContext;
 
 public class DefaultResultContext implements ResultContext {
 
-private Object resultObject;
+  private Object resultObject;
   private int resultCount;
   private boolean stopped;
 

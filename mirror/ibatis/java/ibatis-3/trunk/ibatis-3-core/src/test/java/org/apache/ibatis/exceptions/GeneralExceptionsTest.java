@@ -14,7 +14,8 @@ import org.apache.ibatis.reflection.ReflectionException;
 import org.apache.ibatis.session.SessionException;
 import org.apache.ibatis.transaction.TransactionException;
 import org.apache.ibatis.type.TypeException;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import java.lang.reflect.InvocationTargetException;

@@ -1,10 +1,10 @@
 package org.apache.ibatis.io;
 
-import org.junit.Test;
-import org.junit.Before;
+import org.apache.ibatis.BaseDataTest;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import org.apache.ibatis.BaseDataTest;
+import org.junit.Before;
+import org.junit.Test;
 
 public class ClassLoaderWrapperTest extends BaseDataTest {
 
@@ -55,12 +55,12 @@ public class ClassLoaderWrapperTest extends BaseDataTest {
   public void getResourceAsStream() {
     assertNotNull(wrapper.getResourceAsStream(JPETSTORE_PROPERTIES));
   }
-  
+
   @Test
   public void getResourceAsStreamNotFound() {
     assertNull(wrapper.getResourceAsStream(RESOURCE_NOT_FOUND));
   }
-  
+
   @Test
   public void getResourceAsStreamWithClassLoader() {
     assertNotNull(wrapper.getResourceAsStream(JPETSTORE_PROPERTIES, loader));

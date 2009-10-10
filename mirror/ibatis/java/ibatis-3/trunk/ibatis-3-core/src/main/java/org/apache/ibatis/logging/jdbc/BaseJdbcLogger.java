@@ -70,7 +70,7 @@ public class BaseJdbcLogger {
       }
     }
     final String parameters = typeList.toString();
-    return parameters.substring(1,parameters.length() - 1);
+    return parameters.substring(1, parameters.length() - 1);
   }
 
   protected String getColumnString() {

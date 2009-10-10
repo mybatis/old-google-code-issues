@@ -1,17 +1,18 @@
 package org.apache.ibatis.binding;
 
-import org.apache.ibatis.session.RowBounds;
-import org.apache.ibatis.mapping.*;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.mapping.MappedStatement;
+import org.apache.ibatis.mapping.SqlCommandType;
+import org.apache.ibatis.session.Configuration;
+import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
 
 import java.lang.reflect.Method;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MapperMethod {
 
@@ -86,7 +87,7 @@ public class MapperMethod {
       return args[paramPositions.get(0)];
     } else {
       Map param = new HashMap();
-      for (int i=0; i < paramCount; i++) {
+      for (int i = 0; i < paramCount; i++) {
         param.put(paramNames.get(i), args[paramPositions.get(i)]);
       }
       return param;
@@ -104,7 +105,7 @@ public class MapperMethod {
       returnsList = true;
     }
     final Class[] argTypes = method.getParameterTypes();
-    for (int i=0; i < argTypes.length; i++) {
+    for (int i = 0; i < argTypes.length; i++) {
       if (RowBounds.class.isAssignableFrom(argTypes[i])) {
         rowBoundsIndex = i;
       } else {
@@ -118,9 +119,9 @@ public class MapperMethod {
 
   private String getParamNameFromAnnotation(int i, String paramName) {
     Object[] paramAnnos = method.getParameterAnnotations()[i];
-    for (int j=0;j<paramAnnos.length;j++) {
+    for (int j = 0; j < paramAnnos.length; j++) {
       if (paramAnnos[j] instanceof Param) {
-        paramName = ((Param)paramAnnos[j]).value();
+        paramName = ((Param) paramAnnos[j]).value();
       }
     }
     return paramName;

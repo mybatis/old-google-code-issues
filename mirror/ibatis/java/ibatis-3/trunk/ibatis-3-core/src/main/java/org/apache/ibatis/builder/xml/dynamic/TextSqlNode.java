@@ -22,7 +22,7 @@ public class TextSqlNode implements SqlNode {
 
     private DynamicContext context;
 
-    public BindingTokenParser (DynamicContext context) {
+    public BindingTokenParser(DynamicContext context) {
       this.context = context;
     }
 
@@ -31,7 +31,7 @@ public class TextSqlNode implements SqlNode {
         Object value = Ognl.getValue(content, context.getBindings());
         return String.valueOf(value);
       } catch (OgnlException e) {
-        throw new BuilderException("Error evaluating expression '"+content+"'. Cause: " + e, e);
+        throw new BuilderException("Error evaluating expression '" + content + "'. Cause: " + e, e);
       }
     }
   }
