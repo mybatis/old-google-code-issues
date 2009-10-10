@@ -1,9 +1,9 @@
 package org.apache.ibatis.submitted.initialized_collection_property.test;
 
-import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+
+import java.util.List;
 
 public class AuthorDAO {
   private SqlSessionFactory sqlSessionFactory;

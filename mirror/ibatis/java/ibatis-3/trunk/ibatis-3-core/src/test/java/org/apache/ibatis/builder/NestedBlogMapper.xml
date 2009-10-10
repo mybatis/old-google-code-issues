@@ -21,10 +21,10 @@
       <id property="id" column="post_id"/>
       <result property="subject" column="post_subject"/>
       <association property="author" column="post_author_id" javaType="domain.blog.Author"/>
-      <collection property="comments" column="post_id" ofType="domain.blog.Comment" >
+      <collection property="comments" column="post_id" ofType="domain.blog.Comment">
         <id property="id" column="comment_id"/>
       </collection>
-      <collection property="tags" column="post_id" ofType="domain.blog.Tag" >
+      <collection property="tags" column="post_id" ofType="domain.blog.Tag">
         <id property="id" column="tag_id"/>
       </collection>
       <discriminator javaType="int" column="draft">

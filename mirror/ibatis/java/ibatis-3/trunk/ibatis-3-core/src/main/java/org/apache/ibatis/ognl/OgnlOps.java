@@ -31,7 +31,8 @@
 package org.apache.ibatis.ognl;
 
 import java.lang.reflect.Array;
-import java.math.*;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Enumeration;
 
 /**

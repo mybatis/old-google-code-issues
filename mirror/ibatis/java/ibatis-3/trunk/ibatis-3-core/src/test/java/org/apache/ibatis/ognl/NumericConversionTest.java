@@ -32,7 +32,8 @@ package org.apache.ibatis.ognl;
 
 import junit.framework.TestSuite;
 
-import java.math.*;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 
 public class NumericConversionTest extends OgnlTestCase {
   private static Object[][] TESTS = {

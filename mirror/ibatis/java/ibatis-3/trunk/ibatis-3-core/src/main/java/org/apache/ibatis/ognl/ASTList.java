@@ -30,7 +30,8 @@
 //--------------------------------------------------------------------------
 package org.apache.ibatis.ognl;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Luke Blanshard (blanshlu@netscape.net)

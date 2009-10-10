@@ -2,15 +2,18 @@ package org.apache.ibatis.session.defaults;
 
 import org.apache.ibatis.exceptions.ExceptionFactory;
 import org.apache.ibatis.executor.Executor;
-import org.apache.ibatis.logging.*;
+import org.apache.ibatis.logging.Log;
+import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.logging.jdbc.ConnectionLogger;
-import org.apache.ibatis.mapping.*;
+import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.session.*;
-import org.apache.ibatis.transaction.*;
+import org.apache.ibatis.transaction.Transaction;
+import org.apache.ibatis.transaction.TransactionFactory;
 import org.apache.ibatis.transaction.managed.ManagedTransactionFactory;
 
 import javax.sql.DataSource;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 public class DefaultSqlSessionFactory implements SqlSessionFactory {
 

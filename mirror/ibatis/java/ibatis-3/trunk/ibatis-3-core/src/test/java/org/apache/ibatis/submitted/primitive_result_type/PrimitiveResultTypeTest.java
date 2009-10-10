@@ -1,16 +1,16 @@
 package org.apache.ibatis.submitted.primitive_result_type;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.BeforeClass;
-import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
+import static org.junit.Assert.assertTrue;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
-import java.util.List;
-import java.sql.Connection;
 import java.io.Reader;
 import java.math.BigDecimal;
+import java.sql.Connection;
+import java.util.List;
 
 public class PrimitiveResultTypeTest {
 

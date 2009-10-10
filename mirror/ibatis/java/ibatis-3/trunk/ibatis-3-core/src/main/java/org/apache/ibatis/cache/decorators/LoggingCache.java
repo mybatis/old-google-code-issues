@@ -1,7 +1,8 @@
 package org.apache.ibatis.cache.decorators;
 
 import org.apache.ibatis.cache.Cache;
-import org.apache.ibatis.logging.*;
+import org.apache.ibatis.logging.Log;
+import org.apache.ibatis.logging.LogFactory;
 
 import java.util.concurrent.locks.ReadWriteLock;
 

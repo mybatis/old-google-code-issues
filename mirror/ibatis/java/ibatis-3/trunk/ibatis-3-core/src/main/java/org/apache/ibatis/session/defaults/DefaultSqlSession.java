@@ -3,14 +3,15 @@ package org.apache.ibatis.session.defaults;
 import org.apache.ibatis.exceptions.ExceptionFactory;
 import org.apache.ibatis.exceptions.TooManyResultsException;
 import org.apache.ibatis.executor.Executor;
-import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.mapping.MappedStatement;
+import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.ResultHandler;
-import org.apache.ibatis.mapping.*;
-import org.apache.ibatis.session.*;
+import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
 
-import java.util.List;
-import java.util.HashMap;
 import java.sql.Connection;
+import java.util.HashMap;
+import java.util.List;
 
 public class DefaultSqlSession implements SqlSession {
 

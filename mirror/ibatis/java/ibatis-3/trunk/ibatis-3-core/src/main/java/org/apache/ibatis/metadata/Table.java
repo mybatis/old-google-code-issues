@@ -1,6 +1,7 @@
 package org.apache.ibatis.metadata;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Table {
   private String name;

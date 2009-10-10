@@ -1,11 +1,7 @@
 package org.apache.ibatis.session;
 
-import org.apache.ibatis.session.ResultHandler;
-import org.apache.ibatis.session.RowBounds;
-import org.apache.ibatis.session.Configuration;
-
-import java.util.List;
 import java.sql.Connection;
+import java.util.List;
 
 public interface SqlSession {
 

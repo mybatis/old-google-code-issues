@@ -1,6 +1,7 @@
 package org.apache.ibatis.reflection.invoker;
 
-import java.lang.reflect.*;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 
 public class GetFieldInvoker implements Invoker {
   private Field field;

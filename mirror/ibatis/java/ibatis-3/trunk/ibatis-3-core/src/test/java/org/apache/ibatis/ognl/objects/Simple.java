@@ -32,7 +32,8 @@ package org.apache.ibatis.ognl.objects;
 
 import org.apache.ibatis.ognl.OgnlTestCase;
 
-import java.math.*;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 
 public class Simple extends Object {
   private String stringValue;

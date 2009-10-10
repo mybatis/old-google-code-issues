@@ -30,7 +30,8 @@
 //--------------------------------------------------------------------------
 package org.apache.ibatis.ognl;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Enumeration;
 
 /**
  * Implementation of ElementsAccessor that returns a collection's iterator.

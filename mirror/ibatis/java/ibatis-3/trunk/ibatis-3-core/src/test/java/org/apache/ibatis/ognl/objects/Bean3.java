@@ -30,7 +30,8 @@
 //--------------------------------------------------------------------------
 package org.apache.ibatis.ognl.objects;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Bean3 extends Object {
   private int value = 100;

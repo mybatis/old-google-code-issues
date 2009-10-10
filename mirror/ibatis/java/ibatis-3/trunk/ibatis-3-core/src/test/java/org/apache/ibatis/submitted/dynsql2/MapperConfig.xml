@@ -19,7 +19,7 @@
   </environments>
 
   <mappers>
-    <mapper resource="org/apache/ibatis/submitted/dynsql2/DynSql.xml" />
+    <mapper resource="org/apache/ibatis/submitted/dynsql2/DynSql.xml"/>
   </mappers>
 
 </configuration>

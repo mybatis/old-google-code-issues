@@ -1,9 +1,9 @@
 package org.apache.ibatis.submitted.primitive_result_type;
 
-import java.util.List;
-import java.math.BigDecimal;
-
 import org.apache.ibatis.session.SqlSession;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 public class ProductDAO {
 

@@ -2,11 +2,14 @@ package org.apache.ibatis.jdbc;
 
 import org.apache.ibatis.BaseDataTest;
 import org.apache.ibatis.datasource.pooled.PooledDataSource;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 
 import java.sql.Connection;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 
 public class PooledDataSourceTest extends BaseDataTest {
 

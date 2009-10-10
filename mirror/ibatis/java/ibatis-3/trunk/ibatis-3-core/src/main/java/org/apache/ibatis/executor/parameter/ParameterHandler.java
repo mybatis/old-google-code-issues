@@ -1,6 +1,7 @@
 package org.apache.ibatis.executor.parameter;
 
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public interface ParameterHandler {
 

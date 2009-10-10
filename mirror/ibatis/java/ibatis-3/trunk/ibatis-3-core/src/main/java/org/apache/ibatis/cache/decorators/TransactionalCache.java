@@ -2,7 +2,8 @@ package org.apache.ibatis.cache.decorators;
 
 import org.apache.ibatis.cache.Cache;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.locks.ReadWriteLock;
 
 public class TransactionalCache implements Cache {

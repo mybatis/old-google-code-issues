@@ -2,7 +2,10 @@ package org.apache.ibatis.parsing;
 
 import org.w3c.dom.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 
 public class XNode {
 
@@ -23,7 +26,7 @@ public class XNode {
   }
 
   public XNode newXNode(Node node) {
-    return new XNode(xpathParser,node,variables);
+    return new XNode(xpathParser, node, variables);
   }
 
   public XNode getParent() {
@@ -31,7 +34,7 @@ public class XNode {
     if (parent == null || !(parent instanceof Element)) {
       return null;
     } else {
-      return new XNode(xpathParser, parent,variables);
+      return new XNode(xpathParser, parent, variables);
     }
   }
 
@@ -40,9 +43,9 @@ public class XNode {
     Node current = node;
     while (current != null && current instanceof Element) {
       if (current != node) {
-        builder.insert(0,"/");
+        builder.insert(0, "/");
       }
-      builder.insert(0,current.getNodeName());
+      builder.insert(0, current.getNodeName());
       current = current.getParentNode();
     }
     return builder.toString();
@@ -53,7 +56,7 @@ public class XNode {
     XNode current = this;
     while (current != null) {
       if (current != this) {
-        builder.insert(0,"_");
+        builder.insert(0, "_");
       }
       String value = current.getStringAttribute("id",
           current.getStringAttribute("value",

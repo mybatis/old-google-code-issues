@@ -33,7 +33,8 @@ package org.apache.ibatis.ognl;
 import junit.framework.TestSuite;
 
 import java.math.BigInteger;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class LambdaExpressionTest extends OgnlTestCase {
   private static Object[][] TESTS = {

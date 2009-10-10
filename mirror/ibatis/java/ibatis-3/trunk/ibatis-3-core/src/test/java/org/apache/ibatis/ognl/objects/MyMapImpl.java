@@ -30,7 +30,10 @@
 //--------------------------------------------------------------------------
 package org.apache.ibatis.ognl.objects;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * This tests the interface inheritence test.  This test implements

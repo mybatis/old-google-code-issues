@@ -20,7 +20,8 @@
         <otherwise>
           <if test="ids != null">
             AND id IN
-            <foreach item="item_id" index="index" open="(" close=")" separator="," collection="ids">#{ids[${index}]}</foreach>
+            <foreach item="item_id" index="index" open="(" close=")" separator="," collection="ids">#{ids[${index}]}
+            </foreach>
           </if>
           <trim prefix="AND">
             <include refid="byBlogId"/>
@@ -28,15 +29,15 @@
         </otherwise>
       </choose>
     </where>
-  </select>  
+  </select>
 
   <select id="selectPostIn" resultType="domain.blog.Post">
     SELECT *
     FROM POST P
     WHERE ID in
     <foreach item="item" index="index" collection="list"
-        open="(" separator="," close=")">
-          #{item}
+             open="(" separator="," close=")">
+      #{item}
     </foreach>
   </select>
 
@@ -45,10 +46,10 @@
     FROM POST P
     WHERE ID in
     <foreach item="item" index="index" collection="list"
-        open="(" separator="," close=")">
-        <if test="index / 2 != 0">
-          #{item}          
-        </if>
+             open="(" separator="," close=")">
+      <if test="index / 2 != 0">
+        #{item}
+      </if>
     </foreach>
   </select>
 </mapper>

@@ -1,18 +1,18 @@
 package org.apache.ibatis.submitted.initialized_collection_property;
 
-import org.apache.ibatis.submitted.initialized_collection_property.test.*;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.jdbc.ScriptRunner;
-
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.apache.ibatis.submitted.initialized_collection_property.test.Author;
+import org.apache.ibatis.submitted.initialized_collection_property.test.AuthorDAO;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
-import java.util.List;
 import java.io.Reader;
 import java.sql.Connection;
+import java.util.List;
 
 public class AuthorDAOTest {
 

@@ -1,12 +1,15 @@
 package org.apache.ibatis.builder;
 
-import org.apache.ibatis.mapping.*;
+import org.apache.ibatis.mapping.ParameterMapping;
+import org.apache.ibatis.mapping.SqlSource;
 import org.apache.ibatis.parsing.GenericTokenParser;
 import org.apache.ibatis.reflection.MetaClass;
-import org.apache.ibatis.type.TypeHandler;
 import org.apache.ibatis.session.Configuration;
+import org.apache.ibatis.type.TypeHandler;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
 
 public class SqlSourceBuilder extends BaseBuilder {
 
@@ -26,7 +29,7 @@ public class SqlSourceBuilder extends BaseBuilder {
     private List<ParameterMapping> parameterMappings = new ArrayList<ParameterMapping>();
     private Class parameterType;
 
-    public ParameterMappingTokenHandler(Configuration configuration,Class parameterType) {
+    public ParameterMappingTokenHandler(Configuration configuration, Class parameterType) {
       super(configuration);
       this.parameterType = parameterType;
     }
@@ -49,7 +52,7 @@ public class SqlSourceBuilder extends BaseBuilder {
       MetaClass metaClass = MetaClass.forClass(parameterType);
       if (typeHandlerRegistry.hasTypeHandler(parameterType)) {
         propertyType = parameterType;
-      } else if (metaClass.hasGetter(property)){
+      } else if (metaClass.hasGetter(property)) {
         propertyType = metaClass.getGetterType(property);
       } else {
         propertyType = Object.class;
@@ -86,7 +89,7 @@ public class SqlSourceBuilder extends BaseBuilder {
 
     private String extractPropertyName(String property) {
       if (property.contains(":")) {
-        StringTokenizer simpleJdbcTypeParser = new StringTokenizer(property,": ");
+        StringTokenizer simpleJdbcTypeParser = new StringTokenizer(property, ": ");
         if (simpleJdbcTypeParser.countTokens() == 2) {
           return simpleJdbcTypeParser.nextToken();
         }
@@ -96,7 +99,7 @@ public class SqlSourceBuilder extends BaseBuilder {
 
     private String extractJdbcType(String property) {
       if (property.contains(":")) {
-        StringTokenizer simpleJdbcTypeParser = new StringTokenizer(property,": ");
+        StringTokenizer simpleJdbcTypeParser = new StringTokenizer(property, ": ");
         if (simpleJdbcTypeParser.countTokens() == 2) {
           simpleJdbcTypeParser.nextToken();
           return simpleJdbcTypeParser.nextToken();

@@ -1,16 +1,19 @@
 package org.apache.ibatis.session;
 
 import domain.blog.*;
-import domain.blog.mappers.*;
+import domain.blog.mappers.AuthorMapper;
+import domain.blog.mappers.BlogMapper;
 import org.apache.ibatis.BaseDataTest;
-import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.Configuration;
 import static org.junit.Assert.*;
-import org.junit.*;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import java.io.Reader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class SqlSessionTest extends BaseDataTest {
   private static SqlSessionFactory sqlMapper;
@@ -247,7 +250,7 @@ public class SqlSessionTest extends BaseDataTest {
       final List<Comment> comments = post.getComments();
       assertEquals(2, comments.size());
 
-      final List<Tag> tags= post.getTags();
+      final List<Tag> tags = post.getTags();
       assertEquals(3, tags.size());
 
       final Comment comment = comments.get(0);
@@ -261,7 +264,7 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
-  @Test 
+  @Test
   public void shouldSelectNestedBlogWithPostsAndAuthorUsingJoin() throws Exception {
     SqlSession session = sqlMapper.openSession();
     try {
@@ -282,7 +285,7 @@ public class SqlSessionTest extends BaseDataTest {
       final List<Comment> comments = post.getComments();
       assertEquals(2, comments.size());
 
-      final List<Tag> tags= post.getTags();
+      final List<Tag> tags = post.getTags();
       assertEquals(3, tags.size());
 
       final Comment comment = comments.get(0);
@@ -481,7 +484,7 @@ public class SqlSessionTest extends BaseDataTest {
     SqlSession session = sqlMapper.openSession();
     try {
       List<Post> posts = session.selectList("domain.blog.mappers.PostMapper.findPost");
-      assertEquals(5,posts.size());
+      assertEquals(5, posts.size());
     } finally {
       session.close();
     }
@@ -493,7 +496,7 @@ public class SqlSessionTest extends BaseDataTest {
     try {
       List<Post> posts = session.selectList("domain.blog.mappers.PostMapper.findPost",
           new HashMap() {{
-            put("id",1);
+            put("id", 1);
           }});
       assertEquals(1, posts.size());
     } finally {
@@ -507,7 +510,7 @@ public class SqlSessionTest extends BaseDataTest {
     try {
       List<Post> posts = session.selectList("domain.blog.mappers.PostMapper.findPost",
           new HashMap() {{
-            put("ids",new ArrayList(){{
+            put("ids", new ArrayList() {{
               add(1);
               add(2);
               add(3);
@@ -525,7 +528,7 @@ public class SqlSessionTest extends BaseDataTest {
     try {
       List<Post> posts = session.selectList("domain.blog.mappers.PostMapper.findPost",
           new HashMap() {{
-            put("blog_id",1);
+            put("blog_id", 1);
           }});
       assertEquals(2, posts.size());
     } finally {
@@ -539,7 +542,7 @@ public class SqlSessionTest extends BaseDataTest {
     try {
       List<Post> posts = session.selectList("domain.blog.mappers.PostMapper.findPost",
           new HashMap() {{
-            put("author_id",101);
+            put("author_id", 101);
           }});
       assertEquals(3, posts.size());
     } finally {
@@ -553,12 +556,12 @@ public class SqlSessionTest extends BaseDataTest {
     try {
       List<Post> posts = session.selectList("domain.blog.mappers.PostMapper.findPost",
           new HashMap() {{
-            put("ids",new ArrayList(){{
+            put("ids", new ArrayList() {{
               add(1);
               add(2);
               add(3);
             }});
-            put("blog_id",1);
+            put("blog_id", 1);
           }});
       assertEquals(2, posts.size());
     } finally {
@@ -571,11 +574,11 @@ public class SqlSessionTest extends BaseDataTest {
     SqlSession session = sqlMapper.openSession();
     try {
       List<Post> posts = session.selectList("domain.blog.mappers.PostMapper.selectPostIn",
-          new ArrayList(){{
-              add(1);
-              add(3);
-              add(5);
-            }});
+          new ArrayList() {{
+            add(1);
+            add(3);
+            add(5);
+          }});
       assertEquals(3, posts.size());
     } finally {
       session.close();
@@ -587,13 +590,13 @@ public class SqlSessionTest extends BaseDataTest {
     SqlSession session = sqlMapper.openSession();
     try {
       List<Post> posts = session.selectList("domain.blog.mappers.PostMapper.selectOddPostsIn",
-          new ArrayList(){{
-              add(1);
-              add(2);
-              add(3);
-              add(4);
-              add(5);
-            }});
+          new ArrayList() {{
+            add(1);
+            add(2);
+            add(3);
+            add(4);
+            add(5);
+          }});
       assertEquals(3, posts.size());
     } finally {
       session.close();

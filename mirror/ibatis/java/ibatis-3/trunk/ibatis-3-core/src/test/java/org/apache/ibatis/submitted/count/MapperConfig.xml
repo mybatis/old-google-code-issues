@@ -19,7 +19,7 @@
   </environments>
 
   <mappers>
-    <mapper resource="org/apache/ibatis/submitted/count/Count.xml" />
+    <mapper resource="org/apache/ibatis/submitted/count/Count.xml"/>
   </mappers>
 
 </configuration>

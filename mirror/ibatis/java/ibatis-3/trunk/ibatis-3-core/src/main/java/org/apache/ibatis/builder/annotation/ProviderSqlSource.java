@@ -1,7 +1,9 @@
 package org.apache.ibatis.builder.annotation;
 
-import org.apache.ibatis.builder.*;
-import org.apache.ibatis.mapping.*;
+import org.apache.ibatis.builder.BuilderException;
+import org.apache.ibatis.builder.SqlSourceBuilder;
+import org.apache.ibatis.mapping.BoundSql;
+import org.apache.ibatis.mapping.SqlSource;
 import org.apache.ibatis.session.Configuration;
 
 import java.lang.reflect.Method;

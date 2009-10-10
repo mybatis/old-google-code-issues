@@ -1,9 +1,12 @@
 package org.apache.ibatis.binding;
 
-import domain.blog.*;
+import domain.blog.Blog;
+import domain.blog.DraftPost;
+import domain.blog.Post;
 import org.apache.ibatis.annotations.*;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 @CacheNamespace
 public interface BoundBlogMapper {
@@ -21,7 +24,7 @@ public interface BoundBlogMapper {
   @Select({
       "SELECT *",
       "FROM blog"
-      })
+  })
   List<Blog> selectBlogs();
 
   //======================================================
@@ -33,7 +36,7 @@ public interface BoundBlogMapper {
   @Select({
       "SELECT *",
       "FROM blog"
-      })
+  })
   List<Map> selectBlogsAsMaps();
 
   //======================================================
@@ -55,8 +58,8 @@ public interface BoundBlogMapper {
 
   @Select("SELECT * FROM post ORDER BY id")
   @Results({
-    @Result(id = true, property = "id", column = "id")
-      })
+      @Result(id = true, property = "id", column = "id")
+  })
   @TypeDiscriminator(
       column = "draft",
       javaType = int.class,

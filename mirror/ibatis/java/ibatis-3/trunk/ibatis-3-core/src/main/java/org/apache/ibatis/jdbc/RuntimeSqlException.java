@@ -17,5 +17,5 @@ public class RuntimeSqlException extends RuntimeException {
   public RuntimeSqlException(Throwable cause) {
     super(cause);
   }
-  
+
 }

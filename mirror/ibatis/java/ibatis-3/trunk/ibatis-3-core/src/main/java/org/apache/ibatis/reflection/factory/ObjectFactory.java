@@ -1,6 +1,7 @@
 package org.apache.ibatis.reflection.factory;
 
-import java.util.*;
+import java.util.List;
+import java.util.Properties;
 
 public interface ObjectFactory {
 

@@ -1,9 +1,11 @@
 package org.apache.ibatis.migration.commands;
 
 import org.apache.ibatis.jdbc.ScriptRunner;
-import org.apache.ibatis.migration.*;
+import org.apache.ibatis.migration.MigrationException;
+import org.apache.ibatis.migration.MigrationReader;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileReader;
 
 public class BootstrapCommand extends BaseCommand {
 

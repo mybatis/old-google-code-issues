@@ -2,7 +2,10 @@ package org.apache.ibatis.migration;
 
 import org.apache.ibatis.parsing.PropertyParser;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
 import java.util.Properties;
 
 public class MigrationReader extends Reader {
@@ -22,7 +25,7 @@ public class MigrationReader extends Reader {
             if (line.contains("@UNDO")) {
               currentBuilder = undoBuilder;
             }
-            line = line.replace("--//","-- ");
+            line = line.replace("--//", "-- ");
           }
           currentBuilder.append(line);
           currentBuilder.append("\n");

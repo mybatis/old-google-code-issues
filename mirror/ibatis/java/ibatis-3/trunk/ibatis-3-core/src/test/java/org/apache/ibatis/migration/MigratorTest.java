@@ -3,12 +3,18 @@ package org.apache.ibatis.migration;
 import org.apache.ibatis.BaseDataTest;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.jdbc.SqlRunner;
-import org.junit.*;
+import org.junit.AfterClass;
 import static org.junit.Assert.*;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import javax.sql.DataSource;
-import java.io.*;
-import java.net.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.sql.Connection;
 
 public class MigratorTest extends BaseDataTest {
@@ -96,7 +102,7 @@ public class MigratorTest extends BaseDataTest {
     assertTrue(buffer.toString().contains("--help"));
     buffer.clear();
 
-    Migrator.main(args("--path=" + f.getAbsolutePath(), "script","20080827200212","20080827200214"));
+    Migrator.main(args("--path=" + f.getAbsolutePath(), "script", "20080827200212", "20080827200214"));
     assertFalse(buffer.toString().contains("20080827200210"));
     assertFalse(buffer.toString().contains("20080827200211"));
     assertTrue(buffer.toString().contains("20080827200212"));
@@ -106,7 +112,7 @@ public class MigratorTest extends BaseDataTest {
     assertFalse(buffer.toString().contains("-- @UNDO"));
     buffer.clear();
 
-    Migrator.main(args("--path=" + f.getAbsolutePath(), "script","20080827200215", "20080827200213"));
+    Migrator.main(args("--path=" + f.getAbsolutePath(), "script", "20080827200215", "20080827200213"));
     assertFalse(buffer.toString().contains("20080827200210"));
     assertFalse(buffer.toString().contains("20080827200211"));
     assertFalse(buffer.toString().contains("20080827200212"));

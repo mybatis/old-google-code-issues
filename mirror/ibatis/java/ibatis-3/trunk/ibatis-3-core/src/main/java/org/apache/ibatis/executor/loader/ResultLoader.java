@@ -1,20 +1,25 @@
 package org.apache.ibatis.executor.loader;
 
-import org.apache.ibatis.executor.*;
-import org.apache.ibatis.session.RowBounds;
-import org.apache.ibatis.session.ExecutorType;
-import org.apache.ibatis.session.Configuration;
-import org.apache.ibatis.mapping.MappedStatement;
-import org.apache.ibatis.mapping.Environment;
-import org.apache.ibatis.transaction.TransactionFactory;
-import org.apache.ibatis.transaction.Transaction;
+import org.apache.ibatis.executor.Executor;
+import org.apache.ibatis.executor.ExecutorException;
+import org.apache.ibatis.logging.Log;
+import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.logging.jdbc.ConnectionLogger;
-import org.apache.ibatis.logging.*;
+import org.apache.ibatis.mapping.Environment;
+import org.apache.ibatis.mapping.MappedStatement;
+import org.apache.ibatis.session.Configuration;
+import org.apache.ibatis.session.ExecutorType;
+import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.transaction.Transaction;
+import org.apache.ibatis.transaction.TransactionFactory;
 
 import javax.sql.DataSource;
-import java.sql.SQLException;
 import java.sql.Connection;
-import java.util.*;
+import java.sql.SQLException;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class ResultLoader {
 
@@ -74,9 +79,11 @@ public class ResultLoader {
 
   private Executor newExecutor() throws SQLException {
     Environment environment = configuration.getEnvironment();
-    if (environment == null) throw new ExecutorException("ResultLoader could not load lazily.  Environment was not configured.");
+    if (environment == null)
+      throw new ExecutorException("ResultLoader could not load lazily.  Environment was not configured.");
     TransactionFactory txFactory = environment.getTransactionFactory();
-    if (txFactory == null) throw new ExecutorException("ResultLoader could not load lazily.  Transaction Factory was not configured.");
+    if (txFactory == null)
+      throw new ExecutorException("ResultLoader could not load lazily.  Transaction Factory was not configured.");
     DataSource ds = environment.getDataSource();
     if (ds == null) throw new ExecutorException("ResultLoader could not load lazily.  DataSource was not configured.");
     Connection conn = ds.getConnection();

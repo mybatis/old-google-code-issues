@@ -3,7 +3,9 @@ package org.apache.ibatis.type;
 import org.jmock.Mockery;
 import org.jmock.lib.legacy.ClassImposteriser;
 
-import java.sql.*;
+import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public abstract class BaseTypeHandlerTest {
 

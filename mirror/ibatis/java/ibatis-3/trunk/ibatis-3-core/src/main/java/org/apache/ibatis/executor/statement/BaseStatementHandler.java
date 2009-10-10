@@ -1,18 +1,23 @@
 package org.apache.ibatis.executor.statement;
 
-import org.apache.ibatis.executor.*;
+import org.apache.ibatis.executor.ErrorContext;
+import org.apache.ibatis.executor.Executor;
+import org.apache.ibatis.executor.ExecutorException;
 import org.apache.ibatis.executor.keygen.SelectKeyGenerator;
 import org.apache.ibatis.executor.parameter.ParameterHandler;
-import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.executor.resultset.ResultSetHandler;
-import org.apache.ibatis.session.RowBounds;
-import org.apache.ibatis.session.Configuration;
-import org.apache.ibatis.mapping.*;
-import org.apache.ibatis.reflection.factory.ObjectFactory;
+import org.apache.ibatis.mapping.BoundSql;
+import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.reflection.MetaObject;
+import org.apache.ibatis.reflection.factory.ObjectFactory;
+import org.apache.ibatis.session.Configuration;
+import org.apache.ibatis.session.ResultHandler;
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.type.TypeHandlerRegistry;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public abstract class BaseStatementHandler implements StatementHandler {
 
@@ -102,16 +107,16 @@ public abstract class BaseStatementHandler implements StatementHandler {
 
   }
 
-  protected void rebindGeneratedKey(){
+  protected void rebindGeneratedKey() {
     if (boundSql.getParameterObject() != null) {
       String keyStatementName = mappedStatement.getId() + SelectKeyGenerator.SELECT_KEY_SUFFIX;
-      if(configuration.hasStatement(keyStatementName)) {
+      if (configuration.hasStatement(keyStatementName)) {
         MappedStatement keyStatement = configuration.getMappedStatement(keyStatementName);
         if (keyStatement != null) {
           String keyProperty = keyStatement.getKeyProperty();
           MetaObject metaParam = MetaObject.forObject(boundSql.getParameterObject());
           if (keyProperty != null && metaParam.hasSetter(keyProperty) && metaParam.hasGetter(keyProperty)) {
-              boundSql.setAdditionalParameter(keyProperty, metaParam.getValue(keyProperty));
+            boundSql.setAdditionalParameter(keyProperty, metaParam.getValue(keyProperty));
           }
         }
       }

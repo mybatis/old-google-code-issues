@@ -2,7 +2,8 @@ package org.apache.ibatis.cache;
 
 import org.apache.ibatis.cache.decorators.TransactionalCache;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TransactionalCacheManager {
 

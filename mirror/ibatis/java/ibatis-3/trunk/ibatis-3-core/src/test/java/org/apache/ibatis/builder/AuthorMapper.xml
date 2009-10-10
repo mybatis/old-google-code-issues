@@ -78,12 +78,12 @@
   <update id="updateAuthorIfNecessary"
           parameterType="domain.blog.Author">
     update Author
-      <set>
-        <if test="username != null">username=#{username},</if>
-        <if test="password != null">password=#{password},</if>
-        <if test="email != null">email=#{email},</if>
-        <if test="bio != null">bio=#{bio}</if>
-      </set>
+    <set>
+      <if test="username != null">username=#{username},</if>
+      <if test="password != null">password=#{password},</if>
+      <if test="email != null">email=#{email},</if>
+      <if test="bio != null">bio=#{bio}</if>
+    </set>
     where id=#{id}
   </update>
 

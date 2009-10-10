@@ -2,10 +2,12 @@ package org.apache.ibatis.metadata;
 
 import org.apache.ibatis.BaseDataTest;
 import static org.junit.Assert.*;
-import org.junit.*;
+import org.junit.Before;
+import org.junit.Test;
 
 import javax.sql.DataSource;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.Types;
 
 public class MetadataTest extends BaseDataTest {
 

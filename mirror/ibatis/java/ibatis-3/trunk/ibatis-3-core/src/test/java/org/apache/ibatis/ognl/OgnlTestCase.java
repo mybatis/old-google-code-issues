@@ -30,9 +30,11 @@
 //--------------------------------------------------------------------------
 package org.apache.ibatis.ognl;
 
-import junit.framework.*;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
-import java.io.*;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.lang.reflect.Array;
 
 public class OgnlTestCase extends TestCase {

@@ -1,7 +1,8 @@
 package org.apache.ibatis.submitted.includes;
 
 import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.*;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 

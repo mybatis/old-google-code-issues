@@ -1,6 +1,9 @@
 package org.apache.ibatis.metadata;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class DatabaseFactory {
   private DatabaseFactory() {

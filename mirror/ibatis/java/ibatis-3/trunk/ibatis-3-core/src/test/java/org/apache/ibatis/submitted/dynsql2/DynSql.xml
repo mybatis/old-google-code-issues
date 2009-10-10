@@ -4,8 +4,9 @@
   <select id="simpleSelect" parameterType="java.lang.Integer" resultType="map">
     select * from ibtest.names where id = #{value}
   </select>
-  
-  <select id="dynamicSelectWithTypeHandler" parameterType="org.apache.ibatis.submitted.dynsql2.Parameter" resultType="map">
+
+  <select id="dynamicSelectWithTypeHandler" parameterType="org.apache.ibatis.submitted.dynsql2.Parameter"
+          resultType="map">
     select *
     from ibtest.names
     <where>

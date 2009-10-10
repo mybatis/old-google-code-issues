@@ -1,10 +1,11 @@
 package org.apache.ibatis.reflection.wrapper;
 
 import org.apache.ibatis.reflection.MetaObject;
-import org.apache.ibatis.reflection.property.PropertyTokenizer;
 import org.apache.ibatis.reflection.ReflectionException;
+import org.apache.ibatis.reflection.property.PropertyTokenizer;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 public abstract class BaseWrapper implements ObjectWrapper {
 

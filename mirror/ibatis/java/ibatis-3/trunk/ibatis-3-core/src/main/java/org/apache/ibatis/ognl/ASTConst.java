@@ -30,7 +30,8 @@
 //--------------------------------------------------------------------------
 package org.apache.ibatis.ognl;
 
-import java.math.*;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 
 /**
  * @author Luke Blanshard (blanshlu@netscape.net)

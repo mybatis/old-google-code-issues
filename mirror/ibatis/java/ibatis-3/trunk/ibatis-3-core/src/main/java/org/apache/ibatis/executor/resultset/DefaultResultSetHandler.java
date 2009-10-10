@@ -1,26 +1,26 @@
 package org.apache.ibatis.executor.resultset;
 
-import org.apache.ibatis.mapping.*;
-import org.apache.ibatis.type.TypeHandler;
-import org.apache.ibatis.type.TypeHandlerRegistry;
-import org.apache.ibatis.reflection.factory.ObjectFactory;
-import org.apache.ibatis.reflection.MetaObject;
-import org.apache.ibatis.reflection.MetaClass;
-import org.apache.ibatis.executor.ExecutorException;
+import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.executor.Executor;
+import org.apache.ibatis.executor.ExecutorException;
 import org.apache.ibatis.executor.loader.ResultLoader;
 import org.apache.ibatis.executor.loader.ResultLoaderRegistry;
 import org.apache.ibatis.executor.loader.ResultObjectProxy;
 import org.apache.ibatis.executor.parameter.ParameterHandler;
-import org.apache.ibatis.executor.result.DefaultResultHandler;
-import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.executor.result.DefaultResultContext;
-import org.apache.ibatis.cache.CacheKey;
-import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.executor.result.DefaultResultHandler;
+import org.apache.ibatis.mapping.*;
+import org.apache.ibatis.reflection.MetaClass;
+import org.apache.ibatis.reflection.MetaObject;
+import org.apache.ibatis.reflection.factory.ObjectFactory;
 import org.apache.ibatis.session.Configuration;
+import org.apache.ibatis.session.ResultHandler;
+import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.type.TypeHandler;
+import org.apache.ibatis.type.TypeHandlerRegistry;
 
-import java.util.*;
 import java.sql.*;
+import java.util.*;
 
 public class DefaultResultSetHandler implements ResultSetHandler {
 
@@ -34,8 +34,8 @@ public class DefaultResultSetHandler implements ResultSetHandler {
   private final TypeHandlerRegistry typeHandlerRegistry;
   private final ObjectFactory objectFactory;
 
-  private final Map<CacheKey,Set<CacheKey>> localRowValueCaches;
-  private final Map<CacheKey,Object> globalRowValueCache;
+  private final Map<CacheKey, Set<CacheKey>> localRowValueCaches;
+  private final Map<CacheKey, Object> globalRowValueCache;
 
   public DefaultResultSetHandler(Executor executor, MappedStatement mappedStatement, ParameterHandler parameterHandler, ResultHandler resultHandler, BoundSql boundSql, RowBounds rowBounds) {
     this.executor = executor;
@@ -47,8 +47,8 @@ public class DefaultResultSetHandler implements ResultSetHandler {
     this.typeHandlerRegistry = configuration.getTypeHandlerRegistry();
     this.objectFactory = configuration.getObjectFactory();
     this.resultHandler = resultHandler;
-    this.localRowValueCaches = new HashMap<CacheKey,Set<CacheKey>>();
-    this.globalRowValueCache = new HashMap<CacheKey,Object>();
+    this.localRowValueCaches = new HashMap<CacheKey, Set<CacheKey>>();
+    this.globalRowValueCache = new HashMap<CacheKey, Object>();
   }
 
   //
@@ -439,7 +439,7 @@ public class DefaultResultSetHandler implements ResultSetHandler {
           final CacheKey parentRowKey = createRowKey(resultMap, rs);
           final CacheKey rowKey = createRowKey(nestedResultMap, rs);
           final Set<CacheKey> localRowValueCache = getRowValueCache(parentRowKey);
-          final boolean knownValue = localRowValueCache .contains(rowKey);
+          final boolean knownValue = localRowValueCache.contains(rowKey);
           localRowValueCache.add(rowKey);
           Object rowValue = getRowValue(rs, nestedResultMap, rowKey);
 
@@ -466,7 +466,7 @@ public class DefaultResultSetHandler implements ResultSetHandler {
     Set<CacheKey> cache = localRowValueCaches.get(rowKey);
     if (cache == null) {
       cache = new HashSet<CacheKey>();
-      localRowValueCaches.put(rowKey,cache);
+      localRowValueCaches.put(rowKey, cache);
     }
     return cache;
   }

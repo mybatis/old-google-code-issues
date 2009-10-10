@@ -69,13 +69,13 @@ public class ResourcesTest extends BaseDataTest {
   @Test
   public void shouldGetResourceAsFile() throws Exception {
     File file = Resources.getResourceAsFile(JPETSTORE_PROPERTIES);
-    assertTrue(file.getAbsolutePath().replace('\\','/').endsWith("jpetstore/jpetstore-hsqldb.properties"));
+    assertTrue(file.getAbsolutePath().replace('\\', '/').endsWith("jpetstore/jpetstore-hsqldb.properties"));
   }
 
   @Test
   public void shouldGetResourceAsFileWithClassloader() throws Exception {
     File file = Resources.getResourceAsFile(CLASS_LOADER, JPETSTORE_PROPERTIES);
-    assertTrue(file.getAbsolutePath().replace('\\','/').endsWith("jpetstore/jpetstore-hsqldb.properties"));
+    assertTrue(file.getAbsolutePath().replace('\\', '/').endsWith("jpetstore/jpetstore-hsqldb.properties"));
   }
 
   @Test
@@ -130,7 +130,7 @@ public class ResourcesTest extends BaseDataTest {
     // clean up
     Resources.setCharset(charset);
 
-}
+  }
 
   @Test
   public void shouldGetReaderWithClassLoader() throws IOException {

@@ -2,11 +2,11 @@ package org.apache.ibatis.submitted.selectkey;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.jdbc.ScriptRunner;
-import org.apache.ibatis.session.*;
-
-import static org.junit.Assert.assertNotNull;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import static org.junit.Assert.assertEquals;
-
+import static org.junit.Assert.assertNotNull;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -19,36 +19,36 @@ import java.util.Map;
 
 public class SelectKeyTest {
 
-    protected static SqlSessionFactory sqlSessionFactory;
-    
-    @BeforeClass
-    public static void setUp() throws Exception {
-        Connection conn = null;
+  protected static SqlSessionFactory sqlSessionFactory;
 
-        try {
-            Class.forName("org.hsqldb.jdbcDriver");
-            conn = DriverManager.getConnection("jdbc:hsqldb:mem:lname", "sa",
-                    "");
+  @BeforeClass
+  public static void setUp() throws Exception {
+    Connection conn = null;
 
-            Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/selectkey/CreateDB.sql");
+    try {
+      Class.forName("org.hsqldb.jdbcDriver");
+      conn = DriverManager.getConnection("jdbc:hsqldb:mem:lname", "sa",
+          "");
 
-            ScriptRunner runner = new ScriptRunner(conn);
-            runner.setLogWriter(null);
-            runner.setErrorLogWriter(new PrintWriter(System.err));
-            runner.runScript(reader);
-            conn.commit();
-            reader.close();
+      Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/selectkey/CreateDB.sql");
 
-            reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/selectkey/MapperConfig.xml");
-            sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-            reader.close();
-        } finally {
-            if (conn != null) {
-                conn.close();
-            }
-        }
+      ScriptRunner runner = new ScriptRunner(conn);
+      runner.setLogWriter(null);
+      runner.setErrorLogWriter(new PrintWriter(System.err));
+      runner.runScript(reader);
+      conn.commit();
+      reader.close();
+
+      reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/selectkey/MapperConfig.xml");
+      sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+      reader.close();
+    } finally {
+      if (conn != null) {
+        conn.close();
+      }
     }
-    
+  }
+
   @Test
   public void testSelectKey() throws Exception {
     // this test checks to make sure that we can have select keys with the same
@@ -59,37 +59,37 @@ public class SelectKeyTest {
     SqlSessionFactory sqlMapper = builder.build(reader);
     assertNotNull(sqlMapper);
   }
-  
+
   @Test
   public void testInsertTable1() {
-      SqlSession sqlSession = sqlSessionFactory.openSession();
-      
-      try {
-          Map parms = new HashMap();
-          parms.put("name", "Fred");
-          int rows = sqlSession.insert("org.apache.ibatis.submitted.selectkey.Table1.insert", parms);
-          assertEquals(1, rows);
-          assertEquals(11, parms.get("id"));
-          
-      } finally {
-          sqlSession.close();
-      }
+    SqlSession sqlSession = sqlSessionFactory.openSession();
+
+    try {
+      Map parms = new HashMap();
+      parms.put("name", "Fred");
+      int rows = sqlSession.insert("org.apache.ibatis.submitted.selectkey.Table1.insert", parms);
+      assertEquals(1, rows);
+      assertEquals(11, parms.get("id"));
+
+    } finally {
+      sqlSession.close();
+    }
   }
-  
+
   @Test
   public void testInsertTable2() {
-      SqlSession sqlSession = sqlSessionFactory.openSession();
-      
-      try {
-          Map parms = new HashMap();
-          parms.put("name", "Fred");
-          int rows = sqlSession.insert("org.apache.ibatis.submitted.selectkey.Table2.insert", parms);
-          assertEquals(1, rows);
-          assertEquals(22, parms.get("id"));
-          
-      } finally {
-          sqlSession.close();
-      }
+    SqlSession sqlSession = sqlSessionFactory.openSession();
+
+    try {
+      Map parms = new HashMap();
+      parms.put("name", "Fred");
+      int rows = sqlSession.insert("org.apache.ibatis.submitted.selectkey.Table2.insert", parms);
+      assertEquals(1, rows);
+      assertEquals(22, parms.get("id"));
+
+    } finally {
+      sqlSession.close();
+    }
   }
-  
+
 }

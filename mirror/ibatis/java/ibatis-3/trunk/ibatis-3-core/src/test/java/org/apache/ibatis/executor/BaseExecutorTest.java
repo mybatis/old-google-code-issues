@@ -1,11 +1,14 @@
 package org.apache.ibatis.executor;
 
-import domain.blog.*;
+import domain.blog.Author;
+import domain.blog.Blog;
+import domain.blog.Post;
+import domain.blog.Section;
 import org.apache.ibatis.BaseDataTest;
-import org.apache.ibatis.session.RowBounds;
-import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.logging.jdbc.ConnectionLogger;
-import org.apache.ibatis.mapping.*;
+import org.apache.ibatis.mapping.MappedStatement;
+import org.apache.ibatis.session.Configuration;
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.transaction.Transaction;
 import org.apache.ibatis.transaction.jdbc.JdbcTransaction;
 import static org.junit.Assert.*;
@@ -13,7 +16,9 @@ import org.junit.Test;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class BaseExecutorTest extends BaseDataTest {
   private final Configuration config;
@@ -27,7 +32,7 @@ public class BaseExecutorTest extends BaseDataTest {
     config.setDefaultStatementTimeout(5000);
   }
 
-    @Test
+  @Test
   public void shouldInsertNewAuthorWithBeforeAutoKey() throws Exception {
     DataSource ds = createBlogDataSource();
     Connection connection = ds.getConnection();
@@ -314,7 +319,7 @@ public class BaseExecutorTest extends BaseDataTest {
   public void shouldFetchPostsForBlog() throws Exception {
     DataSource ds = createBlogDataSource();
     Connection connection = ds.getConnection();
-    connection = ConnectionLogger.newInstance(connection);     
+    connection = ConnectionLogger.newInstance(connection);
     try {
       Executor executor = createExecutor(new JdbcTransaction(connection, false));
       MappedStatement selectBlog = ExecutorTestHelper.prepareComplexSelectBlogMappedStatement(config);
