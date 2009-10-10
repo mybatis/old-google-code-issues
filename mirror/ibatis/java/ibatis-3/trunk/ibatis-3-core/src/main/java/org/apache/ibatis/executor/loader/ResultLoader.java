@@ -2,10 +2,10 @@ package org.apache.ibatis.executor.loader;
 
 import org.apache.ibatis.executor.*;
 import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.ExecutorType;
+import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.mapping.MappedStatement;
-import org.apache.ibatis.mapping.Configuration;
 import org.apache.ibatis.mapping.Environment;
-import org.apache.ibatis.mapping.ExecutorType;
 import org.apache.ibatis.transaction.TransactionFactory;
 import org.apache.ibatis.transaction.Transaction;
 import org.apache.ibatis.logging.jdbc.ConnectionLogger;

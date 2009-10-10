@@ -3,7 +3,7 @@ package com.ibatis.sqlmap.engine.builder;
 import com.ibatis.sqlmap.client.SqlMapException;
 import com.ibatis.sqlmap.engine.mapping.sql.SqlText;
 import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.mapping.Configuration;
+import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.mapping.ParameterMapping;
 import org.apache.ibatis.mapping.ParameterMode;
 import org.apache.ibatis.reflection.MetaClass;

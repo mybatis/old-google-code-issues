@@ -1,7 +1,5 @@
 package org.apache.ibatis.session;
 
-import org.apache.ibatis.mapping.*;
-
 import java.sql.Connection;
 
 public interface SqlSessionFactory {

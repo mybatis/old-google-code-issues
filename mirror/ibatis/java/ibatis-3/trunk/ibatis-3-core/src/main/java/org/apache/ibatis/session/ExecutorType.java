@@ -1,4 +1,4 @@
-package org.apache.ibatis.mapping;
+package org.apache.ibatis.session;
 
 public enum ExecutorType {
   SIMPLE, REUSE, BATCH

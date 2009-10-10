@@ -5,6 +5,7 @@ import org.apache.ibatis.executor.ErrorContext;
 import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.parsing.*;
 import org.apache.ibatis.type.JdbcType;
+import org.apache.ibatis.session.Configuration;
 
 import java.io.Reader;
 import java.util.*;

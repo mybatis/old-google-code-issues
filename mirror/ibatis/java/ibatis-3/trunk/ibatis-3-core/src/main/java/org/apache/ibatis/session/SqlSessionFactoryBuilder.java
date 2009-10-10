@@ -2,7 +2,7 @@ package org.apache.ibatis.session;
 
 import org.apache.ibatis.builder.xml.XMLConfigBuilder;
 import org.apache.ibatis.exceptions.ExceptionFactory;
-import org.apache.ibatis.mapping.Configuration;
+import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.defaults.DefaultSqlSessionFactory;
 
 import java.io.Reader;

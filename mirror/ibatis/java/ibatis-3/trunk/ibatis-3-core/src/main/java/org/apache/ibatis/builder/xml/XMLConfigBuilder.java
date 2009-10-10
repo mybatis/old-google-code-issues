@@ -11,6 +11,8 @@ import org.apache.ibatis.reflection.*;
 import org.apache.ibatis.reflection.factory.ObjectFactory;
 import org.apache.ibatis.transaction.TransactionFactory;
 import org.apache.ibatis.type.TypeHandler;
+import org.apache.ibatis.session.ExecutorType;
+import org.apache.ibatis.session.Configuration;
 
 import java.io.Reader;
 import java.util.*;

@@ -2,6 +2,7 @@ package org.apache.ibatis.builder.annotation;
 
 import org.apache.ibatis.builder.*;
 import org.apache.ibatis.mapping.*;
+import org.apache.ibatis.session.Configuration;
 
 import java.lang.reflect.Method;
 

@@ -4,7 +4,7 @@ import com.ibatis.sqlmap.engine.transaction.BaseTransaction;
 import com.ibatis.sqlmap.engine.transaction.IsolationLevel;
 import com.ibatis.sqlmap.engine.transaction.TransactionException;
 import org.apache.ibatis.executor.Executor;
-import org.apache.ibatis.mapping.Configuration;
+import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.logging.jdbc.ConnectionLogger;
 
 import javax.sql.DataSource;

@@ -1,4 +1,4 @@
-package org.apache.ibatis.mapping;
+package org.apache.ibatis.session;
 
 import org.apache.ibatis.binding.MapperRegistry;
 import org.apache.ibatis.cache.Cache;
@@ -18,10 +18,12 @@ import org.apache.ibatis.reflection.factory.ObjectFactory;
 import org.apache.ibatis.reflection.factory.DefaultObjectFactory;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.transaction.Transaction;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import org.apache.ibatis.transaction.managed.ManagedTransactionFactory;
 import org.apache.ibatis.type.*;
+import org.apache.ibatis.mapping.*;
 
 import java.util.*;
 

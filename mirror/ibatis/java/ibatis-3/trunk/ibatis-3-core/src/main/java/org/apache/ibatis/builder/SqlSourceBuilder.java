@@ -4,6 +4,7 @@ import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.parsing.GenericTokenParser;
 import org.apache.ibatis.reflection.MetaClass;
 import org.apache.ibatis.type.TypeHandler;
+import org.apache.ibatis.session.Configuration;
 
 import java.util.*;
 

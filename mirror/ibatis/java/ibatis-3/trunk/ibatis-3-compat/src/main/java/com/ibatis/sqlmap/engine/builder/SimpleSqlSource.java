@@ -4,7 +4,7 @@ import com.ibatis.sqlmap.engine.mapping.sql.SqlText;
 import com.ibatis.sqlmap.engine.mapping.sql.simple.SimpleDynamicSql;
 import com.ibatis.sqlmap.engine.mapping.sql.statik.StaticSql;
 import org.apache.ibatis.mapping.BoundSql;
-import org.apache.ibatis.mapping.Configuration;
+import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.mapping.ParameterMapping;
 import org.apache.ibatis.mapping.SqlSource;
 import org.apache.ibatis.parsing.XNode;

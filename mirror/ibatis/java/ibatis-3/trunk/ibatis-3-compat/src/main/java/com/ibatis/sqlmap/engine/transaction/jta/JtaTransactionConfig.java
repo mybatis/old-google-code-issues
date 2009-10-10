@@ -4,7 +4,7 @@ import com.ibatis.sqlmap.client.SqlMapException;
 import com.ibatis.sqlmap.engine.transaction.BaseTransactionConfig;
 import com.ibatis.sqlmap.engine.transaction.Transaction;
 import com.ibatis.sqlmap.engine.transaction.TransactionException;
-import org.apache.ibatis.mapping.Configuration;
+import org.apache.ibatis.session.Configuration;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;

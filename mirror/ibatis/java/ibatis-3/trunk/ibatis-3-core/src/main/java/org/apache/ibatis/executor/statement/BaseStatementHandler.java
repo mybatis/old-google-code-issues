@@ -6,6 +6,7 @@ import org.apache.ibatis.executor.parameter.ParameterHandler;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.executor.resultset.ResultSetHandler;
 import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.reflection.factory.ObjectFactory;
 import org.apache.ibatis.reflection.MetaObject;
