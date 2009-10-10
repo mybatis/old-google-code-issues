@@ -8,6 +8,7 @@ import org.apache.ibatis.executor.keygen.*;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.type.JdbcType;
+import org.apache.ibatis.session.Configuration;
 
 import java.io.*;
 import java.lang.annotation.Annotation;

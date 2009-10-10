@@ -17,6 +17,7 @@ import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.executor.result.DefaultResultContext;
 import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.Configuration;
 
 import java.util.*;
 import java.sql.*;

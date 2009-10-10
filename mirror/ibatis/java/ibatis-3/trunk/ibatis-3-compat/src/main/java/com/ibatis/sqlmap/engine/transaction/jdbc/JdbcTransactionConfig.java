@@ -3,7 +3,7 @@ package com.ibatis.sqlmap.engine.transaction.jdbc;
 import com.ibatis.sqlmap.engine.transaction.BaseTransactionConfig;
 import com.ibatis.sqlmap.engine.transaction.Transaction;
 import com.ibatis.sqlmap.engine.transaction.TransactionException;
-import org.apache.ibatis.mapping.Configuration;
+import org.apache.ibatis.session.Configuration;
 
 import java.sql.SQLException;
 import java.util.Properties;

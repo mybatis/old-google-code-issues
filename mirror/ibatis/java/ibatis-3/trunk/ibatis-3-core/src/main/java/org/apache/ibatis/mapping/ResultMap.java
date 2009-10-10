@@ -1,5 +1,7 @@
 package org.apache.ibatis.mapping;
 
+import org.apache.ibatis.session.Configuration;
+
 import java.util.*;
 
 public class ResultMap {

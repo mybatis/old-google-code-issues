@@ -5,7 +5,7 @@ import domain.blog.mappers.*;
 import org.apache.ibatis.BaseDataTest;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.mapping.Configuration;
+import org.apache.ibatis.session.Configuration;
 import static org.junit.Assert.*;
 import org.junit.*;
 

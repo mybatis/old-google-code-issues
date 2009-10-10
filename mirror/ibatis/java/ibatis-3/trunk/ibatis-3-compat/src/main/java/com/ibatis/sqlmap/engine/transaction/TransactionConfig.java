@@ -1,6 +1,6 @@
 package com.ibatis.sqlmap.engine.transaction;
 
-import org.apache.ibatis.mapping.Configuration;
+import org.apache.ibatis.session.Configuration;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;

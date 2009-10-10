@@ -6,7 +6,7 @@ import com.ibatis.sqlmap.engine.mapping.sql.SqlChild;
 import com.ibatis.sqlmap.engine.mapping.sql.SqlText;
 import com.ibatis.sqlmap.engine.mapping.sql.dynamic.elements.*;
 import com.ibatis.sqlmap.engine.mapping.sql.simple.SimpleDynamicSql;
-import org.apache.ibatis.mapping.Configuration;
+import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.mapping.ParameterMapping;
 import org.apache.ibatis.type.TypeHandlerRegistry;
 

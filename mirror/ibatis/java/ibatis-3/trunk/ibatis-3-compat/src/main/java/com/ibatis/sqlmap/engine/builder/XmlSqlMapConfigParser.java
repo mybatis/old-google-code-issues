@@ -7,7 +7,7 @@ import com.ibatis.sqlmap.engine.transaction.TransactionConfig;
 import com.ibatis.sqlmap.engine.transaction.TransactionManager;
 import com.ibatis.common.util.NodeEvent;
 import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.mapping.ExecutorType;
+import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.reflection.MetaClass;
 import org.apache.ibatis.reflection.factory.ObjectFactory;
 import org.apache.ibatis.type.JdbcType;

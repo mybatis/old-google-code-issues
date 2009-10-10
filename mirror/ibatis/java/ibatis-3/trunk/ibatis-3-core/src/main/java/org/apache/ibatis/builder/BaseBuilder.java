@@ -2,6 +2,7 @@ package org.apache.ibatis.builder;
 
 import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.type.*;
+import org.apache.ibatis.session.Configuration;
 
 public abstract class BaseBuilder {
   protected final Configuration configuration;

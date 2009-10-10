@@ -2,6 +2,7 @@ package org.apache.ibatis.mapping;
 
 import org.apache.ibatis.cache.Cache;
 import org.apache.ibatis.executor.keygen.*;
+import org.apache.ibatis.session.Configuration;
 
 import java.util.*;
 
