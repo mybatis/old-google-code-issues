@@ -2,13 +2,13 @@ package org.apache.ibatis.executor;
 
 import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.cache.impl.PerpetualCache;
-import org.apache.ibatis.executor.result.ResultHandler;
+import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.transaction.Transaction;
 import org.apache.ibatis.type.TypeHandlerRegistry;
 import static org.apache.ibatis.executor.ExecutionPlaceholder.*;
-import org.apache.ibatis.executor.resultset.RowBounds;
+import org.apache.ibatis.session.RowBounds;
 
 import java.sql.*;
 import java.util.*;

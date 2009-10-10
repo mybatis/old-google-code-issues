@@ -1,4 +1,4 @@
-package org.apache.ibatis.executor.resultset;
+package org.apache.ibatis.session;
 
 public class RowBounds {
 

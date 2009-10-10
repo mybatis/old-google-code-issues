@@ -2,7 +2,7 @@ package org.apache.ibatis.binding;
 
 import domain.blog.*;
 import org.apache.ibatis.session.*;
-import org.apache.ibatis.executor.resultset.RowBounds;
+import org.apache.ibatis.session.RowBounds;
 import static org.junit.Assert.*;
 import org.junit.*;
 

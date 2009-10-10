@@ -3,8 +3,8 @@ package org.apache.ibatis.session.defaults;
 import org.apache.ibatis.exceptions.ExceptionFactory;
 import org.apache.ibatis.exceptions.TooManyResultsException;
 import org.apache.ibatis.executor.Executor;
-import org.apache.ibatis.executor.resultset.RowBounds;
-import org.apache.ibatis.executor.result.ResultHandler;
+import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.session.*;
 
