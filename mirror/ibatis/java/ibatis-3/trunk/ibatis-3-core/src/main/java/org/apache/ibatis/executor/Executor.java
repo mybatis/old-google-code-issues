@@ -2,7 +2,7 @@ package org.apache.ibatis.executor;
 
 import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.executor.result.ResultHandler;
-import org.apache.ibatis.executor.resultset.RowLimit;
+import org.apache.ibatis.executor.resultset.RowBounds;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.transaction.Transaction;
@@ -16,7 +16,7 @@ public interface Executor {
 
   int update(MappedStatement ms, Object parameter) throws SQLException;
 
-  List query(MappedStatement ms, Object parameter, RowLimit rowLimit, ResultHandler resultHandler) throws SQLException;
+  List query(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler) throws SQLException;
 
   List<BatchResult> flushStatements() throws SQLException;
 
@@ -24,7 +24,7 @@ public interface Executor {
 
   void rollback(boolean required) throws SQLException;
 
-  CacheKey createCacheKey(MappedStatement ms, Object parameterObject, RowLimit rowLimit);
+  CacheKey createCacheKey(MappedStatement ms, Object parameterObject, RowBounds rowBounds);
 
   boolean isCached(MappedStatement ms, CacheKey key);
 

@@ -2,7 +2,7 @@ package com.ibatis.sqlmap.engine.builder;
 
 import org.apache.ibatis.cache.Cache;
 import org.apache.ibatis.executor.Executor;
-import org.apache.ibatis.executor.resultset.RowLimit;
+import org.apache.ibatis.executor.resultset.RowBounds;
 import org.apache.ibatis.executor.result.ResultHandler;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.plugin.*;
@@ -11,7 +11,7 @@ import java.util.*;
 
 @Intercepts({
   @Signature(type = Executor.class, method = "update", args = {MappedStatement.class, Object.class}),
-  @Signature(type = Executor.class, method = "query", args = {MappedStatement.class, Object.class, RowLimit.class, ResultHandler.class})
+  @Signature(type = Executor.class, method = "query", args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class})
     })
 public class FlushCacheInterceptor implements Interceptor {
 

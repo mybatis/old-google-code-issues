@@ -2,7 +2,7 @@ package org.apache.ibatis.binding;
 
 import domain.blog.*;
 import org.apache.ibatis.annotations.*;
-import org.apache.ibatis.executor.resultset.RowLimit;
+import org.apache.ibatis.executor.resultset.RowBounds;
 
 import java.util.List;
 
@@ -65,7 +65,7 @@ public interface BoundAuthorMapper {
   //======================================================
 
   List<Post> findThreeSpecificPosts(@Param("one") int one,
-                                    RowLimit rowLimit,
+                                    RowBounds rowBounds,
                                     @Param("two") int two,
                                     int three);
 }

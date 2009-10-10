@@ -1,7 +1,7 @@
 package org.apache.ibatis.executor.statement;
 
 import org.apache.ibatis.executor.*;
-import org.apache.ibatis.executor.resultset.RowLimit;
+import org.apache.ibatis.executor.resultset.RowBounds;
 import org.apache.ibatis.executor.parameter.ParameterHandler;
 import org.apache.ibatis.executor.result.ResultHandler;
 import org.apache.ibatis.mapping.*;
@@ -13,17 +13,17 @@ public class RoutingStatementHandler implements StatementHandler {
 
   private final StatementHandler delegate;
 
-  public RoutingStatementHandler(Executor executor, MappedStatement ms, Object parameter, RowLimit rowLimit, ResultHandler resultHandler) {
+  public RoutingStatementHandler(Executor executor, MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler) {
 
     switch (ms.getStatementType()) {
       case STATEMENT:
-        delegate = new SimpleStatementHandler(executor, ms, parameter, rowLimit, resultHandler);
+        delegate = new SimpleStatementHandler(executor, ms, parameter, rowBounds, resultHandler);
         break;
       case PREPARED:
-        delegate = new PreparedStatementHandler(executor, ms, parameter, rowLimit, resultHandler);
+        delegate = new PreparedStatementHandler(executor, ms, parameter, rowBounds, resultHandler);
         break;
       case CALLABLE:
-        delegate = new CallableStatementHandler(executor, ms, parameter, rowLimit, resultHandler);
+        delegate = new CallableStatementHandler(executor, ms, parameter, rowBounds, resultHandler);
         break;
       default:
         throw new ExecutorException("Unknown statement type: " + ms.getStatementType());

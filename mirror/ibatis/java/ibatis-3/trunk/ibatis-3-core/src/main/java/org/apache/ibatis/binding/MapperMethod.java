@@ -1,6 +1,6 @@
 package org.apache.ibatis.binding;
 
-import org.apache.ibatis.executor.resultset.RowLimit;
+import org.apache.ibatis.executor.resultset.RowBounds;
 import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.annotations.Param;
@@ -24,7 +24,7 @@ public class MapperMethod {
 
   private boolean returnsList;
 
-  private Integer rowLimitIndex;
+  private Integer rowBoundsIndex;
   private List<String> paramNames;
   private List<Integer> paramPositions;
 
@@ -66,10 +66,10 @@ public class MapperMethod {
 
   private Object executeForList(Object[] args) throws SQLException {
     Object result;
-    if (rowLimitIndex != null) {
+    if (rowBoundsIndex != null) {
       Object param = getParam(args);
-      RowLimit rowLimit = (RowLimit) args[rowLimitIndex];
-      result = sqlSession.selectList(commandName, param, rowLimit);
+      RowBounds rowBounds = (RowBounds) args[rowBoundsIndex];
+      result = sqlSession.selectList(commandName, param, rowBounds);
     } else {
       Object param = getParam(args);
       result = sqlSession.selectList(commandName, param);
@@ -104,8 +104,8 @@ public class MapperMethod {
     }
     final Class[] argTypes = method.getParameterTypes();
     for (int i=0; i < argTypes.length; i++) {
-      if (RowLimit.class.isAssignableFrom(argTypes[i])) {
-        rowLimitIndex = i;
+      if (RowBounds.class.isAssignableFrom(argTypes[i])) {
+        rowBoundsIndex = i;
       } else {
         String paramName = String.valueOf(paramPositions.size());
         paramName = getParamNameFromAnnotation(i, paramName);

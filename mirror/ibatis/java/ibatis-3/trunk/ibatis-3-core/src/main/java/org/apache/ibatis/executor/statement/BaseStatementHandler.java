@@ -5,7 +5,7 @@ import org.apache.ibatis.executor.keygen.SelectKeyGenerator;
 import org.apache.ibatis.executor.parameter.ParameterHandler;
 import org.apache.ibatis.executor.result.ResultHandler;
 import org.apache.ibatis.executor.resultset.ResultSetHandler;
-import org.apache.ibatis.executor.resultset.RowLimit;
+import org.apache.ibatis.executor.resultset.RowBounds;
 import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.reflection.factory.ObjectFactory;
 import org.apache.ibatis.reflection.MetaObject;
@@ -23,15 +23,15 @@ public abstract class BaseStatementHandler implements StatementHandler {
 
   protected final Executor executor;
   protected final MappedStatement mappedStatement;
-  protected final RowLimit rowLimit;
+  protected final RowBounds rowBounds;
 
   protected final BoundSql boundSql;
 
-  protected BaseStatementHandler(Executor executor, MappedStatement mappedStatement, Object parameterObject, RowLimit rowLimit, ResultHandler resultHandler) {
+  protected BaseStatementHandler(Executor executor, MappedStatement mappedStatement, Object parameterObject, RowBounds rowBounds, ResultHandler resultHandler) {
     this.configuration = mappedStatement.getConfiguration();
     this.executor = executor;
     this.mappedStatement = mappedStatement;
-    this.rowLimit = rowLimit;
+    this.rowBounds = rowBounds;
 
     this.typeHandlerRegistry = configuration.getTypeHandlerRegistry();
     this.objectFactory = configuration.getObjectFactory();
@@ -39,7 +39,7 @@ public abstract class BaseStatementHandler implements StatementHandler {
     this.boundSql = mappedStatement.getBoundSql(parameterObject);
 
     this.parameterHandler = configuration.newParameterHandler(mappedStatement, parameterObject, boundSql);
-    this.resultSetHandler = configuration.newResultSetHandler(executor, mappedStatement, rowLimit, parameterHandler, resultHandler, boundSql);
+    this.resultSetHandler = configuration.newResultSetHandler(executor, mappedStatement, rowBounds, parameterHandler, resultHandler, boundSql);
   }
 
   public BoundSql getBoundSql() {

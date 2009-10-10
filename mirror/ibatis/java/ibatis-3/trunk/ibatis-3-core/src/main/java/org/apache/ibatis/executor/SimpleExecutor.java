@@ -2,7 +2,7 @@ package org.apache.ibatis.executor;
 
 import org.apache.ibatis.executor.result.ResultHandler;
 import org.apache.ibatis.executor.statement.StatementHandler;
-import org.apache.ibatis.executor.resultset.RowLimit;
+import org.apache.ibatis.executor.resultset.RowBounds;
 import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.transaction.Transaction;
 
@@ -20,7 +20,7 @@ public class SimpleExecutor extends BaseExecutor {
     Statement stmt = null;
     try {
       Configuration configuration = ms.getConfiguration();
-      StatementHandler handler = configuration.newStatementHandler(this, ms, parameter, RowLimit.DEFAULT, null);
+      StatementHandler handler = configuration.newStatementHandler(this, ms, parameter, RowBounds.DEFAULT, null);
       stmt = prepareStatement(handler);
       return handler.update(stmt);
     } finally {
@@ -28,11 +28,11 @@ public class SimpleExecutor extends BaseExecutor {
     }
   }
 
-  public List doQuery(MappedStatement ms, Object parameter, RowLimit rowLimit, ResultHandler resultHandler) throws SQLException {
+  public List doQuery(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler) throws SQLException {
     Statement stmt = null;
     try {
       Configuration configuration = ms.getConfiguration();
-      StatementHandler handler = configuration.newStatementHandler(this, ms, parameter, rowLimit, resultHandler);
+      StatementHandler handler = configuration.newStatementHandler(this, ms, parameter, rowBounds, resultHandler);
       stmt = prepareStatement(handler);
       return handler.query(stmt, resultHandler);
     } finally {

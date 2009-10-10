@@ -25,7 +25,7 @@ public class DefaultResultSetHandler implements ResultSetHandler {
   private final Executor executor;
   private final Configuration configuration;
   private final MappedStatement mappedStatement;
-  private final RowLimit rowLimit;
+  private final RowBounds rowBounds;
   private final ParameterHandler parameterHandler;
   private final ResultHandler resultHandler;
   private final BoundSql boundSql;
@@ -35,11 +35,11 @@ public class DefaultResultSetHandler implements ResultSetHandler {
   private final Map<CacheKey,Set<CacheKey>> localRowValueCaches;
   private final Map<CacheKey,Object> globalRowValueCache;
 
-  public DefaultResultSetHandler(Executor executor, MappedStatement mappedStatement, ParameterHandler parameterHandler, ResultHandler resultHandler, BoundSql boundSql, RowLimit rowLimit) {
+  public DefaultResultSetHandler(Executor executor, MappedStatement mappedStatement, ParameterHandler parameterHandler, ResultHandler resultHandler, BoundSql boundSql, RowBounds rowBounds) {
     this.executor = executor;
     this.configuration = mappedStatement.getConfiguration();
     this.mappedStatement = mappedStatement;
-    this.rowLimit = rowLimit;
+    this.rowBounds = rowBounds;
     this.parameterHandler = parameterHandler;
     this.boundSql = boundSql;
     this.typeHandlerRegistry = configuration.getTypeHandlerRegistry();
@@ -75,7 +75,7 @@ public class DefaultResultSetHandler implements ResultSetHandler {
     if (resultMapId != null) {
       final ResultMap resultMap = configuration.getResultMap(resultMapId);
       final DefaultResultHandler resultHandler = new DefaultResultHandler();
-      handleRowValues(rs, resultMap, resultHandler, new RowLimit());
+      handleRowValues(rs, resultMap, resultHandler, new RowBounds());
       metaParam.setValue(parameterMapping.getProperty(), resultHandler.getResultList());
     } else {
       throw new ExecutorException("Parameter requires ResultMap for output types of java.sql.ResultSet");
@@ -105,10 +105,10 @@ public class DefaultResultSetHandler implements ResultSetHandler {
   private void handleResultSet(ResultSet rs, ResultMap resultMap, List multipleResults) throws SQLException {
     if (resultHandler == null) {
       DefaultResultHandler defaultResultHandler = new DefaultResultHandler();
-      handleRowValues(rs, resultMap, defaultResultHandler, rowLimit);
+      handleRowValues(rs, resultMap, defaultResultHandler, rowBounds);
       multipleResults.add(defaultResultHandler.getResultList());
     } else {
-      handleRowValues(rs, resultMap, resultHandler, rowLimit);
+      handleRowValues(rs, resultMap, resultHandler, rowBounds);
     }
   }
 
@@ -124,10 +124,10 @@ public class DefaultResultSetHandler implements ResultSetHandler {
   // HANDLE ROWS
   //
 
-  private void handleRowValues(ResultSet rs, ResultMap resultMap, ResultHandler resultHandler, RowLimit rowLimit) throws SQLException {
+  private void handleRowValues(ResultSet rs, ResultMap resultMap, ResultHandler resultHandler, RowBounds rowBounds) throws SQLException {
     final DefaultResultContext resultContext = new DefaultResultContext();
-    skipRows(rs, rowLimit);
-    while (shouldProcessMoreRows(rs, resultContext.getResultCount(), rowLimit)) {
+    skipRows(rs, rowBounds);
+    while (shouldProcessMoreRows(rs, resultContext.getResultCount(), rowBounds)) {
       final ResultMap discriminatedResultMap = resolveDiscriminatedResultMap(rs, resultMap);
       final CacheKey rowKey = createRowKey(discriminatedResultMap, rs);
       final boolean knownValue = globalRowValueCache.containsKey(rowKey);
@@ -139,15 +139,15 @@ public class DefaultResultSetHandler implements ResultSetHandler {
     }
   }
 
-  private boolean shouldProcessMoreRows(ResultSet rs, int count, RowLimit rowLimit) throws SQLException {
-    return rs.next() && count < rowLimit.getLimit();
+  private boolean shouldProcessMoreRows(ResultSet rs, int count, RowBounds rowBounds) throws SQLException {
+    return rs.next() && count < rowBounds.getLimit();
   }
 
-  private void skipRows(ResultSet rs, RowLimit rowLimit) throws SQLException {
+  private void skipRows(ResultSet rs, RowBounds rowBounds) throws SQLException {
     if (rs.getType() != ResultSet.TYPE_FORWARD_ONLY) {
-      rs.absolute(rowLimit.getOffset());
+      rs.absolute(rowBounds.getOffset());
     } else {
-      for (int i = 0; i < rowLimit.getOffset(); i++) rs.next();
+      for (int i = 0; i < rowBounds.getOffset(); i++) rs.next();
     }
   }
 
@@ -342,7 +342,7 @@ public class DefaultResultSetHandler implements ResultSetHandler {
     final Object nestedQueryParameterObject = prepareParameterForNestedQuery(rs, propertyMapping, nestedQueryParameterType);
     Object value = null;
     if (nestedQueryParameterObject != null) {
-      final CacheKey key = executor.createCacheKey(nestedQuery, nestedQueryParameterObject, RowLimit.DEFAULT);
+      final CacheKey key = executor.createCacheKey(nestedQuery, nestedQueryParameterObject, RowBounds.DEFAULT);
       if (executor.isCached(nestedQuery, key)) {
         executor.deferLoad(nestedQuery, metaResultObject, property, key);
       } else {
