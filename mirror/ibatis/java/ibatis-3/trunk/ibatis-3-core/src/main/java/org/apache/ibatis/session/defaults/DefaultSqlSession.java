@@ -3,7 +3,7 @@ package org.apache.ibatis.session.defaults;
 import org.apache.ibatis.exceptions.ExceptionFactory;
 import org.apache.ibatis.exceptions.TooManyResultsException;
 import org.apache.ibatis.executor.Executor;
-import org.apache.ibatis.executor.resultset.RowLimit;
+import org.apache.ibatis.executor.resultset.RowBounds;
 import org.apache.ibatis.executor.result.ResultHandler;
 import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.session.*;
@@ -48,26 +48,26 @@ public class DefaultSqlSession implements SqlSession {
   }
 
   public List selectList(String statement, Object parameter) {
-    return selectList(statement, parameter, RowLimit.DEFAULT);
+    return selectList(statement, parameter, RowBounds.DEFAULT);
   }
 
-  public List selectList(String statement, Object parameter, RowLimit rowLimit) {
+  public List selectList(String statement, Object parameter, RowBounds rowBounds) {
     try {
       MappedStatement ms = configuration.getMappedStatement(statement);
-      return executor.query(ms, wrapCollection(parameter), rowLimit, Executor.NO_RESULT_HANDLER);
+      return executor.query(ms, wrapCollection(parameter), rowBounds, Executor.NO_RESULT_HANDLER);
     } catch (Exception e) {
       throw ExceptionFactory.wrapException("Error querying database.  Cause: " + e, e);
     }
   }
 
   public void select(String statement, Object parameter, ResultHandler handler) {
-    select(statement, parameter, RowLimit.DEFAULT, handler);
+    select(statement, parameter, RowBounds.DEFAULT, handler);
   }
 
-  public void select(String statement, Object parameter, RowLimit rowLimit, ResultHandler handler) {
+  public void select(String statement, Object parameter, RowBounds rowBounds, ResultHandler handler) {
     try {
       MappedStatement ms = configuration.getMappedStatement(statement);
-      executor.query(ms, wrapCollection(parameter), rowLimit, handler);
+      executor.query(ms, wrapCollection(parameter), rowBounds, handler);
     } catch (Exception e) {
       throw ExceptionFactory.wrapException("Error querying database.  Cause: " + e, e);
     }

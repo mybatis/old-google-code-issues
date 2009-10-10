@@ -14,7 +14,7 @@ import com.ibatis.sqlmap.engine.transaction.TransactionScope;
 import org.apache.ibatis.executor.BatchExecutorException;
 import org.apache.ibatis.executor.BatchResult;
 import org.apache.ibatis.executor.Executor;
-import org.apache.ibatis.executor.resultset.RowLimit;
+import org.apache.ibatis.executor.resultset.RowBounds;
 import org.apache.ibatis.executor.result.*;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.ResultMap;
@@ -117,7 +117,7 @@ public class SqlMapSessionImpl implements SqlMapSession {
       public Object execute(Transaction transaction) throws SQLException {
         MappedStatement ms = configuration.getMappedStatement(id);
         Executor executor = transaction.getExecutor();
-        List list = executor.query(ms, wrapCollection(parameterObject), RowLimit.DEFAULT, null);
+        List list = executor.query(ms, wrapCollection(parameterObject), RowBounds.DEFAULT, null);
         if (list.size() == 1) {
           return list.get(0);
         } else if (list.size() > 1) {
@@ -134,13 +134,13 @@ public class SqlMapSessionImpl implements SqlMapSession {
       public Object execute(Transaction transaction) throws SQLException {
         Executor executor = transaction.getExecutor();
         MappedStatement ms = configuration.getMappedStatement(id);
-        return executor.query(ms, wrapCollection(parameterObject), new RowLimit(skip, max), null);
+        return executor.query(ms, wrapCollection(parameterObject), new RowBounds(skip, max), null);
       }
     });
   }
 
   public List queryForList(String id, Object parameterObject) throws SQLException {
-    return queryForList(id, parameterObject, RowLimit.NO_ROW_OFFSET, RowLimit.NO_ROW_LIMIT);
+    return queryForList(id, parameterObject, RowBounds.NO_ROW_OFFSET, RowBounds.NO_ROW_LIMIT);
   }
 
   public List queryForList(String id, int skip, int max) throws SQLException {
@@ -169,7 +169,7 @@ public class SqlMapSessionImpl implements SqlMapSession {
       public Object execute(Transaction transaction) throws SQLException {
         MappedStatement ms = configuration.getMappedStatement(id);
         Executor executor = transaction.getExecutor();
-        return executor.query(ms, wrapCollection(parameterObject), RowLimit.DEFAULT, new ResultHandler() {
+        return executor.query(ms, wrapCollection(parameterObject), RowBounds.DEFAULT, new ResultHandler() {
           public void handleResult(ResultContext context) {
             rowHandler.handleRow(context.getResultObject());
           }
@@ -292,7 +292,7 @@ public class SqlMapSessionImpl implements SqlMapSession {
         public Object execute(Transaction transaction) throws SQLException {
           transaction.setCommitRequired(true);
           Executor executor = transaction.getExecutor();
-          return executor.query(keyStatement, parameterObject, RowLimit.DEFAULT, null);
+          return executor.query(keyStatement, parameterObject, RowBounds.DEFAULT, null);
         }
       });
       try {

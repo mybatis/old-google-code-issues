@@ -1,7 +1,7 @@
 package org.apache.ibatis.executor.keygen;
 
 import org.apache.ibatis.executor.*;
-import org.apache.ibatis.executor.resultset.RowLimit;
+import org.apache.ibatis.executor.resultset.RowBounds;
 import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.reflection.MetaObject;
 
@@ -44,7 +44,7 @@ public class SelectKeyGenerator implements KeyGenerator {
               // Do not close keyExecutor.
               // The transaction will be closed by parent executor.
               Executor keyExecutor = configuration.newExecutor(executor.getTransaction(), ExecutorType.SIMPLE);
-              List values = keyExecutor.query(keyStatement, parameter, RowLimit.DEFAULT, Executor.NO_RESULT_HANDLER);
+              List values = keyExecutor.query(keyStatement, parameter, RowBounds.DEFAULT, Executor.NO_RESULT_HANDLER);
               if (values.size() > 1) {
                 throw new ExecutorException("Select statement for SelectKeyGenerator returned more than one value.");
               }

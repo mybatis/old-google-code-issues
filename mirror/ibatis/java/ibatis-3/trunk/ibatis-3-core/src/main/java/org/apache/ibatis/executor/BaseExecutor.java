@@ -8,7 +8,7 @@ import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.transaction.Transaction;
 import org.apache.ibatis.type.TypeHandlerRegistry;
 import static org.apache.ibatis.executor.ExecutionPlaceholder.*;
-import org.apache.ibatis.executor.resultset.RowLimit;
+import org.apache.ibatis.executor.resultset.RowBounds;
 
 import java.sql.*;
 import java.util.*;
@@ -65,18 +65,18 @@ public abstract class BaseExecutor implements Executor {
     return batchResults;
   }
 
-  public List query(MappedStatement ms, Object parameter, RowLimit rowLimit, ResultHandler resultHandler) throws SQLException {
+  public List query(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler) throws SQLException {
     ErrorContext.instance().resource(ms.getResource()).activity("executing a query").object(ms.getId());
     List list;
     try {
       queryStack++;
-      CacheKey key = createCacheKey(ms, parameter, rowLimit);
+      CacheKey key = createCacheKey(ms, parameter, rowBounds);
       if (localCache.hasKey(key)) {
         list = (List) localCache.getObject(key);
       } else {
         localCache.putObject(key, EXECUTION_PLACEHOLDER);
         try {
-          list = doQuery(ms, parameter, rowLimit, resultHandler);
+          list = doQuery(ms, parameter, rowBounds, resultHandler);
         } finally {
           localCache.removeObject(key);
         }
@@ -97,12 +97,12 @@ public abstract class BaseExecutor implements Executor {
     deferredLoads.add(new DeferredLoad(ms, resultObject, property, key));
   }
 
-  public CacheKey createCacheKey(MappedStatement ms, Object parameterObject, RowLimit rowLimit) {
+  public CacheKey createCacheKey(MappedStatement ms, Object parameterObject, RowBounds rowBounds) {
     BoundSql boundSql = ms.getBoundSql(parameterObject);
     CacheKey cacheKey = new CacheKey();
     cacheKey.update(ms.getId());
-    cacheKey.update(rowLimit.getOffset());
-    cacheKey.update(rowLimit.getLimit());
+    cacheKey.update(rowBounds.getOffset());
+    cacheKey.update(rowBounds.getLimit());
     cacheKey.update(boundSql.getSql());
     List<ParameterMapping> parameterMappings = boundSql.getParameterMappings();
     if (parameterMappings.size() > 0 && parameterObject != null) {
@@ -154,7 +154,7 @@ public abstract class BaseExecutor implements Executor {
   protected abstract List<BatchResult> doFlushStatements()
       throws SQLException;
 
-  protected abstract List doQuery(MappedStatement ms, Object parameter, RowLimit rowLimit, ResultHandler resultHandler)
+  protected abstract List doQuery(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler)
       throws SQLException;
 
   protected void closeStatement(Statement statement) {
