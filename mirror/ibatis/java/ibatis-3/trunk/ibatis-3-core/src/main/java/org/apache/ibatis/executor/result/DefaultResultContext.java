@@ -1,5 +1,7 @@
 package org.apache.ibatis.executor.result;
 
+import org.apache.ibatis.session.ResultContext;
+
 public class DefaultResultContext implements ResultContext {
 
 private Object resultObject;

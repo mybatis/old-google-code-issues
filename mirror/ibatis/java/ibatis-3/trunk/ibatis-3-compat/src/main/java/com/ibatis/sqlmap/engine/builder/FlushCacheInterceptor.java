@@ -2,8 +2,8 @@ package com.ibatis.sqlmap.engine.builder;
 
 import org.apache.ibatis.cache.Cache;
 import org.apache.ibatis.executor.Executor;
-import org.apache.ibatis.executor.resultset.RowBounds;
-import org.apache.ibatis.executor.result.ResultHandler;
+import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.plugin.*;
 

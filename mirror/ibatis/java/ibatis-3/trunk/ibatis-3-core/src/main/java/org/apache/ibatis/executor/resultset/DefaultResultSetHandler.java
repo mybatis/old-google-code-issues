@@ -13,9 +13,10 @@ import org.apache.ibatis.executor.loader.ResultLoaderRegistry;
 import org.apache.ibatis.executor.loader.ResultObjectProxy;
 import org.apache.ibatis.executor.parameter.ParameterHandler;
 import org.apache.ibatis.executor.result.DefaultResultHandler;
-import org.apache.ibatis.executor.result.ResultHandler;
+import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.executor.result.DefaultResultContext;
 import org.apache.ibatis.cache.CacheKey;
+import org.apache.ibatis.session.RowBounds;
 
 import java.util.*;
 import java.sql.*;

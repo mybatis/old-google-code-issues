@@ -1,7 +1,7 @@
 package org.apache.ibatis.session;
 
-import org.apache.ibatis.executor.result.ResultHandler;
-import org.apache.ibatis.executor.resultset.RowBounds;
+import org.apache.ibatis.session.ResultHandler;
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.mapping.Configuration;
 
 import java.util.List;

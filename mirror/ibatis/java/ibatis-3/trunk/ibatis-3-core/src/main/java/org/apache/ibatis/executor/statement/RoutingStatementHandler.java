@@ -1,9 +1,9 @@
 package org.apache.ibatis.executor.statement;
 
 import org.apache.ibatis.executor.*;
-import org.apache.ibatis.executor.resultset.RowBounds;
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.executor.parameter.ParameterHandler;
-import org.apache.ibatis.executor.result.ResultHandler;
+import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.mapping.*;
 
 import java.sql.*;

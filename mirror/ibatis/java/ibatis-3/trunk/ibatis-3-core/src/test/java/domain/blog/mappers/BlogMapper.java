@@ -1,6 +1,6 @@
 package domain.blog.mappers;
 
-import org.apache.ibatis.executor.resultset.RowBounds;
+import org.apache.ibatis.session.RowBounds;
 
 import java.util.*;
 

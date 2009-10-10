@@ -1,4 +1,4 @@
-package org.apache.ibatis.executor.result;
+package org.apache.ibatis.session;
 
 public interface ResultHandler {
 

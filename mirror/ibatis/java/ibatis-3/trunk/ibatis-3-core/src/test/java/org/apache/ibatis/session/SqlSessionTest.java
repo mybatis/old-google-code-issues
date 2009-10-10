@@ -3,7 +3,7 @@ package org.apache.ibatis.session;
 import domain.blog.*;
 import domain.blog.mappers.*;
 import org.apache.ibatis.BaseDataTest;
-import org.apache.ibatis.executor.resultset.RowBounds;
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.mapping.Configuration;
 import static org.junit.Assert.*;

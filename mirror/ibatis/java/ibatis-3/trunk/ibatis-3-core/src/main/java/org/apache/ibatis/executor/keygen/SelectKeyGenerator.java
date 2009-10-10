@@ -1,7 +1,7 @@
 package org.apache.ibatis.executor.keygen;
 
 import org.apache.ibatis.executor.*;
-import org.apache.ibatis.executor.resultset.RowBounds;
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.reflection.MetaObject;
 
