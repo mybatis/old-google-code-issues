@@ -1,5 +1,7 @@
 package org.apache.ibatis.logging;
 
+import org.apache.ibatis.io.Resources;
+
 import java.lang.reflect.Constructor;
 
 public class LogFactory {
@@ -73,8 +75,8 @@ public class LogFactory {
 
   private static void setImplementation(String testClassName, String implClassName) {
     try {
-      Class.forName(testClassName);
-      Class implClass = Class.forName(implClassName);
+      Resources.classForName(testClassName);
+      Class implClass = Resources.classForName(implClassName);
       logConstructor = implClass.getConstructor(new Class[]{Class.class});
     } catch (Throwable t) {
       throw new LogException("Error setting Log implementation.  Cause: " + t, t);

@@ -10,7 +10,6 @@ import java.net.URL;
  * A class to wrap access to multiple class loaders making them work as one
  */
 public class ClassLoaderWrapper {
-  private static final Log log = LogFactory.getLog(ClassLoaderWrapper.class);
 
   ClassLoader defaultClassLoader;
 
@@ -189,15 +188,12 @@ public class ClassLoaderWrapper {
 
         try {
 
-          log.debug("Looking for " + name + " using " + cl);
-
           Class c = cl.loadClass(name);
 
           if (null != c) return c;
 
         } catch (ClassNotFoundException e) {
           // we'll ignore this until all classloaders fail to locate the class
-          log.debug("Did not find " + name + " using " + cl);
         }
 
       }

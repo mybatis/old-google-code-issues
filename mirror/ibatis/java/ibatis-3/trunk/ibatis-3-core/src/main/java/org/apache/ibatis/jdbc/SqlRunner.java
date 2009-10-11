@@ -2,6 +2,7 @@ package org.apache.ibatis.jdbc;
 
 import org.apache.ibatis.type.TypeHandler;
 import org.apache.ibatis.type.TypeHandlerRegistry;
+import org.apache.ibatis.io.Resources;
 
 import java.sql.*;
 import java.util.*;
@@ -196,7 +197,7 @@ public class SqlRunner {
       for (int i = 0, n = rsmd.getColumnCount(); i < n; i++) {
         columns.add(rsmd.getColumnLabel(i + 1));
         try {
-          Class type = Class.forName(rsmd.getColumnClassName(i + 1));
+          Class type = Resources.classForName(rsmd.getColumnClassName(i + 1));
           TypeHandler typeHandler = typeHandlerRegistry.getTypeHandler(type);
           if (typeHandler == null) {
             typeHandler = typeHandlerRegistry.getTypeHandler(Object.class);

@@ -6,6 +6,7 @@ import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.TypeAliasRegistry;
 import org.apache.ibatis.type.TypeHandlerRegistry;
+import org.apache.ibatis.io.Resources;
 
 public abstract class BaseBuilder {
   protected final Configuration configuration;
@@ -64,7 +65,7 @@ public abstract class BaseBuilder {
   protected Class resolveClass(String alias) {
     if (alias == null) return null;
     try {
-      return Class.forName(resolveAlias(alias));
+      return Resources.classForName(resolveAlias(alias));
     } catch (ClassNotFoundException e) {
       throw new BuilderException("Error resolving class . Cause: " + e, e);
     }
