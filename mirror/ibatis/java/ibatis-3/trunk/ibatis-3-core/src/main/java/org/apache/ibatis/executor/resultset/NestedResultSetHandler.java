@@ -22,15 +22,24 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
 
-public class DefaultResultSetHandler extends FastResultSetHandler {
+public class NestedResultSetHandler extends FastResultSetHandler {
 
   private final Map<CacheKey, Set<CacheKey>> localRowValueCaches;
   private final Map<CacheKey, Object> globalRowValueCache;
 
-  public DefaultResultSetHandler(Executor executor, MappedStatement mappedStatement, ParameterHandler parameterHandler, ResultHandler resultHandler, BoundSql boundSql, RowBounds rowBounds) {
+  public NestedResultSetHandler(Executor executor, MappedStatement mappedStatement, ParameterHandler parameterHandler, ResultHandler resultHandler, BoundSql boundSql, RowBounds rowBounds) {
     super(executor, mappedStatement, parameterHandler, resultHandler, boundSql, rowBounds);
     localRowValueCaches = new HashMap<CacheKey, Set<CacheKey>>();
     globalRowValueCache = new HashMap<CacheKey, Object>();
+    ensureNoRowBounds(rowBounds);
+  }
+
+  private void ensureNoRowBounds(RowBounds rowBounds) {
+    if (rowBounds != null
+        && (rowBounds.getLimit() < RowBounds.NO_ROW_LIMIT
+        || rowBounds.getOffset() > RowBounds.NO_ROW_OFFSET)) {
+      throw new ExecutorException("Mapped Statements with nested result mappings cannot be safely constrained by RowBounds.");
+    }
   }
 
   //

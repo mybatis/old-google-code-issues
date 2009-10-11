@@ -14,6 +14,7 @@ public class ResultMap {
   private List<ResultMapping> propertyResultMappings;
   private Set<String> mappedColumns;
   private Discriminator discriminator;
+  private boolean hasNestedResultMaps;
 
   private ResultMap() {
   }
@@ -42,6 +43,7 @@ public class ResultMap {
       resultMap.constructorResultMappings = new ArrayList<ResultMapping>();
       resultMap.propertyResultMappings = new ArrayList<ResultMapping>();
       for (ResultMapping resultMapping : resultMap.resultMappings) {
+        resultMap.hasNestedResultMaps = resultMap.hasNestedResultMaps || resultMapping.getNestedResultMapId() != null;
         final String column = resultMapping.getColumn();
         if (column != null) {
           resultMap.mappedColumns.add(column.toUpperCase());
@@ -77,6 +79,10 @@ public class ResultMap {
 
   public String getId() {
     return id;
+  }
+
+  public boolean hasNestedResultMaps() {
+    return hasNestedResultMaps;
   }
 
   public Class getType() {
