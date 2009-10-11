@@ -14,8 +14,9 @@ import org.apache.ibatis.executor.*;
 import org.apache.ibatis.executor.keygen.KeyGenerator;
 import org.apache.ibatis.executor.parameter.DefaultParameterHandler;
 import org.apache.ibatis.executor.parameter.ParameterHandler;
-import org.apache.ibatis.executor.resultset.DefaultResultSetHandler;
+import org.apache.ibatis.executor.resultset.NestedResultSetHandler;
 import org.apache.ibatis.executor.resultset.ResultSetHandler;
+import org.apache.ibatis.executor.resultset.FastResultSetHandler;
 import org.apache.ibatis.executor.statement.RoutingStatementHandler;
 import org.apache.ibatis.executor.statement.StatementHandler;
 import org.apache.ibatis.mapping.*;
@@ -180,7 +181,9 @@ public class Configuration {
   }
 
   public ResultSetHandler newResultSetHandler(Executor executor, MappedStatement mappedStatement, RowBounds rowBounds, ParameterHandler parameterHandler, ResultHandler resultHandler, BoundSql boundSql) {
-    ResultSetHandler resultSetHandler = new DefaultResultSetHandler(executor, mappedStatement, parameterHandler, resultHandler, boundSql, rowBounds);
+    ResultSetHandler resultSetHandler = mappedStatement.hasNestedResultMaps() ?
+        new NestedResultSetHandler(executor, mappedStatement, parameterHandler, resultHandler, boundSql, rowBounds)
+        : new FastResultSetHandler(executor, mappedStatement, parameterHandler, resultHandler, boundSql, rowBounds);
     resultSetHandler = (ResultSetHandler) interceptorChain.pluginAll(resultSetHandler);
     return resultSetHandler;
   }

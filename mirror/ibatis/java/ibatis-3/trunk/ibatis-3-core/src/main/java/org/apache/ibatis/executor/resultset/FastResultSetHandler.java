@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-public abstract class FastResultSetHandler implements ResultSetHandler {
+public class FastResultSetHandler implements ResultSetHandler {
 
   protected final Executor executor;
   protected final Configuration configuration;
@@ -178,7 +178,7 @@ public abstract class FastResultSetHandler implements ResultSetHandler {
       resultObject = foundValues ? resultObject : null;
       return resultObject;
     }
-    return null;
+    return resultObject;
   }
 
   protected ResultLoaderRegistry instantiateResultLoaderRegistry() {

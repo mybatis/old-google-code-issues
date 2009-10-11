@@ -28,6 +28,7 @@ public class MappedStatement {
   private SqlCommandType sqlCommandType;
   private KeyGenerator keyGenerator;
   private String keyProperty;
+  private boolean hasNestedResultMaps;
 
   private MappedStatement() {
   }
@@ -64,6 +65,9 @@ public class MappedStatement {
 
     public Builder resultMaps(List<ResultMap> resultMaps) {
       mappedStatement.resultMaps = resultMaps;
+      for (ResultMap resultMap : resultMaps) {
+        mappedStatement.hasNestedResultMaps = mappedStatement.hasNestedResultMaps || resultMap.hasNestedResultMaps();
+      }
       return this;
     }
 
@@ -144,6 +148,10 @@ public class MappedStatement {
 
   public String getId() {
     return id;
+  }
+
+  public boolean hasNestedResultMaps() {
+    return hasNestedResultMaps;
   }
 
   public Integer getFetchSize() {
