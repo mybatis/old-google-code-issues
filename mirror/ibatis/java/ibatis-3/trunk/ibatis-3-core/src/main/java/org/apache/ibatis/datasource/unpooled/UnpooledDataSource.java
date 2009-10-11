@@ -1,6 +1,7 @@
 package org.apache.ibatis.datasource.unpooled;
 
 import org.apache.ibatis.datasource.DataSourceException;
+import org.apache.ibatis.io.Resources;
 
 import javax.sql.DataSource;
 import java.io.PrintWriter;
@@ -159,7 +160,7 @@ public class UnpooledDataSource implements DataSource {
         if (driverClassLoader != null) {
           driverType = Class.forName(driver, true, driverClassLoader);
         } else {
-          driverType = Class.forName(driver);
+          driverType = Resources.classForName(driver);
         }
         DriverManager.registerDriver(new DriverProxy((Driver) driverType.newInstance()));
       } catch (Exception e) {

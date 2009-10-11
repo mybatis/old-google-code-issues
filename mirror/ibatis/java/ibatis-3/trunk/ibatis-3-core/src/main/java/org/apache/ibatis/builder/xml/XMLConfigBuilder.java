@@ -75,7 +75,7 @@ public class XMLConfigBuilder extends BaseBuilder {
         String alias = child.getStringAttribute("alias");
         String type = child.getStringAttribute("type");
         try {
-          Class clazz = Class.forName(type);
+          Class clazz = Resources.classForName(type);
           if (alias == null) {
             typeAliasRegistry.registerAlias(clazz);
           } else {
