@@ -159,6 +159,30 @@ public class BindingTest {
   }
 
   @Test
+  public void shouldSelectListOfPostsLike() {
+    SqlSession session = sqlSessionFactory.openSession();
+    try {
+      BoundBlogMapper mapper = session.getMapper(BoundBlogMapper.class);
+      List<Post> posts = mapper.selectPostsLike(new RowBounds(1,1),"%a%");
+      assertEquals(1, posts.size());
+    } finally {
+      session.close();
+    }
+  }
+
+  @Test
+  public void shouldSelectListOfPostsLikeTwoParameters() {
+    SqlSession session = sqlSessionFactory.openSession();
+    try {
+      BoundBlogMapper mapper = session.getMapper(BoundBlogMapper.class);
+      List<Post> posts = mapper.selectPostsLikeSubjectAndBody(new RowBounds(1,1),"%a%","%a%");
+      assertEquals(1, posts.size());
+    } finally {
+      session.close();
+    }
+  }
+
+  @Test
   public void shouldExecuteBoundSelectOneBlogStatement() {
     SqlSession session = sqlSessionFactory.openSession();
     try {

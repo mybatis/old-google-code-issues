@@ -4,6 +4,7 @@ import domain.blog.Blog;
 import domain.blog.DraftPost;
 import domain.blog.Post;
 import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.session.RowBounds;
 
 import java.util.List;
 import java.util.Map;
@@ -81,5 +82,17 @@ public interface BoundBlogMapper {
   Map selectBlogAsMap(Map params);
 
   //======================================================
+
+  @Select("SELECT * FROM " +
+    "post WHERE subject like #{query}")
+  List<Post> selectPostsLike(RowBounds bounds, String query);
+
+  //======================================================
+
+  @Select("SELECT * FROM " +
+    "post WHERE subject like #{subjectQuery} and body like #{bodyQuery}")
+  List<Post> selectPostsLikeSubjectAndBody(RowBounds bounds,
+                             @Param("subjectQuery") String subjectQuery,
+                             @Param("bodyQuery") String bodyQuery);
 
 }
