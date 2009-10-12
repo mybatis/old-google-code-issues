@@ -12,6 +12,7 @@ import org.apache.ibatis.executor.keygen.NoKeyGenerator;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.session.Configuration;
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.type.JdbcType;
 
 import java.io.IOException;
@@ -206,10 +207,14 @@ public class MapperAnnotationBuilder {
   private Class getParameterType(Method method) {
     Class parameterType = null;
     Class[] parameterTypes = method.getParameterTypes();
-    if (parameterTypes.length == 1 || parameterTypes.length == 3) {
-      // Methods with 1 or 3 parameters have a value parameter
-      // (the other two params are offset/limit parameters for multiple selects)
-      parameterType = parameterTypes[0];
+    for(int i=0; i<parameterTypes.length;i++) {
+      if (!RowBounds.class.isAssignableFrom(parameterTypes[i])) {
+        if (parameterType == null) {
+          parameterType = parameterTypes[i];
+        } else {
+          parameterType = Map.class;
+        }
+      }
     }
     return parameterType;
   }
