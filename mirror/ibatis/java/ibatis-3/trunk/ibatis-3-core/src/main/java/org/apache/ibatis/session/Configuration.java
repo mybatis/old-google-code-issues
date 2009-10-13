@@ -36,7 +36,7 @@ public class Configuration {
 
   private Environment environment;
 
-  private boolean lazyLoadingEnabled = true;
+  private boolean lazyLoadingEnabled = false;
   private boolean multipleResultSetsEnabled = true;
   private boolean useGeneratedKeys = false;
   private boolean useColumnLabel = true;
