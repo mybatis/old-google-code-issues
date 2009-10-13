@@ -36,8 +36,8 @@
     FROM POST P
     WHERE ID in
     <foreach item="item" index="index" collection="list"
-             open="(" separator="," close=")">
-      #{item}
+             open="(" close=")">
+      <if test="index != 0">,</if> #{item}
     </foreach>
   </select>
 

@@ -41,6 +41,8 @@ public class ForEachSqlNode implements SqlNode {
       } else {
         if (separator != null) {
           context = new PrefixedContext(context, separator);
+        } else {
+          context = new PrefixedContext(context, "");
         }
       }
       int uniqueNumber = context.getUniqueNumber();
