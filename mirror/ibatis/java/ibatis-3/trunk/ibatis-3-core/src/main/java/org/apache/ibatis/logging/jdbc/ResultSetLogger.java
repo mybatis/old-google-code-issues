@@ -64,7 +64,13 @@ public class ResultSetLogger extends BaseJdbcLogger implements InvocationHandler
     StringBuilder row = new StringBuilder();
     row.append("<==        Row: ");
     for (int i = 1; i <= columnCount; i++) {
-      String colname = rs.getString(i);
+      String colname;
+      try {
+        colname = rs.getString(i);
+      } catch (SQLException e) {
+        // generally can't call getString() on a BLOB column
+        colname = "<<Cannot Display>>";
+      }
       row.append(colname);
       if (i != columnCount) row.append(", ");
     }
