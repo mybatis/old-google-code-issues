@@ -1,5 +1,8 @@
 package org.apache.ibatis.builder.xml.dynamic;
 
+import org.apache.ibatis.ognl.OgnlException;
+import org.apache.ibatis.ognl.OgnlRuntime;
+import org.apache.ibatis.ognl.PropertyAccessor;
 import org.apache.ibatis.reflection.MetaObject;
 
 import java.util.HashMap;
@@ -7,8 +10,12 @@ import java.util.Map;
 
 public class DynamicContext {
 
-  private Map<String, Object> bindings = new HashMap<String, Object>();
-  private StringBuilder sqlBuilder = new StringBuilder();
+  static {
+    OgnlRuntime.setPropertyAccessor(ContextMap.class, new ContextAccessor());
+  }
+
+  private final ContextMap bindings = new ContextMap();
+  private final StringBuilder sqlBuilder = new StringBuilder();
   private int uniqueNumber = 0;
 
   public DynamicContext(Object parameterObject) {
@@ -44,4 +51,22 @@ public class DynamicContext {
   public int getUniqueNumber() {
     return uniqueNumber++;
   }
+
+  static class ContextMap extends HashMap<String, Object> {
+  }
+
+  static class ContextAccessor implements PropertyAccessor {
+    public Object getProperty(Map context, Object target, Object name)
+        throws OgnlException {
+      Map map = (Map) target;
+      return map.get(name);
+    }
+
+    public void setProperty(Map context, Object target, Object name, Object value)
+        throws OgnlException {
+      Map map = (Map) target;
+      map.put(name, value);
+    }
+  }
+
 }
