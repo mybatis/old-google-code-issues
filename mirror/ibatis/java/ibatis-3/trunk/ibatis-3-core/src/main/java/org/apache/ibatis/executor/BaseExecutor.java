@@ -36,6 +36,7 @@ public abstract class BaseExecutor implements Executor {
   }
 
   public Transaction getTransaction() {
+    if (closed) throw new ExecutorException("Executor was closed.");
     return transaction;
   }
 
@@ -59,17 +60,20 @@ public abstract class BaseExecutor implements Executor {
 
   public int update(MappedStatement ms, Object parameter) throws SQLException {
     ErrorContext.instance().resource(ms.getResource()).activity("executing an update").object(ms.getId());
+    if (closed) throw new ExecutorException("Executor was closed.");
     localCache.clear();
     return doUpdate(ms, parameter);
   }
 
   public List flushStatements() throws SQLException {
+    if (closed) throw new ExecutorException("Executor was closed.");
     batchResults.addAll(doFlushStatements());
     return batchResults;
   }
 
   public List query(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler) throws SQLException {
     ErrorContext.instance().resource(ms.getResource()).activity("executing a query").object(ms.getId());
+    if (closed) throw new ExecutorException("Executor was closed.");
     List list;
     try {
       queryStack++;
@@ -97,10 +101,12 @@ public abstract class BaseExecutor implements Executor {
   }
 
   public void deferLoad(MappedStatement ms, MetaObject resultObject, String property, CacheKey key) {
+    if (closed) throw new ExecutorException("Executor was closed.");
     deferredLoads.add(new DeferredLoad(ms, resultObject, property, key));
   }
 
   public CacheKey createCacheKey(MappedStatement ms, Object parameterObject, RowBounds rowBounds) {
+    if (closed) throw new ExecutorException("Executor was closed.");
     BoundSql boundSql = ms.getBoundSql(parameterObject);
     CacheKey cacheKey = new CacheKey();
     cacheKey.update(ms.getId());
