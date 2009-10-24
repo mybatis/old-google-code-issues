@@ -384,12 +384,19 @@ public class FastResultSetHandler implements ResultSetHandler {
   //
 
   public ResultMap resolveDiscriminatedResultMap(ResultSet rs, ResultMap resultMap) throws SQLException {
-    final Discriminator discriminator = resultMap.getDiscriminator();
-    if (discriminator != null) {
+    Discriminator discriminator = resultMap.getDiscriminator();
+    while (discriminator != null) {
       final Object value = getDiscriminatorValue(rs, discriminator);
       final String discriminatedMapId = discriminator.getMapIdFor(String.valueOf(value));
       if (configuration.hasResultMap(discriminatedMapId)) {
-        return configuration.getResultMap(discriminatedMapId);
+        resultMap = configuration.getResultMap(discriminatedMapId);
+        Discriminator lastDiscriminator = discriminator;
+        discriminator = resultMap.getDiscriminator();
+        if (discriminator == lastDiscriminator) {
+          break;
+        }
+      } else {
+        break;
       }
     }
     return resultMap;
