@@ -21,6 +21,7 @@ import org.apache.ibatis.type.TypeHandlerRegistry;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -384,6 +385,7 @@ public class FastResultSetHandler implements ResultSetHandler {
   //
 
   public ResultMap resolveDiscriminatedResultMap(ResultSet rs, ResultMap resultMap) throws SQLException {
+    Set<String> pastDiscriminators = new HashSet<String>();
     Discriminator discriminator = resultMap.getDiscriminator();
     while (discriminator != null) {
       final Object value = getDiscriminatorValue(rs, discriminator);
@@ -392,7 +394,7 @@ public class FastResultSetHandler implements ResultSetHandler {
         resultMap = configuration.getResultMap(discriminatedMapId);
         Discriminator lastDiscriminator = discriminator;
         discriminator = resultMap.getDiscriminator();
-        if (discriminator == lastDiscriminator) {
+        if (discriminator == lastDiscriminator || !pastDiscriminators.add(discriminatedMapId)) {
           break;
         }
       } else {
