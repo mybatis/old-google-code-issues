@@ -62,4 +62,10 @@ public class MultipleDiscriminatorTest {
         Assert.assertNotNull("Person must not be null", person);
         Assert.assertEquals("Person must be a director", (Object)Director.class, (Object)person.getClass());
     }
+    @Test(timeout=20000)
+    public void testMultipleDiscriminatorLoop() {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
+        personMapper.getLoop();
+    }
 }

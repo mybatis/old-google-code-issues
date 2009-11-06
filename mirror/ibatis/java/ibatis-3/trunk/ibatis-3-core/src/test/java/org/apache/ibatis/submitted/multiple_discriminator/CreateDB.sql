@@ -10,3 +10,6 @@ create table person (
 
 INSERT INTO person (id, firstName, lastName, jobTitle, department, personType, employeeType)
 VALUES (1, 'John', 'Smith', 'IT director', 'IT', 'EmployeeType', 'DirectorType');
+
+INSERT INTO person (id, firstName, lastName, jobTitle, department, personType, employeeType)
+VALUES (3, 'John', 'Smith', 'IT director', 'IT', 'EmployeeType', 'PersonType');

@@ -34,6 +34,21 @@
     <resultMap id="directorMap" type="Director" extends="employeeMap">
         <result property="department" column="department"/>
     </resultMap>
+    <resultMap id="personMapLoop" type="Person">
+        <id property="id" column="id"/>
+        <result property="firstName" column="firstName"/>
+        <result property="lastName" column="lastName"/>
+        <discriminator column="personType" javaType="String">
+            <case value="EmployeeType" resultMap="employeeMapLoop"/>
+        </discriminator>
+    </resultMap>
+    <resultMap id="employeeMapLoop" type="Employee">
+        <result property="jobTitle" column="jobTitle"/>
+        <discriminator column="employeeType" javaType="String">
+            <case value="PersonType" resultMap="personMapLoop"/>
+        </discriminator>
+    </resultMap>
+    
     
     <select id="get" resultMap="personMap" parameterType="long">
         SELECT id, firstName, lastName, jobTitle, department, personType, employeeType
@@ -44,6 +59,11 @@
         SELECT id, firstName, lastName, jobTitle, department, personType, employeeType
         FROM Person
         WHERE id = #{id}
+    </select>
+    <select id="getLoop" resultMap="personMapLoop">
+        SELECT id, firstName, lastName, jobTitle, department, personType, employeeType
+        FROM Person
+        WHERE id = 3
     </select>
     
 </mapper>
