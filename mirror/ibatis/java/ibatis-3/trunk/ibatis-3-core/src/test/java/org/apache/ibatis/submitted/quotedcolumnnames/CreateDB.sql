@@ -1,3 +1,5 @@
+drop table names if exists;
+
 create table names (
   ID int,
   FIRST_NAME varchar(20),
