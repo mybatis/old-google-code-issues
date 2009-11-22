@@ -182,7 +182,7 @@ public class MapperAnnotationBuilder {
         timeout = options.timeout() > -1 ? options.timeout() : null;
         statementType = options.statementType();
         resultSetType = options.resultSetType();
-        keyGenerator = options.useGeneratedKeys() ? new Jdbc3KeyGenerator() : null;
+        keyGenerator = options.useGeneratedKeys() ? new Jdbc3KeyGenerator() : new NoKeyGenerator();
         keyProperty = options.keyProperty();
       }
       assistant.addMappedStatement(
