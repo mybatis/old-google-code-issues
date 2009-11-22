@@ -12,6 +12,7 @@ import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.transaction.Transaction;
 import org.apache.ibatis.transaction.TransactionFactory;
+import org.apache.ibatis.transaction.jdbc.JdbcTransaction;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -81,14 +82,11 @@ public class ResultLoader {
     Environment environment = configuration.getEnvironment();
     if (environment == null)
       throw new ExecutorException("ResultLoader could not load lazily.  Environment was not configured.");
-    TransactionFactory txFactory = environment.getTransactionFactory();
-    if (txFactory == null)
-      throw new ExecutorException("ResultLoader could not load lazily.  Transaction Factory was not configured.");
     DataSource ds = environment.getDataSource();
     if (ds == null) throw new ExecutorException("ResultLoader could not load lazily.  DataSource was not configured.");
     Connection conn = ds.getConnection();
     conn = wrapConnection(conn);
-    Transaction tx = txFactory.newTransaction(conn, false);
+    Transaction tx = new JdbcTransaction(conn, false);
     return configuration.newExecutor(tx, ExecutorType.SIMPLE);
   }
 
