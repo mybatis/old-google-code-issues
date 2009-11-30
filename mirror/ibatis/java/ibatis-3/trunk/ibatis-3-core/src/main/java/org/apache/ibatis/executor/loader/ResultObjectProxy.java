@@ -37,16 +37,10 @@ public class ResultObjectProxy {
 
     public Object invoke(Object o, Method method, Object[] args) throws Throwable {
       try {
-        Object value = method.invoke(target, args);
-        if (value == null) {
-          String methodName = method.getName();
-          if (PropertyNamer.isGetter(methodName)) {
-            if (lazyLoader.loadByMethod(methodName)) {
-              value = method.invoke(target, args);
-            }
-          }
+        if (!Object.class.equals(method.getDeclaringClass()) && PropertyNamer.isGetter(method.getName())) {
+            lazyLoader.loadAll();
         }
-        return value;
+        return method.invoke(target, args);
       } catch (Throwable t) {
         throw ExceptionUtil.unwrapThrowable(t);
       }

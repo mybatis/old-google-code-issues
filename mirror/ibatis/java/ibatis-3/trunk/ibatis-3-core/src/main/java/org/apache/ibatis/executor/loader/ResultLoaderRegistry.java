@@ -18,16 +18,17 @@ public class ResultLoaderRegistry implements Serializable {
     loaderMap.put(toSetter(upperFirst), new LoadPair(property, metaResultObject, resultLoader));
   }
 
-  public boolean loadByMethod(String methodName) throws SQLException {
-    synchronized (loaderMap) {
-      ResultLoaderRegistry.LoadPair pair = loaderMap.remove(methodName.toUpperCase());
-      if (pair != null) {
-        pair.load();
-        return true;
+  public void loadAll() throws SQLException {
+      synchronized (loaderMap) {
+        Object[] keys = loaderMap.keySet().toArray();
+        for (Object key : keys) {
+          LoadPair pair = loaderMap.remove(key);
+          if (pair != null) {
+            pair.load();
+          }
+        }
       }
-      return false;
     }
-  }
 
   private String toGetter(String first) {
     return "GET" + first;
