@@ -9,6 +9,11 @@ public class ReuseExecutorTest extends BaseExecutorTest {
   public void dummy() {
   }
 
+  @Test
+  public void shouldFetchPostWithBlogWithCompositeKey() throws Exception {
+    super.shouldFetchPostWithBlogWithCompositeKey();
+  }
+
   protected Executor createExecutor(Transaction transaction) {
     return new ReuseExecutor(transaction);
   }

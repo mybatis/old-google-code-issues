@@ -64,7 +64,11 @@ public class ReuseExecutor extends BaseExecutor {
   }
 
   private boolean hasStatementFor(String sql) {
-    return statementMap.keySet().contains(sql);
+    try {
+      return statementMap.keySet().contains(sql) && !statementMap.get(sql).getConnection().isClosed();
+    } catch (SQLException e) {
+      return false;
+    }
   }
 
   private Statement getStatement(String s) {
