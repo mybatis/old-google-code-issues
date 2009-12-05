@@ -7,6 +7,8 @@ import java.sql.SQLException;
 
 public class UnknownTypeHandler extends BaseTypeHandler {
 
+  private static final ObjectTypeHandler OBJECT_TYPE_HANDLER = new ObjectTypeHandler();
+
   private TypeHandlerRegistry typeHandlerRegistry;
 
   public UnknownTypeHandler(TypeHandlerRegistry typeHandlerRegistry) {
@@ -32,9 +34,12 @@ public class UnknownTypeHandler extends BaseTypeHandler {
   private TypeHandler resolveTypeHandler(Object parameter, JdbcType jdbcType) {
     TypeHandler handler;
     if (parameter == null) {
-      handler = typeHandlerRegistry.getTypeHandler(Object.class);
+      handler = OBJECT_TYPE_HANDLER;
     } else {
       handler = typeHandlerRegistry.getTypeHandler(parameter.getClass(), jdbcType);
+      if (handler instanceof UnknownTypeHandler) {
+        handler = OBJECT_TYPE_HANDLER;
+      }
     }
     return handler;
   }
