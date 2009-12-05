@@ -58,8 +58,8 @@ public class TypeHandlerRegistry {
     register(byte[].class, JdbcType.BLOB, new BlobTypeHandler());
     register(byte[].class, JdbcType.LONGVARBINARY, new BlobTypeHandler());
 
-    register(Object.class, new ObjectTypeHandler());
-    register(Object.class, JdbcType.OTHER, new ObjectTypeHandler());
+    register(Object.class, UNKNOWN_TYPE_HANDLER);
+    register(Object.class, JdbcType.OTHER, UNKNOWN_TYPE_HANDLER);
 
     register(Date.class, new DateTypeHandler());
     register(Date.class, JdbcType.DATE, new DateOnlyTypeHandler());
