@@ -4,6 +4,7 @@ import org.apache.ibatis.builder.BuilderException;
 import org.apache.ibatis.ognl.Ognl;
 import org.apache.ibatis.ognl.OgnlException;
 import org.apache.ibatis.parsing.GenericTokenParser;
+import org.apache.ibatis.type.SimpleTypeRegistry;
 
 public class TextSqlNode implements SqlNode {
   private String text;
@@ -28,6 +29,12 @@ public class TextSqlNode implements SqlNode {
 
     public String handleToken(String content) {
       try {
+        Object parameter = context.getBindings().get("_parameter");
+        if (parameter == null) {
+          context.getBindings().put("value", null);
+        } else if (SimpleTypeRegistry.isSimpleType(parameter.getClass())) {
+          context.getBindings().put("value", parameter);
+        }
         Object value = Ognl.getValue(content, context.getBindings());
         return String.valueOf(value);
       } catch (OgnlException e) {
