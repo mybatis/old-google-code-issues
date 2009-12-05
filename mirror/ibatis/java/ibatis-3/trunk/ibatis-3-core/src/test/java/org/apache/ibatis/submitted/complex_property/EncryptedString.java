@@ -11,12 +11,12 @@ public class EncryptedString {
     this();
 
     //encrypt the message.
-    setEncrypted(message);//TODO:encrypt
+    setEncrypted(message);
   }
 
   public String decrypt() {
     return encrypted;
-  }//TODO:decrypt
+  }
 
   public String getEncrypted() {
     return encrypted;
