@@ -1,9 +1,9 @@
 package org.apache.ibatis.type;
 
-import java.sql.CallableStatement;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import org.apache.ibatis.exceptions.IbatisException;
+
+import java.sql.*;
+import java.util.*;
 
 public class UnknownTypeHandler extends BaseTypeHandler {
 
@@ -23,7 +23,8 @@ public class UnknownTypeHandler extends BaseTypeHandler {
 
   public Object getNullableResult(ResultSet rs, String columnName)
       throws SQLException {
-    return rs.getObject(columnName);
+    TypeHandler handler = resolveTypeHandler(rs, columnName);
+    return handler.getResult(rs, columnName);
   }
 
   public Object getNullableResult(CallableStatement cs, int columnIndex)
@@ -42,6 +43,33 @@ public class UnknownTypeHandler extends BaseTypeHandler {
       }
     }
     return handler;
+  }
+
+  private TypeHandler resolveTypeHandler(ResultSet rs, String column) {
+    try {
+      Map<String,Integer> columnIndexLookup;
+      columnIndexLookup = new HashMap<String,Integer>();
+      ResultSetMetaData rsmd = rs.getMetaData();
+      int count = rsmd.getColumnCount();
+      for (int i=1; i <= count; i++) {
+        String name = rsmd.getColumnName(i);
+        columnIndexLookup.put(name,i);
+      }
+      Integer columnIndex = columnIndexLookup.get(column);
+      TypeHandler handler = null;
+      if (columnIndex != null) {
+        int jdbcTypeInt = rsmd.getColumnType(columnIndex);
+        JdbcType jdbcType = JdbcType.forCode(jdbcTypeInt);
+
+        handler = typeHandlerRegistry.getTypeHandler(jdbcType);
+      }
+      if (handler == null || handler instanceof UnknownTypeHandler) {
+        handler = OBJECT_TYPE_HANDLER;
+      }
+      return handler;
+    } catch (SQLException e) {
+      throw new TypeException("Error determining JDBC type for column " + column + ".  Cause: " + e, e);
+    }
   }
 
 }

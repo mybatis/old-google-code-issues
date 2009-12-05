@@ -25,9 +25,17 @@ public class UnknownTypeHandlerTest extends BaseTypeHandlerTest {
       throws Exception {
     mockery.checking(new Expectations() {
       {
-        one(rs).getObject(with(any(String.class)));
+        one(rs).getMetaData();
+        will(returnValue(rsmd));
+        one(rsmd).getColumnCount();
+        will(returnValue(1));
+        one(rsmd).getColumnName(with(any(int.class)));
+        will(returnValue("column"));
+        one(rsmd).getColumnType(with(any(int.class)));
+        will(returnValue(JdbcType.VARCHAR.TYPE_CODE));
+        one(rs).getString(with(any(String.class)));
         will(returnValue("Hello"));
-        one(rs).wasNull();
+        allowing(rs).wasNull();
         will(returnValue(false));
       }
     });
