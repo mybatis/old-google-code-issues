@@ -24,7 +24,7 @@ public class Author implements Serializable {
     this.favouriteSection = section;
   }
 
-  public Author(Integer id) {
+  public Author(int id) {
     this(id, null, null, null, null, null);
   }
 

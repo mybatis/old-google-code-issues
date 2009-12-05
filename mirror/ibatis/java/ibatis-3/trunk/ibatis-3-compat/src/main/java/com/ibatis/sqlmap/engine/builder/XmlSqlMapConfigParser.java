@@ -136,13 +136,10 @@ public class XmlSqlMapConfigParser {
     String javaType = context.getStringAttribute("javaType");
     String callback = context.getStringAttribute("callback");
 
-    javaType = config.getTypeAliasRegistry().resolveAlias(javaType);
-    callback = config.getTypeAliasRegistry().resolveAlias(callback);
-
     if (javaType != null && callback != null) {
       JdbcType jdbcTypeEnum = JdbcType.valueOf(jdbcType);
-      Class javaTypeClass = Resources.classForName(javaType);
-      Class callbackClass = Resources.classForName(callback);
+      Class javaTypeClass = config.getTypeAliasRegistry().resolveAlias(javaType);
+      Class callbackClass = config.getTypeAliasRegistry().resolveAlias(callback);
       Object o = callbackClass.newInstance();
       if (o instanceof TypeHandlerCallback) {
         TypeHandler typeHandler = new TypeHandlerCallbackAdapter((TypeHandlerCallback) o);
@@ -154,8 +151,7 @@ public class XmlSqlMapConfigParser {
   @NodeEvent("/sqlMapConfig/transactionManager/end()")
   public void sqlMapConfigtransactionManagerend(XNode context) throws Exception {
     String type = context.getStringAttribute("type");
-    type = config.getTypeAliasRegistry().resolveAlias(type);
-    Class txClass = Class.forName(type);
+    Class txClass = config.getTypeAliasRegistry().resolveAlias(type);
     boolean commitRequired = context.getBooleanAttribute("commitRequired", false);
 
     TransactionConfig txConfig = (TransactionConfig) txClass.newInstance();
@@ -182,8 +178,7 @@ public class XmlSqlMapConfigParser {
   @NodeEvent("/sqlMapConfig/transactionManager/dataSource/end()")
   public void sqlMapConfigtransactionManagerdataSourceend(XNode context) throws Exception {
     String type = context.getStringAttribute("type");
-    type = config.getTypeAliasRegistry().resolveAlias(type);
-    Class dataSourceClass = Class.forName(type);
+    Class dataSourceClass = config.getTypeAliasRegistry().resolveAlias(type);
     DataSourceFactory dsFactory = (DataSourceFactory) dataSourceClass.newInstance();
     dsFactory.initialize(dataSourceProps);
     config.setDataSource(dsFactory.getDataSource());

@@ -47,7 +47,7 @@ public abstract class BaseBuilder {
   protected ResultSetType resolveResultSetType(String alias) {
     if (alias == null) return null;
     try {
-      return ResultSetType.valueOf(resolveAlias(alias));
+      return ResultSetType.valueOf(resolveAlias(alias).getName());
     } catch (IllegalArgumentException e) {
       throw new BuilderException("Error resolving ResultSetType. Cause: " + e, e);
     }
@@ -56,7 +56,7 @@ public abstract class BaseBuilder {
   protected ParameterMode resolveParameterMode(String alias) {
     if (alias == null) return null;
     try {
-      return ParameterMode.valueOf(resolveAlias(alias));
+      return ParameterMode.valueOf(resolveAlias(alias).getName());
     } catch (IllegalArgumentException e) {
       throw new BuilderException("Error resolving ParameterMode. Cause: " + e, e);
     }
@@ -65,8 +65,8 @@ public abstract class BaseBuilder {
   protected Class resolveClass(String alias) {
     if (alias == null) return null;
     try {
-      return Resources.classForName(resolveAlias(alias));
-    } catch (ClassNotFoundException e) {
+      return resolveAlias(alias);
+    } catch (Exception e) {
       throw new BuilderException("Error resolving class . Cause: " + e, e);
     }
   }
@@ -90,7 +90,7 @@ public abstract class BaseBuilder {
     }
   }
 
-  protected String resolveAlias(String alias) {
+  protected Class resolveAlias(String alias) {
     return typeAliasRegistry.resolveAlias(alias);
   }
 }

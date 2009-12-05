@@ -179,7 +179,7 @@ public class ExecutorTestHelper {
           {
             add(new ResultMap.Builder(config, "defaultResultMap", Author.class, new ArrayList<ResultMapping>() {
               {
-                add(new ResultMapping.Builder(config, null, "id", registry.getTypeHandler(Integer.class)).javaType(Integer.class).flags(new ArrayList<ResultFlag>() {
+                add(new ResultMapping.Builder(config, null, "id", registry.getTypeHandler(Integer.class)).javaType(int.class).flags(new ArrayList<ResultFlag>() {
                   {
                     add(ResultFlag.CONSTRUCTOR);
                   }

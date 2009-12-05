@@ -22,7 +22,7 @@
       </transactionManager>
       <dataSource type="POOLED">
         <property name="driver" value="org.hsqldb.jdbcDriver"/>
-        <property name="url" value="jdbc:hsqldb:mem:cname"/>
+        <property name="url" value="jdbc:hsqldb:mem:overprops"/>
         <property name="username" value="sa"/>
       </dataSource>
     </environment>

@@ -11,8 +11,7 @@ public class TypeAliasRegistryTest {
 
     typeAliasRegistry.registerAlias("rich", "domain.misc.RichType");
 
-    assertEquals("domain.misc.RichType", typeAliasRegistry.resolveAlias("rich"));
-    assertEquals("unknown", typeAliasRegistry.resolveAlias("unknown"));
+    assertEquals("domain.misc.RichType", typeAliasRegistry.resolveAlias("rich").getName());
   }
 
 }

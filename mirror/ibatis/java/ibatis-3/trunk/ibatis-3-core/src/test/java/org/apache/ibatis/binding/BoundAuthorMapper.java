@@ -25,7 +25,7 @@ public interface BoundAuthorMapper {
   //======================================================
 
   @ConstructorArgs({
-      @Arg(column = "AUTHOR_ID", javaType = Integer.class)
+      @Arg(column = "AUTHOR_ID", javaType = int.class)
   })
   @Results({
       @Result(property = "username", column = "AUTHOR_USERNAME"),

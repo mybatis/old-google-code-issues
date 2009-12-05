@@ -101,10 +101,9 @@ public class InlineParameterMapParser {
       if (paramParser.hasMoreTokens()) {
         String value = paramParser.nextToken();
         if ("javaType".equals(field)) {
-          value = typeAliasRegistry.resolveAlias(value);
           try {
-            javaType = Class.forName(value);
-          } catch (ClassNotFoundException e) {
+            javaType = typeAliasRegistry.resolveAlias(value);
+          } catch (Exception e) {
             throw new SqlMapException("Error loading javaType class");
           }
         } else if ("jdbcType".equals(field)) {
@@ -115,8 +114,7 @@ public class InlineParameterMapParser {
           throw new UnsupportedOperationException("iBATIS 3 does not support null value substitution.");
         } else if ("handler".equals(field)) {
           try {
-            value = typeAliasRegistry.resolveAlias(value);
-            Object impl = Resources.classForName(value).newInstance();
+            Object impl = typeAliasRegistry.resolveAlias(value).newInstance();
             typeHandler = ((TypeHandler) impl);
           } catch (Exception e) {
             throw new SqlMapException("Error loading class specified by handler field in " + token + ".  Cause: " + e, e);
@@ -205,8 +203,7 @@ public class InlineParameterMapParser {
         handler = typeHandlerRegistry.getUnkownTypeHandler(); //BUG 1012591 - typeHandlerRegistry.getTypeHandler(java.lang.Object.class, jdbcType);
       } else {
         try {
-          javaType = typeAliasRegistry.resolveAlias(javaType);
-          Class javaClass = Resources.classForName(javaType);
+          Class javaClass = typeAliasRegistry.resolveAlias(javaType);
           handler = typeHandlerRegistry.getTypeHandler(javaClass, jdbcType);
         } catch (Exception e) {
           throw new SqlMapException("Error.  Could not set TypeHandler.  Cause: " + e, e);
@@ -224,8 +221,7 @@ public class InlineParameterMapParser {
 
       } else {
         try {
-          javaType = typeAliasRegistry.resolveAlias(javaType);
-          Class javaClass = Resources.classForName(javaType);
+          Class javaClass = typeAliasRegistry.resolveAlias(javaType);
           handler = typeHandlerRegistry.getTypeHandler(javaClass, jdbcType);
         } catch (Exception e) {
           throw new SqlMapException("Error.  Could not set TypeHandler.  Cause: " + e, e);

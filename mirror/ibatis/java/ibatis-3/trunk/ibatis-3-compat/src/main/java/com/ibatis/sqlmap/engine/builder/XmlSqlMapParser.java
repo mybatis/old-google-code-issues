@@ -83,8 +83,7 @@ public class XmlSqlMapParser {
     String type = context.getStringAttribute("type");
     Boolean readOnly = context.getBooleanAttribute("readOnly", true);
     Boolean serialize = context.getBooleanAttribute("serialize", true);
-    type = config.getTypeAliasRegistry().resolveAlias(type);
-    Class clazz = Resources.classForName(type);
+    Class clazz = config.getTypeAliasRegistry().resolveAlias(type);
     cacheBuilder = new CacheBuilder(id);
     cacheBuilder.addDecorator(clazz);
 
@@ -168,10 +167,9 @@ public class XmlSqlMapParser {
       groupByProperties = Arrays.asList(groupBy.split(", "));
     }
 
-    resultClassName = config.getTypeAliasRegistry().resolveAlias(resultClassName);
     Class resultClass;
     try {
-      resultClass = Resources.classForName(resultClassName);
+      resultClass = config.getTypeAliasRegistry().resolveAlias(resultClassName);
     } catch (Exception e) {
       throw new RuntimeException("Error configuring Result.  Could not set ResultClass.  Cause: " + e, e);
     }
@@ -207,11 +205,10 @@ public class XmlSqlMapParser {
 
     Class javaClass = null;
     try {
-      javaType = config.getTypeAliasRegistry().resolveAlias(javaType);
       if (javaType != null && javaType.length() > 0) {
-        javaClass = Resources.classForName(javaType);
+        javaClass = config.getTypeAliasRegistry().resolveAlias(javaType);
       }
-    } catch (ClassNotFoundException e) {
+    } catch (Exception e) {
       throw new RuntimeException("Error setting java type on result discriminator mapping.  Cause: " + e);
     }
 
@@ -226,8 +223,7 @@ public class XmlSqlMapParser {
     }
     try {
       if (callback != null && callback.length() > 0) {
-        callback = config.getTypeAliasRegistry().resolveAlias(callback);
-        typeHandler = (TypeHandler) Resources.classForName(callback).newInstance();
+        typeHandler = (TypeHandler) config.getTypeAliasRegistry().resolveAlias(callback).newInstance();
       }
     } catch (Exception e) {
       throw new RuntimeException("Error occurred during custom type handler configuration.  Cause: " + e, e);
@@ -280,11 +276,10 @@ public class XmlSqlMapParser {
 
     Class javaClass = null;
     try {
-      javaType = config.getTypeAliasRegistry().resolveAlias(javaType);
       if (javaType != null && javaType.length() > 0) {
-        javaClass = Resources.classForName(javaType);
+        javaClass = config.getTypeAliasRegistry().resolveAlias(javaType);
       }
-    } catch (ClassNotFoundException e) {
+    } catch (Exception e) {
       throw new RuntimeException("Error setting java type on result discriminator mapping.  Cause: " + e);
     }
     if (javaClass == null
@@ -307,8 +302,7 @@ public class XmlSqlMapParser {
     }
     try {
       if (callback != null && callback.length() > 0) {
-        callback = config.getTypeAliasRegistry().resolveAlias(callback);
-        Object o = Resources.classForName(callback).newInstance();
+        Object o = config.getTypeAliasRegistry().resolveAlias(callback).newInstance();
         if (o instanceof TypeHandlerCallback) {
           typeHandler = new TypeHandlerCallbackAdapter((TypeHandlerCallback) o);
         }
@@ -383,8 +377,7 @@ public class XmlSqlMapParser {
   public void sqlMapparameterMap(XNode context) throws Exception {
     String id = applyNamespace(context.getStringAttribute("id"));
     String parameterClassName = context.getStringAttribute("class");
-    parameterClassName = config.getTypeAliasRegistry().resolveAlias(parameterClassName);
-    Class parameterClass = Resources.classForName(parameterClassName);
+    Class parameterClass = config.getTypeAliasRegistry().resolveAlias(parameterClassName);
     parameterMappingList = new ArrayList<ParameterMapping>();
     parameterMapBuilder = new ParameterMap.Builder(config, id, parameterClass, parameterMappingList);
   }
@@ -404,13 +397,12 @@ public class XmlSqlMapParser {
     String callback = context.getStringAttribute("typeHandler");
     String numericScaleProp = context.getStringAttribute("numericScale");
 
-    javaType = config.getTypeAliasRegistry().resolveAlias(javaType);
     Class javaClass = null;
     try {
       if (javaType != null && javaType.length() > 0) {
-        javaClass = Resources.classForName(javaType);
+        javaClass = config.getTypeAliasRegistry().resolveAlias(javaType);
       }
-    } catch (ClassNotFoundException e) {
+    } catch (Exception e) {
       throw new RuntimeException("Error setting javaType on parameter mapping.  Cause: " + e);
     }
 
@@ -419,13 +411,12 @@ public class XmlSqlMapParser {
       jdbcTypeEnum = JdbcType.valueOf(jdbcType);
     }
 
-    callback = config.getTypeAliasRegistry().resolveAlias(callback);
     TypeHandler typeHandler = null;
     if (javaClass != null) {
       typeHandler = config.getTypeHandlerRegistry().getTypeHandler(javaClass, jdbcTypeEnum);
     }
     if (callback != null) {
-      Object o = Resources.classForName(callback).newInstance();
+      Object o = config.getTypeAliasRegistry().resolveAlias(callback).newInstance();
       if (o instanceof TypeHandlerCallback) {
         typeHandler = new TypeHandlerCallbackAdapter((TypeHandlerCallback) o);
       }

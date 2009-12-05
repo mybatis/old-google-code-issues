@@ -151,12 +151,11 @@ public class XmlSqlStatementParser {
   private Class resolveClass(String resultClassName) {
     try {
       if (resultClassName != null) {
-        String name = configuration.getTypeAliasRegistry().resolveAlias(resultClassName);
-        return Resources.classForName(name);
+        return configuration.getTypeAliasRegistry().resolveAlias(resultClassName);
       } else {
         return null;
       }
-    } catch (ClassNotFoundException e) {
+    } catch (Exception e) {
       throw new SqlMapException("Error.  Could not initialize class.  Cause: " + e, e);
     }
   }
@@ -208,8 +207,7 @@ public class XmlSqlStatementParser {
     final String keyStatementId = SqlMapSessionImpl.selectKeyIdFor(parentId);
     TypeHandler typeHandler = configuration.getTypeHandlerRegistry().getUnkownTypeHandler();
     if (resultClassName != null) {
-      resultClassName = configuration.getTypeAliasRegistry().resolveAlias(resultClassName);
-      final Class resultClass = Resources.classForName(resultClassName);
+      final Class resultClass = configuration.getTypeAliasRegistry().resolveAlias(resultClassName);
       typeHandler = configuration.getTypeHandlerRegistry().getTypeHandler(resultClass);
     }
 
