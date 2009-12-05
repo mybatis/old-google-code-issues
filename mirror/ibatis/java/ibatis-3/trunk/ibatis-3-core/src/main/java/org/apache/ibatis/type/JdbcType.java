@@ -1,6 +1,7 @@
 package org.apache.ibatis.type;
 
 import java.sql.Types;
+import java.util.*;
 
 public enum JdbcType {
 
@@ -35,9 +36,20 @@ public enum JdbcType {
   NCLOB(2011);
 
   public final int TYPE_CODE;
+  private static Map<Integer,JdbcType> codeLookup = new HashMap<Integer,JdbcType>();
+
+  static {
+    for (JdbcType type : JdbcType.values()) {
+      codeLookup.put(type.TYPE_CODE, type);
+    }
+  }
 
   JdbcType(int code) {
     this.TYPE_CODE = code;
+  }
+
+  static JdbcType forCode(int code)  {
+    return codeLookup.get(code);
   }
 
 }
