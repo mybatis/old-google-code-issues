@@ -300,14 +300,38 @@ public class MapperBuilderAssistant extends BaseBuilder {
     Class javaTypeClass = resolveResultJavaType(resultType, property, javaType);
     TypeHandler typeHandlerInstance = (TypeHandler) resolveInstance(typeHandler);
 
+    List<ResultMapping> composites = parseCompositeColumnName(column);
+    if (composites.size() > 0) {
+      ResultMapping first = composites.get(0);
+      column = first.getColumn();
+    }
+
     ResultMapping.Builder builder = new ResultMapping.Builder(configuration, property, column, javaTypeClass);
     builder.jdbcType(jdbcType);
     builder.nestedQueryId(applyCurrentNamespace(nestedSelect));
     builder.nestedResultMapId(applyCurrentNamespace(nestedResultMap));
     builder.typeHandler(typeHandlerInstance);
     builder.flags(flags == null ? new ArrayList<ResultFlag>() : flags);
-
+    builder.composites(composites);
+    
     return builder.build();
+  }
+
+  private List<ResultMapping> parseCompositeColumnName(String columnName) {
+    List<ResultMapping> composites = new ArrayList<ResultMapping>();
+    if (columnName != null) {
+      if (columnName.indexOf('=') > -1
+          || columnName.indexOf(',') > -1) {
+        StringTokenizer parser = new StringTokenizer(columnName, "{}=, ", false);
+        while (parser.hasMoreTokens()) {
+          String property = parser.nextToken();
+          String column = parser.nextToken();
+          ResultMapping.Builder complexBuilder = new ResultMapping.Builder(configuration, property, column, configuration.getTypeHandlerRegistry().getUnkownTypeHandler());
+          composites.add(complexBuilder.build());
+        }
+      }
+    }
+    return composites;
   }
 
   private Class resolveResultJavaType(Class resultType, String property, Class javaType) {
