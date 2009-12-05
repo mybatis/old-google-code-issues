@@ -22,7 +22,7 @@
 
   <resultMap id="selectImmutableAuthor" type="domain.blog.ImmutableAuthor">
     <constructor>
-      <idArg column="id" javaType="int"/>
+      <idArg column="id" javaType="_int"/>
       <arg column="username" javaType="string"/>
       <arg column="password" javaType="string"/>
       <arg column="email" javaType="string"/>

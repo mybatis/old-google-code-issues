@@ -70,11 +70,9 @@ public class XMLMapperBuilder extends BaseBuilder {
   private void cacheElement(XNode context) throws Exception {
     if (context != null) {
       String type = context.getStringAttribute("type", "PERPETUAL");
-      type = typeAliasRegistry.resolveAlias(type);
-      Class typeClass = Resources.classForName(type);
+      Class typeClass = typeAliasRegistry.resolveAlias(type);
       String eviction = context.getStringAttribute("eviction", "LRU");
-      eviction = typeAliasRegistry.resolveAlias(eviction);
-      Class evictionClass = Resources.classForName(eviction);
+      Class evictionClass = typeAliasRegistry.resolveAlias(eviction);
       Long flushInterval = context.getLongAttribute("flushInterval");
       Integer size = context.getIntAttribute("size");
       boolean readOnly = context.getBooleanAttribute("readOnly", false);

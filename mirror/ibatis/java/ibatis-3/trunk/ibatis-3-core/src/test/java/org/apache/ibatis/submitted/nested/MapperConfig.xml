@@ -16,7 +16,7 @@
       </transactionManager>
       <dataSource type="UNPOOLED">
         <property name="driver" value="org.hsqldb.jdbcDriver"/>
-        <property name="url" value="jdbc:hsqldb:mem:cname"/>
+        <property name="url" value="jdbc:hsqldb:mem:nested"/>
         <property name="username" value="sa"/>
       </dataSource>
     </environment>
