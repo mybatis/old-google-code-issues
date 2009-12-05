@@ -27,6 +27,12 @@
         WHERE id = #{id,jdbcType=INTEGER}
     </select>
 
+    <select id="selectByStringId" resultMap="personMap" parameterType="String">
+        SELECT <include refid="columns"/>
+        FROM Person
+        WHERE id = ${value}
+    </select>
+
     <insert id="insertPerson">
       INSERT INTO person (id, firstName, lastName, parent)
       VALUES (#{id}, #{firstName}, #{lastName}, null);

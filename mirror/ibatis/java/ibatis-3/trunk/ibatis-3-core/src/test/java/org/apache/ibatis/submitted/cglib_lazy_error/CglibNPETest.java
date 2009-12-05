@@ -122,4 +122,17 @@ public class CglibNPETest {
     }
   }
 
+  @Test
+  public void testSelectWithStringSQLInjection() {
+    SqlSession sqlSession = sqlSessionFactory.openSession();
+    try {
+      PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
+      Person selected1 = personMapper.selectByStringId("1");
+      Assert.assertEquals(1,selected1.getId());
+
+    } finally {
+      sqlSession.close();
+    }
+  }
+
 }
