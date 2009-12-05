@@ -28,12 +28,14 @@ public class MapperAnnotationBuilder {
   private Configuration configuration;
   private MapperBuilderAssistant assistant;
   private Class type;
+  private HashMap sqlFragments;
 
   public MapperAnnotationBuilder(Configuration configuration, Class type) {
     String resource = type.getName().replace('.', '/') + ".java (best guess)";
     this.assistant = new MapperBuilderAssistant(configuration, resource);
     this.configuration = configuration;
     this.type = type;
+    this.sqlFragments = new HashMap();    
   }
 
   public void parse() {
@@ -61,7 +63,7 @@ public class MapperAnnotationBuilder {
       // ignore, resource is not required
     }
     if (xmlReader != null) {
-      XMLMapperBuilder xmlParser = new XMLMapperBuilder(xmlReader, assistant.getConfiguration(), xmlResource, new HashMap(), type.getName());
+      XMLMapperBuilder xmlParser = new XMLMapperBuilder(xmlReader, assistant.getConfiguration(), xmlResource, sqlFragments, type.getName());
       xmlParser.parse();
     }
   }
