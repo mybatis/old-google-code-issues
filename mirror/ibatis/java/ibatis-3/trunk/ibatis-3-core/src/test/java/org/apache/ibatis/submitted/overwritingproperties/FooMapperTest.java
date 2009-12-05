@@ -41,23 +41,29 @@ public class FooMapperTest {
   public void testOverwriteWithDefault() {
     final FooMapper mapper = session.getMapper(FooMapper.class);
     final Bar bar = new Bar(2L);
-    final Foo foo = new Foo(1L, bar, 3, 4);
-    mapper.insertFoo(foo);
-    session.commit();
-    final Foo read = mapper.selectFoo();
+    final Foo inserted = new Foo(1L, bar, 3, 4);
+    mapper.insertFoo(inserted);
+
+    final Foo selected = mapper.selectFoo();
     
     // field1 is explicitly mapped properly
-    Assert.assertEquals(foo.getField1(), read.getField1());
-
-    // field4 is explicitly remapped to field3 in the resultmap
-    Assert.assertEquals(foo.getField4(), read.getField3());
+    // <result property="field1" column="field1" jdbcType="INTEGER"/>
+    Assert.assertEquals(inserted.getField1(), selected.getField1());
 
     // field4 is not mapped in the result map
-    Assert.assertEquals(null, read.getField4() );
+    // <result property="field4" column="field3" jdbcType="INTEGER"/>
+    Assert.assertEquals(inserted.getField3(), selected.getField4() );
+
+    // field4 is explicitly remapped to field3 in the resultmap
+    // <result property="field3" column="field4" jdbcType="INTEGER"/>
+    Assert.assertEquals(inserted.getField4(), selected.getField3());
 
     // is automapped from the only column that matches... which is Field1
     // probably not the intention, but it's working correctly given the code
-    Assert.assertEquals(1, read.getField2().getField1());
+    // <association property="field2" javaType="Bar">
+    //  <result property="field1" column="bar_field1" jdbcType="INTEGER"/>
+    // </association>
+    Assert.assertEquals(inserted.getField2().getField1(), selected.getField2().getField1());
   }
 
   @AfterClass

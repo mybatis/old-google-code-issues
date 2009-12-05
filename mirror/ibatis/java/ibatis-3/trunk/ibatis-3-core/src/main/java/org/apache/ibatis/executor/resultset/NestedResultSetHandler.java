@@ -99,8 +99,8 @@ public class NestedResultSetHandler extends FastResultSetHandler {
         final MetaObject metaObject = MetaObject.forObject(resultObject);
         loadMappedAndUnmappedColumnNames(rs, resultMap, mappedColumnNames, unmappedColumnNames);
         boolean foundValues = resultMap.getConstructorResultMappings().size() > 0;
-        foundValues = applyPropertyMappings(rs, resultMap, mappedColumnNames, metaObject, lazyLoader) || foundValues;
         foundValues = applyAutomaticMappings(rs, unmappedColumnNames, metaObject) || foundValues;
+        foundValues = applyPropertyMappings(rs, resultMap, mappedColumnNames, metaObject, lazyLoader) || foundValues;
         foundValues = applyNestedResultMappings(rs, resultMap, metaObject) || foundValues;
         resultObject = foundValues ? resultObject : null;
       }

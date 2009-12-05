@@ -4,7 +4,7 @@
 
   <resultMap type="Foo" id="fooResult">
     <result property="field1" column="field1" jdbcType="INTEGER"/>
-    <!--<result property="field4" column="field3" jdbcType="INTEGER"/>-->
+    <result property="field4" column="field3" jdbcType="INTEGER"/>
     <result property="field3" column="field4" jdbcType="INTEGER"/>
     <association property="field2" javaType="Bar">
       <result property="field1" column="bar_field1" jdbcType="INTEGER"/>
@@ -23,8 +23,8 @@
     (
     #{field1,jdbcType=INTEGER},
     #{field2.field1,jdbcType=INTEGER},
-    #{field4,jdbcType=INTEGER},
-    #{field3,jdbcType=INTEGER}
+    #{field3,jdbcType=INTEGER},
+    #{field4,jdbcType=INTEGER}
     )
   </insert>
 
