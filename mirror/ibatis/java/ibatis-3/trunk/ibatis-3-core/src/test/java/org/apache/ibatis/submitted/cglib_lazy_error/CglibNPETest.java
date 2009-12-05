@@ -96,4 +96,30 @@ public class CglibNPETest {
         Assert.assertNotNull("Grandparent must not be null", person.getParent().getParent());
         Assert.assertEquals("Ancestor must be John Smith sr.", expectedAncestor, person.getAncestor());
     }
+
+  @Test
+  public void testInsertBetweenTwoSelects() {
+    SqlSession sqlSession = sqlSessionFactory.openSession();
+    try {
+      PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
+      Person selected1 = personMapper.selectById(1);
+      Person selected2 = personMapper.selectById(2);
+      Person selected3 = personMapper.selectById(3);
+      selected1.setId(4L);
+      int rows = personMapper.insertPerson(selected1);
+      Assert.assertEquals(1,rows);
+      selected1 = personMapper.selectById(1);
+      selected2 = personMapper.selectById(2);
+      selected3 = personMapper.selectById(3);
+      Person selected4 = personMapper.selectById(4);
+      Assert.assertEquals(1,selected1.getId());
+      Assert.assertEquals(2,selected2.getId());
+      Assert.assertEquals(3,selected3.getId());
+      Assert.assertEquals(4,selected4.getId());
+
+    } finally {
+      sqlSession.close();
+    }
+  }
+
 }

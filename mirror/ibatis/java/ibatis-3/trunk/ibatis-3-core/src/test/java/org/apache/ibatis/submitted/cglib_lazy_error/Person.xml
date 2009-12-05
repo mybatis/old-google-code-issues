@@ -26,5 +26,10 @@
         FROM Person
         WHERE id = #{id,jdbcType=INTEGER}
     </select>
+
+    <insert id="insertPerson">
+      INSERT INTO person (id, firstName, lastName, parent)
+      VALUES (#{id}, #{firstName}, #{lastName}, null);
+    </insert>
     
 </mapper>
