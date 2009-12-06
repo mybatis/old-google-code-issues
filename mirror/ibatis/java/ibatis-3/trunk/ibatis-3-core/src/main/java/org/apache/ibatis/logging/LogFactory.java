@@ -11,6 +11,11 @@ public class LogFactory {
   static {
     tryImplementation(new Runnable() {
       public void run() {
+        useSlf4jLogging();
+      }
+    });
+    tryImplementation(new Runnable() {
+      public void run() {
         useCommonsLogging();
       }
     });
@@ -37,6 +42,10 @@ public class LogFactory {
     } catch (Throwable t) {
       throw new LogException("Error creating logger for class " + aClass + ".  Cause: " + t, t);
     }
+  }
+
+  public static synchronized void useSlf4jLogging() {
+    setImplementation("org.slf4j.LoggerFactory", "org.apache.ibatis.logging.slf4j.Slf4jImpl");
   }
 
   public static synchronized void useCommonsLogging() {
