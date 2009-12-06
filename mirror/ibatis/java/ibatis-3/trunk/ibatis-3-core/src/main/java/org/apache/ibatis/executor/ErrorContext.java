@@ -5,6 +5,7 @@ public class ErrorContext {
   private static String NEWLINE; // Can't be final due to a weird Java compiler issue.
   private static final ThreadLocal<ErrorContext> LOCAL = new ThreadLocal<ErrorContext>();
 
+  private ErrorContext stored;
   private String resource;
   private String activity;
   private String object;
@@ -30,6 +31,20 @@ public class ErrorContext {
       LOCAL.set(context);
     }
     return context;
+  }
+
+  public ErrorContext store() {
+    stored = this;
+    LOCAL.set(new ErrorContext());
+    return LOCAL.get();
+  }
+
+  public ErrorContext recall() {
+    if (stored != null) {
+      LOCAL.set(stored);
+      stored = null;
+    }
+    return LOCAL.get();
   }
 
   public ErrorContext resource(String resource) {
