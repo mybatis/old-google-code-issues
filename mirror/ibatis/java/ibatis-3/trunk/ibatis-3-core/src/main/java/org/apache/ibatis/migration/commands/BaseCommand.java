@@ -211,7 +211,7 @@ public abstract class BaseCommand implements Command {
   }
 
   protected File driverFile(String fileName) {
-    return new File(driverPath.getAbsolutePath() + File.separator + fileName);
+    return new File(getCustomDriverPath().getAbsolutePath() + File.separator + fileName);
   }
 
   protected File environmentFile() {
@@ -228,9 +228,10 @@ public abstract class BaseCommand implements Command {
 
   private void lazyInitializeDrivers() {
     try {
-      if (driverClassLoader == null && driverPath.exists()) {
+      File localDriverPath = getCustomDriverPath();
+      if (driverClassLoader == null && localDriverPath.exists()) {
         List<URL> urlList = new ArrayList<URL>();
-        for (File file : driverPath.listFiles()) {
+        for (File file : localDriverPath.listFiles()) {
           String filename = file.getCanonicalPath();
           if (!filename.startsWith("/")) {
             filename = "/" + filename;
@@ -271,6 +272,15 @@ public abstract class BaseCommand implements Command {
 
   protected String generateAppliedTimeStampAsString() {
     return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.sql.Date(System.currentTimeMillis()));
+  }
+
+  private File getCustomDriverPath() {
+    String customDriverPath = environmentProperties().getProperty("driver_path");
+    if (customDriverPath != null && customDriverPath.length() > 0) {
+      return new File(customDriverPath);
+    } else {
+      return driverPath;
+    }
   }
 
   private File subdirectory(File base, String sub) {
