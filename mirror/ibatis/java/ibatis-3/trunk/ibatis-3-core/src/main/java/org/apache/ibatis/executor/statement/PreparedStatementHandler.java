@@ -1,6 +1,6 @@
 package org.apache.ibatis.executor.statement;
 
-import org.apache.ibatis.executor.Executor;
+import org.apache.ibatis.executor.*;
 import org.apache.ibatis.executor.keygen.Jdbc3KeyGenerator;
 import org.apache.ibatis.executor.keygen.KeyGenerator;
 import org.apache.ibatis.mapping.MappedStatement;
@@ -54,7 +54,9 @@ public class PreparedStatementHandler extends BaseStatementHandler {
   public void parameterize(Statement statement)
       throws SQLException {
     KeyGenerator keyGenerator = mappedStatement.getKeyGenerator();
+    ErrorContext.instance().store();
     keyGenerator.processBefore(executor, mappedStatement, statement, boundSql.getParameterObject());
+    ErrorContext.instance().recall();
     rebindGeneratedKey();
     parameterHandler.setParameters((PreparedStatement) statement);
   }
