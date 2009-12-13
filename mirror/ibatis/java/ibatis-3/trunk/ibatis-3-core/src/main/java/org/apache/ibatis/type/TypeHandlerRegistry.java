@@ -55,7 +55,7 @@ public class TypeHandlerRegistry {
     register(String.class, new StringTypeHandler());
     register(String.class, JdbcType.CHAR, new StringTypeHandler());
     register(String.class, JdbcType.CLOB, new ClobTypeHandler());
-    register(String.class, JdbcType.VARCHAR, new ClobTypeHandler());
+    register(String.class, JdbcType.VARCHAR, new StringTypeHandler());
     register(String.class, JdbcType.LONGVARCHAR, new ClobTypeHandler());
     register(String.class, JdbcType.NVARCHAR, new NStringTypeHandler());
     register(String.class, JdbcType.NCHAR, new NStringTypeHandler());
