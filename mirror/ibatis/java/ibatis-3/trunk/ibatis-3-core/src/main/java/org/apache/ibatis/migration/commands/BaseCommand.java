@@ -12,11 +12,14 @@ import java.io.*;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.sql.SQLException;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.Date;
 
 public abstract class BaseCommand implements Command {
+
+  private static final String DATE_FORMAT = "yyyyMMddHHmmss";
 
   protected static final PrintStream out = System.out;
 
@@ -119,7 +122,21 @@ public abstract class BaseCommand implements Command {
     } catch (InterruptedException e) {
       //ignore
     }
-    return new SimpleDateFormat("yyyyMMddHHmmss").format(new java.sql.Date(System.currentTimeMillis()));
+    String timezone = environmentProperties().getProperty("time_zone");
+    if (timezone == null) {
+      timezone = "GMT+0:00";
+    }
+    final SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+    final Date now = nowInTimeZone(timezone);
+    return dateFormat.format(now);
+  }
+
+  protected Date nowInTimeZone(String toTimezone) {
+    final Calendar c = new GregorianCalendar(TimeZone.getTimeZone(toTimezone), Locale.US);
+    c.setTimeInMillis(new GregorianCalendar().getTimeInMillis());
+    return new Date(
+        c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE),
+        c.get(Calendar.HOUR), c.get(Calendar.MINUTE), c.get(Calendar.SECOND));
   }
 
   protected void copyResourceTo(String resource, File toFile) {
