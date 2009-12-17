@@ -6,6 +6,10 @@ import org.apache.ibatis.builder.BuilderException;
 import org.apache.ibatis.builder.MapperBuilderAssistant;
 import org.apache.ibatis.builder.SqlSourceBuilder;
 import org.apache.ibatis.builder.xml.XMLMapperBuilder;
+import org.apache.ibatis.builder.xml.dynamic.DynamicSqlSource;
+import org.apache.ibatis.builder.xml.dynamic.MixedSqlNode;
+import org.apache.ibatis.builder.xml.dynamic.SqlNode;
+import org.apache.ibatis.builder.xml.dynamic.TextSqlNode;
 import org.apache.ibatis.executor.keygen.Jdbc3KeyGenerator;
 import org.apache.ibatis.executor.keygen.KeyGenerator;
 import org.apache.ibatis.executor.keygen.NoKeyGenerator;
@@ -248,13 +252,15 @@ public class MapperAnnotationBuilder {
         }
         Annotation sqlAnnotation = method.getAnnotation(sqlAnnotationType);
         final String[] strings = (String[]) sqlAnnotation.getClass().getMethod("value").invoke(sqlAnnotation);
-        StringBuilder sql = new StringBuilder();
+        final StringBuilder sql = new StringBuilder();
         for (String fragment : strings) {
           sql.append(fragment);
           sql.append(" ");
         }
-        SqlSourceBuilder parser = new SqlSourceBuilder(assistant.getConfiguration());
-        return parser.parse(sql.toString(), getParameterType(method));
+        ArrayList<SqlNode> contents = new ArrayList<SqlNode>();
+        contents.add(new TextSqlNode(sql.toString()));
+        MixedSqlNode rootSqlNode = new MixedSqlNode(contents);
+        return new DynamicSqlSource(configuration, rootSqlNode);
       } else if (sqlProviderAnnotationType != null) {
         Annotation sqlProviderAnnotation = method.getAnnotation(sqlProviderAnnotationType);
         return new ProviderSqlSource(assistant.getConfiguration(), sqlProviderAnnotation);
