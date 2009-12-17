@@ -31,15 +31,16 @@ public class MapperRegistry {
   }
 
   public void addMapper(Class type) {
-    if (!type.isInterface())
-      throw new BindingException("Only interfaces can be configured by the MapperFactory.  Type " + type + " is not an interface.");
-    if (knownMappers.contains(type))
-      throw new BindingException("Type " + type + " is already known to the MapperRegistry.");
-    knownMappers.add(type);
-    // It's important that the type is added before the parser is run
-    // otherwise the binding may automatically be attempted by the
-    // mapper parser.  If the type is already known, it won't try.
-    MapperAnnotationBuilder parser = new MapperAnnotationBuilder(config, type);
-    parser.parse();
+    if (type.isInterface()) {
+      if (knownMappers.contains(type)) {
+        throw new BindingException("Type " + type + " is already known to the MapperRegistry.");
+      }
+      knownMappers.add(type);
+      // It's important that the type is added before the parser is run
+      // otherwise the binding may automatically be attempted by the
+      // mapper parser.  If the type is already known, it won't try.
+      MapperAnnotationBuilder parser = new MapperAnnotationBuilder(config, type);
+      parser.parse();
+    }
   }
 }
