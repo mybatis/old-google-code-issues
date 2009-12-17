@@ -344,7 +344,8 @@ public class MapperBuilderAssistant extends BaseBuilder {
       }
     }
     if (javaType == null) {
-      throw new BuilderException("Could not determine javaType for result property " + property + " using javaType " + javaType);
+      //throw new BuilderException("Could not determine javaType for result property " + property + " using javaType " + javaType);
+      javaType = Object.class;
     }
     return javaType;
   }
@@ -355,7 +356,8 @@ public class MapperBuilderAssistant extends BaseBuilder {
       javaType = metaResultType.getGetterType(property);
     }
     if (javaType == null) {
-      throw new BuilderException("Could not determine javaType for result.  Specify property or javaType attribute.");
+      //throw new BuilderException("Could not determine javaType for result.  Specify property or javaType attribute.");
+      javaType = Object.class;
     }
     return javaType;
   }
