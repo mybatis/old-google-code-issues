@@ -30,12 +30,15 @@ public class MapperMethod {
   private List<String> paramNames;
   private List<Integer> paramPositions;
 
+  private boolean hasNamedParameters;
+
   public MapperMethod(Method method, SqlSession sqlSession) {
     paramNames = new ArrayList<String>();
     paramPositions = new ArrayList<Integer>();
     this.sqlSession = sqlSession;
     this.method = method;
     this.config = sqlSession.getConfiguration();
+    this.hasNamedParameters = false;
     setupFields();
     setupMethodSignature();
     setupCommandType();
@@ -83,7 +86,7 @@ public class MapperMethod {
     final int paramCount = paramPositions.size();
     if (args == null || paramCount == 0) {
       return null;
-    } else if (paramPositions.size() == 1) {
+    } else if (!hasNamedParameters && paramCount == 1) {
       return args[paramPositions.get(0)];
     } else {
       Map param = new HashMap();
@@ -121,6 +124,7 @@ public class MapperMethod {
     Object[] paramAnnos = method.getParameterAnnotations()[i];
     for (int j = 0; j < paramAnnos.length; j++) {
       if (paramAnnos[j] instanceof Param) {
+        hasNamedParameters = true;
         paramName = ((Param) paramAnnos[j]).value();
       }
     }
