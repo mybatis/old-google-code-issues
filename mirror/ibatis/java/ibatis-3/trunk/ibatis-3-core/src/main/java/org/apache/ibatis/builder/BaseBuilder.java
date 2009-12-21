@@ -6,7 +6,6 @@ import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.TypeAliasRegistry;
 import org.apache.ibatis.type.TypeHandlerRegistry;
-import org.apache.ibatis.io.Resources;
 
 public abstract class BaseBuilder {
   protected final Configuration configuration;
@@ -47,7 +46,7 @@ public abstract class BaseBuilder {
   protected ResultSetType resolveResultSetType(String alias) {
     if (alias == null) return null;
     try {
-      return ResultSetType.valueOf(resolveAlias(alias).getName());
+      return ResultSetType.valueOf(alias);
     } catch (IllegalArgumentException e) {
       throw new BuilderException("Error resolving ResultSetType. Cause: " + e, e);
     }
@@ -56,7 +55,7 @@ public abstract class BaseBuilder {
   protected ParameterMode resolveParameterMode(String alias) {
     if (alias == null) return null;
     try {
-      return ParameterMode.valueOf(resolveAlias(alias).getName());
+      return ParameterMode.valueOf(alias);
     } catch (IllegalArgumentException e) {
       throw new BuilderException("Error resolving ParameterMode. Cause: " + e, e);
     }
