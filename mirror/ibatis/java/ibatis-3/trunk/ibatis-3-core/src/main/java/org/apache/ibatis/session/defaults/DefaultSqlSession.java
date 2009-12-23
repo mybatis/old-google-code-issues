@@ -3,6 +3,7 @@ package org.apache.ibatis.session.defaults;
 import org.apache.ibatis.exceptions.ExceptionFactory;
 import org.apache.ibatis.exceptions.TooManyResultsException;
 import org.apache.ibatis.executor.Executor;
+import org.apache.ibatis.executor.ErrorContext;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.ResultHandler;
@@ -58,6 +59,8 @@ public class DefaultSqlSession implements SqlSession {
       return executor.query(ms, wrapCollection(parameter), rowBounds, Executor.NO_RESULT_HANDLER);
     } catch (Exception e) {
       throw ExceptionFactory.wrapException("Error querying database.  Cause: " + e, e);
+    } finally {
+      ErrorContext.instance().reset();
     }
   }
 
@@ -71,6 +74,8 @@ public class DefaultSqlSession implements SqlSession {
       executor.query(ms, wrapCollection(parameter), rowBounds, handler);
     } catch (Exception e) {
       throw ExceptionFactory.wrapException("Error querying database.  Cause: " + e, e);
+    } finally {
+      ErrorContext.instance().reset();
     }
   }
 
@@ -93,6 +98,8 @@ public class DefaultSqlSession implements SqlSession {
       return executor.update(ms, wrapCollection(parameter));
     } catch (Exception e) {
       throw ExceptionFactory.wrapException("Error updating database.  Cause: " + e, e);
+    } finally {
+      ErrorContext.instance().reset();
     }
   }
 
@@ -114,6 +121,8 @@ public class DefaultSqlSession implements SqlSession {
       dirty = false;
     } catch (Exception e) {
       throw ExceptionFactory.wrapException("Error committing transaction.  Cause: " + e, e);
+    } finally {
+      ErrorContext.instance().reset();
     }
   }
 
@@ -127,6 +136,8 @@ public class DefaultSqlSession implements SqlSession {
       dirty = false;
     } catch (Exception e) {
       throw ExceptionFactory.wrapException("Error rolling back transaction.  Cause: " + e, e);
+    } finally {
+      ErrorContext.instance().reset();
     }
   }
 
@@ -139,6 +150,8 @@ public class DefaultSqlSession implements SqlSession {
       }
     } catch (Exception e) {
       throw ExceptionFactory.wrapException("Error closing transaction.  Cause: " + e, e);
+    } finally {
+      ErrorContext.instance().reset();
     }
   }
 

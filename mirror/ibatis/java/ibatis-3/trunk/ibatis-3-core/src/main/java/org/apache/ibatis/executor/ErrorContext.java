@@ -84,6 +84,7 @@ public class ErrorContext {
     message = null;
     sql = null;
     cause = null;
+    LOCAL.remove();
     return this;
   }
 

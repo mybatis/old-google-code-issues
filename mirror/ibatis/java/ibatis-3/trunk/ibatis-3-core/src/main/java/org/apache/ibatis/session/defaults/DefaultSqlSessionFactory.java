@@ -2,6 +2,7 @@ package org.apache.ibatis.session.defaults;
 
 import org.apache.ibatis.exceptions.ExceptionFactory;
 import org.apache.ibatis.executor.Executor;
+import org.apache.ibatis.executor.ErrorContext;
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.logging.jdbc.ConnectionLogger;
@@ -51,6 +52,8 @@ public class DefaultSqlSessionFactory implements SqlSessionFactory {
       return new DefaultSqlSession(configuration, executor, autoCommit);
     } catch (SQLException e) {
       throw ExceptionFactory.wrapException("Error opening session.  Cause: " + e, e);
+    } finally {
+      ErrorContext.instance().reset();
     }
   }
 
@@ -90,6 +93,8 @@ public class DefaultSqlSessionFactory implements SqlSessionFactory {
       return new DefaultSqlSession(configuration, executor, autoCommit);
     } catch (Exception e) {
       throw ExceptionFactory.wrapException("Error opening session.  Cause: " + e, e);
+    } finally {
+      ErrorContext.instance().reset();
     }
   }
 

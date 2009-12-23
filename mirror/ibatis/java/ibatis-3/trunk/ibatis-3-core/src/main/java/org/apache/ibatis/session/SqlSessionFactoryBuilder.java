@@ -3,6 +3,7 @@ package org.apache.ibatis.session;
 import org.apache.ibatis.builder.xml.XMLConfigBuilder;
 import org.apache.ibatis.exceptions.ExceptionFactory;
 import org.apache.ibatis.session.defaults.DefaultSqlSessionFactory;
+import org.apache.ibatis.executor.ErrorContext;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -30,6 +31,7 @@ public class SqlSessionFactoryBuilder {
     } catch (Exception e) {
       throw ExceptionFactory.wrapException("Error building SqlSession.", e);
     } finally {
+      ErrorContext.instance().reset();
       try {
         reader.close();
       } catch (IOException e) {
