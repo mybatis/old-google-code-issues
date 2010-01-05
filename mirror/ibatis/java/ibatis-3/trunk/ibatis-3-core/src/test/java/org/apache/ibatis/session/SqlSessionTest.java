@@ -42,7 +42,7 @@ public class SqlSessionTest extends BaseDataTest {
     SqlSession session = sqlMapper.openSession();
     try {
       Integer count = (Integer) session.selectOne("domain.blog.mappers.BlogMapper.selectCountOfPosts");
-      assertEquals(5, count);
+      assertEquals(5, count.intValue());
     } finally {
       session.close();
     }

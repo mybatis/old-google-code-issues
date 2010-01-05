@@ -1,5 +1,12 @@
 package org.apache.ibatis.submitted.substitution_in_annots;
 
+import static org.junit.Assert.assertEquals;
+
+import java.io.PrintWriter;
+import java.io.Reader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+
 import org.apache.ibatis.datasource.unpooled.UnpooledDataSource;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.jdbc.ScriptRunner;
@@ -9,21 +16,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import org.hsqldb.jdbcDriver;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import java.io.PrintWriter;
-import java.io.Reader;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 
 public class SubstitutionInAnnotsTest {
@@ -32,7 +26,7 @@ public class SubstitutionInAnnotsTest {
 
   @BeforeClass
   public static void setUp() throws Exception {
-    DriverManager.registerDriver(new jdbcDriver());
+    Class.forName("org.hsqldb.jdbcDriver");
    	Connection c = DriverManager.getConnection("jdbc:hsqldb:mem:annots", "sa", "");
    	Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/substitution_in_annots/CreateDB.sql");
     ScriptRunner runner = new ScriptRunner(c);
@@ -43,7 +37,7 @@ public class SubstitutionInAnnotsTest {
     reader.close();
 
     Configuration configuration = new Configuration();
-    Environment environment = new Environment("test", new JdbcTransactionFactory(), new UnpooledDataSource(jdbcDriver.class.getName(), "jdbc:hsqldb:mem:annots", null));
+    Environment environment = new Environment("test", new JdbcTransactionFactory(), new UnpooledDataSource("org.hsqldb.jdbcDriver", "jdbc:hsqldb:mem:annots", null));
     configuration.setEnvironment(environment);
     
     configuration.addMapper(SubstitutionInAnnotsMapper.class);
