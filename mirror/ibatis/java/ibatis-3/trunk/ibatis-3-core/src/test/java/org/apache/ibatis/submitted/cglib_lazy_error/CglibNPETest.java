@@ -112,10 +112,10 @@ public class CglibNPETest {
       selected2 = personMapper.selectById(2);
       selected3 = personMapper.selectById(3);
       Person selected4 = personMapper.selectById(4);
-      Assert.assertEquals(1,selected1.getId());
-      Assert.assertEquals(2,selected2.getId());
-      Assert.assertEquals(3,selected3.getId());
-      Assert.assertEquals(4,selected4.getId());
+      Assert.assertEquals(1,selected1.getId().longValue());
+      Assert.assertEquals(2,selected2.getId().longValue());
+      Assert.assertEquals(3,selected3.getId().longValue());
+      Assert.assertEquals(4,selected4.getId().longValue());
 
     } finally {
       sqlSession.close();
@@ -128,7 +128,7 @@ public class CglibNPETest {
     try {
       PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
       Person selected1 = personMapper.selectByStringId("1");
-      Assert.assertEquals(1,selected1.getId());
+      Assert.assertEquals(1,selected1.getId().longValue());
 
     } finally {
       sqlSession.close();
