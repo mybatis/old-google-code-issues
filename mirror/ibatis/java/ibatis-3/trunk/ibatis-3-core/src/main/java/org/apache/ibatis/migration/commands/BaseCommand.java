@@ -134,9 +134,7 @@ public abstract class BaseCommand implements Command {
   protected Date nowInTimeZone(String toTimezone) {
     final Calendar c = new GregorianCalendar(TimeZone.getTimeZone(toTimezone), Locale.US);
     c.setTimeInMillis(new GregorianCalendar().getTimeInMillis());
-    return new Date(
-        c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE),
-        c.get(Calendar.HOUR), c.get(Calendar.MINUTE), c.get(Calendar.SECOND));
+    return c.getTime();
   }
 
   protected void copyResourceTo(String resource, File toFile) {
