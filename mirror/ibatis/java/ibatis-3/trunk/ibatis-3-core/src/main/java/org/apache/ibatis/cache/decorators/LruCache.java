@@ -51,10 +51,6 @@ public class LruCache implements Cache {
 
   }
 
-  public boolean hasKey(Object key) {
-    return delegate.hasKey(key);
-  }
-
   public Object removeObject(Object key) {
     return delegate.removeObject(key);
   }

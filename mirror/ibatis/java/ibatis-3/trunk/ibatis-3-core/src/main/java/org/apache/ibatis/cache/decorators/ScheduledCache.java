@@ -42,14 +42,6 @@ public class ScheduledCache implements Cache {
     }
   }
 
-  public boolean hasKey(Object key) {
-    if (clearWhenStale()) {
-      return false;
-    } else {
-      return delegate.hasKey(key);
-    }
-  }
-
   public Object removeObject(Object key) {
     clearWhenStale();
     return delegate.removeObject(key);

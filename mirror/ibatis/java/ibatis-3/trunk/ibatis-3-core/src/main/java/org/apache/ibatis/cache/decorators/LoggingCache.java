@@ -32,17 +32,14 @@ public class LoggingCache implements Cache {
 
   public Object getObject(Object key) {
     requests++;
-    if (hasKey(key)) {
+    final Object value = delegate.getObject(key);
+    if (value != null) {
       hits++;
     }
     if (log.isDebugEnabled()) {
       log.debug("Cache Hit Ratio [" + getId() + "]: " + getHitRatio());
     }
-    return delegate.getObject(key);
-  }
-
-  public boolean hasKey(Object key) {
-    return delegate.hasKey(key);
+    return value;
   }
 
   public Object removeObject(Object key) {

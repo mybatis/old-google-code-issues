@@ -37,10 +37,6 @@ public class PerpetualCache implements Cache {
     return cache.get(key);
   }
 
-  public boolean hasKey(Object key) {
-    return cache.containsKey(key);
-  }
-
   public Object removeObject(Object key) {
     return cache.remove(key);
   }

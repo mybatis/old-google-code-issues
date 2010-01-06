@@ -32,10 +32,6 @@ public class TransactionalCache implements Cache {
     return delegate.getObject(key);
   }
 
-  public boolean hasKey(Object key) {
-    return delegate.hasKey(key);
-  }
-
   public ReadWriteLock getReadWriteLock() {
     return delegate.getReadWriteLock();
   }

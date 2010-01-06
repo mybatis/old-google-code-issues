@@ -59,10 +59,6 @@ public class WeakCache implements Cache {
     return result;
   }
 
-  public boolean hasKey(Object key) {
-    return delegate.hasKey(key);
-  }
-
   public Object removeObject(Object key) {
     removeGarbageCollectedItems();
     return delegate.removeObject(key);

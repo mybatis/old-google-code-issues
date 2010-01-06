@@ -49,8 +49,9 @@ public class CachingExecutor implements Executor {
         try {
           if (ms.isUseCache()) {
             CacheKey key = createCacheKey(ms, parameterObject, rowBounds);
-            if (cache.hasKey(key)) {
-              return (List) cache.getObject(key);
+            final List cachedList = (List) cache.getObject(key);
+            if (cachedList != null) {
+              return cachedList;
             } else {
               List list = delegate.query(ms, parameterObject, rowBounds, resultHandler);
               tcm.putObject(cache, key, list);

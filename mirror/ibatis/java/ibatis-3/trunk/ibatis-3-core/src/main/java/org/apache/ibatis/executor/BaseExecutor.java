@@ -78,8 +78,9 @@ public abstract class BaseExecutor implements Executor {
     try {
       queryStack++;
       CacheKey key = createCacheKey(ms, parameter, rowBounds);
-      if (localCache.hasKey(key)) {
-        list = (List) localCache.getObject(key);
+      final List cachedList = (List) localCache.getObject(key);
+      if (cachedList != null) {
+        list = cachedList;
       } else {
         localCache.putObject(key, EXECUTION_PLACEHOLDER);
         try {
@@ -134,7 +135,7 @@ public abstract class BaseExecutor implements Executor {
   }
 
   public boolean isCached(MappedStatement ms, CacheKey key) {
-    return localCache.hasKey(key);
+    return localCache.getObject(key) != null;
   }
 
   public void commit(boolean required) throws SQLException {
