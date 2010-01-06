@@ -43,15 +43,6 @@ public class SynchronizedCache implements Cache {
     }
   }
 
-  public boolean hasKey(Object key) {
-    acquireReadLock();
-    try {
-      return delegate.hasKey(key);
-    } finally {
-      releaseReadLock();
-    }
-  }
-
   public Object removeObject(Object key) {
     acquireWriteLock();
     try {

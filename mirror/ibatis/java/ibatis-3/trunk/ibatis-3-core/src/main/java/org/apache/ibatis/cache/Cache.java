@@ -12,8 +12,6 @@ public interface Cache {
 
   Object getObject(Object key);
 
-  boolean hasKey(Object key);
-
   Object removeObject(Object key);
 
   void clear();

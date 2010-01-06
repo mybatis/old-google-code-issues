@@ -41,10 +41,6 @@ public class FifoCache implements Cache {
     return delegate.getObject(key);
   }
 
-  public boolean hasKey(Object key) {
-    return delegate.hasKey(key);
-  }
-
   public Object removeObject(Object key) {
     return delegate.removeObject(key);
   }

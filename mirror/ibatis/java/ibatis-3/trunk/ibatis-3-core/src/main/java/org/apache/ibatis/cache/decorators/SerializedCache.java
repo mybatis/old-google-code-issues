@@ -35,10 +35,6 @@ public class SerializedCache implements Cache {
     return object == null ? null : deserialize((byte[]) object);
   }
 
-  public boolean hasKey(Object key) {
-    return delegate.hasKey(key);
-  }
-
   public Object removeObject(Object key) {
     return delegate.removeObject(key);
   }
