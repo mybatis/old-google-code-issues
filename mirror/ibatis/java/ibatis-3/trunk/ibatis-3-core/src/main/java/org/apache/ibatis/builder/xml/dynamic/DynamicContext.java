@@ -10,6 +10,8 @@ import java.util.Map;
 
 public class DynamicContext {
 
+  public static final String PARAMETER_OBJECT_KEY = "_parameter";
+
   static {
     OgnlRuntime.setPropertyAccessor(ContextMap.class, new ContextAccessor());
   }
@@ -19,16 +21,14 @@ public class DynamicContext {
   private int uniqueNumber = 0;
 
   public DynamicContext(Object parameterObject) {
-    if (parameterObject instanceof Map) {
-      bindings.putAll((Map<String, Object>) parameterObject);
-    } else if (parameterObject != null) {
+    if (parameterObject != null && !(parameterObject instanceof Map)) {
       MetaObject metaObject = MetaObject.forObject(parameterObject);
       String[] names = metaObject.getGetterNames();
       for (String name : names) {
         bindings.put(name, metaObject.getValue(name));
       }
     }
-    bindings.put("_parameter", parameterObject);
+    bindings.put(PARAMETER_OBJECT_KEY, parameterObject);
   }
 
   public Map<String, Object> getBindings() {
@@ -56,10 +56,22 @@ public class DynamicContext {
   }
 
   static class ContextAccessor implements PropertyAccessor {
+
     public Object getProperty(Map context, Object target, Object name)
         throws OgnlException {
       Map map = (Map) target;
-      return map.get(name);
+
+      Object result = map.get(name);
+      if (result != null) {
+        return result;
+      }      
+
+      Object parameterObject = map.get(PARAMETER_OBJECT_KEY);
+      if (parameterObject instanceof Map) {
+    	  return ((Map)parameterObject).get(name);
+      }
+
+      return null;
     }
 
     public void setProperty(Map context, Object target, Object name, Object value)
