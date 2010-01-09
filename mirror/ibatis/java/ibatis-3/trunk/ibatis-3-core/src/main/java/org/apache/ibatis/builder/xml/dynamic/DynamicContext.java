@@ -4,6 +4,7 @@ import org.apache.ibatis.ognl.OgnlException;
 import org.apache.ibatis.ognl.OgnlRuntime;
 import org.apache.ibatis.ognl.PropertyAccessor;
 import org.apache.ibatis.reflection.MetaObject;
+import org.apache.ibatis.session.Configuration;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,9 +21,9 @@ public class DynamicContext {
   private final StringBuilder sqlBuilder = new StringBuilder();
   private int uniqueNumber = 0;
 
-  public DynamicContext(Object parameterObject) {
+  public DynamicContext(Configuration configuration, Object parameterObject) {
     if (parameterObject != null && !(parameterObject instanceof Map)) {
-      MetaObject metaObject = MetaObject.forObject(parameterObject);
+      MetaObject metaObject = configuration.newMetaObject(parameterObject);
       String[] names = metaObject.getGetterNames();
       for (String name : names) {
         bindings.put(name, metaObject.getValue(name));

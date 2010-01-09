@@ -11,6 +11,7 @@ import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.property.PropertyTokenizer;
 import org.apache.ibatis.type.TypeHandler;
 import org.apache.ibatis.type.TypeHandlerRegistry;
+import org.apache.ibatis.session.Configuration;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -23,10 +24,12 @@ public class DefaultParameterHandler implements ParameterHandler {
   private final MappedStatement mappedStatement;
   private final Object parameterObject;
   private BoundSql boundSql;
+  private Configuration configuration;
 
 
   public DefaultParameterHandler(MappedStatement mappedStatement, Object parameterObject, BoundSql boundSql) {
     this.mappedStatement = mappedStatement;
+    this.configuration = mappedStatement.getConfiguration();
     this.typeHandlerRegistry = mappedStatement.getConfiguration().getTypeHandlerRegistry();
     this.parameterObject = parameterObject;
     this.boundSql = boundSql;
@@ -41,7 +44,7 @@ public class DefaultParameterHandler implements ParameterHandler {
     ErrorContext.instance().activity("setting parameters").object(mappedStatement.getParameterMap().getId());
     List<ParameterMapping> parameterMappings = boundSql.getParameterMappings();
     if (parameterMappings != null) {
-      MetaObject metaObject = parameterObject == null ? null : MetaObject.forObject(parameterObject);
+      MetaObject metaObject = parameterObject == null ? null : configuration.newMetaObject(parameterObject);
       for (int i = 0; i < parameterMappings.size(); i++) {
         ParameterMapping parameterMapping = parameterMappings.get(i);
         if (parameterMapping.getMode() != ParameterMode.OUT) {
@@ -58,7 +61,7 @@ public class DefaultParameterHandler implements ParameterHandler {
               && boundSql.hasAdditionalParameter(prop.getName())) {
             value = boundSql.getAdditionalParameter(prop.getName());
             if (value != null) {
-              value = MetaObject.forObject(value).getValue(propertyName.substring(prop.getName().length()));
+              value = configuration.newMetaObject(value).getValue(propertyName.substring(prop.getName().length()));
             }
           } else {
             value = metaObject == null ? null : metaObject.getValue(propertyName);

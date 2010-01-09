@@ -55,7 +55,7 @@ public class FastResultSetHandler implements ResultSetHandler {
 
   public void handleOutputParameters(CallableStatement cs) throws SQLException {
     final Object parameterObject = parameterHandler.getParameterObject();
-    final MetaObject metaParam = MetaObject.forObject(parameterObject);
+    final MetaObject metaParam = configuration.newMetaObject(parameterObject);
     final List<ParameterMapping> parameterMappings = boundSql.getParameterMappings();
     for (int i = 0; i < parameterMappings.size(); i++) {
       final ParameterMapping parameterMapping = parameterMappings.get(i);
@@ -171,7 +171,7 @@ public class FastResultSetHandler implements ResultSetHandler {
     final ResultLoaderRegistry lazyLoader = instantiateResultLoaderRegistry();
     Object resultObject = createResultObject(rs, resultMap, lazyLoader);
     if (resultObject != null && !typeHandlerRegistry.hasTypeHandler(resultMap.getType())) {
-      final MetaObject metaObject = MetaObject.forObject(resultObject);
+      final MetaObject metaObject = configuration.newMetaObject(resultObject);
       loadMappedAndUnmappedColumnNames(rs, resultMap, mappedColumnNames, unmappedColumnNames);
       boolean foundValues = resultMap.getConstructorResultMappings().size() > 0;
       foundValues = applyAutomaticMappings(rs, unmappedColumnNames, metaObject) || foundValues;
@@ -362,7 +362,7 @@ public class FastResultSetHandler implements ResultSetHandler {
 
   protected Object prepareCompositeKeyParameter(ResultSet rs, ResultMapping resultMapping, Class parameterType) throws SQLException {
     final Object parameterObject = instantiateParameterObject(parameterType);
-    final MetaObject metaObject = MetaObject.forObject(parameterObject);
+    final MetaObject metaObject = configuration.newMetaObject(parameterObject);
     for (ResultMapping innerResultMapping : resultMapping.getComposites()) {
       final Class propType = metaObject.getSetterType(innerResultMapping.getProperty());
       final TypeHandler typeHandler = typeHandlerRegistry.getTypeHandler(propType);

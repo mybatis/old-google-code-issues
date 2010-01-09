@@ -15,8 +15,8 @@ import java.util.List;
 
 public class SimpleExecutor extends BaseExecutor {
 
-  public SimpleExecutor(Transaction transaction) {
-    super(transaction);
+  public SimpleExecutor(Configuration configuration, Transaction transaction) {
+    super(configuration, transaction);
   }
 
   public int doUpdate(MappedStatement ms, Object parameter)

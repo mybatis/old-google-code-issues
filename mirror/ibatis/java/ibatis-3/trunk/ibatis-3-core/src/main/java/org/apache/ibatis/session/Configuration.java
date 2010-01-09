@@ -24,6 +24,9 @@ import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.plugin.InterceptorChain;
 import org.apache.ibatis.reflection.factory.DefaultObjectFactory;
 import org.apache.ibatis.reflection.factory.ObjectFactory;
+import org.apache.ibatis.reflection.wrapper.ObjectWrapperFactory;
+import org.apache.ibatis.reflection.wrapper.DefaultObjectWrapperFactory;
+import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.transaction.Transaction;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import org.apache.ibatis.transaction.managed.ManagedTransactionFactory;
@@ -46,6 +49,7 @@ public class Configuration {
 
   private Properties variables = new Properties();
   private ObjectFactory objectFactory = new DefaultObjectFactory();
+  private ObjectWrapperFactory objectWrapperFactory = new DefaultObjectWrapperFactory();
   private MapperRegistry mapperRegistry = new MapperRegistry(this);
 
   private final InterceptorChain interceptorChain = new InterceptorChain();
@@ -173,6 +177,18 @@ public class Configuration {
   public void setObjectFactory(ObjectFactory objectFactory) {
     this.objectFactory = objectFactory;
   }
+  
+  public ObjectWrapperFactory getObjectWrapperFactory() {
+    return objectWrapperFactory;
+  }
+
+  public void setObjectWrapperFactory(ObjectWrapperFactory objectWrapperFactory) {
+    this.objectWrapperFactory = objectWrapperFactory;
+  }
+
+  public MetaObject newMetaObject(Object object) {
+    return MetaObject.forObject(object,objectFactory,objectWrapperFactory);
+  }
 
   public ParameterHandler newParameterHandler(MappedStatement mappedStatement, Object parameterObject, BoundSql boundSql) {
     ParameterHandler parameterHandler = new DefaultParameterHandler(mappedStatement, parameterObject, boundSql);
@@ -203,11 +219,11 @@ public class Configuration {
     executorType = executorType == null ? ExecutorType.SIMPLE : executorType;
     Executor executor;
     if (ExecutorType.BATCH == executorType) {
-      executor = new BatchExecutor(transaction);
+      executor = new BatchExecutor(this,transaction);
     } else if (ExecutorType.REUSE == executorType) {
-      executor = new ReuseExecutor(transaction);
+      executor = new ReuseExecutor(this,transaction);
     } else {
-      executor = new SimpleExecutor(transaction);
+      executor = new SimpleExecutor(this,transaction);
     }
     if (cacheEnabled) {
       executor = new CachingExecutor(executor);

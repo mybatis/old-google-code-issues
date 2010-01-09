@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 public class BaseExecutorTest extends BaseDataTest {
-  private final Configuration config;
+  protected final Configuration config;
 
   public BaseExecutorTest() {
     config = new Configuration();
@@ -430,7 +430,7 @@ public class BaseExecutorTest extends BaseDataTest {
   }
 
   protected Executor createExecutor(Transaction transaction) {
-    return new SimpleExecutor(transaction);
+    return new SimpleExecutor(config,transaction);
   }
 
 }

@@ -15,6 +15,6 @@ public class ReuseExecutorTest extends BaseExecutorTest {
   }
 
   protected Executor createExecutor(Transaction transaction) {
-    return new ReuseExecutor(transaction);
+    return new ReuseExecutor(config,transaction);
   }
 }

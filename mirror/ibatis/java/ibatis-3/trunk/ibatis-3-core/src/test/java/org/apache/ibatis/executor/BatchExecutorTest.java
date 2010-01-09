@@ -10,6 +10,6 @@ public class BatchExecutorTest extends BaseExecutorTest {
   }
 
   protected Executor createExecutor(Transaction transaction) {
-    return new BatchExecutor(transaction);
+    return new BatchExecutor(config,transaction);
   }
 }

@@ -25,8 +25,8 @@ public class BatchExecutor extends BaseExecutor {
   private final List<BatchResult> batchResultList = new ArrayList<BatchResult>();
   private String currentSql;
 
-  public BatchExecutor(Transaction transaction) {
-    super(transaction);
+  public BatchExecutor(Configuration configuration, Transaction transaction) {
+    super(configuration, transaction);
   }
 
   public int doUpdate(MappedStatement ms, Object parameterObject)

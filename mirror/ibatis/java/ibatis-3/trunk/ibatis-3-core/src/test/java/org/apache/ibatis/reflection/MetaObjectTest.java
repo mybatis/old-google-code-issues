@@ -2,6 +2,11 @@ package org.apache.ibatis.reflection;
 
 import domain.jpetstore.Product;
 import domain.misc.RichType;
+
+import org.apache.ibatis.reflection.wrapper.ObjectWrapperFactory;
+import domain.misc.CustomBeanWrapper;
+import domain.misc.CustomBeanWrapperFactory;
+
 import static org.junit.Assert.*;
 import org.junit.Test;
 
@@ -216,6 +221,21 @@ public class MetaObjectTest {
     assertEquals("Clinton", name.get("first"));
     assertEquals("1 Some Street", address.get("street"));
   }
-
+  
+  @Test
+  public void shouldNotUseObjectWrapperFactoryByDefault() {
+    MetaObject meta = MetaObject.forObject(new Product());
+    assertTrue(!meta.getObjectWrapper().getClass().equals(CustomBeanWrapper.class));
+  }
+  
+  @Test
+  public void shouldUseObjectWrapperFactoryWhenSet() {
+    MetaObject meta = MetaObject.forObject(new Product(), MetaObject.DEFAULT_OBJECT_FACTORY, new CustomBeanWrapperFactory());
+    assertTrue(meta.getObjectWrapper().getClass().equals(CustomBeanWrapper.class));
+    
+    // Make sure the old default factory is in place and still works
+    meta = MetaObject.forObject(new Product());
+    assertFalse(meta.getObjectWrapper().getClass().equals(CustomBeanWrapper.class));
+  }
 
 }

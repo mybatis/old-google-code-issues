@@ -11,6 +11,7 @@ import org.apache.ibatis.parsing.XPathParser;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.reflection.MetaClass;
 import org.apache.ibatis.reflection.factory.ObjectFactory;
+import org.apache.ibatis.reflection.wrapper.ObjectWrapperFactory;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.transaction.TransactionFactory;
@@ -59,6 +60,7 @@ public class XMLConfigBuilder extends BaseBuilder {
       typeAliasesElement(root.evalNode("typeAliases"));
       pluginElement(root.evalNode("plugins"));
       objectFactoryElement(root.evalNode("objectFactory"));
+      objectWrapperFactoryElement(root.evalNode("objectWrapperFactory"));
       propertiesElement(root.evalNode("properties"));
       settingsElement(root.evalNode("settings"));
       environmentsElement(root.evalNode("environments"));
@@ -108,6 +110,14 @@ public class XMLConfigBuilder extends BaseBuilder {
       ObjectFactory factory = (ObjectFactory) resolveClass(type).newInstance();
       factory.setProperties(properties);
       configuration.setObjectFactory(factory);
+    }
+  }
+  
+  private void objectWrapperFactoryElement(XNode context) throws Exception {
+    if (context != null) {
+      String type = context.getStringAttribute("type");
+      ObjectWrapperFactory factory = (ObjectWrapperFactory) resolveClass(type).newInstance();
+      configuration.setObjectWrapperFactory(factory);
     }
   }
 

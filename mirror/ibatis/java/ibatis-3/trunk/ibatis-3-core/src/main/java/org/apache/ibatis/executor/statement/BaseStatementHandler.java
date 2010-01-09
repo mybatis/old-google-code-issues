@@ -114,7 +114,7 @@ public abstract class BaseStatementHandler implements StatementHandler {
         MappedStatement keyStatement = configuration.getMappedStatement(keyStatementName);
         if (keyStatement != null) {
           String keyProperty = keyStatement.getKeyProperty();
-          MetaObject metaParam = MetaObject.forObject(boundSql.getParameterObject());
+          MetaObject metaParam = configuration.newMetaObject(boundSql.getParameterObject());
           if (keyProperty != null && metaParam.hasSetter(keyProperty) && metaParam.hasGetter(keyProperty)) {
             boundSql.setAdditionalParameter(keyProperty, metaParam.getValue(keyProperty));
           }

@@ -20,8 +20,8 @@ public class ReuseExecutor extends BaseExecutor {
 
   private final Map<String, Statement> statementMap = new HashMap<String, Statement>();
 
-  public ReuseExecutor(Transaction transaction) {
-    super(transaction);
+  public ReuseExecutor(Configuration configuration, Transaction transaction) {
+    super(configuration, transaction);
   }
 
   public int doUpdate(MappedStatement ms, Object parameter)
