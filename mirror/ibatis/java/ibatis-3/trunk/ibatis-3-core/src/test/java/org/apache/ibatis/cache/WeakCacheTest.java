@@ -10,15 +10,19 @@ import org.junit.Test;
 public class WeakCacheTest {
 
   @Test
-  @Ignore
   public void shouldDemonstrateObjectsBeingCollectedAsNeeded() {
-    final int N = 300000;
+    final int N = 3000000;
     WeakCache cache = new WeakCache(new PerpetualCache("default"));
     for (int i = 0; i < N; i++) {
       cache.putObject(i, i);
+      if (cache.getSize() < i + 1) {
+        System.out.println("Cache exceeded with " + (i + 1) + " entries.");
+        break;
+      }
     }
     assertTrue(cache.getSize() < N);
   }
+
 
   @Test
   public void shouldDemonstrateCopiesAreEqual() {
