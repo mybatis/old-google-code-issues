@@ -44,6 +44,11 @@ handler CDATA #REQUIRED
 type CDATA #REQUIRED
 >
 
+<!ELEMENT objectWrapperFactory (property*)>
+<!ATTLIST objectWrapperFactory
+type CDATA #REQUIRED
+>
+
 <!ELEMENT plugins (plugin+)>
 
 <!ELEMENT plugin (property*)>

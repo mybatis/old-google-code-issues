@@ -1,5 +1,7 @@
 package org.apache.ibatis.builder.xml.dynamic;
 
+import org.apache.ibatis.session.Configuration;
+
 import java.util.*;
 
 public class TrimSqlNode implements SqlNode {
@@ -9,13 +11,15 @@ public class TrimSqlNode implements SqlNode {
   private String suffix;
   private List<String> prefixesToOverride = new ArrayList<String>();
   private List<String> suffixesToOverride = new ArrayList<String>();
+  private Configuration configuration;
 
-  public TrimSqlNode(SqlNode contents, String prefix, String prefixesToOverride, String suffix, String suffixesToOverride) {
+  public TrimSqlNode(Configuration configuration, SqlNode contents, String prefix, String prefixesToOverride, String suffix, String suffixesToOverride) {
     this.contents = contents;
     this.prefix = prefix;
     this.prefixesToOverride = parseOverrides(prefixesToOverride);
     this.suffix = suffix;
     this.suffixesToOverride = parseOverrides(suffixesToOverride);
+    this.configuration = configuration;
   }
 
   public boolean apply(DynamicContext context) {
@@ -46,7 +50,7 @@ public class TrimSqlNode implements SqlNode {
     private StringBuilder sqlBuffer;
 
     public FilteredDynamicContext(DynamicContext delegate) {
-      super(null);
+      super(configuration, null);
       this.delegate = delegate;
       this.prefixApplied = false;
       this.suffixApplied = false;

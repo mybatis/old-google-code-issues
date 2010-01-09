@@ -42,7 +42,7 @@ public class SelectKeyGenerator implements KeyGenerator {
 
           if (keyStatement != null) {
             String keyProperty = keyStatement.getKeyProperty();
-            final MetaObject metaParam = MetaObject.forObject(parameter);
+            final MetaObject metaParam = configuration.newMetaObject(parameter);
             if (keyProperty != null && metaParam.hasSetter(keyProperty)) {
               // Do not close keyExecutor.
               // The transaction will be closed by parent executor.

@@ -9,6 +9,7 @@ import org.apache.ibatis.mapping.ParameterMapping;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.transaction.Transaction;
 import org.apache.ibatis.type.TypeHandlerRegistry;
 
@@ -22,17 +23,19 @@ public abstract class BaseExecutor implements Executor {
 
   protected List<DeferredLoad> deferredLoads;
   protected PerpetualCache localCache;
+  protected Configuration configuration;
 
   protected int queryStack = 0;
 
   protected List<BatchResult> batchResults = new ArrayList<BatchResult>();
   private boolean closed;
 
-  protected BaseExecutor(Transaction transaction) {
+  protected BaseExecutor(Configuration configuration, Transaction transaction) {
     this.transaction = transaction;
     this.deferredLoads = new ArrayList<DeferredLoad>();
     this.localCache = new PerpetualCache("LocalCache");
     this.closed = false;
+    this.configuration = configuration;
   }
 
   public Transaction getTransaction() {
@@ -120,7 +123,7 @@ public abstract class BaseExecutor implements Executor {
       if (typeHandlerRegistry.hasTypeHandler(parameterObject.getClass())) {
         cacheKey.update(parameterObject);
       } else {
-        MetaObject metaObject = MetaObject.forObject(parameterObject);
+        MetaObject metaObject = configuration.newMetaObject(parameterObject);
         for (ParameterMapping parameterMapping : parameterMappings) {
           String propertyName = parameterMapping.getProperty();
           if (metaObject.hasGetter(propertyName)) {

@@ -1,6 +1,7 @@
 package org.apache.ibatis.builder.xml.dynamic;
 
 import org.apache.ibatis.parsing.GenericTokenParser;
+import org.apache.ibatis.session.Configuration;
 
 import java.util.Map;
 
@@ -15,8 +16,9 @@ public class ForEachSqlNode implements SqlNode {
   private String separator;
   private String item;
   private String index;
+  private Configuration configuration;
 
-  public ForEachSqlNode(SqlNode contents, String collectionExpression, String index, String item, String open, String close, String separator) {
+  public ForEachSqlNode(Configuration configuration, SqlNode contents, String collectionExpression, String index, String item, String open, String close, String separator) {
     this.evaluator = new ExpressionEvaluator();
     this.collectionExpression = collectionExpression;
     this.contents = contents;
@@ -25,6 +27,7 @@ public class ForEachSqlNode implements SqlNode {
     this.separator = separator;
     this.index = index;
     this.item = item;
+    this.configuration = configuration;
   }
 
   public boolean apply(DynamicContext context) {
@@ -48,7 +51,7 @@ public class ForEachSqlNode implements SqlNode {
       int uniqueNumber = context.getUniqueNumber();
       applyItem(context, o, uniqueNumber);
       applyIndex(context, i);
-      contents.apply(new FilteredDynamicContext(context, item, uniqueNumber));
+      contents.apply(new FilteredDynamicContext(configuration, context, item, uniqueNumber));
       first = !((PrefixedContext) context).isPrefixApplied();
       context = oldContext;
       i++;
@@ -91,8 +94,8 @@ public class ForEachSqlNode implements SqlNode {
     private int index;
     private String item;
 
-    public FilteredDynamicContext(DynamicContext delegate, String item, int i) {
-      super(null);
+    public FilteredDynamicContext(Configuration configuration,DynamicContext delegate, String item, int i) {
+      super(configuration, null);
       this.delegate = delegate;
       this.index = i;
       this.item = item;
@@ -135,7 +138,7 @@ public class ForEachSqlNode implements SqlNode {
     private boolean prefixApplied;
 
     public PrefixedContext(DynamicContext delegate, String prefix) {
-      super(null);
+      super(configuration, null);
       this.delegate = delegate;
       this.prefix = prefix;
       this.prefixApplied = false;

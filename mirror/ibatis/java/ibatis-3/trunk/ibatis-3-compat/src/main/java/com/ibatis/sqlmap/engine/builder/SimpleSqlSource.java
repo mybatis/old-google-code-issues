@@ -31,7 +31,7 @@ public class SimpleSqlSource implements SqlSource {
   }
 
   public BoundSql getBoundSql(Object parameterObject) {
-    return new BoundSql(getSql(parameterObject), parameterMappings, parameterObject);
+    return new BoundSql(configuration,getSql(parameterObject), parameterMappings, parameterObject);
   }
 
   private String getSql(Object parameterObject) {

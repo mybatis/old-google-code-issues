@@ -198,7 +198,7 @@ public class MappedStatement {
     BoundSql boundSql = sqlSource.getBoundSql(parameterObject);
     List<ParameterMapping> parameterMappings = boundSql.getParameterMappings();
     if (parameterMappings == null || parameterMappings.size() <= 0) {
-      boundSql = new BoundSql(boundSql.getSql(), parameterMap.getParameterMappings(), parameterObject);
+      boundSql = new BoundSql(configuration, boundSql.getSql(), parameterMap.getParameterMappings(), parameterObject);
     }
     return boundSql;
   }

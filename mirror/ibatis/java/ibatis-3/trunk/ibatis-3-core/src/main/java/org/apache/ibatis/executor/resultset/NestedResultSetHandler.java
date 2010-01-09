@@ -87,7 +87,7 @@ public class NestedResultSetHandler extends FastResultSetHandler {
   protected Object getRowValue(ResultSet rs, ResultMap resultMap, CacheKey rowKey) throws SQLException {
     if (globalRowValueCache.containsKey(rowKey)) {
       final Object resultObject = globalRowValueCache.get(rowKey);
-      final MetaObject metaObject = MetaObject.forObject(resultObject);
+      final MetaObject metaObject = configuration.newMetaObject(resultObject);
       applyNestedResultMappings(rs, resultMap, metaObject);
       return resultObject;
     } else {
@@ -96,7 +96,7 @@ public class NestedResultSetHandler extends FastResultSetHandler {
       final ResultLoaderRegistry lazyLoader = instantiateResultLoaderRegistry();
       Object resultObject = createResultObject(rs, resultMap, lazyLoader);
       if (resultObject != null && !typeHandlerRegistry.hasTypeHandler(resultMap.getType())) {
-        final MetaObject metaObject = MetaObject.forObject(resultObject);
+        final MetaObject metaObject = configuration.newMetaObject(resultObject);
         loadMappedAndUnmappedColumnNames(rs, resultMap, mappedColumnNames, unmappedColumnNames);
         boolean foundValues = resultMap.getConstructorResultMappings().size() > 0;
         foundValues = applyAutomaticMappings(rs, unmappedColumnNames, metaObject) || foundValues;

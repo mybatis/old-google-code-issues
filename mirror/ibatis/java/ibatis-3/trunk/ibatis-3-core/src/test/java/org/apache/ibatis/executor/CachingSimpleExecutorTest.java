@@ -10,7 +10,7 @@ public class CachingSimpleExecutorTest extends BaseExecutorTest {
   }
 
   protected Executor createExecutor(Transaction transaction) {
-    return new CachingExecutor(new SimpleExecutor(transaction));
+    return new CachingExecutor(new SimpleExecutor(config,transaction));
   }
 
 }

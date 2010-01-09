@@ -134,7 +134,7 @@ public class MapWrapper extends BaseWrapper {
   public MetaObject instantiatePropertyValue(String name, PropertyTokenizer prop, ObjectFactory objectFactory) {
     HashMap map = new HashMap();
     set(prop, map);
-    return MetaObject.forObject(map);
+    return MetaObject.forObject(map, metaObject.getObjectFactory(), metaObject.getObjectWrapperFactory());
   }
 
   private void updateKeyArray() {

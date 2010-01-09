@@ -10,7 +10,7 @@ public class CachingReuseExecutorTest extends BaseExecutorTest {
   }
 
   protected Executor createExecutor(Transaction transaction) {
-    return new CachingExecutor(new ReuseExecutor(transaction));
+    return new CachingExecutor(new ReuseExecutor(config, transaction));
   }
 
 }
