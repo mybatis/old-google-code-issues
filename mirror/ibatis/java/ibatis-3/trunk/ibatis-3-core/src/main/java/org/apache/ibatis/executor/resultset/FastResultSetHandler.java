@@ -15,6 +15,7 @@ import org.apache.ibatis.reflection.factory.ObjectFactory;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.AutoMappingBehavior;
 import org.apache.ibatis.type.TypeHandler;
 import org.apache.ibatis.type.TypeHandlerRegistry;
 
@@ -174,7 +175,9 @@ public class FastResultSetHandler implements ResultSetHandler {
       final MetaObject metaObject = configuration.newMetaObject(resultObject);
       loadMappedAndUnmappedColumnNames(rs, resultMap, mappedColumnNames, unmappedColumnNames);
       boolean foundValues = resultMap.getConstructorResultMappings().size() > 0;
-      foundValues = applyAutomaticMappings(rs, unmappedColumnNames, metaObject) || foundValues;
+      if (!AutoMappingBehavior.NONE.equals(configuration.getAutoMappingBehavior())) {
+        foundValues = applyAutomaticMappings(rs, unmappedColumnNames, metaObject) || foundValues;
+      }
       foundValues = applyPropertyMappings(rs, resultMap, mappedColumnNames, metaObject, lazyLoader) || foundValues;
       resultObject = foundValues ? resultObject : null;
       return resultObject;

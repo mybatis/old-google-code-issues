@@ -17,7 +17,6 @@ public class MultiResultSetTest extends BaseSqlMapTest {
     initSqlMap("com/ibatis/sqlmap/maps/DerbySqlMapConfig.xml", Resources.getResourceAsProperties("com/ibatis/sqlmap/maps/DerbySqlMapConfig.properties"));
     initScript("scripts/account-init.sql");
     initScript("scripts/derby-proc-init.sql");
-
   }
 
   public void testShouldRetrieveTwoSetsOfTwoAccountsFromMultipleResultMaps() throws Exception {
