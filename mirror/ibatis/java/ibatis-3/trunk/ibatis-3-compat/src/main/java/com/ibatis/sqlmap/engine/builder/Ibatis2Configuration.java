@@ -11,6 +11,7 @@ import org.apache.ibatis.cache.decorators.FifoCache;
 import org.apache.ibatis.cache.decorators.LruCache;
 import org.apache.ibatis.cache.decorators.SoftCache;
 import org.apache.ibatis.session.Configuration;
+import org.apache.ibatis.session.AutoMappingBehavior;
 
 import javax.sql.DataSource;
 import java.util.HashMap;
@@ -28,6 +29,7 @@ public class Ibatis2Configuration extends Configuration {
   private Map<String, Boolean> postSelectKeyMap;
 
   public Ibatis2Configuration() {
+    setAutoMappingBehavior(AutoMappingBehavior.FULL);
     setUseGeneratedKeys(false);
     this.flushCachePlugin = new FlushCacheInterceptor();
     this.addInterceptor(flushCachePlugin);

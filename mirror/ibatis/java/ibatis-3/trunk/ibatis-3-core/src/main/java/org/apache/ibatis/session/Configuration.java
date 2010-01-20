@@ -46,6 +46,7 @@ public class Configuration {
   private boolean cacheEnabled = true;
   private Integer defaultStatementTimeout;
   private ExecutorType defaultExecutorType = ExecutorType.SIMPLE;
+  private AutoMappingBehavior autoMappingBehavior = AutoMappingBehavior.PARTIAL;
 
   private Properties variables = new Properties();
   private ObjectFactory objectFactory = new DefaultObjectFactory();
@@ -96,6 +97,14 @@ public class Configuration {
 
   public void setEnvironment(Environment environment) {
     this.environment = environment;
+  }
+
+  public AutoMappingBehavior getAutoMappingBehavior() {
+    return autoMappingBehavior;
+  }
+
+  public void setAutoMappingBehavior(AutoMappingBehavior autoMappingBehavior) {
+    this.autoMappingBehavior = autoMappingBehavior;
   }
 
   public boolean isLazyLoadingEnabled() {
