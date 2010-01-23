@@ -37,32 +37,32 @@ import java.util.*;
 
 public class Configuration {
 
-  private Environment environment;
+  protected Environment environment;
 
-  private boolean lazyLoadingEnabled = false;
-  private boolean multipleResultSetsEnabled = true;
-  private boolean useGeneratedKeys = false;
-  private boolean useColumnLabel = true;
-  private boolean cacheEnabled = true;
-  private Integer defaultStatementTimeout;
-  private ExecutorType defaultExecutorType = ExecutorType.SIMPLE;
-  private AutoMappingBehavior autoMappingBehavior = AutoMappingBehavior.PARTIAL;
+  protected boolean lazyLoadingEnabled = false;
+  protected boolean multipleResultSetsEnabled = true;
+  protected boolean useGeneratedKeys = false;
+  protected boolean useColumnLabel = true;
+  protected boolean cacheEnabled = true;
+  protected Integer defaultStatementTimeout;
+  protected ExecutorType defaultExecutorType = ExecutorType.SIMPLE;
+  protected AutoMappingBehavior autoMappingBehavior = AutoMappingBehavior.PARTIAL;
 
-  private Properties variables = new Properties();
-  private ObjectFactory objectFactory = new DefaultObjectFactory();
-  private ObjectWrapperFactory objectWrapperFactory = new DefaultObjectWrapperFactory();
-  private MapperRegistry mapperRegistry = new MapperRegistry(this);
+  protected Properties variables = new Properties();
+  protected ObjectFactory objectFactory = new DefaultObjectFactory();
+  protected ObjectWrapperFactory objectWrapperFactory = new DefaultObjectWrapperFactory();
+  protected MapperRegistry mapperRegistry = new MapperRegistry(this);
 
-  private final InterceptorChain interceptorChain = new InterceptorChain();
-  private final TypeHandlerRegistry typeHandlerRegistry = new TypeHandlerRegistry();
-  private final TypeAliasRegistry typeAliasRegistry = new TypeAliasRegistry();
-  private final Map<String, MappedStatement> mappedStatements = new StrictMap<String, MappedStatement>("Mapped Statements collection");
-  private final Map<String, Cache> caches = new StrictMap<String, Cache>("Caches collection");
-  private final Map<String, ResultMap> resultMaps = new StrictMap<String, ResultMap>("Result Maps collection");
-  private final Map<String, ParameterMap> parameterMaps = new StrictMap<String, ParameterMap>("Parameter Maps collection");
-  private final Map<String, KeyGenerator> keyGenerators = new StrictMap<String, KeyGenerator>("Key Generators collection");
+  protected final InterceptorChain interceptorChain = new InterceptorChain();
+  protected final TypeHandlerRegistry typeHandlerRegistry = new TypeHandlerRegistry();
+  protected final TypeAliasRegistry typeAliasRegistry = new TypeAliasRegistry();
+  protected final Map<String, MappedStatement> mappedStatements = new StrictMap<String, MappedStatement>("Mapped Statements collection");
+  protected final Map<String, Cache> caches = new StrictMap<String, Cache>("Caches collection");
+  protected final Map<String, ResultMap> resultMaps = new StrictMap<String, ResultMap>("Result Maps collection");
+  protected final Map<String, ParameterMap> parameterMaps = new StrictMap<String, ParameterMap>("Parameter Maps collection");
+  protected final Map<String, KeyGenerator> keyGenerators = new StrictMap<String, KeyGenerator>("Key Generators collection");
 
-  private final Set<String> loadedResources = new HashSet<String>();
+  protected final Set<String> loadedResources = new HashSet<String>();
 
   public Configuration(Environment environment) {
     this();
@@ -357,7 +357,7 @@ public class Configuration {
     return mappedStatements.containsKey(statementName);
   }
 
-  private static class StrictMap<J, K> extends HashMap<J, K> {
+  protected static class StrictMap<J, K> extends HashMap<J, K> {
 
     private String name;
 
