@@ -3,6 +3,7 @@ package org.apache.ibatis.jdbc;
 import java.io.BufferedReader;
 import java.io.PrintWriter;
 import java.io.Reader;
+import java.io.UnsupportedEncodingException;
 import java.sql.*;
 
 public class ScriptRunner {
@@ -20,9 +21,14 @@ public class ScriptRunner {
 
   private String delimiter = DEFAULT_DELIMITER;
   private boolean fullLineDelimiter = false;
+  private String characterSetName;
 
   public ScriptRunner(Connection connection) {
     this.connection = connection;
+  }
+
+  public void setCharacterSetName(String characterSetName) {
+    this.characterSetName = characterSetName;
   }
 
   public void setStopOnError(boolean stopOnError) {
@@ -149,7 +155,7 @@ public class ScriptRunner {
     }
   }
 
-  private StringBuffer handleLine(StringBuffer command, String line) throws SQLException {
+  private StringBuffer handleLine(StringBuffer command, String line) throws SQLException, UnsupportedEncodingException {
     String trimmedLine = line.trim();
     if (lineIsComment(trimmedLine)) {
       println(trimmedLine);
@@ -175,7 +181,10 @@ public class ScriptRunner {
         || fullLineDelimiter && trimmedLine.equals(delimiter);
   }
 
-  private void executeStatement(String command) throws SQLException {
+  private void executeStatement(String command) throws SQLException, UnsupportedEncodingException {
+    if(characterSetName != null){
+      command = new String(command.getBytes(), characterSetName);
+    }
     boolean hasResults = false;
     Statement statement = connection.createStatement();
     if (stopOnError) {
