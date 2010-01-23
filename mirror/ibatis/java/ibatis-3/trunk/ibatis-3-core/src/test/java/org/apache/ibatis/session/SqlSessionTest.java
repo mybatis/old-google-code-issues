@@ -28,7 +28,7 @@ public class SqlSessionTest extends BaseDataTest {
 
   @Test
   public void shouldSelectAllAuthors() throws Exception {
-    SqlSession session = sqlMapper.openSession();
+    SqlSession session = sqlMapper.openSession(TransactionIsolationLevel.SERIALIZABLE);
     try {
       List<Author> authors = session.selectList("domain.blog.mappers.AuthorMapper.selectAllAuthors");
       assertEquals(2, authors.size());
