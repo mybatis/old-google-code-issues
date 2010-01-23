@@ -100,6 +100,12 @@ public class PooledDataSource implements DataSource {
     forceCloseAll();
   }
 
+  public void setDefaultTransactionIsolationLevel(Integer defaultTransactionIsolationLevel) {
+    dataSource.setDefaultTransactionIsolationLevel(defaultTransactionIsolationLevel);
+    forceCloseAll();
+  }
+
+
   public void setDriverProperties(Properties driverProps) {
     dataSource.setDriverProperties(driverProps);
     forceCloseAll();
@@ -195,6 +201,10 @@ public class PooledDataSource implements DataSource {
 
   public boolean isAutoCommit() {
     return dataSource.isAutoCommit();
+  }
+
+  public Integer getDefaultTransactionIsolationLevel() {
+    return dataSource.getDefaultTransactionIsolationLevel();
   }
 
   public Properties getDriverProperties() {
