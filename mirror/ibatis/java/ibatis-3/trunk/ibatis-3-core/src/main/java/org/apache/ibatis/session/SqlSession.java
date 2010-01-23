@@ -41,6 +41,8 @@ public interface SqlSession {
 
   void close();
 
+  void clearCache();
+
   Configuration getConfiguration();
 
   <T> T getMapper(Class<T> type);

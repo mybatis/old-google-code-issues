@@ -28,6 +28,8 @@ public interface Executor {
 
   boolean isCached(MappedStatement ms, CacheKey key);
 
+  void clearLocalCache();
+
   void deferLoad(MappedStatement ms, MetaObject resultObject, String property, CacheKey key);
 
   Transaction getTransaction();

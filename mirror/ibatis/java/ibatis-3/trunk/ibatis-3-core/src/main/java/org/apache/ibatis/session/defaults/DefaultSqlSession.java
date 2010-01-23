@@ -167,6 +167,10 @@ public class DefaultSqlSession implements SqlSession {
     return executor.getTransaction().getConnection();
   }
 
+  public void clearCache() {
+    executor.clearLocalCache();
+  }
+
   private boolean isCommitOrRollbackRequired(boolean force) {
     return (!autoCommit && dirty) || force;
   }

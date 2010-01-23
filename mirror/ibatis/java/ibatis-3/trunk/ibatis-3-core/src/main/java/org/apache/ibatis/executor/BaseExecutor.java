@@ -64,7 +64,7 @@ public abstract class BaseExecutor implements Executor {
   public int update(MappedStatement ms, Object parameter) throws SQLException {
     ErrorContext.instance().resource(ms.getResource()).activity("executing an update").object(ms.getId());
     if (closed) throw new ExecutorException("Executor was closed.");
-    localCache.clear();
+    clearLocalCache();
     return doUpdate(ms, parameter);
   }
 
@@ -145,7 +145,7 @@ public abstract class BaseExecutor implements Executor {
     if (closed) {
       throw new ExecutorException("Cannot commit, transaction is already closed");
     }
-    localCache.clear();
+    clearLocalCache();
     flushStatements();
     if (required) {
       transaction.commit();
@@ -154,10 +154,16 @@ public abstract class BaseExecutor implements Executor {
 
   public void rollback(boolean required) throws SQLException {
     if (!closed) {
-      localCache.clear();
+      clearLocalCache();
       if (required) {
         transaction.rollback();
       }
+    }
+  }
+
+  public void clearLocalCache() {
+    if (!closed) {
+      localCache.clear();
     }
   }
 

@@ -97,6 +97,10 @@ public class CachingExecutor implements Executor {
     throw new UnsupportedOperationException("The CachingExecutor should not be used by result loaders and thus deferLoad() should never be called.");
   }
 
+  public void clearLocalCache() {
+    delegate.clearLocalCache();
+  }
+
   private void flushCacheIfRequired(MappedStatement ms) {
     Cache cache = ms.getCache();
     if (cache != null) {
