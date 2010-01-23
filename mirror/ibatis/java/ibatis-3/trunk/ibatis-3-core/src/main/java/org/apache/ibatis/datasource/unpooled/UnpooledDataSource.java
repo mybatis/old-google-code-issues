@@ -20,6 +20,7 @@ public class UnpooledDataSource implements DataSource {
   private String password;
 
   private boolean autoCommit;
+  private Integer defaultTransactionIsolationLevel;
 
   public UnpooledDataSource() {
   }
@@ -62,14 +63,14 @@ public class UnpooledDataSource implements DataSource {
     } else {
       connection = DriverManager.getConnection(url, username, password);
     }
-    configureAutoCommit(connection);
+    configureConnection(connection);
     return connection;
   }
 
   public Connection getConnection(String username, String password) throws SQLException {
     initializeDriver();
     Connection connection = DriverManager.getConnection(url, username, password);
-    configureAutoCommit(connection);
+    configureConnection(connection);
     return connection;
   }
 
@@ -146,9 +147,20 @@ public class UnpooledDataSource implements DataSource {
     this.autoCommit = autoCommit;
   }
 
-  private void configureAutoCommit(Connection conn) throws SQLException {
+  public Integer getDefaultTransactionIsolationLevel() {
+    return defaultTransactionIsolationLevel;
+  }
+
+  public void setDefaultTransactionIsolationLevel(Integer defaultTransactionIsolationLevel) {
+    this.defaultTransactionIsolationLevel = defaultTransactionIsolationLevel;
+  }
+
+  private void configureConnection(Connection conn) throws SQLException {
     if (autoCommit != conn.getAutoCommit()) {
       conn.setAutoCommit(autoCommit);
+    }
+    if (defaultTransactionIsolationLevel != null) {
+      conn.setTransactionIsolation(defaultTransactionIsolationLevel);
     }
   }
 
