@@ -191,10 +191,12 @@ public abstract class BaseCommand implements Command {
       String url = props.getProperty("url");
       String username = props.getProperty("username");
       String password = props.getProperty("password");
+      String charSetName = props.getProperty("script_char_set");
       PrintWriter outWriter = new PrintWriter(out);
       UnpooledDataSource dataSource = new UnpooledDataSource(driverClassLoader, driver, url, username, password);
       dataSource.setAutoCommit(false);
       ScriptRunner scriptRunner = new ScriptRunner(dataSource.getConnection());
+      scriptRunner.setCharacterSetName(charSetName);
       scriptRunner.setStopOnError(!force);
       scriptRunner.setLogWriter(outWriter);
       scriptRunner.setErrorLogWriter(outWriter);
