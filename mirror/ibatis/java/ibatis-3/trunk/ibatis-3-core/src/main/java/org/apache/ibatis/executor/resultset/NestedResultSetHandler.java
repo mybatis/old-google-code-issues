@@ -69,7 +69,7 @@ public class NestedResultSetHandler extends FastResultSetHandler {
   protected void handleRowValues(ResultSet rs, ResultMap resultMap, ResultHandler resultHandler, RowBounds rowBounds) throws SQLException {
     final DefaultResultContext resultContext = new DefaultResultContext();
     skipRows(rs, rowBounds);
-    while (shouldProcessMoreRows(rs, resultContext.getResultCount(), rowBounds)) {
+    while (shouldProcessMoreRows(rs, resultContext, rowBounds)) {
       final ResultMap discriminatedResultMap = resolveDiscriminatedResultMap(rs, resultMap);
       final CacheKey rowKey = createRowKey(discriminatedResultMap, rs);
       final boolean knownValue = globalRowValueCache.containsKey(rowKey);

@@ -12,10 +12,7 @@ import org.apache.ibatis.executor.result.DefaultResultHandler;
 import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.factory.ObjectFactory;
-import org.apache.ibatis.session.Configuration;
-import org.apache.ibatis.session.ResultHandler;
-import org.apache.ibatis.session.RowBounds;
-import org.apache.ibatis.session.AutoMappingBehavior;
+import org.apache.ibatis.session.*;
 import org.apache.ibatis.type.TypeHandler;
 import org.apache.ibatis.type.TypeHandlerRegistry;
 
@@ -127,7 +124,7 @@ public class FastResultSetHandler implements ResultSetHandler {
   protected void handleRowValues(ResultSet rs, ResultMap resultMap, ResultHandler resultHandler, RowBounds rowBounds) throws SQLException {
     final DefaultResultContext resultContext = new DefaultResultContext();
     skipRows(rs, rowBounds);
-    while (shouldProcessMoreRows(rs, resultContext.getResultCount(), rowBounds)) {
+    while (shouldProcessMoreRows(rs, resultContext, rowBounds)) {
       final ResultMap discriminatedResultMap = resolveDiscriminatedResultMap(rs, resultMap);
       Object rowValue = getRowValue(rs, discriminatedResultMap, null);
       resultContext.nextResultObject(rowValue);
@@ -135,8 +132,8 @@ public class FastResultSetHandler implements ResultSetHandler {
     }
   }
 
-  protected boolean shouldProcessMoreRows(ResultSet rs, int count, RowBounds rowBounds) throws SQLException {
-    return rs.next() && count < rowBounds.getLimit();
+  protected boolean shouldProcessMoreRows(ResultSet rs, ResultContext context, RowBounds rowBounds) throws SQLException {
+    return rs.next() && context.getResultCount() < rowBounds.getLimit() && !context.isStopped();
   }
 
   protected void skipRows(ResultSet rs, RowBounds rowBounds) throws SQLException {
