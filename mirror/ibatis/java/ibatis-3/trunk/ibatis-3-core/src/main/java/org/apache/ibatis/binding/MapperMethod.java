@@ -22,6 +22,7 @@ public class MapperMethod {
   private SqlCommandType type;
   private String commandName;
 
+  private Class declaringInterface;
   private Method method;
 
   private boolean returnsList;
@@ -32,13 +33,14 @@ public class MapperMethod {
 
   private boolean hasNamedParameters;
 
-  public MapperMethod(Method method, SqlSession sqlSession) {
+  public MapperMethod(Class declaringInterface, Method method, SqlSession sqlSession) {
     paramNames = new ArrayList<String>();
     paramPositions = new ArrayList<Integer>();
     this.sqlSession = sqlSession;
     this.method = method;
     this.config = sqlSession.getConfiguration();
     this.hasNamedParameters = false;
+    this.declaringInterface = declaringInterface;
     setupFields();
     setupMethodSignature();
     setupCommandType();
@@ -100,7 +102,7 @@ public class MapperMethod {
   // Setup //
 
   private void setupFields() {
-    this.commandName = method.getDeclaringClass().getName() + "." + method.getName();
+    this.commandName = declaringInterface.getName() + "." + method.getName();
   }
 
   private void setupMethodSignature() {

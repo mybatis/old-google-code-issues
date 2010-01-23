@@ -170,7 +170,7 @@ public class MapperAnnotationBuilder {
     SqlSource sqlSource = getSqlSourceFromAnnotations(method);
     if (sqlSource != null) {
       Options options = method.getAnnotation(Options.class);
-      final String mappedStatementId = method.getDeclaringClass().getName() + "." + method.getName();
+      final String mappedStatementId = type.getName() + "." + method.getName();
       boolean flushCache = false;
       boolean useCache = true;
       Integer fetchSize = null;
