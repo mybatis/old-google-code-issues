@@ -464,6 +464,27 @@ public class SqlSessionTest extends BaseDataTest {
     }
   }
 
+  private static class TestResultHandler implements ResultHandler {
+    int count = 0;
+    public void handleResult(ResultContext context) {
+      count++;
+      if (count == 2) context.stop();
+    }
+  }
+
+  @Test
+  public void shouldStopResultHandler() throws Exception {
+    SqlSession session = sqlMapper.openSession();
+
+    try {
+      final TestResultHandler resultHandler = new TestResultHandler();
+      session.select("domain.blog.mappers.BlogMapper.selectAllPosts", null, resultHandler);
+      assertEquals(2, resultHandler.count);
+    } finally {
+      session.close();
+    }
+  }
+
   @Test
   public void shouldOffsetAndLimitResultsUsingMapperClass() throws Exception {
     SqlSession session = sqlMapper.openSession();
