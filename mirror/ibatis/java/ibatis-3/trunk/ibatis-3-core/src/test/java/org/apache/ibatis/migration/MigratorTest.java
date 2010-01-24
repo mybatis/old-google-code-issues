@@ -59,7 +59,7 @@ public class MigratorTest extends BaseDataTest {
     assertTrue(buffer.toString().contains("--  Bootstrap.sql"));
     buffer.clear();
 
-    Migrator.main(args("--path=" + f.getAbsolutePath(), "status"));
+    Migrator.main(args("--path=" + f.getAbsolutePath(), "sta"));
     assertTrue(buffer.toString().contains("...pending..."));
     buffer.clear();
 

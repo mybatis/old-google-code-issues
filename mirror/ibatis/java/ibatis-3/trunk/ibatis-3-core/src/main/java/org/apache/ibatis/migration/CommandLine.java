@@ -90,7 +90,21 @@ public class CommandLine {
     } else if (SCRIPT.equals(command)) {
       new ScriptCommand(repository, environment, force).execute(params);
     } else {
-      throw new MigrationException("Attempt to execute unkown command.");
+      String match = null;
+      for (String knownCommand : KNOWN_COMMANDS) {
+        if (knownCommand.startsWith(command)) {
+          if (match != null) {
+            throw new MigrationException("Ambiguous command shortcut: " + command);
+          }
+          match = knownCommand;
+        }
+      }
+      if (match != null) {
+        command = match;
+        runCommand();
+      } else {
+        throw new MigrationException("Attempt to execute unkown command: " + command);
+      }
     }
   }
 
@@ -130,11 +144,7 @@ public class CommandLine {
       repository = new File(repository.getAbsolutePath());
       if (command == null) {
         parseError = "No command specified.";
-      } else {
-        if (!KNOWN_COMMANDS.contains(command)) {
-          parseError = "Unknown command: " + command;
-        }
-      }
+      } 
     }
   }
 
