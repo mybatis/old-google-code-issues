@@ -291,6 +291,19 @@ public abstract class BaseCommand implements Command {
     return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.sql.Date(System.currentTimeMillis()));
   }
 
+  protected int getStepCountParameter(int defaultSteps, String... params) {
+    final String stringParam = params.length > 0 ? params[0] : null;
+    if (stringParam == null || "".equals(stringParam)) {
+      return defaultSteps;
+    } else {
+      try {
+        return Integer.parseInt(stringParam);
+      } catch (NumberFormatException e) {
+        throw new MigrationException("Invalid parameter passed to command: " + params[0]);
+      }
+    }
+  }
+
   private File getCustomDriverPath() {
     String customDriverPath = environmentProperties().getProperty("driver_path");
     if (customDriverPath != null && customDriverPath.length() > 0) {
