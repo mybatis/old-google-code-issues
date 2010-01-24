@@ -29,6 +29,7 @@ public class UpCommand extends BaseCommand {
         lastChange = getLastAppliedChange();
       }
       List<Change> migrations = getMigrations();
+      int steps = 0;
       for (Change change : migrations) {
         if (lastChange == null || change.getId().compareTo(lastChange.getId()) > 0) {
           out.println(horizontalLine("Applying: " + change.getFilename(), 80));
@@ -40,7 +41,9 @@ public class UpCommand extends BaseCommand {
           }
           insertChangelog(change);
           out.println();
-          if (runOneStepOnly) {
+          steps++;
+          final int limit = getStepCountParameter(Integer.MAX_VALUE, params);
+          if (steps == limit || runOneStepOnly) {
             break;
           }
         }

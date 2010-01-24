@@ -63,14 +63,14 @@ public class MigratorTest extends BaseDataTest {
     assertTrue(buffer.toString().contains("...pending..."));
     buffer.clear();
 
-    Migrator.main(args("--path=" + f.getAbsolutePath(), "up"));
+    Migrator.main(args("--path=" + f.getAbsolutePath(), "up", "3000"));
     buffer.clear();
 
     Migrator.main(args("--path=" + f.getAbsolutePath(), "status"));
     assertFalse(buffer.toString().contains("...pending..."));
     buffer.clear();
 
-    Migrator.main(args("--path=" + f.getAbsolutePath(), "down"));
+    Migrator.main(args("--path=" + f.getAbsolutePath(), "down", "2"));
     buffer.clear();
 
     Migrator.main(args("--path=" + f.getAbsolutePath(), "status"));

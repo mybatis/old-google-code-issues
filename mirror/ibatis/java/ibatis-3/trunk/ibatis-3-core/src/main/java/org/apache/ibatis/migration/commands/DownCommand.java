@@ -25,6 +25,7 @@ public class DownCommand extends BaseCommand {
       Change lastChange = getLastAppliedChange();
       List<Change> migrations = getMigrations();
       Collections.reverse(migrations);
+      int steps = 0;
       for (Change change : migrations) {
         if (change.getId().equals(lastChange.getId())) {
           out.println(horizontalLine("Undoing: " + change.getFilename(), 80));
@@ -40,7 +41,12 @@ public class DownCommand extends BaseCommand {
             out.println("Changelog doesn't exist. No further migrations will be undone (normal for the last migration).");
           }
           out.println();
-          break;
+          steps++;
+          final int limit = getStepCountParameter(1, params);
+          if (steps == limit) {
+            break;
+          }
+          lastChange = getLastAppliedChange();
         }
       }
     } catch (Exception e) {

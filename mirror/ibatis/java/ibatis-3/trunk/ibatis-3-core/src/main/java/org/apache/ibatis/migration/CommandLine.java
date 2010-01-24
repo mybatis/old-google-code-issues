@@ -167,12 +167,14 @@ public class CommandLine {
     out.println("  init               Creates (if necessary) and initializes a migration path.");
     out.println("  bootstrap          Runs the bootstrap SQL script (see scripts/bootstrap.sql for more).");
     out.println("  new <description>  Creates a new migration with the provided description.");
-    out.println("  up                 Run all unapplied migrations.");
-    out.println("  down               Undoes the last migration applied to the database.");
+    out.println("  up [n]             Run unapplied migrations, ALL by default, or 'n' specified.");
+    out.println("  down [n]           Undoes migrations applied to the database. ONE by default or 'n' specified.");
     out.println("  version <version>  Migrates the database up or down to the specified version.");
     out.println("  pending            Force executes pending migrations out of order (not recommended).");
     out.println("  status             Prints the changelog from the database if the changelog table exists.");
     out.println("  script <v1> <v2>   Generates a delta migration script from version v1 to v2 (undo if v1 > v2).");
+    out.println("");
+    out.println("  * Shortcuts are accepted by using the first few (unambiguous) letters of each command..");
     out.println();
     out.flush();
   }
