@@ -31,9 +31,10 @@ public enum JdbcType {
   BOOLEAN(Types.BOOLEAN),
   CURSOR(-10), // Oracle
   UNDEFINED(Integer.MIN_VALUE + 1000),
-  NVARCHAR(-9),
-  NCHAR(-15),
-  NCLOB(2011);
+  NVARCHAR(-9), // JDK6
+  NCHAR(-15), // JDK6
+  NCLOB(2011), // JDK6
+  STRUCT(Types.STRUCT);
 
   public final int TYPE_CODE;
   private static Map<Integer,JdbcType> codeLookup = new HashMap<Integer,JdbcType>();

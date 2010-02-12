@@ -16,6 +16,7 @@ public class ParameterMapping {
   private Integer numericScale;
   private TypeHandler typeHandler;
   private String resultMapId;
+  private String jdbcTypeName;
 
   private ParameterMapping() {
   }
@@ -67,6 +68,11 @@ public class ParameterMapping {
       return this;
     }
 
+    public Builder jdbcTypeName(String jdbcTypeName) {
+      parameterMapping.jdbcTypeName = jdbcTypeName;
+      return this;
+    }
+
     public ParameterMapping build() {
       resolveTypeHandler();
       return parameterMapping;
@@ -113,4 +119,8 @@ public class ParameterMapping {
     return resultMapId;
   }
 
+  public String getJdbcTypeName() {
+    return jdbcTypeName;
+  }
+	
 }

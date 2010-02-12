@@ -79,6 +79,8 @@ public class SqlSourceBuilder extends BaseBuilder {
             builder.resultMapId(value);
           } else if ("typeHandler".equals(name)) {
             builder.typeHandler((TypeHandler) resolveInstance(value));
+          } else if ("jdbcTypeName".equals(name)) {
+            builder.jdbcTypeName(value);
           }
         } else {
           throw new BuilderException("Improper inline parameter map format.  Should be: #{propName,attr1=val1,attr2=val2}");
