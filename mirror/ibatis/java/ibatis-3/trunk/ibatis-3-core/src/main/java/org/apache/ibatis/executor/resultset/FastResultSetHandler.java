@@ -61,7 +61,12 @@ public class FastResultSetHandler implements ResultSetHandler {
         if ("java.sql.ResultSet".equalsIgnoreCase(parameterMapping.getJavaType().getName())) {
           handleRefCursorOutputParameter(cs, parameterMapping, i, metaParam);
         } else {
-          metaParam.setValue(parameterMapping.getProperty(), parameterMapping.getTypeHandler().getResult(cs, i + 1));
+          final TypeHandler typeHandler = parameterMapping.getTypeHandler();
+          if (typeHandler == null) {
+            throw new ExecutorException("Type handler was null on parameter mapping for property " + parameterMapping.getProperty() + ".  " +
+                "It was either not specified and/or could not be found for the javaType / jdbcType combination specified.");
+          }
+          metaParam.setValue(parameterMapping.getProperty(), typeHandler.getResult(cs, i + 1));
         }
       }
     }
