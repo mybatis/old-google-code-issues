@@ -366,7 +366,8 @@ public class Configuration {
     return mappedStatements.containsKey(statementName);
   }
 
-  protected static class StrictMap<J, K> extends HashMap<J, K> {
+
+  protected static class StrictMap<J extends String, K extends Object> extends HashMap<J, K> {
 
     private String name;
 
@@ -392,15 +393,47 @@ public class Configuration {
 
     public K put(J key, K value) {
       if (containsKey(key)) throw new IllegalArgumentException(name + " already contains value for " + key);
+      if (key.contains(".")) {
+        final String shortKey = getShortName(key);
+        if (super.get(shortKey) == null) {
+          super.put((J)shortKey, value);
+        } else {
+          super.put((J)shortKey, (K)new Ambiguity(shortKey));
+        }
+      }
       return super.put(key, value);
     }
 
     public K get(Object key) {
       K value = super.get(key);
-      if (value == null) throw new IllegalArgumentException(name + " does not contain value for " + key);
+      if (value == null) {
+        value = super.get(getShortName((J)key));
+        if (value == null) {
+          throw new IllegalArgumentException(name + " does not contain value for " + key);
+        }
+      }
+      if (value instanceof Ambiguity) {
+        throw new IllegalArgumentException(((Ambiguity)value).getSubject()
+          + " is ambiguous in " + name + " (try using the full name including the namespace, or rename one of the entries)");
+      }
       return value;
     }
 
+    private String getShortName(J key) {
+      final String[] keyparts = key.split("\\.");
+      final String shortKey = keyparts[keyparts.length-1];
+      return shortKey;
+    }
+
+    protected static class Ambiguity {
+      private String subject;
+      public Ambiguity(String subject) {
+        this.subject = subject;
+      }
+      public String getSubject() {
+        return subject;
+      }
+    }
   }
 
 }
