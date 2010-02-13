@@ -4,6 +4,7 @@ import org.apache.ibatis.io.Resources;
 
 import java.math.BigDecimal;
 import java.util.*;
+import java.sql.ResultSet;
 
 public class TypeAliasRegistry {
 
@@ -40,6 +41,8 @@ public class TypeAliasRegistry {
     registerAlias("arraylist", ArrayList.class);
     registerAlias("collection", Collection.class);
     registerAlias("iterator", Iterator.class);
+
+    registerAlias("ResultSet", ResultSet.class);
   }
 
   public Class resolveAlias(String string) {
