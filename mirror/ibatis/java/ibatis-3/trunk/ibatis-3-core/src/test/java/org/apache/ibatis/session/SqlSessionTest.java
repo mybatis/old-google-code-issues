@@ -4,6 +4,7 @@ import domain.blog.*;
 import domain.blog.mappers.AuthorMapper;
 import domain.blog.mappers.BlogMapper;
 import org.apache.ibatis.BaseDataTest;
+import org.apache.ibatis.cache.impl.PerpetualCache;
 import org.apache.ibatis.io.Resources;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
@@ -24,6 +25,68 @@ public class SqlSessionTest extends BaseDataTest {
     final String resource = "org/apache/ibatis/builder/MapperConfig.xml";
     final Reader reader = Resources.getResourceAsReader(resource);
     sqlMapper = new SqlSessionFactoryBuilder().build(reader);
+  }
+
+  @Test
+  public void shouldResolveBothSimpleNameAndFullyQualifiedName() {
+    Configuration c = new Configuration();
+    final String fullName = "com.mycache.MyCache";
+    final String shortName = "MyCache";
+    final PerpetualCache cache = new PerpetualCache(fullName);
+    c.addCache(cache);
+    assertEquals(cache, c.getCache(fullName));
+    assertEquals(cache, c.getCache(shortName));
+  }
+
+  @Test
+  public void shouldFailOverToMostApplicableSimpleName() {
+    Configuration c = new Configuration();
+    final String fullName = "com.mycache.MyCache";
+    final String invalidName = "unknown.namespace.MyCache";
+    final PerpetualCache cache = new PerpetualCache(fullName);
+    c.addCache(cache);
+    assertEquals(cache, c.getCache(fullName));
+    assertEquals(cache, c.getCache(invalidName));
+  }
+
+  @Test
+  public void shouldSucceedWhenFullyQualifiedButFailDueToAmbiguity() {
+    Configuration c = new Configuration();
+
+    final String name1 = "com.mycache.MyCache";
+    final PerpetualCache cache1 = new PerpetualCache(name1);
+    c.addCache(cache1);
+
+    final String name2 = "com.other.MyCache";
+    final PerpetualCache cache2 = new PerpetualCache(name2);
+    c.addCache(cache2);
+
+    final String shortName = "MyCache";
+
+    assertEquals(cache1, c.getCache(name1));
+    assertEquals(cache2, c.getCache(name2));
+
+    try {
+      c.getCache(shortName);
+      fail("Exception expected.");
+    } catch (Exception e) {
+      assertTrue(e.getMessage().contains("ambiguous"));
+    }
+
+  }
+
+  @Test
+  public void shouldFailToAddDueToNameConflict() {
+    Configuration c = new Configuration();
+    final String fullName = "com.mycache.MyCache";
+    final PerpetualCache cache = new PerpetualCache(fullName);
+    try {
+      c.addCache(cache);
+      c.addCache(cache);
+      fail("Exception expected.");
+    } catch (Exception e) {
+      assertTrue(e.getMessage().contains("already contains value"));
+    }
   }
 
   @Test
