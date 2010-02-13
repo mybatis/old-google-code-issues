@@ -2,7 +2,7 @@ package org.apache.ibatis.executor;
 
 import domain.blog.Author;
 import domain.blog.Section;
-import org.apache.ibatis.executor.loader.ResultLoaderRegistry;
+import org.apache.ibatis.executor.loader.ResultLoaderMap;
 import org.apache.ibatis.executor.loader.ResultObjectProxy;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
@@ -14,7 +14,7 @@ public class SerializableProxyTest {
   @Test
   public void shouldDemonstrateSerializableEnhancer() throws Exception {
     Author author = new Author(999, "someone", "!@#@!#!@#", "someone@somewhere.com", "blah", Section.NEWS);
-    Object proxy = ResultObjectProxy.createProxy(Author.class, author, new ResultLoaderRegistry());
+    Object proxy = ResultObjectProxy.createProxy(author, new ResultLoaderMap(), true);
     byte[] bytes = serialize((Serializable) proxy);
     Object proxy2 = deserialize(bytes);
     assertEquals(author.toString(), proxy2.toString());

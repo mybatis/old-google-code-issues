@@ -4,26 +4,26 @@
     "http://ibatis.apache.org/dtd/ibatis-3-config.dtd">
 
 <configuration>
-    <settings>
-        <setting name="lazyLoadingEnabled" value="true"/>
-    </settings>
-    
-    <typeAliases>
-        <typeAlias alias="Person" type="org.apache.ibatis.submitted.cglib_lazy_error.Person"/>
-    </typeAliases>
-    
-    <environments default="test">
-        <environment id="test">
-            <transactionManager type="JDBC"></transactionManager>
-            <dataSource type="UNPOOLED">
-                <property name="driver" value="org.hsqldb.jdbcDriver"/>
-                <property name="url" value="jdbc:hsqldb:mem:cglib_lazy_error"/>
-                <property name="username" value="sa"/>
-            </dataSource>
-        </environment>
-    </environments>
-    
-    <mappers>
-        <mapper resource="org/apache/ibatis/submitted/cglib_lazy_error/Person.xml"/>
-    </mappers>
+  <settings>
+    <setting name="lazyLoadingEnabled" value="true"/>
+  </settings>
+
+  <typeAliases>
+    <typeAlias alias="Person" type="org.apache.ibatis.submitted.cglib_lazy_error.Person"/>
+  </typeAliases>
+
+  <environments default="test">
+    <environment id="test">
+      <transactionManager type="JDBC"></transactionManager>
+      <dataSource type="UNPOOLED">
+        <property name="driver" value="org.hsqldb.jdbcDriver"/>
+        <property name="url" value="jdbc:hsqldb:mem:cglib_lazy_error"/>
+        <property name="username" value="sa"/>
+      </dataSource>
+    </environment>
+  </environments>
+
+  <mappers>
+    <mapper resource="org/apache/ibatis/submitted/cglib_lazy_error/Person.xml"/>
+  </mappers>
 </configuration>
