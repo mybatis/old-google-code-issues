@@ -4,7 +4,7 @@ import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.executor.ExecutorException;
 import org.apache.ibatis.executor.loader.ResultLoader;
-import org.apache.ibatis.executor.loader.ResultLoaderRegistry;
+import org.apache.ibatis.executor.loader.ResultLoaderMap;
 import org.apache.ibatis.executor.loader.ResultObjectProxy;
 import org.apache.ibatis.executor.parameter.ParameterHandler;
 import org.apache.ibatis.executor.result.DefaultResultContext;
@@ -166,7 +166,7 @@ public class FastResultSetHandler implements ResultSetHandler {
   protected Object getRowValue(ResultSet rs, ResultMap resultMap, CacheKey rowKey) throws SQLException {
     final List<String> mappedColumnNames = new ArrayList<String>();
     final List<String> unmappedColumnNames = new ArrayList<String>();
-    final ResultLoaderRegistry lazyLoader = instantiateResultLoaderRegistry();
+    final ResultLoaderMap lazyLoader = instantiateResultLoaderMap();
     Object resultObject = createResultObject(rs, resultMap, lazyLoader);
     if (resultObject != null && !typeHandlerRegistry.hasTypeHandler(resultMap.getType())) {
       final MetaObject metaObject = configuration.newMetaObject(resultObject);
@@ -182,9 +182,9 @@ public class FastResultSetHandler implements ResultSetHandler {
     return resultObject;
   }
 
-  protected ResultLoaderRegistry instantiateResultLoaderRegistry() {
+  protected ResultLoaderMap instantiateResultLoaderMap() {
     if (configuration.isLazyLoadingEnabled()) {
-      return new ResultLoaderRegistry();
+      return new ResultLoaderMap();
     } else {
       return null;
     }
@@ -194,7 +194,7 @@ public class FastResultSetHandler implements ResultSetHandler {
   // PROPERTY MAPPINGS
   //
 
-  protected boolean applyPropertyMappings(ResultSet rs, ResultMap resultMap, List<String> mappedColumnNames, MetaObject metaObject, ResultLoaderRegistry lazyLoader) throws SQLException {
+  protected boolean applyPropertyMappings(ResultSet rs, ResultMap resultMap, List<String> mappedColumnNames, MetaObject metaObject, ResultLoaderMap lazyLoader) throws SQLException {
     boolean foundValues = false;
     final List<ResultMapping> propertyMappings = resultMap.getPropertyResultMappings();
     for (ResultMapping propertyMapping : propertyMappings) {
@@ -211,7 +211,7 @@ public class FastResultSetHandler implements ResultSetHandler {
     return foundValues;
   }
 
-  protected Object getPropertyMappingValue(ResultSet rs, MetaObject metaResultObject, ResultMapping propertyMapping, ResultLoaderRegistry lazyLoader) throws SQLException {
+  protected Object getPropertyMappingValue(ResultSet rs, MetaObject metaResultObject, ResultMapping propertyMapping, ResultLoaderMap lazyLoader) throws SQLException {
     final TypeHandler typeHandler = propertyMapping.getTypeHandler();
     if (propertyMapping.getNestedQueryId() != null) {
       return getNestedQueryMappingValue(rs, metaResultObject, propertyMapping, lazyLoader);
@@ -264,10 +264,10 @@ public class FastResultSetHandler implements ResultSetHandler {
   // INSTANTIATION & CONSTRUCTOR MAPPING
   //
 
-  protected Object createResultObject(ResultSet rs, ResultMap resultMap, ResultLoaderRegistry lazyLoader) throws SQLException {
+  protected Object createResultObject(ResultSet rs, ResultMap resultMap, ResultLoaderMap lazyLoader) throws SQLException {
     final Object resultObject = createResultObject(rs, resultMap);
     if (resultObject != null && configuration.isLazyLoadingEnabled()) {
-      return ResultObjectProxy.createProxy(resultMap.getType(), resultObject, lazyLoader);
+      return ResultObjectProxy.createProxy(resultObject, lazyLoader, configuration.isAggressiveLazyLoading());
     }
     return resultObject;
   }
@@ -319,7 +319,7 @@ public class FastResultSetHandler implements ResultSetHandler {
   // NESTED QUERY
   //
 
-  protected Object getNestedQueryMappingValue(ResultSet rs, MetaObject metaResultObject, ResultMapping propertyMapping, ResultLoaderRegistry lazyLoader) throws SQLException {
+  protected Object getNestedQueryMappingValue(ResultSet rs, MetaObject metaResultObject, ResultMapping propertyMapping, ResultLoaderMap lazyLoader) throws SQLException {
     final String nestedQueryId = propertyMapping.getNestedQueryId();
     final String property = propertyMapping.getProperty();
     final MappedStatement nestedQuery = configuration.getMappedStatement(nestedQueryId);
@@ -333,7 +333,7 @@ public class FastResultSetHandler implements ResultSetHandler {
       } else {
         final ResultLoader resultLoader = new ResultLoader(configuration, executor, nestedQuery, nestedQueryParameterObject, propertyMapping.getJavaType());
         if (configuration.isLazyLoadingEnabled()) {
-          lazyLoader.registerLoader(property, metaResultObject, resultLoader);
+          lazyLoader.addLoader(property, metaResultObject, resultLoader);
         } else {
           value = resultLoader.loadResult();
         }

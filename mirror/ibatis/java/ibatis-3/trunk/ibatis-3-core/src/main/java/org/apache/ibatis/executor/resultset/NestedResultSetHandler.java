@@ -3,7 +3,7 @@ package org.apache.ibatis.executor.resultset;
 import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.executor.ExecutorException;
-import org.apache.ibatis.executor.loader.ResultLoaderRegistry;
+import org.apache.ibatis.executor.loader.ResultLoaderMap;
 import org.apache.ibatis.executor.parameter.ParameterHandler;
 import org.apache.ibatis.executor.result.DefaultResultContext;
 import org.apache.ibatis.mapping.BoundSql;
@@ -94,7 +94,7 @@ public class NestedResultSetHandler extends FastResultSetHandler {
     } else {
       final List<String> mappedColumnNames = new ArrayList<String>();
       final List<String> unmappedColumnNames = new ArrayList<String>();
-      final ResultLoaderRegistry lazyLoader = instantiateResultLoaderRegistry();
+      final ResultLoaderMap lazyLoader = instantiateResultLoaderMap();
       Object resultObject = createResultObject(rs, resultMap, lazyLoader);
       if (resultObject != null && !typeHandlerRegistry.hasTypeHandler(resultMap.getType())) {
         final MetaObject metaObject = configuration.newMetaObject(resultObject);

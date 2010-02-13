@@ -6,36 +6,40 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
-public class ResultLoaderRegistry implements Serializable {
+public class ResultLoaderMap implements Serializable {
 
   private final Map<String, LoadPair> loaderMap = new HashMap<String, LoadPair>();
 
-  public void registerLoader(String property, MetaObject metaResultObject, ResultLoader resultLoader) {
-    // Converts property to method name strictly for performance.
+  public void addLoader(String property, MetaObject metaResultObject, ResultLoader resultLoader) {
     String upperFirst = getUppercaseFirstProperty(property);
-    loaderMap.put(toGetter(upperFirst), new LoadPair(property, metaResultObject, resultLoader));
-    loaderMap.put(toSetter(upperFirst), new LoadPair(property, metaResultObject, resultLoader));
+    loaderMap.put(upperFirst, new LoadPair(property, metaResultObject, resultLoader));
+  }
+
+  public int size() throws SQLException {
+    return loaderMap.size();
+  }
+
+  public boolean hasLoader(String methodName) throws SQLException {
+    return loaderMap.containsKey(methodName.toUpperCase());
+  }
+
+  public boolean load(String property) throws SQLException {
+    LoadPair pair = loaderMap.remove(property.toUpperCase());
+    if (pair != null) {
+      pair.load();
+      return true;
+    }
+    return false;
   }
 
   public void loadAll() throws SQLException {
-      synchronized (loaderMap) {
-        Object[] keys = loaderMap.keySet().toArray();
-        for (Object key : keys) {
-          LoadPair pair = loaderMap.remove(key);
-          if (pair != null) {
-            pair.load();
-          }
-        }
-      }
+    final Set<String> methodNameSet = loaderMap.keySet();
+    String[] methodNames = methodNameSet.toArray(new String[methodNameSet.size()]);
+    for (String methodName : methodNames) {
+      load(methodName);
     }
-
-  private String toGetter(String first) {
-    return "GET" + first;
-  }
-
-  private String toSetter(String first) {
-    return "SET" + first;
   }
 
   private static String getUppercaseFirstProperty(String property) {
@@ -43,7 +47,7 @@ public class ResultLoaderRegistry implements Serializable {
     return parts[0].toUpperCase();
   }
 
-  private class LoadPair {
+  private static class LoadPair {
     private String property;
     private MetaObject metaResultObject;
     private ResultLoader resultLoader;

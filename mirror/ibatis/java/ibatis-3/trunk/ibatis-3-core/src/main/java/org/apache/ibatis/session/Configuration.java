@@ -40,6 +40,7 @@ public class Configuration {
   protected Environment environment;
 
   protected boolean lazyLoadingEnabled = false;
+  protected boolean aggressiveLazyLoading = true;
   protected boolean multipleResultSetsEnabled = true;
   protected boolean useGeneratedKeys = false;
   protected boolean useColumnLabel = true;
@@ -113,6 +114,14 @@ public class Configuration {
 
   public void setLazyLoadingEnabled(boolean lazyLoadingEnabled) {
     this.lazyLoadingEnabled = lazyLoadingEnabled;
+  }
+
+  public boolean isAggressiveLazyLoading() {
+    return aggressiveLazyLoading;
+  }
+
+  public void setAggressiveLazyLoading(boolean aggressiveLazyLoading) {
+    this.aggressiveLazyLoading = aggressiveLazyLoading;
   }
 
   public boolean isMultipleResultSetsEnabled() {
