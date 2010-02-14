@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class GenericTokenParserTest {
 
-  public static class VariableTokenHandler implements GenericTokenParser.TokenHandler {
+  public static class VariableTokenHandler implements TokenHandler {
     private Map<String, String> variables = new HashMap<String, String>();
 
     public VariableTokenHandler(Map<String, String> variables) {

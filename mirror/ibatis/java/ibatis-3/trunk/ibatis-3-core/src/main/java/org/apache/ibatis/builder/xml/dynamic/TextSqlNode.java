@@ -4,6 +4,7 @@ import org.apache.ibatis.builder.BuilderException;
 import org.apache.ibatis.ognl.Ognl;
 import org.apache.ibatis.ognl.OgnlException;
 import org.apache.ibatis.parsing.GenericTokenParser;
+import org.apache.ibatis.parsing.TokenHandler;
 import org.apache.ibatis.type.SimpleTypeRegistry;
 
 public class TextSqlNode implements SqlNode {
@@ -19,7 +20,7 @@ public class TextSqlNode implements SqlNode {
     return true;
   }
 
-  private static class BindingTokenParser implements GenericTokenParser.TokenHandler {
+  private static class BindingTokenParser implements TokenHandler {
 
     private DynamicContext context;
 
