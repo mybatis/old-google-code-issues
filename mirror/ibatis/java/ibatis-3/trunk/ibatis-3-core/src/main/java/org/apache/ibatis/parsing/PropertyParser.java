@@ -10,7 +10,7 @@ public class PropertyParser {
     return parser.parse(string);
   }
 
-  private static class VariableTokenHandler implements GenericTokenParser.TokenHandler {
+  private static class VariableTokenHandler implements TokenHandler {
     private Properties variables;
 
     public VariableTokenHandler(Properties variables) {

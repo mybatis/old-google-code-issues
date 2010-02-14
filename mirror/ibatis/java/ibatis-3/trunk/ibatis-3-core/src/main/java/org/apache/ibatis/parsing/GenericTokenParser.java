@@ -12,10 +12,6 @@ public class GenericTokenParser {
     this.handler = handler;
   }
 
-  public static interface TokenHandler {
-    String handleToken(String content);
-  }
-
   public String parse(String text) {
     StringBuilder builder = new StringBuilder();
     if (text != null) {

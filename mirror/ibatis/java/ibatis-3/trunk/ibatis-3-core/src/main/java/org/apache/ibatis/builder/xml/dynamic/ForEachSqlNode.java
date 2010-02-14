@@ -1,6 +1,7 @@
 package org.apache.ibatis.builder.xml.dynamic;
 
 import org.apache.ibatis.parsing.GenericTokenParser;
+import org.apache.ibatis.parsing.TokenHandler;
 import org.apache.ibatis.session.Configuration;
 
 import java.util.Map;
@@ -114,7 +115,7 @@ public class ForEachSqlNode implements SqlNode {
     }
 
     public void appendSql(String sql) {
-      GenericTokenParser parser = new GenericTokenParser("#{", "}", new GenericTokenParser.TokenHandler() {
+      GenericTokenParser parser = new GenericTokenParser("#{", "}", new TokenHandler() {
         public String handleToken(String content) {
           String newContent = content.replaceFirst(item, itemizeItem(item, index));
           return new StringBuilder("#{").append(newContent).append("}").toString();
