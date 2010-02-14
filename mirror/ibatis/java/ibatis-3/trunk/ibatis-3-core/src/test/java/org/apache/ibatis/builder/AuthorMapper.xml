@@ -65,7 +65,11 @@
   <update id="updateAuthor"
           parameterType="domain.blog.Author">
     update Author
-    set username=#{username},password=#{password},email=#{email},bio=#{bio}
+    set username=#{username,
+                 javaType=String},
+        password=#{password},
+        email=#{email},
+        bio=#{bio}
     where id=#{id}
   </update>
 

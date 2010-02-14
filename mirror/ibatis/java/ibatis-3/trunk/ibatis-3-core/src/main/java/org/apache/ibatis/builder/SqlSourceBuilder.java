@@ -45,7 +45,7 @@ public class SqlSourceBuilder extends BaseBuilder {
     }
 
     private ParameterMapping buildParameterMapping(String content) {
-      StringTokenizer parameterMappingParts = new StringTokenizer(content, ", ");
+      StringTokenizer parameterMappingParts = new StringTokenizer(content, ", \n\r\t");
       String propertyWithJdbcType = parameterMappingParts.nextToken();
       String property = extractPropertyName(propertyWithJdbcType);
       String jdbcType = extractJdbcType(propertyWithJdbcType);
