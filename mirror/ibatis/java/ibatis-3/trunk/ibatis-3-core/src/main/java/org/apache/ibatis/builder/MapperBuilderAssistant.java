@@ -97,7 +97,7 @@ public class MapperBuilderAssistant extends BaseBuilder {
     resultMap = applyCurrentNamespace(resultMap);
 
     // Class parameterType = parameterMapBuilder.type();
-    Class javaTypeClass = resolveParameterJavaType(parameterType, property, javaType);
+    Class javaTypeClass = resolveParameterJavaType(parameterType, property, javaType, jdbcType);
     TypeHandler typeHandlerInstance = (TypeHandler) resolveInstance(typeHandler);
 
     ParameterMapping.Builder builder = new ParameterMapping.Builder(configuration, property, javaTypeClass);
@@ -344,19 +344,21 @@ public class MapperBuilderAssistant extends BaseBuilder {
       }
     }
     if (javaType == null) {
-      //throw new BuilderException("Could not determine javaType for result property " + property + " using javaType " + javaType);
       javaType = Object.class;
     }
     return javaType;
   }
 
-  private Class resolveParameterJavaType(Class resultType, String property, Class javaType) {
+  private Class resolveParameterJavaType(Class resultType, String property, Class javaType, JdbcType jdbcType) {
     if (javaType == null) {
-      MetaClass metaResultType = MetaClass.forClass(resultType);
-      javaType = metaResultType.getGetterType(property);
+      if (JdbcType.CURSOR.equals(jdbcType)) {
+        javaType = java.sql.ResultSet.class;
+      } else {
+        MetaClass metaResultType = MetaClass.forClass(resultType);
+        javaType = metaResultType.getGetterType(property);
+      }
     }
     if (javaType == null) {
-      //throw new BuilderException("Could not determine javaType for result.  Specify property or javaType attribute.");
       javaType = Object.class;
     }
     return javaType;
