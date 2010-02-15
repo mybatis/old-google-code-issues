@@ -3,7 +3,8 @@
   <target name="build.migrations">
     <property file="version.properties"/>
     <property name="build.root" value="./build/migrations"/>
-    <property name="migrations.exploded" value="${build.root}/exploded"/>
+    <property name="migrations.exploded" value="${build.root}/exploded/ibatis-3-migrations-${version}.${buildNum}"/>
+    <property name="migrations.tozip" value="${build.root}/exploded"/>
     <property name="migrations.dist" value="${build.root}/dist"/>
     <delete dir="${build.root}"/>
     <mkdir dir="${build.root}"/>
@@ -17,12 +18,12 @@
     </copy>
     <copy todir="${migrations.exploded}/lib" flatten="true">
       <fileset dir="./">
-        <include name="build/ibatis-3-core/exploded/*.jar"/>
+        <include name="build/ibatis-3-core/exploded/**/*.jar"/>
       </fileset>
     </copy>
-    <jar jarfile="${migrations.dist}/ibatis-3-migrations-${version}.${buildNum}.zip">
-      <fileset dir="${migrations.exploded}"/>
-    </jar>
+    <zip zipfile="${migrations.dist}/ibatis-3-migrations-${version}.${buildNum}.zip">
+      <fileset dir="${migrations.tozip}"/>
+    </zip>
   </target>
 
   <target name="all">
