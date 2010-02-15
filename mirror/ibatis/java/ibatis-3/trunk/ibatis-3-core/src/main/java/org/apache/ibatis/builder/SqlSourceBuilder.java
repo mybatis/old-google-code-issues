@@ -53,6 +53,8 @@ public class SqlSourceBuilder extends BaseBuilder {
       MetaClass metaClass = MetaClass.forClass(parameterType);
       if (typeHandlerRegistry.hasTypeHandler(parameterType)) {
         propertyType = parameterType;
+      } else if ("CURSOR".equals(jdbcType)) {
+        propertyType = java.sql.ResultSet.class;
       } else if (metaClass.hasGetter(property)) {
         propertyType = metaClass.getGetterType(property);
       } else {
