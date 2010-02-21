@@ -32,11 +32,11 @@ public class ResultObjectProxy {
     }
 
     public static Object createProxy(Object target, ResultLoaderMap lazyLoader, boolean aggressive) {
-      Class type = target.getClass();
+      final Class type = target.getClass();
       if (registry.hasTypeHandler(type)) {
         return target;
       } else {
-        final Object enhanced = Enhancer.create(target.getClass(), new EnhancedResultObjectProxyImpl(lazyLoader, aggressive));
+        final Object enhanced = Enhancer.create(type, new EnhancedResultObjectProxyImpl(lazyLoader, aggressive));
         copyInitialState(type, target, enhanced);
         return enhanced;
       }
