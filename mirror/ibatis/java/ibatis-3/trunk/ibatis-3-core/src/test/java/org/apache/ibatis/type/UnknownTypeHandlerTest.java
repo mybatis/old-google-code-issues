@@ -31,6 +31,8 @@ public class UnknownTypeHandlerTest extends BaseTypeHandlerTest {
         will(returnValue(1));
         one(rsmd).getColumnName(with(any(int.class)));
         will(returnValue("column"));
+        one(rsmd).getColumnClassName(with(any(int.class)));
+        will(returnValue(String.class));
         one(rsmd).getColumnType(with(any(int.class)));
         will(returnValue(JdbcType.VARCHAR.TYPE_CODE));
         one(rs).getString(with(any(String.class)));
