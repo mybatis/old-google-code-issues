@@ -1,6 +1,6 @@
 package org.apache.ibatis.type;
 
-import org.apache.ibatis.exceptions.IbatisException;
+import org.apache.ibatis.io.Resources;
 
 import java.sql.*;
 import java.util.*;
@@ -58,10 +58,7 @@ public class UnknownTypeHandler extends BaseTypeHandler {
       Integer columnIndex = columnIndexLookup.get(column);
       TypeHandler handler = null;
       if (columnIndex != null) {
-        int jdbcTypeInt = rsmd.getColumnType(columnIndex);
-        JdbcType jdbcType = JdbcType.forCode(jdbcTypeInt);
-
-        handler = typeHandlerRegistry.getTypeHandler(jdbcType);
+        handler = resolveTypeHandler(rsmd, columnIndex);
       }
       if (handler == null || handler instanceof UnknownTypeHandler) {
         handler = OBJECT_TYPE_HANDLER;
@@ -69,6 +66,36 @@ public class UnknownTypeHandler extends BaseTypeHandler {
       return handler;
     } catch (SQLException e) {
       throw new TypeException("Error determining JDBC type for column " + column + ".  Cause: " + e, e);
+    }
+  }
+
+  private TypeHandler resolveTypeHandler(ResultSetMetaData rsmd, Integer columnIndex) throws SQLException {
+    TypeHandler handler = null;
+    JdbcType jdbcType = safeGetJdbcTypeForColumn(rsmd, columnIndex);
+    Class javaType = safeGetClassForColumn(rsmd, columnIndex);
+    if (javaType != null && jdbcType != null) {
+      handler = typeHandlerRegistry.getTypeHandler(javaType, jdbcType);
+    } else if (javaType != null) {
+      handler = typeHandlerRegistry.getTypeHandler(javaType);
+    } else if (jdbcType != null) {
+      handler = typeHandlerRegistry.getTypeHandler(jdbcType);
+    }
+    return handler;
+  }
+
+  private JdbcType safeGetJdbcTypeForColumn(ResultSetMetaData rsmd, Integer columnIndex) {
+    try {
+      return JdbcType.forCode(rsmd.getColumnType(columnIndex));
+    } catch (Exception e) {
+      return null;
+    }
+  }
+
+  private Class safeGetClassForColumn(ResultSetMetaData rsmd, Integer columnIndex) {
+    try {
+      return Resources.classForName(rsmd.getColumnClassName(columnIndex));
+    } catch (Exception e) {
+      return null;
     }
   }
 
