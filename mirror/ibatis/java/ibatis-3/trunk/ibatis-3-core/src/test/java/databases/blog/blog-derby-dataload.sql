@@ -27,3 +27,16 @@ INSERT INTO comment (id,post_id,name,comment) VALUES (2,1,'anonymous','I agree a
 --INSERT INTO comment (id,post_id,name,comment) VALUES (4,2,'another','I don not agree and still think troll is an...');
 INSERT INTO comment (id,post_id,name,comment) VALUES (3,3,'rider','I prefer motorcycles to monster trucks...');
 
+
+--       1
+--    2     3
+--  4  5   6  7
+
+INSERT INTO node (id, parent_id) VALUES (1,null);
+INSERT INTO node (id, parent_id) VALUES (2,1); 
+INSERT INTO node (id, parent_id) VALUES (3,1);
+INSERT INTO node (id, parent_id) VALUES (4,2);
+INSERT INTO node (id, parent_id) VALUES (5,2);
+INSERT INTO node (id, parent_id) VALUES (6,3);
+INSERT INTO node (id, parent_id) VALUES (7,3);
+
