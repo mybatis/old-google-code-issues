@@ -8,6 +8,7 @@ import org.apache.ibatis.session.RowBounds;
 
 import java.util.List;
 
+@CacheNamespace(readWrite = false)
 public interface BoundAuthorMapper {
 
   //======================================================

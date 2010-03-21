@@ -230,12 +230,16 @@ public class BindingTest {
 
   @Test
   public void shouldSelectOneAuthorFromCache() {
+    Author author1 = selectOneAuthor();
+    Author author2 = selectOneAuthor();
+    assertTrue("Same (cached) instance should be returned unless rollback is called.", author1 == author2);
+  }
+
+  private Author selectOneAuthor() {
     SqlSession session = sqlSessionFactory.openSession();
     try {
       BoundAuthorMapper mapper = session.getMapper(BoundAuthorMapper.class);
-      Author author1 = mapper.selectAuthor(101);
-      Author author2 = mapper.selectAuthor(101);
-      assertTrue("Same (cached) instance should be returned unless rollback is called.", author1 == author2);
+      return mapper.selectAuthor(101);
     } finally {
       session.close();
     }
