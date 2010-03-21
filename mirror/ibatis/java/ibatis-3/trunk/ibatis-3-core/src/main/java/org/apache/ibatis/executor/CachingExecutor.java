@@ -81,7 +81,9 @@ public class CachingExecutor implements Executor {
     try {
       delegate.rollback(required);
     } finally {
-      tcm.rollback();
+      if (required) {
+        tcm.rollback();
+      }
     }
   }
 
