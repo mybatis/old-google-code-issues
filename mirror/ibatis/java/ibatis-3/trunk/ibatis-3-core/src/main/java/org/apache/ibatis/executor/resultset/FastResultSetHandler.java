@@ -143,7 +143,9 @@ public class FastResultSetHandler implements ResultSetHandler {
 
   protected void skipRows(ResultSet rs, RowBounds rowBounds) throws SQLException {
     if (rs.getType() != ResultSet.TYPE_FORWARD_ONLY) {
-      rs.absolute(rowBounds.getOffset());
+      if (rowBounds.getOffset() != 0) {
+        rs.absolute(rowBounds.getOffset());
+      }
     } else {
       for (int i = 0; i < rowBounds.getOffset(); i++) rs.next();
     }
