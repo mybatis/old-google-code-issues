@@ -72,7 +72,7 @@ public class ResultLoader {
       return localExecutor.query(mappedStatement, parameterObject, RowBounds.DEFAULT, Executor.NO_RESULT_HANDLER);
     } finally {
       if (localExecutor != executor) {
-        localExecutor.close();
+        localExecutor.close(false);
       }
     }
   }

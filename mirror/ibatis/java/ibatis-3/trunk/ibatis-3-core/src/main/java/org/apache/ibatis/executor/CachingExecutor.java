@@ -25,10 +25,14 @@ public class CachingExecutor implements Executor {
     return delegate.getTransaction();
   }
 
-  public void close() {
-    delegate.close();
-    tcm.commit();
+  public void close(boolean forceRollback) {
+    try {
+      tcm.commit();
+    } finally {
+      delegate.close(forceRollback);
+    }
   }
+
 
   public boolean isClosed() {
     return delegate.isClosed();
