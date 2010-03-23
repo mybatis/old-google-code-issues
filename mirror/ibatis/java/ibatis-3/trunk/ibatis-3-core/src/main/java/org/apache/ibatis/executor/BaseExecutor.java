@@ -43,9 +43,13 @@ public abstract class BaseExecutor implements Executor {
     return transaction;
   }
 
-  public void close() {
+  public void close(boolean forceRollback) {
     try {
-      if (transaction != null) transaction.close();
+      try {
+        rollback(forceRollback);
+      } finally {
+        if (transaction != null) transaction.close();
+      }
     } catch (SQLException e) {
       // Ignore.  There's nothing that can be done at this point.
     } finally {

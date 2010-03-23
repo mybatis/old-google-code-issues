@@ -34,8 +34,8 @@ public interface Executor {
 
   Transaction getTransaction();
 
-  void close();
-
+  void close(boolean forceRollback);
+  
   boolean isClosed();
 
 }

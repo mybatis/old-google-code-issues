@@ -9,7 +9,7 @@ import org.apache.ibatis.session.RowBounds;
 import java.util.List;
 import java.util.Map;
 
-@CacheNamespace
+@CacheNamespace(readWrite = false)
 public interface BoundBlogMapper {
 
   //======================================================

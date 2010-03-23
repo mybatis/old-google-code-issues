@@ -61,7 +61,7 @@ public class JdbcTransaction extends BaseTransaction {
       try {
         isolationLevel.restoreIsolationLevel(executor.getTransaction().getConnection());
       } finally {
-        executor.close();
+        executor.close(false);
         executor = null;
       }
     }
