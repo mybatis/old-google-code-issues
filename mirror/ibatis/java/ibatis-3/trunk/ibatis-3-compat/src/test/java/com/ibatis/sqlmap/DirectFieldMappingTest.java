@@ -1,7 +1,7 @@
 package com.ibatis.sqlmap;
 
-import testdomain.FieldAccount;
-import testdomain.PrivateAccount;
+import com.testdomain.FieldAccount;
+import com.testdomain.PrivateAccount;
 
 import java.sql.SQLException;
 
@@ -9,7 +9,7 @@ public class DirectFieldMappingTest extends BaseSqlMapTest {
 
   protected void setUp() throws Exception {
     initSqlMap("com/ibatis/sqlmap/maps/SqlMapConfig.xml", null);
-    initScript("scripts/account-init.sql");
+    initScript("com/scripts/account-init.sql");
   }
 
   public void testInsertAndSelectDirectToFields() throws SQLException {

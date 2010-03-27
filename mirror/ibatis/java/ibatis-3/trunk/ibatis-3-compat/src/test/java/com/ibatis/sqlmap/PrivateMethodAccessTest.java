@@ -6,7 +6,7 @@ public class PrivateMethodAccessTest extends BaseSqlMapTest {
 
   protected void setUp() throws Exception {
     initSqlMap("com/ibatis/sqlmap/maps/SqlMapConfig.xml", null);
-    initScript("scripts/docs-init.sql");
+    initScript("com/scripts/docs-init.sql");
   }
 
   public void testShouldSetPrivateProperties() throws Exception {

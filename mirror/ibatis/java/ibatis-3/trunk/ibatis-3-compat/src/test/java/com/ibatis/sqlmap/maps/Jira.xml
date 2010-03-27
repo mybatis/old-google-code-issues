@@ -6,21 +6,21 @@
 
 <sqlMap>
 
-  <resultMap id="jira260GroupedResult" class="testdomain.ArticleIndex" groupBy="categoryTitle">
+  <resultMap id="jira260GroupedResult" class="com.testdomain.ArticleIndex" groupBy="categoryTitle">
     <result property="categoryTitle" column="category_title"/>
     <result property="topics" resultMap="topicResult"/>
   </resultMap>
 
-  <resultMap id="topicResult" class="testdomain.Topic" groupBy="topicTitle">
+  <resultMap id="topicResult" class="com.testdomain.Topic" groupBy="topicTitle">
     <result property="topicTitle" column="topic_title"/>
     <result property="descriptionList" resultMap="descriptionResult"/>
   </resultMap>
 
-  <resultMap id="descriptionResult" class="testdomain.TopicDescription">
+  <resultMap id="descriptionResult" class="com.testdomain.TopicDescription">
     <result property="description" column="topic_description"/>
   </resultMap>
 
-  <resultMap id="jira260FlatResult" class="testdomain.ArticleIndexDenorm">
+  <resultMap id="jira260FlatResult" class="com.testdomain.ArticleIndexDenorm">
     <result property="categoryTitle" column="category_title"/>
     <result property="topicTitle" column="topic_title"/>
     <result property="description" column="topic_description"/>

@@ -1,7 +1,7 @@
 package com.ibatis.sqlmap;
 
-import testdomain.Category;
-import testdomain.Product;
+import com.testdomain.Category;
+import com.testdomain.Product;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ public class RepeatingGroupMappingTest extends BaseSqlMapTest {
 
   protected void setUp() throws Exception {
     initSqlMap("com/ibatis/sqlmap/maps/SqlMapConfig.xml", null);
-    initScript("scripts/jpetstore-hsqldb-schema.sql");
-    initScript("scripts/jpetstore-hsqldb-dataload.sql");
+    initScript("com/scripts/jpetstore-hsqldb-schema.sql");
+    initScript("com/scripts/jpetstore-hsqldb-dataload.sql");
   }
 
   public void testShouldRetrieveTwoPeerLists() throws Exception {

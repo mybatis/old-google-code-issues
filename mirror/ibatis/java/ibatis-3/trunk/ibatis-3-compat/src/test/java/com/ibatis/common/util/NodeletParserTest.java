@@ -1,6 +1,6 @@
 package com.ibatis.common.util;
 
-import domain.misc.Employee;
+import com.domain.misc.Employee;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.parsing.XNode;
 import static org.junit.Assert.assertEquals;
@@ -21,7 +21,7 @@ public class NodeletParserTest {
         setProperty("id_var", "1234567890");
       }
     });
-    Reader resource = Resources.getResourceAsReader("resources/nodelet_test.xml");
+    Reader resource = Resources.getResourceAsReader("com/resources/nodelet_test.xml");
     parser.parse(resource);
     Employee emp = handler.getEmployee();
     assertEquals(1234567890, emp.getId());

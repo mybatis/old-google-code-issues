@@ -6,7 +6,7 @@
 
 <sqlMap>
 
-  <resultMap id="categoryResultMap" class="testdomain.Category" groupBy="categoryId">
+  <resultMap id="categoryResultMap" class="com.testdomain.Category" groupBy="categoryId">
     <result property="categoryId" column="catid"/>
     <result property="name" column="catname"/>
     <result property="description" column="catdescn"/>
@@ -15,14 +15,14 @@
   </resultMap>
 
 
-  <resultMap id="productResultMap" class="testdomain.Product">
+  <resultMap id="productResultMap" class="com.testdomain.Product">
     <result property="productId" column="productid"/>
     <result property="categoryId" column="category"/>
     <result property="name" column="prodname"/>
     <result property="description" column="proddescn"/>
   </resultMap>
 
-  <resultMap id="itemResultMap" class="testdomain.Item">
+  <resultMap id="itemResultMap" class="com.testdomain.Item">
     <result property="itemId" column="itemid"/>
     <result property="productId" column="productid"/>
     <result property="listPrice" column="listprice"/>

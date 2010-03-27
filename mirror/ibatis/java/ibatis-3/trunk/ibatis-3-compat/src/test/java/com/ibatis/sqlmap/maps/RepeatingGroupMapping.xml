@@ -6,18 +6,18 @@
 
 <sqlMap>
 
-  <resultMap id="categoryResult" class="testdomain.Category" groupBy="categoryId">
+  <resultMap id="categoryResult" class="com.testdomain.Category" groupBy="categoryId">
     <result property="categoryId" column="catid"/>
     <result property="name" column="catname"/>
     <result property="description" column="catdescn"/>
     <result property="productList" resultMap="productResult"/>
   </resultMap>
 
-  <resultMap id="categoryResultExtended" class="testdomain.Category" extends="categoryResult">
+  <resultMap id="categoryResultExtended" class="com.testdomain.Category" extends="categoryResult">
     <result property="name" column="catname"/>
   </resultMap>
 
-  <resultMap id="productResult" class="testdomain.Product" groupBy="productId">
+  <resultMap id="productResult" class="com.testdomain.Product" groupBy="productId">
     <result property="productId" column="productid"/>
     <result property="categoryId" column="category"/>
     <result property="name" column="prodname"/>
@@ -25,7 +25,7 @@
     <result property="itemList" resultMap="itemResult"/>
   </resultMap>
 
-  <resultMap id="itemResult" class="testdomain.Item">
+  <resultMap id="itemResult" class="com.testdomain.Item">
     <result property="itemId" column="itemid"/>
     <result property="productId" column="productid"/>
     <result property="listPrice" column="listprice"/>
@@ -36,14 +36,14 @@
     <result property="quantity" column="qty"/>
   </resultMap>
 
-  <resultMap id="categoryResultJIRA250" class="testdomain.Category" groupBy="categoryId">
+  <resultMap id="categoryResultJIRA250" class="com.testdomain.Category" groupBy="categoryId">
     <result property="categoryId" column="catid"/>
     <result property="name" column="catname"/>
     <result property="description" column="catdescn"/>
     <result property="productList" resultMap="productResultJIRA250"/>
   </resultMap>
 
-  <resultMap id="productResultJIRA250" class="testdomain.Product" groupBy="productId">
+  <resultMap id="productResultJIRA250" class="com.testdomain.Product" groupBy="productId">
     <result property="productId" column="productid"/>
     <result property="categoryId" column="category"/>
     <result property="name" column="prodname"/>

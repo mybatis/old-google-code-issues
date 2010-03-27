@@ -16,7 +16,7 @@
     {call swap_email_address (?, ?, ?)}
   </procedure>
 
-  <parameterMap id="swapParametersUsingBean" class="testdomain.ProcBean">
+  <parameterMap id="swapParametersUsingBean" class="com.testdomain.ProcBean">
     <parameter property="email1" jdbcType="VARCHAR" javaType="java.lang.String" mode="INOUT"/>
     <parameter property="email2" jdbcType="VARCHAR" javaType="java.lang.String" mode="INOUT"/>
     <parameter property="status" jdbcType="VARCHAR" javaType="java.lang.String" mode="OUT"/>

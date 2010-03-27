@@ -1,7 +1,7 @@
 package com.ibatis.sqlmap;
 
-import testdomain.IItem;
-import testdomain.ISupplier;
+import com.testdomain.IItem;
+import com.testdomain.ISupplier;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ public class ResultObjectFactoryTest extends BaseSqlMapTest {
 
   protected void setUp() throws Exception {
     initSqlMap("com/ibatis/sqlmap/maps/SqlMapConfig_rof.xml", null);
-    initScript("scripts/jpetstore-hsqldb-schema.sql");
-    initScript("scripts/jpetstore-hsqldb-dataload.sql");
+    initScript("com/scripts/jpetstore-hsqldb-schema.sql");
+    initScript("com/scripts/jpetstore-hsqldb-dataload.sql");
   }
 
   /**

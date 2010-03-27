@@ -32,8 +32,8 @@ public class PersistenceFixture {
         ScriptRunner runner = new ScriptRunner(conn, false, false);
         runner.setErrorLogWriter(null);
         runner.setLogWriter(null);
-        runner.runScript(Resources.getResourceAsReader("ddl/hsql/jpetstore-hsqldb-schema.sql"));
-        runner.runScript(Resources.getResourceAsReader("ddl/hsql/jpetstore-hsqldb-dataload.sql"));
+        runner.runScript(Resources.getResourceAsReader("com/ddl/hsql/jpetstore-hsqldb-schema.sql"));
+        runner.runScript(Resources.getResourceAsReader("com/ddl/hsql/jpetstore-hsqldb-dataload.sql"));
       } finally {
         conn.close();
       }

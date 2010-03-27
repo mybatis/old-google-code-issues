@@ -1,9 +1,9 @@
 package com.ibatis.sqlmap;
 
-import testdomain.Book;
-import testdomain.Document;
-import testdomain.Magazine;
-import testdomain.PersonDocument;
+import com.testdomain.Book;
+import com.testdomain.Document;
+import com.testdomain.Magazine;
+import com.testdomain.PersonDocument;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public class DiscriminatorTest extends BaseSqlMapTest {
 
   protected void setUp() throws Exception {
     initSqlMap("com/ibatis/sqlmap/maps/SqlMapConfig.xml", null);
-    initScript("scripts/docs-init.sql");
+    initScript("com/scripts/docs-init.sql");
   }
 
   public void testDiscriminator() throws Exception {

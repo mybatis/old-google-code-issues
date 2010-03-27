@@ -5,7 +5,7 @@
 
 <sqlMapConfig>
 
-  <properties resource="properties/database.properties"/>
+  <properties resource="com/properties/database.properties"/>
 
   <transactionManager type="JDBC">
     <dataSource type="SIMPLE">

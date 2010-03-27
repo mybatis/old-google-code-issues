@@ -8,7 +8,7 @@
 
   <select id="dynamicIsParameterPresent"
           parameterClass="integer"
-          resultClass="testdomain.Account">
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -22,7 +22,7 @@
 
   <select id="dynamicIsNotEmpty"
           parameterClass="string"
-          resultClass="testdomain.Account">
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -36,7 +36,7 @@
 
   <select id="dynamicIsEqual"
           parameterClass="string"
-          resultClass="testdomain.Account">
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -50,7 +50,7 @@
 
   <select id="dynamicIsGreater"
           parameterClass="int"
-          resultClass="testdomain.Account">
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -64,7 +64,7 @@
 
   <select id="dynamicIsGreaterEqual"
           parameterClass="int"
-          resultClass="testdomain.Account">
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -78,7 +78,7 @@
 
   <select id="dynamicIsLess"
           parameterClass="int"
-          resultClass="testdomain.Account">
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -92,7 +92,7 @@
 
   <select id="dynamicIsLessEqual"
           parameterClass="int"
-          resultClass="testdomain.Account">
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -106,7 +106,7 @@
 
   <select id="dynamicIsNotNull"
           parameterClass="string"
-          resultClass="testdomain.Account">
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -120,7 +120,7 @@
 
   <select id="dynamicIsPropertyAvailable"
           parameterClass="string"
-          resultClass="testdomain.Account">
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -134,7 +134,7 @@
 
   <select id="dynamicSubst"
           parameterClass="map"
-          resultClass="testdomain.Account">
+          resultClass="com.testdomain.Account">
     <dynamic>
       $statement$
     </dynamic>
@@ -142,7 +142,7 @@
 
   <select id="dynamicIterate"
           parameterClass="list"
-          resultClass="testdomain.Account">
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -157,7 +157,7 @@
 
   <select id="dynamicIterateLiteral"
           parameterClass="list"
-          resultClass="testdomain.Account">
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -172,7 +172,7 @@
 
   <select id="dynamicIterateInConditional"
           parameterClass="list"
-          resultClass="testdomain.Account">
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -192,7 +192,7 @@
 
   <select id="multiDynamicIterate"
           parameterClass="list"
-          resultClass="testdomain.Account">
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -211,7 +211,7 @@
 
   <select id="multiDynamicIterateLiteral"
           parameterClass="list"
-          resultClass="testdomain.Account">
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -229,8 +229,8 @@
   </select>
 
   <select id="iterateNestedListProperty"
-          parameterClass="testdomain.Account"
-          resultClass="testdomain.Account">
+          parameterClass="com.testdomain.Account"
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -244,8 +244,8 @@
   </select>
 
   <select id="iterateNestedListPropertyB"
-          parameterClass="testdomain.Account"
-          resultClass="testdomain.Account">
+          parameterClass="com.testdomain.Account"
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -263,7 +263,7 @@
 
   <select id="iterateNestedMapListProperty"
           parameterClass="map"
-          resultClass="testdomain.Account">
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -277,8 +277,8 @@
   </select>
 
   <select id="dynamicQueryByExample"
-          parameterClass="testdomain.Account"
-          resultClass="testdomain.Account">
+          parameterClass="com.testdomain.Account"
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -313,8 +313,8 @@
   </select>
 
   <select id="complexDynamicQueryByExample"
-          parameterClass="testdomain.Account"
-          resultClass="testdomain.Account">
+          parameterClass="com.testdomain.Account"
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -355,8 +355,8 @@
   </select>
 
   <select id="complexDynamicQueryByExampleLiteral"
-          parameterClass="testdomain.Account"
-          resultClass="testdomain.Account">
+          parameterClass="com.testdomain.Account"
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -397,8 +397,8 @@
   </select>
 
   <select id="dynamicQueryByExample2"
-          parameterClass="testdomain.Account"
-          resultClass="testdomain.Account">
+          parameterClass="com.testdomain.Account"
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -415,8 +415,8 @@
   </select>
 
   <select id="dynamicQueryByExample2Literal"
-          parameterClass="testdomain.Account"
-          resultClass="testdomain.Account">
+          parameterClass="com.testdomain.Account"
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -442,7 +442,7 @@
 
   <select id="dynamicIterateWithPrepend1"
           parameterClass="list"
-          resultClass="testdomain.Account">
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -459,7 +459,7 @@
 
   <select id="dynamicIterateWithPrepend2"
           parameterClass="list"
-          resultClass="testdomain.Account">
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -475,7 +475,7 @@
 
   <select id="dynamicIterateWithPrepend2b"
           parameterClass="list"
-          resultClass="testdomain.Account">
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -490,7 +490,7 @@
   </select>
 
   <select id="dynamicIterateWithPrepend2c"
-          resultClass="testdomain.Account">
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -505,7 +505,7 @@
   </select>
 
   <select id="dynamicIterateWithPrepend2d"
-          resultClass="testdomain.Account">
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -525,7 +525,7 @@
   </select>
 
   <select id="dynamicIterateWithPrepend2e"
-          resultClass="testdomain.Account">
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -545,7 +545,7 @@
   </select>
 
   <select id="dynamicIterateWithPrepend2f"
-          resultClass="testdomain.Account">
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -566,7 +566,7 @@
 
   <select id="dynamicIterateWithPrepend3"
           parameterClass="list"
-          resultClass="testdomain.Account">
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -599,8 +599,8 @@
   </sql>
 
   <select id="dynamicWithPrepend"
-          parameterClass="testdomain.Account"
-          resultClass="testdomain.Account">
+          parameterClass="com.testdomain.Account"
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -611,8 +611,8 @@
   </select>
 
   <select id="dynamicWithTwoDynamicElements"
-          parameterClass="testdomain.Account"
-          resultClass="testdomain.Account">
+          parameterClass="com.testdomain.Account"
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -634,8 +634,8 @@
     </dynamic>
   </select>
 
-  <select id="complexDynamicStatement" cacheModel="account-cache" resultClass="testdomain.Account"
-          parameterClass="testdomain.Account">
+  <select id="complexDynamicStatement" cacheModel="account-cache" resultClass="com.testdomain.Account"
+          parameterClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -662,7 +662,7 @@
 
   <select id="iterateListInMap"
           parameterClass="map"
-          resultClass="testdomain.Account">
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -679,7 +679,7 @@
 
   <select id="iterateListDirect"
           parameterClass="list"
-          resultClass="testdomain.Account">
+          resultClass="com.testdomain.Account">
     select
     ACC_ID as id,
     ACC_FIRST_NAME as firstName,
@@ -694,7 +694,7 @@
     </dynamic>
   </select>
 
-  <select id="testRemappableResults" parameterClass="int" resultClass="testdomain.Account" remapResults="true">
+  <select id="testRemappableResults" parameterClass="int" resultClass="com.testdomain.Account" remapResults="true">
     select
     <isNotEqual compareValue="77">
       ACC_ID as id,

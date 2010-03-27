@@ -1,7 +1,7 @@
 package com.ibatis.sqlmap;
 
-import testdomain.Account;
-import testdomain.Order;
+import com.testdomain.Account;
+import com.testdomain.Order;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -13,9 +13,9 @@ public class ResultMapTest extends BaseSqlMapTest {
 
   protected void setUp() throws Exception {
     initSqlMap("com/ibatis/sqlmap/maps/SqlMapConfig.xml", null);
-    initScript("scripts/account-init.sql");
-    initScript("scripts/order-init.sql");
-    initScript("scripts/line_item-init.sql");
+    initScript("com/scripts/account-init.sql");
+    initScript("com/scripts/order-init.sql");
+    initScript("com/scripts/line_item-init.sql");
   }
 
   protected void tearDown() throws Exception {

@@ -5,10 +5,10 @@ import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 import junit.framework.TestCase;
-import testdomain.Account;
-import testdomain.FieldAccount;
-import testdomain.Order;
-import testdomain.PrivateAccount;
+import com.testdomain.Account;
+import com.testdomain.FieldAccount;
+import com.testdomain.Order;
+import com.testdomain.PrivateAccount;
 
 import javax.sql.DataSource;
 import java.io.Reader;

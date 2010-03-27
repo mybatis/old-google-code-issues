@@ -18,7 +18,7 @@ public class DaoConfig {
   static {
     try {
       daoManager = newDaoManager(null);
-      Properties props = Resources.getResourceAsProperties("properties/database.properties");
+      Properties props = Resources.getResourceAsProperties("com/properties/database.properties");
       String url = props.getProperty("url");
       String driver = props.getProperty("driver");
       String username = props.getProperty("username");
@@ -30,8 +30,8 @@ public class DaoConfig {
           ScriptRunner runner = new ScriptRunner(conn, false, false);
           runner.setErrorLogWriter(null);
           runner.setLogWriter(null);
-          runner.runScript(Resources.getResourceAsReader("ddl/hsql/jpetstore-hsqldb-schema.sql"));
-          runner.runScript(Resources.getResourceAsReader("ddl/hsql/jpetstore-hsqldb-dataload.sql"));
+          runner.runScript(Resources.getResourceAsReader("com/ddl/hsql/jpetstore-hsqldb-schema.sql"));
+          runner.runScript(Resources.getResourceAsReader("com/ddl/hsql/jpetstore-hsqldb-dataload.sql"));
         } finally {
           conn.close();
         }

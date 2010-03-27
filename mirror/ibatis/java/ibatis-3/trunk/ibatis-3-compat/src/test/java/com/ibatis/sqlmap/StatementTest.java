@@ -4,10 +4,10 @@ import com.ibatis.common.util.PaginatedList;
 import com.ibatis.sqlmap.client.SqlMapSession;
 import com.ibatis.sqlmap.client.event.RowHandler;
 import com.ibatis.sqlmap.engine.impl.SqlMapClientImpl;
-import testdomain.Account;
-import testdomain.LineItem;
-import testdomain.Order;
-import testdomain.SuperAccount;
+import com.testdomain.Account;
+import com.testdomain.LineItem;
+import com.testdomain.Order;
+import com.testdomain.SuperAccount;
 
 import javax.sql.DataSource;
 import java.math.BigDecimal;
@@ -24,9 +24,9 @@ public class StatementTest extends BaseSqlMapTest {
 
   protected void setUp() throws Exception {
     initSqlMap("com/ibatis/sqlmap/maps/SqlMapConfig.xml", null);
-    initScript("scripts/account-init.sql");
-    initScript("scripts/order-init.sql");
-    initScript("scripts/line_item-init.sql");
+    initScript("com/scripts/account-init.sql");
+    initScript("com/scripts/order-init.sql");
+    initScript("com/scripts/line_item-init.sql");
   }
 
   protected void tearDown() throws Exception {
@@ -330,7 +330,7 @@ public class StatementTest extends BaseSqlMapTest {
 
     // Test Even - Two Pages
     try {
-      initScript("scripts/more-account-records.sql");
+      initScript("com/scripts/more-account-records.sql");
     } catch (Exception e) {
       fail(e.toString());
     }
@@ -485,7 +485,7 @@ public class StatementTest extends BaseSqlMapTest {
 
     // Test Even - Two Pages
     try {
-      initScript("scripts/more-account-records.sql");
+      initScript("com/scripts/more-account-records.sql");
     } catch (Exception e) {
       fail(e.toString());
     }
