@@ -1,6 +1,6 @@
 package com.ibatis.sqlmap;
 
-import testdomain.Account;
+import com.testdomain.Account;
 
 import java.sql.SQLException;
 import java.util.*;
@@ -9,7 +9,7 @@ public class IterateTest extends BaseSqlMapTest {
 
   protected void setUp() throws Exception {
     initSqlMap("com/ibatis/sqlmap/maps/SqlMapConfig.xml", null);
-    initScript("scripts/account-init.sql");
+    initScript("com/scripts/account-init.sql");
   }
 
   protected void tearDown() throws Exception {

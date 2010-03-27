@@ -2,7 +2,7 @@ package com.ibatis.sqlmap;
 
 import com.ibatis.sqlmap.engine.execution.BatchException;
 import org.apache.ibatis.executor.BatchResult;
-import testdomain.Account;
+import com.testdomain.Account;
 
 import java.sql.BatchUpdateException;
 import java.sql.SQLException;
@@ -16,7 +16,7 @@ public class BatchTest extends BaseSqlMapTest {
 
   protected void setUp() throws Exception {
     initSqlMap("com/ibatis/sqlmap/maps/SqlMapConfig.xml", null);
-    initScript("scripts/account-init.sql");
+    initScript("com/scripts/account-init.sql");
   }
 
   public void testExecutebatchDetailed() {

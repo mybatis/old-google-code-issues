@@ -1,6 +1,6 @@
 package com.ibatis.sqlmap;
 
-import testdomain.*;
+import com.testdomain.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,9 +11,9 @@ public class NestedIterateTest extends BaseSqlMapTest {
 
   protected void setUp() throws Exception {
     initSqlMap("com/ibatis/sqlmap/maps/SqlMapConfig.xml", null);
-    initScript("scripts/person-init.sql");
-    initScript("scripts/jpetstore-hsqldb-schema.sql");
-    initScript("scripts/jpetstore-hsqldb-dataload.sql");
+    initScript("com/scripts/person-init.sql");
+    initScript("com/scripts/jpetstore-hsqldb-schema.sql");
+    initScript("com/scripts/jpetstore-hsqldb-dataload.sql");
   }
 
   /**

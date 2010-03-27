@@ -1,6 +1,6 @@
 package com.ibatis.sqlmap;
 
-import testdomain.ComplexBean;
+import com.testdomain.ComplexBean;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,9 +11,9 @@ public class ComplexTypeTest extends BaseSqlMapTest {
 
   protected void setUp() throws Exception {
     initSqlMap("com/ibatis/sqlmap/maps/SqlMapConfig.xml", null);
-    initScript("scripts/account-init.sql");
-    initScript("scripts/order-init.sql");
-    initScript("scripts/line_item-init.sql");
+    initScript("com/scripts/account-init.sql");
+    initScript("com/scripts/order-init.sql");
+    initScript("com/scripts/line_item-init.sql");
   }
 
   protected void tearDown() throws Exception {

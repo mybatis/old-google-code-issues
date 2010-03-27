@@ -19,7 +19,7 @@
     <property name="someProperty" value="someValue"/>
   </resultObjectFactory>
 
-  <typeAlias alias="order" type="testdomain.Order"/>
+  <typeAlias alias="order" type="com.testdomain.Order"/>
   <typeAlias alias="OuiNonBool" type="com.ibatis.sqlmap.extensions.PirateTypeHandlerCallback"/>
 
   <typeHandler javaType="boolean" jdbcType="VARCHAR" callback="OuiNonBool"/>

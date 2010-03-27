@@ -2,13 +2,13 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="NestedIterateStatements">
 
-  <resultMap id="personResult" class="testdomain.Person">
+  <resultMap id="personResult" class="com.testdomain.Person">
     <result property="id" column="id"/>
     <result property="firstName" column="first_name"/>
     <result property="lastName" column="last_name"/>
   </resultMap>
 
-  <select id="NestedIterateTest1" resultMap="personResult" parameterClass="testdomain.NestedIterateParameterObject">
+  <select id="NestedIterateTest1" resultMap="personResult" parameterClass="com.testdomain.NestedIterateParameterObject">
     select id, first_name, last_name
     from person
     <dynamic prepend="where">
@@ -19,7 +19,7 @@
     order by id
   </select>
 
-  <select id="NestedIterateTest2" resultMap="personResult" parameterClass="testdomain.NestedIterateParameterObject">
+  <select id="NestedIterateTest2" resultMap="personResult" parameterClass="com.testdomain.NestedIterateParameterObject">
     select id, first_name, last_name
     from person
     <dynamic prepend="where">
@@ -32,7 +32,7 @@
     order by id
   </select>
 
-  <select id="NestedIterateTest3" resultMap="personResult" parameterClass="testdomain.NestedIterateParameterObject">
+  <select id="NestedIterateTest3" resultMap="personResult" parameterClass="com.testdomain.NestedIterateParameterObject">
     select id, first_name, last_name
     from person
     <dynamic prepend="where">
@@ -45,7 +45,7 @@
     order by id
   </select>
 
-  <select id="NestedIterateTest4" resultMap="personResult" parameterClass="testdomain.NestedIterateParameterObject">
+  <select id="NestedIterateTest4" resultMap="personResult" parameterClass="com.testdomain.NestedIterateParameterObject">
     select id, first_name, last_name
     from person
     <dynamic prepend="where">
@@ -58,7 +58,7 @@
     order by id
   </select>
 
-  <select id="NestedIterateTest5" resultMap="personResult" parameterClass="testdomain.NestedIterateParameterObject">
+  <select id="NestedIterateTest5" resultMap="personResult" parameterClass="com.testdomain.NestedIterateParameterObject">
     select id, first_name, last_name
     from person
     <dynamic prepend="where">
@@ -71,7 +71,7 @@
     order by id
   </select>
 
-  <select id="NestedIterateTest6" resultMap="personResult" parameterClass="testdomain.NestedIterateParameterObject">
+  <select id="NestedIterateTest6" resultMap="personResult" parameterClass="com.testdomain.NestedIterateParameterObject">
     select id, first_name, last_name
     from person
     <dynamic prepend="where">
@@ -84,7 +84,7 @@
     order by id
   </select>
 
-  <select id="NestedIterateTest7" resultMap="personResult" parameterClass="testdomain.NestedIterateParameterObject">
+  <select id="NestedIterateTest7" resultMap="personResult" parameterClass="com.testdomain.NestedIterateParameterObject">
     select id, first_name, last_name
     from person
     <dynamic prepend="where">
@@ -98,7 +98,7 @@
   </select>
 
   <!-- try iterating over two properties -->
-  <select id="NestedIterateTest8" resultMap="personResult" parameterClass="testdomain.NestedIterateParameterObject">
+  <select id="NestedIterateTest8" resultMap="personResult" parameterClass="com.testdomain.NestedIterateParameterObject">
     select id, first_name, last_name
     from person
     <dynamic prepend="where">
@@ -112,7 +112,7 @@
   </select>
 
   <!-- try nested iterates -->
-  <select id="NestedIterateTest9" resultMap="personResult" parameterClass="testdomain.NestedIterateParameterObject">
+  <select id="NestedIterateTest9" resultMap="personResult" parameterClass="com.testdomain.NestedIterateParameterObject">
     select id, first_name, last_name
     from person
     <dynamic prepend="where">
@@ -128,7 +128,7 @@
   </select>
 
   <!-- This test makes sure that removeFirstPrepend works for every iteration -->
-  <select id="NestedIterateTest9a" resultMap="personResult" parameterClass="testdomain.NestedIterateParameterObject">
+  <select id="NestedIterateTest9a" resultMap="personResult" parameterClass="com.testdomain.NestedIterateParameterObject">
     select id, first_name, last_name
     from person
     <dynamic prepend="where">
@@ -143,7 +143,7 @@
     order by id
   </select>
 
-  <select id="NestedIterateTest10" resultMap="personResult" parameterClass="testdomain.NestedIterateParameterObject">
+  <select id="NestedIterateTest10" resultMap="personResult" parameterClass="com.testdomain.NestedIterateParameterObject">
     select id, first_name, last_name
     from person
     <dynamic prepend="where">
@@ -156,7 +156,7 @@
     order by id
   </select>
 
-  <select id="NestedIterateTest11" resultMap="personResult" parameterClass="testdomain.NestedIterateParameterObject">
+  <select id="NestedIterateTest11" resultMap="personResult" parameterClass="com.testdomain.NestedIterateParameterObject">
     select id, first_name, last_name
     from person
     <dynamic prepend="where">
@@ -169,7 +169,7 @@
     order by id
   </select>
 
-  <select id="NestedIterateTest12" resultMap="personResult" parameterClass="testdomain.NestedIterateParameterObject">
+  <select id="NestedIterateTest12" resultMap="personResult" parameterClass="com.testdomain.NestedIterateParameterObject">
     select id, first_name, last_name
     from person
     <dynamic prepend="where">
@@ -182,7 +182,7 @@
     order by id
   </select>
 
-  <select id="NestedIterateTest13" resultMap="personResult" parameterClass="testdomain.NestedIterateParameterObject">
+  <select id="NestedIterateTest13" resultMap="personResult" parameterClass="com.testdomain.NestedIterateParameterObject">
     select id, first_name, last_name
     from person
     <dynamic prepend="where">
@@ -195,7 +195,7 @@
     order by id
   </select>
 
-  <select id="NestedIterateTest14" resultMap="personResult" parameterClass="testdomain.NestedIterateParameterObject">
+  <select id="NestedIterateTest14" resultMap="personResult" parameterClass="com.testdomain.NestedIterateParameterObject">
     select id, first_name, last_name
     from person
     <dynamic prepend="where">
@@ -208,7 +208,7 @@
     order by id
   </select>
 
-  <select id="NestedIterateTest15" resultMap="personResult" parameterClass="testdomain.NestedIterateParameterObject">
+  <select id="NestedIterateTest15" resultMap="personResult" parameterClass="com.testdomain.NestedIterateParameterObject">
     select id, first_name, last_name
     from person
     <dynamic prepend="where">
@@ -222,7 +222,7 @@
   </select>
 
   <!-- test for IBATIS-293 written in the form of 2-7 above -->
-  <select id="NestedIterateTest16" resultMap="personResult" parameterClass="testdomain.NestedIterateParameterObject">
+  <select id="NestedIterateTest16" resultMap="personResult" parameterClass="com.testdomain.NestedIterateParameterObject">
     select id, first_name, last_name
     from person
     <dynamic prepend="where">
@@ -240,7 +240,7 @@
   </select>
 
   <!-- test for IBATIS-293 written in the form of 9-15 above -->
-  <select id="NestedIterateTest17" resultMap="personResult" parameterClass="testdomain.NestedIterateParameterObject">
+  <select id="NestedIterateTest17" resultMap="personResult" parameterClass="com.testdomain.NestedIterateParameterObject">
     select id, first_name, last_name
     from person
     <dynamic prepend="where">
@@ -258,7 +258,7 @@
   </select>
 
   <!-- test for IBATIS-293 written in the form of 9-15 above -->
-  <select id="NestedIterateTest18" resultMap="personResult" parameterClass="testdomain.NestedIterateParameterObject">
+  <select id="NestedIterateTest18" resultMap="personResult" parameterClass="com.testdomain.NestedIterateParameterObject">
     select id, first_name, last_name
     from person
     <dynamic prepend="where">
@@ -276,7 +276,7 @@
   </select>
 
   <!-- test for IBATIS-293 written in the form of 9-15 above -->
-  <select id="NestedIterateTest19" resultMap="personResult" parameterClass="testdomain.NestedIterateParameterObject">
+  <select id="NestedIterateTest19" resultMap="personResult" parameterClass="com.testdomain.NestedIterateParameterObject">
     select id, first_name, last_name
     from person
     <dynamic prepend="where">
@@ -294,7 +294,7 @@
   </select>
 
   <!-- test for IBATIS-293 written in the form of 9-15 above -->
-  <select id="NestedIterateTest20" resultMap="personResult" parameterClass="testdomain.NestedIterateParameterObject">
+  <select id="NestedIterateTest20" resultMap="personResult" parameterClass="com.testdomain.NestedIterateParameterObject">
     select id, first_name, last_name
     from person
     <dynamic prepend="where">
@@ -312,7 +312,7 @@
   </select>
 
   <!-- test the open, close, prepend attributes when no elements satisfy -->
-  <select id="NestedIterateTest21" resultMap="personResult" parameterClass="testdomain.NestedIterateParameterObject">
+  <select id="NestedIterateTest21" resultMap="personResult" parameterClass="com.testdomain.NestedIterateParameterObject">
     select id, first_name, last_name
     from person
     <iterate property="idList" conjunction="or" prepend="where" open="(" close=")">
@@ -324,7 +324,7 @@
   </select>
 
   <!-- test the open, close, prepend attributes when the first element doesn't satisfy -->
-  <select id="NestedIterateTest22" resultMap="personResult" parameterClass="testdomain.NestedIterateParameterObject">
+  <select id="NestedIterateTest22" resultMap="personResult" parameterClass="com.testdomain.NestedIterateParameterObject">
     select id, first_name, last_name
     from person
     <iterate property="idList" conjunction="or" prepend="where" open="(" close=")">
@@ -336,7 +336,7 @@
   </select>
 
   <!-- test the open, close, prepend attributes when only the first element satisfies -->
-  <select id="NestedIterateTest23" resultMap="personResult" parameterClass="testdomain.NestedIterateParameterObject">
+  <select id="NestedIterateTest23" resultMap="personResult" parameterClass="com.testdomain.NestedIterateParameterObject">
     select id, first_name, last_name
     from person
     <iterate property="idList" conjunction="or" prepend="where" open="(" close=")">
@@ -348,7 +348,7 @@
   </select>
 
   <!-- test the open, close, prepend attributes when only the last element satisfies -->
-  <select id="NestedIterateTest24" resultMap="personResult" parameterClass="testdomain.NestedIterateParameterObject">
+  <select id="NestedIterateTest24" resultMap="personResult" parameterClass="com.testdomain.NestedIterateParameterObject">
     select id, first_name, last_name
     from person
     <iterate property="idList" conjunction="or" prepend="where" open="(" close=")">
@@ -361,7 +361,7 @@
 
 
   <!-- test the open, close, prepend attributes when more than one element satisfies -->
-  <select id="NestedIterateTest25" resultMap="personResult" parameterClass="testdomain.NestedIterateParameterObject">
+  <select id="NestedIterateTest25" resultMap="personResult" parameterClass="com.testdomain.NestedIterateParameterObject">
     select id, first_name, last_name
     from person
     <iterate property="idList" conjunction="or" prepend="where" open="(" close=")">
@@ -399,7 +399,7 @@
   </select>
 
   <!-- test nested object -->
-  <select id="NestedIterateTest28" resultMap="personResult" parameterClass="testdomain.SimpleNestedParameterObject">
+  <select id="NestedIterateTest28" resultMap="personResult" parameterClass="com.testdomain.SimpleNestedParameterObject">
     select id, first_name, last_name
     from person
     <iterate property="nestedIterateParameterObject.idList" conjunction="or" prepend="where" open="(" close=")">
@@ -411,7 +411,7 @@
   </select>
 
   <!-- test deeper combo of list bean nesting -->
-  <select id="NestedIterateTest29" resultMap="personResult" parameterClass="testdomain.SimpleNestedParameterObject">
+  <select id="NestedIterateTest29" resultMap="personResult" parameterClass="com.testdomain.SimpleNestedParameterObject">
     select id, first_name, last_name
     from person
     <iterate property="nestedList">
@@ -425,7 +425,7 @@
     order by id
   </select>
 
-  <select id="NestedIterateTest30" parameterClass="testdomain.Category" resultClass="testdomain.Product">
+  <select id="NestedIterateTest30" parameterClass="com.testdomain.Category" resultClass="com.testdomain.Product">
     SELECT * FROM product WHERE productId=
     <iterate property="parentCategory.productList">
       <isEqual property="parentCategory.productList[].productId" compareValue="FI-SW-01">

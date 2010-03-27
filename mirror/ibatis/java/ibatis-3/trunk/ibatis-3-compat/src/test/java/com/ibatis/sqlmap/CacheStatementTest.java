@@ -3,7 +3,7 @@ package com.ibatis.sqlmap;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapSession;
 import org.apache.ibatis.cache.CacheKey;
-import testdomain.Account;
+import com.testdomain.Account;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -16,7 +16,7 @@ public class CacheStatementTest extends BaseSqlMapTest {
 
   protected void setUp() throws Exception {
     initSqlMap("com/ibatis/sqlmap/maps/SqlMapConfig.xml", null);
-    initScript("scripts/account-init.sql");
+    initScript("com/scripts/account-init.sql");
   }
 
   protected void tearDown() throws Exception {

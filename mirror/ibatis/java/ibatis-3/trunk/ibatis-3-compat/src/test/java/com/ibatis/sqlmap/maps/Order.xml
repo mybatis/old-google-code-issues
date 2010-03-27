@@ -10,7 +10,7 @@
     <flushInterval hours="24"/>
   </cacheModel>
 
-  <typeAlias alias="order" type="testdomain.Order"/>
+  <typeAlias alias="order" type="com.testdomain.Order"/>
 
   <resultMap id="credit-card-result" class="java.lang.String">
     <result property="value" column="ORD_CARD_NUMBER"/>
@@ -70,7 +70,7 @@
     <result property="lineItems" column="ORD_ID" select="getLineItemsForOrder"/>
   </resultMap>
 
-  <resultMap id="lineItemNestedResult" class="testdomain.LineItem">
+  <resultMap id="lineItemNestedResult" class="com.testdomain.LineItem">
     <result column="LIN_ID" property="id"/>
     <result column="LIN_ORD_ID" property="orderId"/>
     <result column="LIN_ITM_CODE" property="itemCode"/>

@@ -1,10 +1,10 @@
 package com.ibatis.sqlmap.jira;
 
 import com.ibatis.sqlmap.BaseSqlMapTest;
-import testdomain.ArticleIndex;
-import testdomain.ArticleIndexDenorm;
-import testdomain.Topic;
-import testdomain.TopicDescription;
+import com.testdomain.ArticleIndex;
+import com.testdomain.ArticleIndexDenorm;
+import com.testdomain.Topic;
+import com.testdomain.TopicDescription;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -32,7 +32,7 @@ public class JiraIbatis260 extends BaseSqlMapTest {
 
   protected void setUp() throws Exception {
     initSqlMap("com/ibatis/sqlmap/maps/SqlMapConfig.xml", null);
-    initScript("scripts/jira.sql");
+    initScript("com/scripts/jira.sql");
   }
 
   /**

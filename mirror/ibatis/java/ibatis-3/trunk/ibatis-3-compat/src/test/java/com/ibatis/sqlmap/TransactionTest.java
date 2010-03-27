@@ -2,7 +2,7 @@ package com.ibatis.sqlmap;
 
 
 import com.ibatis.sqlmap.engine.transaction.TransactionException;
-import testdomain.Account;
+import com.testdomain.Account;
 
 import java.sql.SQLException;
 
@@ -10,7 +10,7 @@ public class TransactionTest extends BaseSqlMapTest {
 
   protected void setUp() throws Exception {
     initSqlMap("com/ibatis/sqlmap/maps/SqlMapConfig.xml", null);
-    initScript("scripts/account-init.sql");
+    initScript("com/scripts/account-init.sql");
   }
 
   protected void tearDown() throws Exception {

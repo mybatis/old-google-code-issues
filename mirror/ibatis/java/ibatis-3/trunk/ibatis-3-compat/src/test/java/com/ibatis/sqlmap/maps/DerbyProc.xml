@@ -6,7 +6,7 @@
 
 <sqlMap namespace="DerbyProc">
 
-  <typeAlias alias="account" type="testdomain.Account"/>
+  <typeAlias alias="account" type="com.testdomain.Account"/>
 
   <resultMap id="account-result" class="account">
     <result property="id" column="id"/>

@@ -6,13 +6,13 @@
 
 <sqlMap>
 
-  <resultMap id="missingParamCheckA" class="testdomain.LineItem">
+  <resultMap id="missingParamCheckA" class="com.testdomain.LineItem">
     <result property="id" column="id"/>
     <result property="orderId" column="orderId"/>
     <result property="itemCode" column="itemCode"/>
   </resultMap>
 
-  <resultMap id="missingParamCheckB" class="testdomain.LineItem" extends="missingParamCheckA">
+  <resultMap id="missingParamCheckB" class="com.testdomain.LineItem" extends="missingParamCheckA">
     <result property="quantity" column="quantity"/>
     <result property="price" column="price"/>
   </resultMap>
@@ -38,7 +38,7 @@
 
   <select id="getLineItemsForOrder"
           parameterClass="java.lang.Integer"
-          resultClass="testdomain.LineItem">
+          resultClass="com.testdomain.LineItem">
     select
     LIN_ID as id,
     LIN_ORD_ID as orderId,
@@ -48,7 +48,7 @@
     from LINE_ITEM where LIN_ORD_ID = #value#
   </select>
 
-  <insert id="insertLineItem" parameterClass="testdomain.LineItem">
+  <insert id="insertLineItem" parameterClass="com.testdomain.LineItem">
     <selectKey resultClass="int" keyProperty="id" type="post">
       select 99 from LINE_ITEM where LIN_ID = 1 and LIN_ORD_ID=1
     </selectKey>
@@ -58,7 +58,7 @@
     (#id#, #orderId#, #itemCode#, #quantity#, #price#)
   </insert>
 
-  <insert id="insertLineItemOrDie" parameterClass="testdomain.LineItem">
+  <insert id="insertLineItemOrDie" parameterClass="com.testdomain.LineItem">
     <selectKey resultClass="int" keyProperty="id" type="post">
       select 99 from LINE_ITEM where LIN_ID = 1 and LIN_ORD_ID=1
     </selectKey>
@@ -68,7 +68,7 @@
     (#id#, #orderId#, #itemCode#, #quantity#, #price#)
   </insert>
 
-  <insert id="insertLineItemPreKey" parameterClass="testdomain.LineItem">
+  <insert id="insertLineItemPreKey" parameterClass="com.testdomain.LineItem">
     <selectKey resultClass="int" keyProperty="id">
       select 99 from LINE_ITEM where LIN_ID = 1 and LIN_ORD_ID=1
     </selectKey>
@@ -78,7 +78,7 @@
     (#id#, #orderId#, #itemCode#, #quantity#, #price#)
   </insert>
 
-  <insert id="insertLineItemNoKey" parameterClass="testdomain.LineItem">
+  <insert id="insertLineItemNoKey" parameterClass="com.testdomain.LineItem">
     insert into LINE_ITEM
     (LIN_ID, LIN_ORD_ID, LIN_ITM_CODE, LIN_QUANTITY, LIN_PRICE)
     values
@@ -87,7 +87,7 @@
 
   <select id="getSpecificLineItem"
           parameterClass="java.util.HashMap"
-          resultClass="testdomain.LineItem">
+          resultClass="com.testdomain.LineItem">
     select
     LIN_ID as id,
     LIN_ORD_ID as orderId,
@@ -101,7 +101,7 @@
 
   <select id="getDynSpecificLineItem"
           parameterClass="java.util.HashMap"
-          resultClass="testdomain.LineItem">
+          resultClass="com.testdomain.LineItem">
     select
     LIN_ID as id,
     LIN_ORD_ID as orderId,

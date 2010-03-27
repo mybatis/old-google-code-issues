@@ -2,7 +2,7 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="ResultObjectFactoryStatements">
 
-  <resultMap id="itemResultROF" class="testdomain.IItem">
+  <resultMap id="itemResultROF" class="com.testdomain.IItem">
     <result column="itemid" property="itemId"/>
     <result column="productid" property="productId"/>
     <result column="listprice" property="listPrice"/>
@@ -16,7 +16,7 @@
     <result column="{supplierId=supplier}" property="supplier" select="getSupplierByIdROF"/>
   </resultMap>
 
-  <resultMap id="supplierResultROF" class="testdomain.ISupplier">
+  <resultMap id="supplierResultROF" class="com.testdomain.ISupplier">
     <result column="suppid" property="supplierId"/>
     <result column="name" property="name"/>
     <result column="status" property="status"/>
@@ -33,7 +33,7 @@
     from item
   </select>
 
-  <select id="getSupplierByIdROF" resultMap="supplierResultROF" parameterClass="testdomain.ISupplierKey">
+  <select id="getSupplierByIdROF" resultMap="supplierResultROF" parameterClass="com.testdomain.ISupplierKey">
     select *
     from supplier
     where suppid = #supplierId#
