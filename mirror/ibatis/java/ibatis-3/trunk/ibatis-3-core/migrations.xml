@@ -1,0 +1,19 @@
+<assembly>
+  <id>migrations</id>
+  <formats>
+    <format>zip</format>
+  </formats>
+  <outputDirectory>ibatis-migrations</outputDirectory>
+  <files>
+    <file>
+      <source>target/${project.artifactId}-${project.version}.${project.packaging}</source>    
+      <outputDirectory>lib</outputDirectory>
+    </file>
+  </files>
+  <fileSets>
+    <fileSet>
+      <directory>src/main/scripts</directory>
+      <outputDirectory></outputDirectory>
+    </fileSet>
+  </fileSets>
+</assembly>
