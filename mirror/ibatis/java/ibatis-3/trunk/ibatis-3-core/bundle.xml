@@ -1,0 +1,19 @@
+<assembly>
+  <id>bundle</id>
+  <formats>
+    <format>zip</format>
+  </formats>
+  <files>
+    <file>
+      <source>target/${project.artifactId}-${project.version}.${project.packaging}</source>    
+    </file>
+    <file>
+      <source>target/${project.artifactId}-${project.version}-sources.${project.packaging}</source>    
+    </file>
+  </files>
+  <dependencySets>
+    <dependencySet>
+      <outputDirectory>optional/${dependency.artifactId}</outputDirectory>
+    </dependencySet>
+  </dependencySets>
+</assembly>
