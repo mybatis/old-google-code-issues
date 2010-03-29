@@ -75,7 +75,7 @@ public class MapperAnnotationBuilder {
   private void parseCache() {
     CacheNamespace cacheDomain = (CacheNamespace) type.getAnnotation(CacheNamespace.class);
     if (cacheDomain != null) {
-      assistant.useNewCache(cacheDomain.implementation(), cacheDomain.eviction(), cacheDomain.flushInterval(), cacheDomain.size(), !cacheDomain.readWrite(), null);
+      assistant.useNewCache(cacheDomain.implementation(), cacheDomain.eviction(), cacheDomain.flushInterval(), cacheDomain.size(), cacheDomain.readWrite(), null);
     }
   }
 
