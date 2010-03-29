@@ -8,6 +8,8 @@ import java.sql.*;
 
 public class ScriptRunner {
 
+  private static final String LINE_SEPARATOR = System.getProperty("line.separator","\n");
+
   private static final String DEFAULT_DELIMITER = ";";
 
   private Connection connection;
@@ -75,16 +77,14 @@ public class ScriptRunner {
   }
 
   private void executeFullScript(Reader reader) {
-    final String lineseparator = System.getProperty("line.separator");
     StringBuffer script = new StringBuffer();
     try {
       BufferedReader lineReader = new BufferedReader(reader);
       String line;
       while ((line = lineReader.readLine()) != null) {
         script.append(line);
-        script.append(lineseparator);
+        script.append(LINE_SEPARATOR);
       }
-      System.out.println(script);
       executeStatement(script.toString());
       commitConnection();
     } catch (Exception e) {
@@ -161,13 +161,13 @@ public class ScriptRunner {
       println(trimmedLine);
     } else if (commandReadyToExecute(trimmedLine)) {
       command.append(line.substring(0, line.lastIndexOf(delimiter)));
-      command.append(" ");
+      command.append(LINE_SEPARATOR);
       println(command);
       executeStatement(command.toString());
       command.setLength(0);
     } else if (trimmedLine.length() > 0) {
       command.append(line);
-      command.append(" ");
+      command.append(LINE_SEPARATOR);
     }
     return command;
   }
