@@ -2,7 +2,7 @@ package org.apache.ibatis.executor;
 
 public class ErrorContext {
 
-  private static String NEWLINE; // Can't be final due to a weird Java compiler issue.
+  private static final String LINE_SEPARATOR = System.getProperty("line.separator","\n");
   private static final ThreadLocal<ErrorContext> LOCAL = new ThreadLocal<ErrorContext>();
 
   private ErrorContext stored;
@@ -12,14 +12,6 @@ public class ErrorContext {
   private String message;
   private String sql;
   private Throwable cause;
-
-  static {
-    try {
-      NEWLINE = System.getProperty("line.separator");
-    } catch (Throwable t) {
-      NEWLINE = "\n";
-    }
-  }
 
   private ErrorContext() {
   }
@@ -93,42 +85,42 @@ public class ErrorContext {
 
     // message
     if (this.message != null) {
-      description.append(NEWLINE);
+      description.append(LINE_SEPARATOR);
       description.append("### ");
       description.append(this.message);
     }
 
     // resource
     if (resource != null) {
-      description.append(NEWLINE);
+      description.append(LINE_SEPARATOR);
       description.append("### The error may exist in ");
       description.append(resource);
     }
 
     // object
     if (object != null) {
-      description.append(NEWLINE);
+      description.append(LINE_SEPARATOR);
       description.append("### The error may involve ");
       description.append(object);
     }
 
     // activity
     if (activity != null) {
-      description.append(NEWLINE);
+      description.append(LINE_SEPARATOR);
       description.append("### The error occurred while ");
       description.append(activity);
     }
 
     // activity
     if (sql != null) {
-      description.append(NEWLINE);
+      description.append(LINE_SEPARATOR);
       description.append("### SQL: ");
       description.append(sql.replace('\n', ' ').replace('\r', ' ').replace('\t', ' ').trim());
     }
 
     // cause
     if (cause != null) {
-      description.append(NEWLINE);
+      description.append(LINE_SEPARATOR);
       description.append("### Cause: ");
       description.append(cause.toString());
     }

@@ -10,6 +10,8 @@ import java.util.Properties;
 
 public class MigrationReader extends Reader {
 
+  private static final String LINE_SEPARATOR = System.getProperty("line.separator","\n");
+
   private Reader target;
 
   public MigrationReader(Reader source, boolean undo, Properties variables) throws IOException {
@@ -28,7 +30,7 @@ public class MigrationReader extends Reader {
             line = line.replace("--//", "-- ");
           }
           currentBuilder.append(line);
-          currentBuilder.append("\n");
+          currentBuilder.append(LINE_SEPARATOR);
         }
       }
       if (undo) {
