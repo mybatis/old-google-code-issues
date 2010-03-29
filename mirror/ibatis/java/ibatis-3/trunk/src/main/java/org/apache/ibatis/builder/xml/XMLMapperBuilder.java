@@ -75,9 +75,9 @@ public class XMLMapperBuilder extends BaseBuilder {
       Class evictionClass = typeAliasRegistry.resolveAlias(eviction);
       Long flushInterval = context.getLongAttribute("flushInterval");
       Integer size = context.getIntAttribute("size");
-      boolean readOnly = context.getBooleanAttribute("readOnly", false);
+      boolean readWrite = !context.getBooleanAttribute("readOnly", false);
       Properties props = context.getChildrenAsProperties();
-      builderAssistant.useNewCache(typeClass, evictionClass, flushInterval, size, readOnly, props);
+      builderAssistant.useNewCache(typeClass, evictionClass, flushInterval, size, readWrite, props);
     }
   }
 
