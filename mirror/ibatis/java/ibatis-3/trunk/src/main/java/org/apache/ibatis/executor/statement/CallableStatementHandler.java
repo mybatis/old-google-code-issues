@@ -40,8 +40,9 @@ public class CallableStatementHandler extends BaseStatementHandler {
       throws SQLException {
     CallableStatement cs = (CallableStatement) statement;
     cs.execute();
+    List resultList = resultSetHandler.handleResultSets(cs);
     resultSetHandler.handleOutputParameters(cs);
-    return resultSetHandler.handleResultSets(cs);
+    return resultList;
   }
 
   protected Statement instantiateStatement(Connection connection) throws SQLException {
