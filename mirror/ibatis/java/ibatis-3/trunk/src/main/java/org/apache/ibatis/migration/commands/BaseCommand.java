@@ -127,14 +127,9 @@ public abstract class BaseCommand implements Command {
       timezone = "GMT+0:00";
     }
     final SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
-    final Date now = nowInTimeZone(timezone);
+    final Date now = new Date();
+    dateFormat.setTimeZone(TimeZone.getTimeZone(timezone));
     return dateFormat.format(now);
-  }
-
-  protected Date nowInTimeZone(String toTimezone) {
-    final Calendar c = new GregorianCalendar(TimeZone.getTimeZone(toTimezone), Locale.US);
-    c.setTimeInMillis(new GregorianCalendar().getTimeInMillis());
-    return c.getTime();
   }
 
   protected void copyResourceTo(String resource, File toFile) {
