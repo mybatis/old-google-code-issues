@@ -49,16 +49,19 @@ public class CommandLine {
   }
 
   public void execute() {
+    boolean error = false;
     try {
       if (help) {
         printUsage();
       } else if (parseError != null) {
+        error = true;
         printError();
         printUsage();
       } else {
         try {
           runCommand();
-        } catch (MigrationException e) {
+        } catch (Exception e) {
+          error = true;
           out.println("\nERROR: " + e.getMessage());
           if (trace) {
             e.printStackTrace();
@@ -67,6 +70,9 @@ public class CommandLine {
       }
     } finally {
       out.flush();
+      if (error) {
+        System.exit(1);
+      }
     }
   }
 

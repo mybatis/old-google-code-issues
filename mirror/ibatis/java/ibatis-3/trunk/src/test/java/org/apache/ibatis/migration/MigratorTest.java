@@ -15,6 +15,7 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.security.Permission;
 import java.sql.Connection;
 
 public class MigratorTest extends BaseDataTest {
@@ -44,65 +45,82 @@ public class MigratorTest extends BaseDataTest {
     safeRun(executor, "DROP TABLE changelog");
     conn.commit();
     conn.close();
+
+    System.setSecurityManager(new SecurityManager(){
+      @Override
+      public void checkPermission(Permission perm) {
+      }
+      @Override
+      public void checkPermission(Permission perm, Object context) {
+      }
+      @Override
+      public void checkExit(int status) {
+        //super.checkExit(status);
+        throw new RuntimeException ("System exited with error code: " + status);
+      }
+    });
   }
 
   @AfterClass
   public static void teardown() {
     System.setOut(out);
+    System.setSecurityManager(null);
   }
+
+
 
   @Test
   public void shouldRunThroughFullMigrationUseCaseInOneTestToEnsureOrder() throws Exception {
     File f = getExampleDir();
 
-    Migrator.main(args("--path=" + f.getAbsolutePath(), "bootstrap", "--env=development"));
+    safeMigratorMain(args("--path=" + f.getAbsolutePath(), "bootstrap", "--env=development"));
     assertTrue(buffer.toString().contains("--  Bootstrap.sql"));
     buffer.clear();
 
-    Migrator.main(args("--path=" + f.getAbsolutePath(), "sta"));
+    safeMigratorMain(args("--path=" + f.getAbsolutePath(), "sta"));
     assertTrue(buffer.toString().contains("...pending..."));
     buffer.clear();
 
-    Migrator.main(args("--path=" + f.getAbsolutePath(), "up", "3000"));
+    safeMigratorMain(args("--path=" + f.getAbsolutePath(), "up", "3000"));
     buffer.clear();
 
-    Migrator.main(args("--path=" + f.getAbsolutePath(), "status"));
+    safeMigratorMain(args("--path=" + f.getAbsolutePath(), "status"));
     assertFalse(buffer.toString().contains("...pending..."));
     buffer.clear();
 
-    Migrator.main(args("--path=" + f.getAbsolutePath(), "down", "2"));
+    safeMigratorMain(args("--path=" + f.getAbsolutePath(), "down", "2"));
     buffer.clear();
 
-    Migrator.main(args("--path=" + f.getAbsolutePath(), "status"));
+    safeMigratorMain(args("--path=" + f.getAbsolutePath(), "status"));
     assertTrue(buffer.toString().contains("...pending..."));
     buffer.clear();
 
-    Migrator.main(args("--path=" + f.getAbsolutePath(), "version", "20080827200215"));
+    safeMigratorMain(args("--path=" + f.getAbsolutePath(), "version", "20080827200215"));
     buffer.clear();
 
-    Migrator.main(args("--path=" + f.getAbsolutePath(), "status"));
+    safeMigratorMain(args("--path=" + f.getAbsolutePath(), "status"));
     assertFalse(buffer.toString().contains("...pending..."));
     buffer.clear();
 
-    Migrator.main(args("--path=" + f.getAbsolutePath(), "down"));
+    safeMigratorMain(args("--path=" + f.getAbsolutePath(), "down"));
     buffer.clear();
 
-    Migrator.main(args("--path=" + f.getAbsolutePath(), "status"));
+    safeMigratorMain(args("--path=" + f.getAbsolutePath(), "status"));
     assertTrue(buffer.toString().contains("...pending..."));
     buffer.clear();
 
-    Migrator.main(args("--path=" + f.getAbsolutePath(), "pending"));
+    safeMigratorMain(args("--path=" + f.getAbsolutePath(), "pending"));
     buffer.clear();
 
-    Migrator.main(args("--path=" + f.getAbsolutePath(), "status"));
+    safeMigratorMain(args("--path=" + f.getAbsolutePath(), "status"));
     assertFalse(buffer.toString().contains("...pending..."));
     buffer.clear();
 
-    Migrator.main(args("--path=" + f.getAbsolutePath(), "--help"));
+    safeMigratorMain(args("--path=" + f.getAbsolutePath(), "--help"));
     assertTrue(buffer.toString().contains("--help"));
     buffer.clear();
 
-    Migrator.main(args("--path=" + f.getAbsolutePath(), "script", "20080827200212", "20080827200214"));
+    safeMigratorMain(args("--path=" + f.getAbsolutePath(), "script", "20080827200212", "20080827200214"));
     assertFalse(buffer.toString().contains("20080827200210"));
     assertFalse(buffer.toString().contains("20080827200211"));
     assertTrue(buffer.toString().contains("20080827200212"));
@@ -112,7 +130,7 @@ public class MigratorTest extends BaseDataTest {
     assertFalse(buffer.toString().contains("-- @UNDO"));
     buffer.clear();
 
-    Migrator.main(args("--path=" + f.getAbsolutePath(), "script", "20080827200215", "20080827200213"));
+    safeMigratorMain(args("--path=" + f.getAbsolutePath(), "script", "20080827200215", "20080827200213"));
     assertFalse(buffer.toString().contains("20080827200210"));
     assertFalse(buffer.toString().contains("20080827200211"));
     assertFalse(buffer.toString().contains("20080827200212"));
@@ -123,16 +141,26 @@ public class MigratorTest extends BaseDataTest {
     buffer.clear();
   }
 
+  private void safeMigratorMain(String[] args) throws Exception {
+    // Handles System.exit(1) calls so that the JVM doesn't terminate during unit tests.
+    // See security manager in setup method.
+    try {
+      Migrator.main(args);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
 
   @Test
   public void shouldInitTempDirectory() throws Exception {
     File basePath = getTempDir();
-    Migrator.main(args("--path=" + basePath.getAbsolutePath(), "init"));
+    safeMigratorMain(args("--path=" + basePath.getAbsolutePath(), "init"));
     assertNotNull(basePath.list());
     assertEquals(4, basePath.list().length);
     File scriptPath = new File(basePath.getCanonicalPath() + File.separator + "scripts");
     assertEquals(3, scriptPath.list().length);
-    Migrator.main(args("--path=" + basePath.getAbsolutePath(), "new", "test new migration"));
+    safeMigratorMain(args("--path=" + basePath.getAbsolutePath(), "new", "test new migration"));
     assertEquals(4, scriptPath.list().length);
   }
 

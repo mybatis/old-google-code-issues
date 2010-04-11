@@ -37,4 +37,4 @@
 create table BOOTSTRAP (
 ID NUMERIC(8,0),
 PRIMARY KEY(ID)
-)
+);
