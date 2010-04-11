@@ -279,7 +279,7 @@ public class MapperBuilderAssistant extends BaseBuilder {
   }
 
   private void setStatementTimeout(Integer timeout, MappedStatement.Builder statementBuilder) {
-    if (timeout != null) {
+    if (timeout == null) {
       timeout = configuration.getDefaultStatementTimeout();
     }
     statementBuilder.timeout(timeout);
