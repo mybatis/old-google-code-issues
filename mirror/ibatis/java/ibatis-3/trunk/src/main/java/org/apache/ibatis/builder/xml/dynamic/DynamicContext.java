@@ -17,17 +17,16 @@ public class DynamicContext {
     OgnlRuntime.setPropertyAccessor(ContextMap.class, new ContextAccessor());
   }
 
-  private final ContextMap bindings = new ContextMap();
+  private final ContextMap bindings;
   private final StringBuilder sqlBuilder = new StringBuilder();
   private int uniqueNumber = 0;
 
   public DynamicContext(Configuration configuration, Object parameterObject) {
     if (parameterObject != null && !(parameterObject instanceof Map)) {
       MetaObject metaObject = configuration.newMetaObject(parameterObject);
-      String[] names = metaObject.getGetterNames();
-      for (String name : names) {
-        bindings.put(name, metaObject.getValue(name));
-      }
+      bindings = new ContextMap(metaObject);
+    } else {
+      bindings = new ContextMap(null);
     }
     bindings.put(PARAMETER_OBJECT_KEY, parameterObject);
   }
@@ -54,6 +53,28 @@ public class DynamicContext {
   }
 
   static class ContextMap extends HashMap<String, Object> {
+    private MetaObject parameterMetaObject;
+    public ContextMap(MetaObject parameterMetaObject) {
+      this.parameterMetaObject = parameterMetaObject;
+    }
+
+    @Override
+    public Object get(Object key) {
+      if (super.containsKey(key)) {
+        return super.get(key);
+      }
+        
+      if (parameterMetaObject != null) {
+        Object object = parameterMetaObject.getValue(key.toString());
+        if (object != null) {
+          super.put(key.toString(), object);
+        }
+            
+        return object;
+      }
+        
+      return null;
+    }
   }
 
   static class ContextAccessor implements PropertyAccessor {
@@ -81,5 +102,4 @@ public class DynamicContext {
       map.put(name, value);
     }
   }
-
 }

@@ -25,6 +25,12 @@ public class Parameter {
   private String schema;
   private List<Integer> ids;
   private boolean enabled;
+  
+  public String getFred() {
+    // added this method to check for bug with DynamicContext
+    // IBATIS-777
+    throw new RuntimeException("This method should not be called.");
+  }
 
   public String getSchema() {
     return schema;
