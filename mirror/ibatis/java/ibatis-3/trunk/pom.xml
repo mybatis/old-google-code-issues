@@ -4,7 +4,7 @@
   <groupId>org.apache.ibatis</groupId>
   <artifactId>ibatis-core</artifactId>
   <name>ibatis-core</name>
-  <version>3.0</version>
+  <version>3.1-SNAPSHOT</version>
   <packaging>jar</packaging>
   <url>http://ibatis.apache.org</url>
   <licenses>
