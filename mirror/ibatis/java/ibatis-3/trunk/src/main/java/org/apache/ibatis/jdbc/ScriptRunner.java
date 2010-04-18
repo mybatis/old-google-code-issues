@@ -72,7 +72,6 @@ public class ScriptRunner {
       }
     } finally {
       rollbackConnection();
-      flush();
     }
   }
 
@@ -235,28 +234,21 @@ public class ScriptRunner {
   private void print(Object o) {
     if (logWriter != null) {
       logWriter.print(o);
+      logWriter.flush();
     }
   }
 
   private void println(Object o) {
     if (logWriter != null) {
       logWriter.println(o);
+      logWriter.flush();
     }
   }
 
   private void printlnError(Object o) {
     if (errorLogWriter != null) {
       errorLogWriter.println(o);
-    }
-  }
-
-  private void flush() {
-    if (logWriter != null) {
-      logWriter.flush();
-    }
-    if (errorLogWriter != null) {
       errorLogWriter.flush();
     }
   }
-
 }
