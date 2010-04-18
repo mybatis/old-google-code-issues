@@ -95,7 +95,7 @@ public class FastResultSetHandler implements ResultSetHandler {
     final List<ResultMap> resultMaps = mappedStatement.getResultMaps();
     int count = 0;
     ResultSet rs = stmt.getResultSet();
-    while (rs != null) {
+    while (rs != null && resultMaps.size() > count) {
       final ResultMap resultMap = resultMaps.get(count);
       handleResultSet(rs, resultMap, multipleResults);
       rs = getNextResultSet(stmt);
