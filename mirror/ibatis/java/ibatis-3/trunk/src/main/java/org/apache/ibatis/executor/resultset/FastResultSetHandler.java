@@ -93,15 +93,30 @@ public class FastResultSetHandler implements ResultSetHandler {
   public List handleResultSets(Statement stmt) throws SQLException {
     final List multipleResults = new ArrayList();
     final List<ResultMap> resultMaps = mappedStatement.getResultMaps();
-    int count = 0;
+    int resultMapCount = resultMaps.size();
+    int resultSetCount = 0;
     ResultSet rs = stmt.getResultSet();
-    while (rs != null && resultMaps.size() > count) {
-      final ResultMap resultMap = resultMaps.get(count);
+    validateResultMapsCount(rs,resultMapCount);
+    while (rs != null && resultMapCount > resultSetCount) {
+      final ResultMap resultMap = resultMaps.get(resultSetCount);
       handleResultSet(rs, resultMap, multipleResults);
       rs = getNextResultSet(stmt);
-      count++;
+      cleanUpAfterHandlingResultSet();
+      resultSetCount++;
     }
     return collapseSingleResultList(multipleResults);
+  }
+
+  protected void cleanUpAfterHandlingResultSet() {
+  }
+
+  protected void validateResultMapsCount(ResultSet rs, int resultMapCount) {
+    if (rs != null && resultMapCount < 1) {
+      throw new ExecutorException(
+          "A query was run and no Result Maps were found for the Mapped Statement '"
+              + mappedStatement.getId()
+              + "'.  It's likely that neither a Result Type nor a Result Map was specified.");
+    }
   }
 
   protected void handleResultSet(ResultSet rs, ResultMap resultMap, List multipleResults) throws SQLException {

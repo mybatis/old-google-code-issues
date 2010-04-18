@@ -47,19 +47,9 @@ public class NestedResultSetHandler extends FastResultSetHandler {
   // HANDLE RESULT SETS
   //
 
-  public List handleResultSets(Statement stmt) throws SQLException {
-    final List multipleResults = new ArrayList();
-    final List<ResultMap> resultMaps = mappedStatement.getResultMaps();
-    int count = 0;
-    ResultSet rs = stmt.getResultSet();
-    while (rs != null) {
-      final ResultMap resultMap = resultMaps.get(count);
-      handleResultSet(rs, resultMap, multipleResults);
-      rs = getNextResultSet(stmt);
-      count++;
-      globalRowValueCache.clear();
-    }
-    return collapseSingleResultList(multipleResults);
+  protected void cleanUpAfterHandlingResultSet() {
+    super.cleanUpAfterHandlingResultSet();
+    globalRowValueCache.clear();
   }
 
   //
