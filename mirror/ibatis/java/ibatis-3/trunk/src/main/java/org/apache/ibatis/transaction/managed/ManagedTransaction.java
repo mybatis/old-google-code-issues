@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class ManagedTransaction implements Transaction {
 
-  private Log log = LogFactory.getLog(ManagedTransaction.class);
+  private static final Log log = LogFactory.getLog(ManagedTransaction.class);
 
   private Connection connection;
 
