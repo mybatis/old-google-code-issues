@@ -3,6 +3,7 @@ package org.apache.ibatis.transaction.managed;
 import org.apache.ibatis.BaseDataTest;
 import org.apache.ibatis.transaction.Transaction;
 import org.apache.ibatis.transaction.TransactionFactory;
+import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.lib.legacy.ClassImposteriser;
 import static org.junit.Assert.assertEquals;
@@ -23,6 +24,12 @@ public class ManagedTransactionFactoryTest extends BaseDataTest {
 
   @Test
   public void shouldEnsureThatCallsToManagedTransactionAPIDoNotForwardToManagedConnections() throws Exception {
+    mockery.checking(new Expectations() {
+      {
+        one(conn).close();
+      }
+    });
+
     TransactionFactory tf = new ManagedTransactionFactory();
     tf.setProperties(new Properties());
     Transaction tx = tf.newTransaction(conn, false);
