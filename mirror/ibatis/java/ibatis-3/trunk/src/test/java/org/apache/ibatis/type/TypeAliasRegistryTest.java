@@ -14,4 +14,10 @@ public class TypeAliasRegistryTest {
     assertEquals("domain.misc.RichType", typeAliasRegistry.resolveAlias("rich").getName());
   }
 
+  @Test
+  public void shouldFetchArrayType() {
+    TypeAliasRegistry typeAliasRegistry = new TypeAliasRegistry();
+    assertEquals(Byte[].class, typeAliasRegistry.resolveAlias("byte[]"));
+  }
+
 }
