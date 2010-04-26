@@ -188,7 +188,7 @@ public class ClassLoaderWrapper {
 
         try {
 
-          Class c = cl.loadClass(name);
+          Class c = Class.forName(name, true, cl);
 
           if (null != c) return c;
 
