@@ -31,6 +31,10 @@ public abstract class BaseCommand implements Command {
   protected boolean force;
   private ClassLoader driverClassLoader;
 
+  public void setDriverClassLoader(ClassLoader driverClassLoader) {
+    this.driverClassLoader = driverClassLoader;
+  }
+
   protected BaseCommand(File repository, String environment, boolean force) {
     this.basePath = repository;
     this.envPath = subdirectory(repository, "environments");

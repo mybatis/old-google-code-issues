@@ -11,8 +11,6 @@ import java.util.Set;
 
 public class CommandLine {
 
-  protected static final PrintStream out = System.out;
-
   private static final String PATH_PREFIX = "--path=";
   private static final String ENV_PREFIX = "--env=";
   private static final String FORCE = "--force";
@@ -32,6 +30,8 @@ public class CommandLine {
   private static final Set<String> KNOWN_COMMANDS = Collections.unmodifiableSet(
       new HashSet<String>(Arrays.asList(INIT, NEW, UP, VERSION, DOWN, PENDING, STATUS, BOOTSTRAP, SCRIPT)));
 
+  private PrintStream out;
+
   private File repository;
   private String environment;
   private boolean force;
@@ -44,8 +44,17 @@ public class CommandLine {
   private boolean help;
 
   public CommandLine(String[] args) {
+    this.out = System.out;
     parse(args);
     validate();
+  }
+
+  public void setOutputStream(PrintStream out) {
+    this.out = out;
+  }
+
+  public PrintStream getOutputStream() {
+    return this.out;
   }
 
   public void execute() {
