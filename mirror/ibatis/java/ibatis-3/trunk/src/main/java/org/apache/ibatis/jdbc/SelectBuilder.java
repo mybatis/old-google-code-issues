@@ -22,6 +22,10 @@ public class SelectBuilder {
     sql().select.add(columns);
   }
 
+  public static void DISTINCT(boolean distinct) {
+    sql().distinct = distinct;
+  }
+
   public static void FROM(String table) {
     sql().from.add(table);
   }
@@ -75,7 +79,12 @@ public class SelectBuilder {
   public static String SQL() {
     try {
       StringBuilder builder = new StringBuilder();
-      selectClause(builder, "SELECT", sql().select, "", "", ", ");
+      if (sql().distinct) {
+          selectClause(builder, "SELECT DISTINCT", sql().select, "", "", ", ");
+      } else {
+          selectClause(builder, "SELECT", sql().select, "", "", ", ");
+      }
+      
       selectClause(builder, "FROM", sql().from, "", "", ", ");
       selectClause(builder, "JOIN", sql().join, "", "", "JOIN");
       selectClause(builder, "INNER JOIN", sql().innerJoin, "", "", "\nINNER JOIN ");
@@ -133,6 +142,7 @@ public class SelectBuilder {
     List<String> groupBy = new ArrayList<String>();
     List<String> orderBy = new ArrayList<String>();
     List<String> lastList = new ArrayList<String>();
+    boolean distinct;
   }
 
 }
