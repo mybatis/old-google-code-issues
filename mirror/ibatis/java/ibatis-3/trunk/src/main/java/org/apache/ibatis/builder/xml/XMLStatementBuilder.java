@@ -14,10 +14,7 @@ import org.apache.ibatis.session.Configuration;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class XMLStatementBuilder extends BaseBuilder {
 
@@ -49,7 +46,7 @@ public class XMLStatementBuilder extends BaseBuilder {
     MixedSqlNode rootSqlNode = new MixedSqlNode(contents);
     SqlSource sqlSource = new DynamicSqlSource(configuration, rootSqlNode);
     String nodeName = context.getNode().getNodeName();
-    SqlCommandType sqlCommandType = SqlCommandType.valueOf(nodeName.toUpperCase());
+    SqlCommandType sqlCommandType = SqlCommandType.valueOf(nodeName.toUpperCase(Locale.ENGLISH));
     boolean isSelect = sqlCommandType == SqlCommandType.SELECT;
     boolean flushCache = context.getBooleanAttribute("flushCache", !isSelect);
     boolean useCache = context.getBooleanAttribute("useCache", isSelect);

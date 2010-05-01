@@ -35,7 +35,7 @@ public class TrimSqlNode implements SqlNode {
       return new ArrayList<String>() {
         {
           while (parser.hasMoreTokens()) {
-            add(parser.nextToken().toUpperCase());
+            add(parser.nextToken().toUpperCase(Locale.ENGLISH));
           }
         }
       };
@@ -59,7 +59,7 @@ public class TrimSqlNode implements SqlNode {
 
     public void applyAll() {
       sqlBuffer = new StringBuilder(sqlBuffer.toString().trim());
-      String trimmedUppercaseSql = sqlBuffer.toString().toUpperCase();
+      String trimmedUppercaseSql = sqlBuffer.toString().toUpperCase(Locale.ENGLISH);
       if (trimmedUppercaseSql.length() > 0) {
         applyPrefix(sqlBuffer, trimmedUppercaseSql);
         applySuffix(sqlBuffer, trimmedUppercaseSql);

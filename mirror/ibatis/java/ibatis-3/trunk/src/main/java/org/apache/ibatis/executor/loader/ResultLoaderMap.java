@@ -5,6 +5,7 @@ import org.apache.ibatis.reflection.MetaObject;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -22,11 +23,11 @@ public class ResultLoaderMap implements Serializable {
   }
 
   public boolean hasLoader(String methodName) throws SQLException {
-    return loaderMap.containsKey(methodName.toUpperCase());
+    return loaderMap.containsKey(methodName.toUpperCase(Locale.ENGLISH));
   }
 
   public boolean load(String property) throws SQLException {
-    LoadPair pair = loaderMap.remove(property.toUpperCase());
+    LoadPair pair = loaderMap.remove(property.toUpperCase(Locale.ENGLISH));
     if (pair != null) {
       pair.load();
       return true;
@@ -44,7 +45,7 @@ public class ResultLoaderMap implements Serializable {
 
   private static String getUppercaseFirstProperty(String property) {
     String[] parts = property.split("\\.");
-    return parts[0].toUpperCase();
+    return parts[0].toUpperCase(Locale.ENGLISH);
   }
 
   private static class LoadPair {

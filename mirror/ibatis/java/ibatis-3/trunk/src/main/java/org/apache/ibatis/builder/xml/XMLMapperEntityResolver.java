@@ -8,6 +8,7 @@ import org.xml.sax.SAXException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -21,11 +22,11 @@ public class XMLMapperEntityResolver implements EntityResolver {
   private static final Map<String, String> doctypeMap = new HashMap<String, String>();
 
   static {
-    doctypeMap.put("http://ibatis.apache.org/dtd/ibatis-3-config.dtd".toUpperCase(), MAPPER_CONFIG_DTD_RESOURCE);
-    doctypeMap.put("-//ibatis.apache.org//DTD Config 3.0//EN".toUpperCase(), MAPPER_CONFIG_DTD_RESOURCE);
+    doctypeMap.put("http://ibatis.apache.org/dtd/ibatis-3-config.dtd".toUpperCase(Locale.ENGLISH), MAPPER_CONFIG_DTD_RESOURCE);
+    doctypeMap.put("-//ibatis.apache.org//DTD Config 3.0//EN".toUpperCase(Locale.ENGLISH), MAPPER_CONFIG_DTD_RESOURCE);
 
-    doctypeMap.put("http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd".toUpperCase(), MAPPER_DTD_RESOURCE);
-    doctypeMap.put("-//ibatis.apache.org//DTD Mapper 3.0//EN".toUpperCase(), MAPPER_DTD_RESOURCE);
+    doctypeMap.put("http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd".toUpperCase(Locale.ENGLISH), MAPPER_DTD_RESOURCE);
+    doctypeMap.put("-//ibatis.apache.org//DTD Mapper 3.0//EN".toUpperCase(Locale.ENGLISH), MAPPER_DTD_RESOURCE);
   }
 
   /**
@@ -39,8 +40,8 @@ public class XMLMapperEntityResolver implements EntityResolver {
   public InputSource resolveEntity(String publicId, String systemId)
       throws SAXException {
 
-    if (publicId != null) publicId = publicId.toUpperCase();
-    if (systemId != null) systemId = systemId.toUpperCase();
+    if (publicId != null) publicId = publicId.toUpperCase(Locale.ENGLISH);
+    if (systemId != null) systemId = systemId.toUpperCase(Locale.ENGLISH);
 
     InputSource source = null;
     try {

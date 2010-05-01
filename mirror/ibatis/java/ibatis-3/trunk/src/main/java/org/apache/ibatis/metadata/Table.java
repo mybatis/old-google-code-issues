@@ -1,6 +1,7 @@
 package org.apache.ibatis.metadata;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class Table {
@@ -35,11 +36,11 @@ public class Table {
   }
 
   public void addColumn(Column col) {
-    columns.put(col.getName().toUpperCase(), col);
+    columns.put(col.getName().toUpperCase(Locale.ENGLISH), col);
   }
 
   public Column getColumn(String name) {
-    return (Column) columns.get(name.toUpperCase());
+    return (Column) columns.get(name.toUpperCase(Locale.ENGLISH));
   }
 
   public String[] getColumnNames() {
