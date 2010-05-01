@@ -46,12 +46,12 @@ public class ResultMap {
         resultMap.hasNestedResultMaps = resultMap.hasNestedResultMaps || resultMapping.getNestedResultMapId() != null;
         final String column = resultMapping.getColumn();
         if (column != null) {
-          resultMap.mappedColumns.add(column.toUpperCase());
+          resultMap.mappedColumns.add(column.toUpperCase(Locale.ENGLISH));
         } else if (resultMapping.isCompositeResult()) {
           for (ResultMapping compositeResultMapping : resultMapping.getComposites()) {
             final String compositeColumn = compositeResultMapping.getColumn();
             if (compositeColumn != null) {
-              resultMap.mappedColumns.add(compositeColumn.toUpperCase());
+              resultMap.mappedColumns.add(compositeColumn.toUpperCase(Locale.ENGLISH));
             }
           }
         }

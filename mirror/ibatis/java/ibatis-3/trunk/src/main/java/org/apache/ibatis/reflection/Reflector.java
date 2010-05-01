@@ -39,10 +39,10 @@ public class Reflector {
     readablePropertyNames = getMethods.keySet().toArray(new String[getMethods.keySet().size()]);
     writeablePropertyNames = setMethods.keySet().toArray(new String[setMethods.keySet().size()]);
     for (String propName : readablePropertyNames) {
-      caseInsensitivePropertyMap.put(propName.toUpperCase(), propName);
+      caseInsensitivePropertyMap.put(propName.toUpperCase(Locale.ENGLISH), propName);
     }
     for (String propName : writeablePropertyNames) {
-      caseInsensitivePropertyMap.put(propName.toUpperCase(), propName);
+      caseInsensitivePropertyMap.put(propName.toUpperCase(Locale.ENGLISH), propName);
     }
   }
 
@@ -377,7 +377,7 @@ public class Reflector {
   }
 
   public String findPropertyName(String name) {
-    return caseInsensitivePropertyMap.get(name.toUpperCase());
+    return caseInsensitivePropertyMap.get(name.toUpperCase(Locale.ENGLISH));
   }
 
   /**

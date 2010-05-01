@@ -285,7 +285,7 @@ public class MapperAnnotationBuilder {
       } else if (type == DeleteProvider.class) {
         type = Delete.class;
       }
-      return SqlCommandType.valueOf(type.getSimpleName().toUpperCase());
+      return SqlCommandType.valueOf(type.getSimpleName().toUpperCase(Locale.ENGLISH));
     }
     return SqlCommandType.UNKNOWN;
   }

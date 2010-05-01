@@ -17,11 +17,7 @@ import org.apache.ibatis.type.TypeHandler;
 import org.apache.ibatis.type.TypeHandlerRegistry;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class FastResultSetHandler implements ResultSetHandler {
 
@@ -221,7 +217,7 @@ public class FastResultSetHandler implements ResultSetHandler {
     final List<ResultMapping> propertyMappings = resultMap.getPropertyResultMappings();
     for (ResultMapping propertyMapping : propertyMappings) {
       final String column = propertyMapping.getColumn();
-      if (propertyMapping.isCompositeResult() || (column != null && mappedColumnNames.contains(column.toUpperCase()))) {
+      if (propertyMapping.isCompositeResult() || (column != null && mappedColumnNames.contains(column.toUpperCase(Locale.ENGLISH)))) {
         Object value = getPropertyMappingValue(rs, metaObject, propertyMapping, lazyLoader);
         if (value != null) {
           final String property = propertyMapping.getProperty();
@@ -271,7 +267,7 @@ public class FastResultSetHandler implements ResultSetHandler {
     final Set<String> mappedColumns = resultMap.getMappedColumns();
     for (int i = 1; i <= columnCount; i++) {
       final String columnName = configuration.isUseColumnLabel() ? rsmd.getColumnLabel(i) : rsmd.getColumnName(i);
-      final String upperColumnName = columnName.toUpperCase();
+      final String upperColumnName = columnName.toUpperCase(Locale.ENGLISH);
       if (mappedColumns.contains(upperColumnName)) {
         mappedColumnNames.add(upperColumnName);
         mappedColumnNames.add(columnName);

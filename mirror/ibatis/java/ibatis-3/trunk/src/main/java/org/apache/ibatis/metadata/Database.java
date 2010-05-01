@@ -1,6 +1,7 @@
 package org.apache.ibatis.metadata;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class Database {
@@ -24,11 +25,11 @@ public class Database {
   }
 
   public void addTable(Table table) {
-    tables.put(table.getName().toUpperCase(), table);
+    tables.put(table.getName().toUpperCase(Locale.ENGLISH), table);
   }
 
   public Table getTable(String name) {
-    return (Table) tables.get(name.toUpperCase());
+    return (Table) tables.get(name.toUpperCase(Locale.ENGLISH));
   }
 
   public String[] getTableNames() {
