@@ -12,7 +12,7 @@ public class InitializeCommand extends BaseCommand {
   }
 
   public void execute(String... args) {
-    out.println("Initializing: " + basePath);
+    printStream.println("Initializing: " + basePath);
 
     createDirectoryIfNecessary(basePath);
     ensureDirectoryIsEmpty(basePath);
@@ -31,8 +31,8 @@ public class InitializeCommand extends BaseCommand {
             setProperty("description", "First migration.");
           }
         });
-    out.println("Done!");
-    out.println();
+    printStream.println("Done!");
+    printStream.println();
   }
 
   protected void ensureDirectoryIsEmpty(File path) {
@@ -50,7 +50,7 @@ public class InitializeCommand extends BaseCommand {
     if (!path.exists()) {
       File parent = new File(path.getParent());
       createDirectoryIfNecessary(parent);
-      out.println("Creating: " + path.getName());
+      printStream.println("Creating: " + path.getName());
       if (!path.mkdir()) {
         throw new MigrationException("Could not create directory path for an unknown reason. Make sure you have access to the directory.");
       }

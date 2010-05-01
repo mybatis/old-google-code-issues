@@ -23,9 +23,9 @@ public class PendingCommand extends BaseCommand {
         throw new MigrationException("Change log doesn't exist, no migrations applied.  Try running 'up' instead.");
       }
       List<Change> pending = getPendingChanges();
-      out.println("WARNING: Running pending migrations out of order can create unexpected results.");
+      printStream.println("WARNING: Running pending migrations out of order can create unexpected results.");
       for (Change change : pending) {
-        out.println(horizontalLine("Applying: " + change.getFilename(), 80));
+        printStream.println(horizontalLine("Applying: " + change.getFilename(), 80));
         ScriptRunner runner = getScriptRunner();
         try {
           runner.runScript(new MigrationReader(new FileReader(scriptFile(change.getFilename())), false, environmentProperties()));
@@ -33,7 +33,7 @@ public class PendingCommand extends BaseCommand {
           runner.closeConnection();
         }
         insertChangelog(change);
-        out.println();
+        printStream.println();
       }
     } catch (Exception e) {
       throw new MigrationException("Error executing command.  Cause: " + e, e);

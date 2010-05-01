@@ -22,23 +22,23 @@ public class VersionCommand extends BaseCommand {
 
     Change change = getLastAppliedChange();
     if (version.compareTo(change.getId()) > 0) {
-      out.println("Upgrading to: " + version);
+      printStream.println("Upgrading to: " + version);
       Command up = new UpCommand(basePath, environment, force, true);
       while (!version.equals(change.getId())) {
         up.execute();
         change = getLastAppliedChange();
       }
     } else if (version.compareTo(change.getId()) < 0) {
-      out.println("Downgrading to: " + version);
+      printStream.println("Downgrading to: " + version);
       Command down = new DownCommand(basePath, environment, force);
       while (!version.equals(change.getId())) {
         down.execute();
         change = getLastAppliedChange();
       }
     } else {
-      out.println("Already at version: " + version);
+      printStream.println("Already at version: " + version);
     }
-    out.println();
+    printStream.println();
   }
 
   private void ensureParamsPassed(String... params) {

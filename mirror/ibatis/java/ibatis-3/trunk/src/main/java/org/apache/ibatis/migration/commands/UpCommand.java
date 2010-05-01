@@ -32,7 +32,7 @@ public class UpCommand extends BaseCommand {
       int steps = 0;
       for (Change change : migrations) {
         if (lastChange == null || change.getId().compareTo(lastChange.getId()) > 0) {
-          out.println(horizontalLine("Applying: " + change.getFilename(), 80));
+          printStream.println(horizontalLine("Applying: " + change.getFilename(), 80));
           ScriptRunner runner = getScriptRunner();
           try {
             runner.runScript(new MigrationReader(new FileReader(scriptFile(change.getFilename())), false, environmentProperties()));
@@ -40,7 +40,7 @@ public class UpCommand extends BaseCommand {
             runner.closeConnection();
           }
           insertChangelog(change);
-          out.println();
+          printStream.println();
           steps++;
           final int limit = getStepCountParameter(Integer.MAX_VALUE, params);
           if (steps == limit || runOneStepOnly) {
