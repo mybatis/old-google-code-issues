@@ -28,7 +28,7 @@ public class DownCommand extends BaseCommand {
       int steps = 0;
       for (Change change : migrations) {
         if (change.getId().equals(lastChange.getId())) {
-          out.println(horizontalLine("Undoing: " + change.getFilename(), 80));
+          printStream.println(horizontalLine("Undoing: " + change.getFilename(), 80));
           ScriptRunner runner = getScriptRunner();
           try {
             runner.runScript(new MigrationReader(new FileReader(scriptFile(change.getFilename())), true, environmentProperties()));
@@ -38,9 +38,9 @@ public class DownCommand extends BaseCommand {
           if (changelogExists()) {
             deleteChange(change);
           } else {
-            out.println("Changelog doesn't exist. No further migrations will be undone (normal for the last migration).");
+            printStream.println("Changelog doesn't exist. No further migrations will be undone (normal for the last migration).");
           }
-          out.println();
+          printStream.println();
           steps++;
           final int limit = getStepCountParameter(1, params);
           if (steps == limit) {

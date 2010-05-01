@@ -21,7 +21,7 @@ public abstract class BaseCommand implements Command {
 
   private static final String DATE_FORMAT = "yyyyMMddHHmmss";
 
-  protected static final PrintStream out = System.out;
+  protected PrintStream printStream = System.out;
 
   protected File basePath;
   protected File envPath;
@@ -31,10 +31,6 @@ public abstract class BaseCommand implements Command {
   protected boolean force;
   private ClassLoader driverClassLoader;
 
-  public void setDriverClassLoader(ClassLoader driverClassLoader) {
-    this.driverClassLoader = driverClassLoader;
-  }
-
   protected BaseCommand(File repository, String environment, boolean force) {
     this.basePath = repository;
     this.envPath = subdirectory(repository, "environments");
@@ -42,6 +38,22 @@ public abstract class BaseCommand implements Command {
     this.driverPath = subdirectory(repository, "drivers");
     this.environment = environment;
     this.force = force;
+  }
+
+  public PrintStream getPrintStream() {
+    return printStream;
+  }
+
+  public void setPrintStream(PrintStream printStream) {
+    this.printStream = printStream;
+  }
+
+  public ClassLoader getDriverClassLoader() {
+    return driverClassLoader;
+  }
+
+  public void setDriverClassLoader(ClassLoader driverClassLoader) {
+    this.driverClassLoader = driverClassLoader;
   }
 
   protected boolean paramsEmpty(String... params) {
@@ -141,7 +153,7 @@ public abstract class BaseCommand implements Command {
   }
 
   protected void copyResourceTo(String resource, File toFile, Properties variables) {
-    out.println("Creating: " + toFile.getName());
+    printStream.println("Creating: " + toFile.getName());
     try {
       LineNumberReader reader = new LineNumberReader(Resources.getResourceAsReader(this.getClass().getClassLoader(), resource));
       try {
@@ -191,7 +203,7 @@ public abstract class BaseCommand implements Command {
       String username = props.getProperty("username");
       String password = props.getProperty("password");
       String charSetName = props.getProperty("script_char_set");
-      PrintWriter outWriter = new PrintWriter(out);
+      PrintWriter outWriter = new PrintWriter(printStream);
       UnpooledDataSource dataSource = new UnpooledDataSource(driverClassLoader, driver, url, username, password);
       dataSource.setAutoCommit(false);
       ScriptRunner scriptRunner = new ScriptRunner(dataSource.getConnection());

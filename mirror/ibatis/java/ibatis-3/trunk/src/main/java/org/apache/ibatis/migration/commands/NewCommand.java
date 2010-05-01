@@ -21,8 +21,8 @@ public class NewCommand extends BaseCommand {
     existingEnvironmentFile();
     String filename = getNextIDAsString() + "_" + description.replace(' ', '_') + ".sql";
     copyResourceTo("org/apache/ibatis/migration/template_migration.sql", scriptFile(filename), variables);
-    out.println("Done!");
-    out.println();
+    printStream.println("Done!");
+    printStream.println();
   }
 
 }

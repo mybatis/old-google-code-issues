@@ -30,7 +30,7 @@ public class CommandLine {
   private static final Set<String> KNOWN_COMMANDS = Collections.unmodifiableSet(
       new HashSet<String>(Arrays.asList(INIT, NEW, UP, VERSION, DOWN, PENDING, STATUS, BOOTSTRAP, SCRIPT)));
 
-  private PrintStream out;
+  private PrintStream printStream;
 
   private File repository;
   private String environment;
@@ -44,17 +44,17 @@ public class CommandLine {
   private boolean help;
 
   public CommandLine(String[] args) {
-    this.out = System.out;
+    this.printStream = System.out;
     parse(args);
     validate();
   }
 
-  public void setOutputStream(PrintStream out) {
-    this.out = out;
+  public void setPrintStream(PrintStream out) {
+    this.printStream = out;
   }
 
-  public PrintStream getOutputStream() {
-    return this.out;
+  public PrintStream getPrintStream() {
+    return this.printStream;
   }
 
   public void execute() {
@@ -71,14 +71,14 @@ public class CommandLine {
           runCommand();
         } catch (Exception e) {
           error = true;
-          out.println("\nERROR: " + e.getMessage());
+          printStream.println("\nERROR: " + e.getMessage());
           if (trace) {
             e.printStackTrace();
           }
         }
       }
     } finally {
-      out.flush();
+      printStream.flush();
       if (error) {
         System.exit(1);
       }
@@ -164,34 +164,34 @@ public class CommandLine {
   }
 
   private void printError() {
-    out.println(parseError);
-    out.flush();
+    printStream.println(parseError);
+    printStream.flush();
   }
 
   private void printUsage() {
-    out.println();
-    out.println("Usage: migrate command [parameter] [--path=<directory>] [--env=<environment>]");
-    out.println();
-    out.println("--path=<directory>   Path to repository.  Default current working directory.");
-    out.println("--env=<environment>  Environment to configure. Default environment is 'development'.");
-    out.println("--force              Forces script to continue even if SQL errors are encountered.");
-    out.println("--help               Displays this usage message.");
-    out.println("--trace              Shows additional error details (if any).");
-    out.println();
-    out.println("Commands:");
-    out.println("  init               Creates (if necessary) and initializes a migration path.");
-    out.println("  bootstrap          Runs the bootstrap SQL script (see scripts/bootstrap.sql for more).");
-    out.println("  new <description>  Creates a new migration with the provided description.");
-    out.println("  up [n]             Run unapplied migrations, ALL by default, or 'n' specified.");
-    out.println("  down [n]           Undoes migrations applied to the database. ONE by default or 'n' specified.");
-    out.println("  version <version>  Migrates the database up or down to the specified version.");
-    out.println("  pending            Force executes pending migrations out of order (not recommended).");
-    out.println("  status             Prints the changelog from the database if the changelog table exists.");
-    out.println("  script <v1> <v2>   Generates a delta migration script from version v1 to v2 (undo if v1 > v2).");
-    out.println("");
-    out.println("  * Shortcuts are accepted by using the first few (unambiguous) letters of each command..");
-    out.println();
-    out.flush();
+    printStream.println();
+    printStream.println("Usage: migrate command [parameter] [--path=<directory>] [--env=<environment>]");
+    printStream.println();
+    printStream.println("--path=<directory>   Path to repository.  Default current working directory.");
+    printStream.println("--env=<environment>  Environment to configure. Default environment is 'development'.");
+    printStream.println("--force              Forces script to continue even if SQL errors are encountered.");
+    printStream.println("--help               Displays this usage message.");
+    printStream.println("--trace              Shows additional error details (if any).");
+    printStream.println();
+    printStream.println("Commands:");
+    printStream.println("  init               Creates (if necessary) and initializes a migration path.");
+    printStream.println("  bootstrap          Runs the bootstrap SQL script (see scripts/bootstrap.sql for more).");
+    printStream.println("  new <description>  Creates a new migration with the provided description.");
+    printStream.println("  up [n]             Run unapplied migrations, ALL by default, or 'n' specified.");
+    printStream.println("  down [n]           Undoes migrations applied to the database. ONE by default or 'n' specified.");
+    printStream.println("  version <version>  Migrates the database up or down to the specified version.");
+    printStream.println("  pending            Force executes pending migrations out of order (not recommended).");
+    printStream.println("  status             Prints the changelog from the database if the changelog table exists.");
+    printStream.println("  script <v1> <v2>   Generates a delta migration script from version v1 to v2 (undo if v1 > v2).");
+    printStream.println("");
+    printStream.println("  * Shortcuts are accepted by using the first few (unambiguous) letters of each command..");
+    printStream.println();
+    printStream.flush();
   }
 
 }

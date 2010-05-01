@@ -14,8 +14,8 @@ public class StatusCommand extends BaseCommand {
   }
 
   public void execute(String... params) {
-    out.println("ID             Applied At          Description");
-    out.println(horizontalLine("", 80));
+    printStream.println("ID             Applied At          Description");
+    printStream.println(horizontalLine("", 80));
     List<Change> merged = new ArrayList<Change>();
     List<Change> migrations = getMigrations();
     if (changelogExists()) {
@@ -33,9 +33,9 @@ public class StatusCommand extends BaseCommand {
       merged.addAll(migrations);
     }
     for (Change change : merged) {
-      out.println(change);
+      printStream.println(change);
     }
-    out.println();
+    printStream.println();
   }
 
 
