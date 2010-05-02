@@ -22,8 +22,9 @@ public class SelectBuilder {
     sql().select.add(columns);
   }
 
-  public static void DISTINCT(boolean distinct) {
-    sql().distinct = distinct;
+  public static void SELECT_DISTINCT(String columns) {
+    sql().distinct = true;
+    SELECT(columns);
   }
 
   public static void FROM(String table) {
