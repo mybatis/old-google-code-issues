@@ -114,4 +114,8 @@ public class ResultMap {
     return discriminator;
   }
 
+  public void forceNestedResultMaps() {
+    hasNestedResultMaps = true;
+  }
+
 }
