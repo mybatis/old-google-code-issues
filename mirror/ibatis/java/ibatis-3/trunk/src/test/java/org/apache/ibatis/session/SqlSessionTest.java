@@ -112,6 +112,18 @@ public class SqlSessionTest extends BaseDataTest {
   }
 
   @Test
+  public void shouldEnsureThatBothEarlyAndLateResolutionOfNesteDiscriminatorsResolesToUseNestedResultSetHandler() throws Exception {
+    SqlSession session = sqlMapper.openSession();
+    try {
+      Configuration configuration = sqlMapper.getConfiguration();
+      assertTrue(configuration.getResultMap("domain.blog.mappers.BlogMapper.earlyNestedDiscriminatorPost").hasNestedResultMaps());
+      assertTrue(configuration.getResultMap("domain.blog.mappers.BlogMapper.lateNestedDiscriminatorPost").hasNestedResultMaps());
+    } finally {
+      session.close();
+    }
+  }
+
+  @Test
   public void shouldSelectOneAuthor() throws Exception {
     SqlSession session = sqlMapper.openSession();
     try {

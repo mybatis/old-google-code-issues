@@ -292,6 +292,8 @@ public class Configuration {
 
   public void addResultMap(ResultMap rm) {
     resultMaps.put(rm.getId(), rm);
+    checkLocallyForDiscriminatedNestedResultMaps(rm);
+    checkGloballyForDiscriminatedNestedResultMaps(rm);
   }
 
   public Collection<String> getResultMapNames() {
@@ -366,6 +368,39 @@ public class Configuration {
     return mappedStatements.containsKey(statementName);
   }
 
+  //Slow but a one time cost.  A better solution is welcome.
+  protected void checkGloballyForDiscriminatedNestedResultMaps(ResultMap rm) {
+    if (rm.hasNestedResultMaps()) {
+      for (Map.Entry entry : resultMaps.entrySet()) {
+        Object value = entry.getValue();
+        if (value instanceof ResultMap) {
+          ResultMap entryResultMap = (ResultMap) value;
+          if (!entryResultMap.hasNestedResultMaps() && entryResultMap.getDiscriminator() != null) {
+            Collection<String> discriminatedResultMapNames = entryResultMap.getDiscriminator().getDiscriminatorMap().values();
+            if (discriminatedResultMapNames.contains(rm.getId())) {
+              entryResultMap.forceNestedResultMaps();
+            }
+          }
+        }
+      }
+    }
+  }
+
+  //Slow but a one time cost.  A better solution is welcome.
+  protected void checkLocallyForDiscriminatedNestedResultMaps(ResultMap rm) {
+    if (!rm.hasNestedResultMaps() && rm.getDiscriminator() != null) {
+      for (Map.Entry entry : rm.getDiscriminator().getDiscriminatorMap().entrySet()) {
+        String discriminatedResultMapName = (String)entry.getValue();
+        if(hasResultMap(discriminatedResultMapName)) {
+          ResultMap discriminatedResultMap = resultMaps.get(discriminatedResultMapName);
+          if (discriminatedResultMap.hasNestedResultMaps()) {
+            rm.forceNestedResultMaps();
+            break;
+          }
+        }
+      }
+    }
+  }
 
   protected static class StrictMap<J extends String, K extends Object> extends HashMap<J, K> {
 

@@ -6,6 +6,18 @@
 
 <mapper namespace="domain.blog.mappers.BlogMapper">
 
+  <resultMap id="earlyNestedDiscriminatorPost" type="domain.blog.Post">
+    <id property="id" column="post_id"/>
+    <result property="subject" column="post_subject"/>
+    <discriminator javaType="int" column="draft">
+      <case value="1">
+        <association property="author" column="post_author_id" resultMap="joinedAuthor"/>
+        <collection property="comments" column="post_id" resultMap="joinedComment"/>
+        <collection property="tags" column="post_id" resultMap="joinedTag"/>
+      </case>
+    </discriminator>
+  </resultMap>
+    
   <resultMap id="blogWithPosts" type="Blog">
     <id property="id" column="id"/>
     <result property="title" column="title"/>
@@ -62,6 +74,18 @@
     <result property="title" column="blog_title"/>
     <association property="author" column="blog_author_id" resultMap="joinedAuthor"/>
     <collection property="posts" resultMap="joinedPost"/>
+  </resultMap>
+
+  <resultMap id="lateNestedDiscriminatorPost" type="domain.blog.Post">
+    <id property="id" column="post_id"/>
+    <result property="subject" column="post_subject"/>
+    <discriminator javaType="int" column="draft">
+      <case value="1">
+        <association property="author" column="post_author_id" resultMap="joinedAuthor"/>
+        <collection property="comments" column="post_id" resultMap="joinedComment"/>
+        <collection property="tags" column="post_id" resultMap="joinedTag"/>
+      </case>
+    </discriminator>
   </resultMap>
 
   <select id="selectBlogJoinedWithPostsAndAuthor" parameterType="int" resultMap="blogJoinedWithPostsAndAuthor">
