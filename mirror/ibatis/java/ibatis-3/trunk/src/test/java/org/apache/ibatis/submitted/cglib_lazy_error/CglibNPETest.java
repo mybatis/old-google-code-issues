@@ -54,6 +54,7 @@ public class CglibNPETest {
     Assert.assertNotNull("Persons must not be null", person);
     Person parent = person.getParent();
     Assert.assertNull("Parent must be null", parent);
+    sqlSession.close();
   }
 
   @Test
@@ -64,6 +65,7 @@ public class CglibNPETest {
     Assert.assertNotNull("Persons must not be null", person);
     Person ancestor = person.getAncestor();
     Assert.assertEquals("Ancestor must be John Smith sr.", person, ancestor);
+    sqlSession.close();
   }
 
   @Test
@@ -76,6 +78,7 @@ public class CglibNPETest {
     Assert.assertNotNull("Persons must not be null", person);
     Assert.assertEquals("Parent must be John Smith", expectedParent, person.getParent());
     Assert.assertEquals("Parent must be John Smith sr.", expectedGrandParent, person.getParent().getParent());
+    sqlSession.close();
   }
 
   @Test
@@ -86,6 +89,7 @@ public class CglibNPETest {
     Person person = personMapper.selectById(3);
     Assert.assertNotNull("Persons must not be null", person);
     Assert.assertEquals("Ancestor must be John Smith sr.", expectedAncestor, person.getAncestor());
+    sqlSession.close();
   }
 
   @Test
@@ -99,6 +103,7 @@ public class CglibNPETest {
     Assert.assertNotNull("Parent must not be null", person.getParent());
     Assert.assertNotNull("Grandparent must not be null", person.getParent().getParent());
     Assert.assertEquals("Ancestor must be John Smith sr.", expectedAncestor, person.getAncestor());
+    sqlSession.close();
   }
 
   @Test

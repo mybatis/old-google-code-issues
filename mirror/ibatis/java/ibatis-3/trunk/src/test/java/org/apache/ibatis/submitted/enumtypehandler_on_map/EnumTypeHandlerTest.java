@@ -56,6 +56,7 @@ public class EnumTypeHandlerTest {
         List<Person> persons = personMapper.getByType(Person.Type.PERSON, "");
         Assert.assertNotNull("Persons must not be null", persons);
         Assert.assertEquals("Persons must contain exactly 1 person", 1, persons.size());
+      sqlSession.close();
     }
     @Test
     public void testEnumWithoutParam() {
@@ -71,5 +72,6 @@ public class EnumTypeHandlerTest {
         });
         Assert.assertNotNull("Persons must not be null", persons);
         Assert.assertEquals("Persons must contain exactly 1 person", 1, persons.size());
+      sqlSession.close();
     }
 }
