@@ -59,6 +59,7 @@ public class ComplexColumnTest {
         Assert.assertNotNull("parent must not be null", parent);
         Assert.assertEquals("John", parent.getFirstName());
         Assert.assertEquals("Smith", parent.getLastName());
+      sqlSession.close();
     }
     @Test
     public void testWithComplex() {
@@ -72,5 +73,7 @@ public class ComplexColumnTest {
         Assert.assertNotNull("parent must not be null", parent);
         Assert.assertEquals("John", parent.getFirstName());
         Assert.assertEquals("Smith", parent.getLastName());
+      sqlSession.close();
+
     }
 }
