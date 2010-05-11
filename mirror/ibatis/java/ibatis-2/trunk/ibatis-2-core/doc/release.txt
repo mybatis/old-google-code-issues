@@ -12,6 +12,7 @@ Next Version
  o IBATIS-508 - Lock occurs when heavy traffic: removed double synchronization
  o IBATIS-389 - Unbalanced # in SQL causes unclear/misleading error message: changed to throw more meaningful exception message
  o IBATIS-536 - Errors when using PreparedStatement.setNull(i,Types.OTHER) on some RDBMS: applied patch inspired by SpringSource
+ o IBATIS-376 - Clean up ThreadLocal for hot deploy issues
  
 ------------------------------
  2.3.4

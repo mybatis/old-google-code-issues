@@ -43,7 +43,7 @@ public class SqlMapClientImpl implements SqlMapClient, ExtendedSqlMapClient {
    */
   public SqlMapExecutorDelegate delegate;
 
-  protected ThreadLocal localSqlMapSession = new ThreadLocal();
+  protected ThreadLocal<SqlMapSessionImpl> localSqlMapSession = new ThreadLocal<SqlMapSessionImpl>();
 
   /**
    * Constructor to supply a delegate
@@ -153,6 +153,7 @@ public class SqlMapClientImpl implements SqlMapClient, ExtendedSqlMapClient {
       getLocalSqlMapSession().endTransaction();
     } finally {
       getLocalSqlMapSession().close();
+      localSqlMapSession.remove();
     }
   }
 
@@ -253,7 +254,7 @@ public class SqlMapClientImpl implements SqlMapClient, ExtendedSqlMapClient {
   }
 
   protected SqlMapSessionImpl getLocalSqlMapSession() {
-    SqlMapSessionImpl sqlMapSession = (SqlMapSessionImpl) localSqlMapSession.get();
+    SqlMapSessionImpl sqlMapSession = localSqlMapSession.get();
     if (sqlMapSession == null || sqlMapSession.isClosed()) {
       sqlMapSession = new SqlMapSessionImpl(this);
       localSqlMapSession.set(sqlMapSession);
