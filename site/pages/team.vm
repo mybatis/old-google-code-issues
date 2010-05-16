@@ -1,0 +1,77 @@
+<html>
+<body>
+<div class="post">
+  <div class="post-bgtop">
+    <div class="post-bgbtm">
+      <h2 class="title"><a href="#">the mybatis team</a></h2>
+      <div class="entry">
+        <ul>
+          <li>Clinton Begin</li>
+          <li>Brandon Goodin</li>
+          <li>Larry Meadors</li>
+          <li>Ron Grabowski</li>
+          <li>Jeff Butler</li>
+          <li>Nathan Maves</li>
+          <li>Kai Grabfelder</li>
+          <li>Michael Schall</li>
+          <li>Michael McCurrey</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="post">
+  <div class="post-bgtop">
+    <div class="post-bgbtm">
+      <h2 class="title"><a href="#">thanks to...</a></h2>
+      <div class="entry">
+        <ul>
+          <li>All of the authors of the articles, feedback and shared experiences that appear on our
+            <a href="http://www.apachebookstore.com/confluence/oss/display/mybatis/Home">wiki</a></li>
+          <li>The Spring Team - For integration, improvements and involvement over the years. -
+            http://www.springframework.org
+          </li>
+          <li>The Hibernate Team - For being good neighbours in a complex problem space. - http://www.hibernate.org
+          </li>
+          <li>The Castle Project - http://www.castleproject.org</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="post">
+  <div class="post-bgtop">
+    <div class="post-bgbtm">
+      <h2 class="title"><a href="#">sponsors</a></h2>
+      <div class="entry">
+        <p>
+          The mybatis team would like to thank the following companies
+          for providing complimentary access to their world-class software.
+          <br/>
+          <br/>
+          <a target="_new" href="http://www.atlassian.com">
+            <img style="clear:both;" align="left"
+                src="http://search.atlassian.com/images/logo.gif"
+                border="0" alt="Atlassian"/></a>
+          <br/>
+          <br/>
+          <a target="_new" href="http://www.jetbrains.com">
+            <img style="clear:both;" align="left"
+                src="http://www.jetbrains.com/img/logos/banner_general.gif"
+                border="0" alt="JetBrains"/></a>
+          <br/>
+          <br/>
+          <a target="_new" href="http://www.aquafold.com/">
+            <img style="clear:both;" align="left"
+                src="http://www.aquafold.com/images/Aqua_Fold_Logo_16color.gif"
+                border="0" alt="AquaFold"/></a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<html>
+<head>
+  <title>mybatis home</title>
+  <script type="text/javascript" src="popup.js">
+  </script>
+</head>
+
+<body>
+
+<div class="post">
+  <div class="post-bgtop">
+    <div class="post-bgbtm">
+      <h2 class="title"><a href="#">What is mybatis</a></h2>
+      <div style="float:right;vertical-align:top;margin-left:15px;border-left:1px #cccccc solid">
+        <a style="padding-left:0;background:none" href="#"
+           onClick="jkpopimage('images/flow.png', 720, 620, '1000 words.'); return false"><img
+           alt="mybatis Data Mapper process" align="right" src="images/flow_sm.png" border="0"/></a>
+      </div>
+      <div class="entry">
+        <p>
+          The mybatis data mapper framework makes it easier to use a relational database with Java or
+          .NET applications. mybatis couples objects with stored procedures or SQL statements
+          using a XML descriptor. Simplicity is the biggest advantage of the mybatis Data
+          Mapper over object relational mapping tools.</p>
+
+        <p>To use the mybatis Data Mapper, you rely on
+          your own objects, XML, and SQL. There is little to learn that you don't already
+          know. With the mybatis Data Mapper, you have the full power of both SQL and stored
+          procedures at your fingertips.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="post">
+  <div class="post-bgtop">
+    <div class="post-bgbtm">
+      <h2 class="title"><a href="#">mybatis 3.0 GA Candidate</a></h2>
+
+      <p class="byline">Posted by Clinton Begin on Apr 22, 2010</p>
+
+      <div class="entry">
+        <p> After well over a year of development and testing effort, mybatis 3.0 is now ready for prime time.
+          I've uploaded the new bundles for mybatis 3 Core and Migrations. It is this release that we'll
+          vote on for GA status. I'll leave the vote open for a good while (maybe a couple of weeks), just
+          to give everyone a chance to try it out. As usual, only PMC votes actually count, but many PMC members
+          will vote based on the community votes. So please offer your feedback. Otherwise, enjoy mybatis 3.0!</p>
+      </div>
+      <div class="meta">
+        <p><a href="java.html" class="more">Go get it!</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
