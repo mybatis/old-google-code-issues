@@ -1,18 +1,25 @@
 #summary Contents
 
-= Contents =
-
   * Welcome
-  * Contribute Documentation
-  * !MyBatis Maven Tutorial
-  * Upgrading to 3.x
-  * From iBATIS to !MyBatis
+
+= Documentation =
+
+  * [http://mybatis.org/java.html Downloadable User Guides (PDF)]
+  * [DocContrib Contribute Documentation]
+  * [DocMavenTutorial !MyBatis Maven Tutorial]
+  * [DocUpgrade3 Upgrading to 3.x]
+  * [DocIbatis2Mybatis From iBATIS to !MyBatis]
 
 = Feedback and Testimonials =
 
-= Brainstorming = 
+  * [FeedbackWho Who's using MyBatis]
+  * [FeedbackArticles Articles and Books]
+  * [FeedbackWho Feedback and Testimonials]
 
-  * Version 3 Whiteboard
+= Whiteboards = 
+
+  * [WhiteboardVersion3 Version 3 Whiteboard]
 
 = Process = 
  
+  * [ProcessRelease Release Process]
