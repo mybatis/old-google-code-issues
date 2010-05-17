@@ -6,9 +6,9 @@
 
   * [http://mybatis.org/java.html Downloadable User Guides (PDF)]
   * [DocContrib Contribute Documentation]
-  * [DocMavenTutorial !MyBatis Maven Tutorial]
+  * [DocMavenTutorial MyBatis Maven Tutorial]
   * [DocUpgrade3 Upgrading to 3.x]
-  * [DocIbatis2Mybatis From iBATIS to !MyBatis]
+  * [DocIbatis2Mybatis From iBATIS to MyBatis]
 
 = Feedback and Testimonials =
 
