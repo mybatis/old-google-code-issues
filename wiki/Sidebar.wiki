@@ -23,6 +23,3 @@
 === Process === 
  
   * [ProcessRelease Release Process]
-
-=== Developers ===
- * [Release Process]
