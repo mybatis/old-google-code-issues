@@ -1,0 +1,9 @@
+#summary How to contribute documentation to MyBatis
+
+= Introduction =
+
+Help out!
+
+You make the best author of the documentation, because you are a user of the framework and therefore have a better perspective for what it takes to explain and use MyBatis.  
+
+Submit an Issue with the summary and documentation.  We'll add it to the official user guide or the wiki page.
