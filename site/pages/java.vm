@@ -54,29 +54,6 @@
 <div class="post">
   <div class="post-bgtop">
     <div class="post-bgbtm">
-      <h2 class="title">MyBatis Generator</h2>
-      <div class="entry">
-        <p>The MyBatis Generator is a code generator and Eclipse plugin. It can be used
-          to get a head start on your project by generating your Beans,
-          Mappings and SQL from an existing database schema.
-        </p>
-        <ul>
-          <li>
-            <a href="http://mybatis.googlecode.com/files/ibator-1.2.1-681.zip">
-              <b>Download Ibator 1.2.1</b>
-            </a>
-          <li>
-            <a href="generator.html">Learn more about the MyBatis Generator...</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="post">
-  <div class="post-bgtop">
-    <div class="post-bgbtm">
       <h2 class="title">Past Release 2.3.4</h2>
       <p class="byline">[Status: <b>GA</b> | Sep 19, 2008 | Java 5+]</p>
       <div class="entry">
