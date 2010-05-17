@@ -4,9 +4,9 @@
 
   * Welcome
   * Contribute Documentation
-  * MyBatis Maven Tutorial
+  * !MyBatis Maven Tutorial
   * Upgrading to 3.x
-  * iBATIS to MyBatis
+  * From iBATIS to !MyBatis
 
 = Feedback and Testimonials =
 
