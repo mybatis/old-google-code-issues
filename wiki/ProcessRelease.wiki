@@ -5,4 +5,4 @@ This page will guide the development team with setting up their environment to p
 
 == Prerequisites  ==
 
- * Install/Configure PGP
+ * Install/Configure PGP - The artifacts that are deployed to the central maven repositories need to be signed.  There is a very good [http://www.sonatype.com/people/2010/01/how-to-generate-pgp-signatures-with-maven/ guide] that will walk you though this.
