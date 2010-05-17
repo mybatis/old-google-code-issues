@@ -1,0 +1,8 @@
+== Introduction ==
+
+This page will guide the development team with setting up their environment to perform a release.
+
+
+== Prerequisites  ==
+
+ * Install/Configure PGP
