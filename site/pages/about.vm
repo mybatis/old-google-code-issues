@@ -2,17 +2,16 @@
 <body>
 <div id="content">
 
-
   <div class="post">
     <div class="post-bgtop">
       <div class="post-bgbtm">
-        <h2 class="title">About mybatis</h2>
+        <h2 class="title">About MyBatis</h2>
 
         <div class="entry">
 
           <h2>The Apache License</h2>
 
-          <p> The mybatis source code and documentation is distributed under the <a class="external"
+          <p> The MyBatis source code and documentation is distributed under the <a class="external"
                                                                                    href="http://www.apache.org/licenses/LICENSE-2.0"
                                                                                    target="_new">Apache License 2.0</a>.
           </p>
@@ -63,12 +62,12 @@
           these developments were worth exploring and that iBATIS would benefit from some significant changes.  This
           was a serious consideration and the move meant leaving the iBATIS name behind.</p>
 
-          <h3>Enter mybatis</h3>
+          <h3>Enter MyBatis</h3>
 
           <p>The original iBATIS team is happy to present you with the new name for the world's most popular SQL based
           data mapping solution for object-oriented software development.</p>
 
-          <p>mybatis.</p>
+          <p><b>MyBatis</b></p>
 
           <p>The new project benefits from improved development practices, automation, simpler community involvement
           and unified infrastructure.  This is a launch pad for the future, where we hope to release more often,

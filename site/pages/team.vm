@@ -3,7 +3,7 @@
 <div class="post">
   <div class="post-bgtop">
     <div class="post-bgbtm">
-      <h2 class="title">the mybatis team</h2>
+      <h2 class="title">The MyBatis Team</h2>
       <div class="entry">
         <ul>
           <li>Clinton Begin</li>
@@ -24,7 +24,7 @@
 <div class="post">
   <div class="post-bgtop">
     <div class="post-bgbtm">
-      <h2 class="title">sponsors</h2>
+      <h2 class="title">Sponsors</h2>
       <div class="entry">
         <div  style="float:right;border-left:1px #CCCCCC solid; padding-left:15px; margin-left:15px">
           <a target="_new" href="http://www.jetbrains.com">
@@ -39,7 +39,7 @@
                 border="0" alt="AquaFold"/></a>
         </div>
         <p>
-          The mybatis team would like to thank the following companies
+          The MyBatis team would like to thank the following companies
           for providing complimentary access to their world-class software.
         </p>
       </div>
