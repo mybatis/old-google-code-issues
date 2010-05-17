@@ -65,6 +65,12 @@
                     </form>
                   </li>
                   <li>
+                    <h2>Project</h2>
+                    <ul>
+                      <li><a href="http://code.google.com/p/mybatis/" target="mybatis-project">Google Code Project</a></li>
+                    </ul>
+                  </li>
+                  <li>
                     <h2>Community</h2>
                     <ul>
                       <li><a href="http://groups.google.com/group/mybatis-user" target="mybatis-list">Mailing List</a></li>
