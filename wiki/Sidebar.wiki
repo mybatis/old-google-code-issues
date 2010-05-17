@@ -2,7 +2,7 @@
 
   * Welcome 
 
-= Documentation =
+== Documentation ==
 
   * [http://mybatis.org/java.html Downloadable User Guides (PDF)]
   * [DocContrib Contribute Documentation]
