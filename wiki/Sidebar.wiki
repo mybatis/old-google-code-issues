@@ -1,6 +1,10 @@
 #summary Contents
 
-  * [Welcome] 
+
+=== Wiki ===
+
+  * [Welcome Welcome Page] 
+  * [http://code.google.com/p/mybatis/w/list Page List]
 
 === Documentation ===
 
@@ -23,3 +27,8 @@
 === Process === 
  
   * [ProcessRelease Release Process]
+
+
+
+
+
