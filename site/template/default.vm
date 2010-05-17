@@ -75,8 +75,8 @@
                     <ul>
                       <li><a href="http://groups.google.com/group/mybatis-user" target="mybatis-list">Mailing List</a></li>
                       <li><a href="http://code.google.com/p/mybatis/w/list" target="mybatis-wiki">Wiki</a></li>
-                      <li><a href="http://code.google.com/p/mybatis/source/checkout" target="mybatis-source">Source Code</a></li>
                       <li><a href="http://code.google.com/p/mybatis/issues/list" target="mybatis-issues">Issue Tracking</a></li>
+                      <li><a href="http://code.google.com/p/mybatis/source/checkout" target="mybatis-source">Source Code</a></li>
                     </ul>
                   </li>                 
                   <li>
