@@ -95,7 +95,8 @@ a:hover {
 	letter-spacing: 2px;
 	font-size: 10px;
 	font-weight: normal;
-	color: #D9170E;
+	/*color: #D9170E;*/
+  color: #9AA9B1;  
 }
 
 #logo h2 a {
