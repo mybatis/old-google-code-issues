@@ -8,8 +8,8 @@
 <div class="post">
   <div class="post-bgtop">
     <div class="post-bgbtm">
-      <h2 class="title">3.0 GA Candidate</h2>
-      <p class="byline">[Status: <b>GA</b> | Apr 17, 2010 | Java 5+]</p>
+      <h2 class="title">Persistence Framework 3.0 GA Candidate</h2>
+      <p class="byline">[Status: <b>Release Candidate</b> | Apr 17, 2010 | Java 5+]</p>
       <div class="entry">
         <ul>
           <li>
@@ -29,7 +29,7 @@
 <div class="post">
   <div class="post-bgtop">
     <div class="post-bgbtm">
-      <h2 class="title">Schema Migration System</h2>
+      <h2 class="title">Schema Migration System 3.0 GA Candidate</h2>
       <p class="byline">[Status: <b>Release Candidate</b> | Apr 17, 2010 | Java 5+]</p>
       <div class="entry">
         <ul>
