@@ -1,12 +1,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.apache.ibatis</groupId>
-  <artifactId>ibatis-core</artifactId>
-  <name>ibatis-core</name>
+  <groupId>org.mybatis</groupId>
+  <artifactId>mybatis</artifactId>
+  <name>mybatis</name>
+  <description>
+	  The mybatis data mapper framework makes it easier to use a relational database with object-oriented applications. mybatis couples objects with stored procedures or SQL statements using a XML descriptor or annotations. Simplicity is the biggest advantage of the mybatis data mapper over object relational mapping tools.
+  </description>
   <version>3.1-SNAPSHOT</version>
   <packaging>jar</packaging>
-  <url>http://ibatis.apache.org</url>
+  <url>http://www.mybatis.org/</url>
   <licenses>
     <license>
       <name>The Apache Software License, Version 2.0</name>
@@ -14,6 +17,33 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
+  <developers>
+	  <developer>
+			<id>clinton.begin</id>
+			<name>Clinton Begin</name>
+		  <email>clinton.begin@gmail.com</email>
+		</developer>
+	  <developer>
+			<id>brandon.goodin</id>
+			<name>Brandon Goodin</name>
+		  <email>brandon.goodin@gmail.com</email>
+		</developer>
+	  <developer>
+			<id>larry.meadors</id>
+			<name>Larry Meadors</name>
+		  <email>larry.meadors@gmail.com</email>
+		</developer>
+	  <developer>
+			<id>jeff.butler</id>
+			<name>Jeff Butler</name>
+		  <email>jeffgbutler@gmail.com</email>
+		</developer>
+	  <developer>
+			<id>nathan.maves</id>
+			<name>Nathan Maves</name>
+		  <email>nathan.maves@gmail.com</email>
+		</developer>
+  </developers>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
@@ -51,7 +81,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.0.2</version>
         <configuration>
           <source>1.5</source>
           <target>1.5</target>
