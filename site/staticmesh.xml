@@ -8,7 +8,7 @@
 
             <!--
             <decorator class="uk.co.pols.staticmesh.decorators.BreadcrumbDecorator">
-                <param name="homePageLabel" value="iBATIS Home"/>
+                <param name="homePageLabel" value="mybatis home"/>
             </decorator>
                 -->
 

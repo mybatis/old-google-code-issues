@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!-- ============================================================== -->
-<!-- StaticMesh Ant build file for iBATIS website                   -->
+<!-- StaticMesh Ant build file for the mybatis website                   -->
 <!-- ============================================================== -->
 
-<project default="pagegen" name="StaticMesh Ant build file for iBATIS website" basedir=".">
+<project default="pagegen" name="StaticMesh Ant build file for the mybatis website" basedir=".">
 
     <target name="pagegen" description="Generate the site">
 

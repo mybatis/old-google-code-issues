@@ -217,7 +217,15 @@ a:hover {
 .post .title {
 	margin: 0px;
 	padding: 0px 0px 5px 0px;
-	color: #232F01;
+	/*color: #232F01;*/
+
+  letter-spacing: -1px;
+  text-decoration: none;
+  text-transform: lowercase;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 32px;
+  color: #3A3D40;
 }
 
 .post .title a {
