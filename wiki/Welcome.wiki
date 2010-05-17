@@ -1,0 +1,53 @@
+#summary Welcome to the *mybatis* wiki.
+
+=Welcome=
+
+Here you will find up-to-date on the most recent releases and features of *mybatis*.
+
+This site is maintained by the *mybatis* development community.
+
+----
+
+=mybatis 3=
+
+==Documentation==
+  * Contribute Documentation
+  * iBATIS 3 Maven project tutorial
+  * Porting sqlMapConfig and sqlMap XML from 2.x to 3.0 (draft)
+  * For more visit, the official iBATIS Website.
+
+==Brainstorming==
+  * iBATIS 3.0 Whiteboard (iBATIS 3.0 Whiteboard - Korean)
+
+==Information==
+  * Who is using iBATIS?
+  * Articles and other coverage of iBATIS
+  * Feedback and Experiences
+
+==Committer Resources==
+  * iBATIS Release Process
+  * Updating the Website
+
+----
+
+=mybatis 2=
+
+==Support Resources==
+  * Quick Start Guide
+  * Frequently Asked Questions
+  * Not Yet Documented
+  * Environment Specific Information
+  * 3rd Party Contributions
+  * 3rd Party Ibator Plugins
+  * Type Handler Callbacks
+  * Converting iBATIS DAO to Spring DAO
+
+==Work In Progress==
+===Old 2.x stuff===
+  * Roadmap
+  * Improved Dynamic SQL Whiteboard
+  * Oracle REF CURSOR Solutions
+  * Logging Long Running Queries
+  * Improved Stored Procedure Support Whiteboard
+
+==Building from source==
