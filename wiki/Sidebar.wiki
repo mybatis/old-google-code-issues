@@ -2,7 +2,7 @@
 
   * Welcome 
 
-== Documentation ==
+=== Documentation ===
 
   * [http://mybatis.org/java.html Downloadable User Guides (PDF)]
   * [DocContrib Contribute Documentation]
@@ -10,16 +10,16 @@
   * [DocUpgrade3 Upgrading to 3.x]
   * [DocIbatis2Mybatis From iBATIS to MyBatis]
 
-= Feedback and Testimonials =
+=== Feedback and Testimonials ===
 
   * [FeedbackWho Who's using MyBatis]
   * [FeedbackArticles Articles and Books]
   * [FeedbackWho Feedback and Testimonials]
 
-= Whiteboards = 
+=== Whiteboards === 
 
   * [WhiteboardVersion3 Version 3 Whiteboard]
 
-= Process = 
+=== Process === 
  
   * [ProcessRelease Release Process]
