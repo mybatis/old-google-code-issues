@@ -32,27 +32,24 @@
   </div>
 </div>
 
+<!--
 <div class="post">
   <div class="post-bgtop">
     <div class="post-bgbtm">
-      <h2 class="title">MyBatis 3.0 GA Candidate</h2>
-
-      <p class="byline">Posted by Clinton Begin on Apr 22, 2010</p>
-
+      <h2 class="title">MyBatis 3.0 GA</h2>
+      <p class="byline">Posted by Clinton Begin on May 17, 2010</p>
       <div class="entry">
-        <p> After well over a year of development and testing effort, MyBatis 3.0 is now ready for prime time.
-          I've uploaded the new bundles for MyBatis 3 Core and Migrations. It is this release that we'll
-          vote on for GA status. I'll leave the vote open for a good while (maybe a couple of weeks), just
-          to give everyone a chance to try it out. As usual, only PMC votes actually count, but many PMC members
-          will vote based on the community votes. So please offer your feedback. Otherwise, enjoy MyBatis 3.0!</p>
+        <p>New name, same software.  MyBatis 3.0 is the GA release of the iBATIS 3.0 codebase.  This is a very stable
+          release which many people have been using for weeks, with only a couple of very minor edge case issues
+          repored.  And those too have been fixed in this release.</p>
       </div>
       <div class="meta">
-        <p><a href="java.html" class="more">Go get it!</a></p>
+        <p><a href="software.html" class="more">Go get it!</a></p>
       </div>
     </div>
   </div>
 </div>
-
+-->
 
 </body>
 </html>
