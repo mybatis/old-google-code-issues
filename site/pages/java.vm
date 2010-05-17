@@ -8,13 +8,13 @@
 <div class="post">
   <div class="post-bgtop">
     <div class="post-bgbtm">
-      <h2 class="title"><a href="#">mybatis 3 GA (Candidate</a></h2>
+      <h2 class="title">mybatis 3 GA (candidate)</h2>
       <p class="byline">[Status: <b>Release Candidate</b> | Apr 17, 2010 | Java 5+]</p>
       <div class="entry">
         <ul>
           <li>
             <a href="http://people.apache.org/builds/mybatis/mybatis-3-core/mybatis-core-3.0-bundle.zip">
-              <b>Downloadmybatis 3 Persistence Framework</b></a>
+              <b>Download mybatis 3 Persistence Framework</b></a>
           </li>
           <li>
             <a href="http://svn.apache.org/repos/asf/mybatis/java/mybatis-3/trunk/doc/en/mybatis-3-User-Guide.pdf">
@@ -29,7 +29,23 @@
 <div class="post">
   <div class="post-bgtop">
     <div class="post-bgbtm">
-      <h2 class="title"><a href="#">mybatis schema migration system</a></h2>
+      <h2 class="title">mybatis generator</h2>
+      <div class="entry">
+        <p>The mybatis generator is a code generator and Eclipse plugin. It can be used
+          to get a head start on your project by generating your Beans,
+          Mappings and SQL from an existing database schema.
+        </p>
+
+        <p><a href="generator.html">Learn more about the mybatis generator...</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="post">
+  <div class="post-bgtop">
+    <div class="post-bgbtm">
+      <h2 class="title">mybatis schema migration system</h2>
       <p class="byline">[Status: <b>Release Candidate</b> | Apr 17, 2010 | Java 5+]</p>
       <div class="entry">
         <ul>
@@ -50,28 +66,10 @@
   </div>
 </div>
 
-
 <div class="post">
   <div class="post-bgtop">
     <div class="post-bgbtm">
-      <h2 class="title"><a href="#">mybatis generator</a></h2>
-      <div class="entry">
-        <p>Ibator is a code generator and Eclipse plugin. It can be used
-          to get a head start on your project by generating your Beans,
-          Mappings and SQL from an existing database schema.
-        </p>
-
-        <p><a href="ibator.html">Learn more about Ibator...</a></p>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="post">
-  <div class="post-bgtop">
-    <div class="post-bgbtm">
-      <h2 class="title"><a href="#">Release 2.3.4</a></h2>
+      <h2 class="title">Release 2.3.4</h2>
       <p class="byline">[Status: <b>GA</b> | Sep 19, 2008 | Java 5+]</p>
       <div class="entry">
         <h4></h4>
@@ -84,68 +82,6 @@
     </div>
   </div>
 </div>
-
-<div class="post">
-  <div class="post-bgtop">
-    <div class="post-bgbtm">
-      <h2 class="title"><a href="#">JPetStore 5</a></h2>
-      <p class="byline">(Example Application for mybatis 2.x)</p>
-      <div class="entry">
-        <ul>
-          <li><a href="[preferred]/mybatis/binaries/mybatis.java/JPetStore-5.0.zip">JPetStore 5.0 Example
-            Application</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="post">
-  <div class="post-bgtop">
-    <div class="post-bgbtm">
-      <h2 class="title"><a href="#">mybatis 2.3.0</a></h2>
-      <p class="byline">DEPRECATED</p>
-      <div class="entry">
-        <h4>2.3.0 (JDK 1.4)</h4>
-        <p>The last JDK 1.4 compatible release was 2.3.0. It is a stable release that was in production for over a year,
-          but obviously lacks a few features
-          and fixes of the current release. Sun will be <a href="http://java.sun.com/products/archive/eol.policy.html">discontinuing
-            support</a> for JDK 1.4 in October of 2008.</p>
-        <ul>
-          <li>
-            <a href="[preferred]/mybatis/binaries/mybatis.java/mybatis-2.3.0.677.zip"><b>Download mybatis Java 2.3.0</b></a>
-            <br/>[Status: General Availability | Dec 1, 2006]
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="post">
-  <div class="post-bgtop">
-    <div class="post-bgbtm">
-      <h2 class="title"><a href="#">DAO Framework</a></h2>
-      <p class="byline">DEPRECATED</p>
-      <div class="entry">
-        <p>The DAO Framework was deprecated in 2.3, but will remain permanently available
-          as it was in 2.2.</p>
-        <ul>
-          <li>
-            <a href="[preferred]/mybatis/binaries/mybatis.java/mybatis_DAO-2.2.0.638.zip"><b>Standalone DAO Framework
-              2.2.0</b></a>
-            <br/>[<a href="http://www.apache.org/dist/mybatis/binaries/mybatis.java/mybatis_DAO-2.2.0.638.zip.md5">MD5</a>
-            |
-            <a href="http://www.apache.org/dist/mybatis/binaries/mybatis.java/mybatis_DAO-2.2.0.638.zip.asc">PGP</a> ]
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-
 
 </body>
 </html>

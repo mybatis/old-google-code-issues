@@ -26,9 +26,9 @@
 <div id="wrapper">
   <div id="header">
     <div id="logo">
-      <h1><a href="#">mybatis </a></h1>
+      <h1>mybatis</h1>
 
-      <h2><a href="#">New home of the world's most popular SQL mapping framework.</a></h2>
+      <h2>New home of the world's most popular SQL mapping framework.</h2>
     </div>
     <!-- end div#logo -->
     <div id="menu">
@@ -46,7 +46,6 @@
 
       <div id="page-bgtop">
         <div id="content">
-
           #parse($innerTemplate)
         </div>
         <!-- end div#content-->
@@ -58,9 +57,9 @@
                   <li id="search">
                     <h2>Search</h2>
 
-                    <form method="get" action="">
+                    <form method="get" action="http://code.google.com/p/mybatis/w/list?can=2&colspec=PageName+Summary+Changed+ChangedBy">
                       <fieldset>
-                        <input type="text" id="seach-text" name="s" value=""/>
+                        <input type="text" id="seach-text" name="q" value=""/>
                         <input type="submit" id="search-submit" value="Search"/>
                       </fieldset>
                     </form>
@@ -68,26 +67,16 @@
                   <li>
                     <h2>Community</h2>
                     <ul>
-                      <li><a href="#">Wiki</a></li>
-                      <li><a href="#">Mailing Lists</a></li>
-                      <li><a href="#">FAQ</a></li>
-                      <li><a href="#">Source Code</a></li>
-                      <li><a href="#">Eget tempor eget nonummy</a></li>
+                      <li><a href="http://groups.google.com/group/mybatis-user" target="mybatis-list">Mailing List</a></li>
+                      <li><a href="http://code.google.com/p/mybatis/w/list" target="mybatis-wiki">Wiki</a></li>
+                      <li><a href="http://code.google.com/p/mybatis/source/checkout" target="mybatis-source">Source Code</a></li>
+                      <li><a href="http://code.google.com/p/mybatis/issues/list" target="mybatis-issues">Issue Tracking</a></li>
                     </ul>
-                  </li>
-                  <li>
-                    <h2>Hype</h2>
-                    <ul>
-                      <li><a href="#">Who's using mybatis</a></li>
-                      <li><a href="#">Articles and Books</a></li>
-                      <li><a href="#">User Feedback</a></li>
-                    </ul>
-                  </li>
+                  </li>                 
                   <li>
                     <h2>Archives</h2>
                     <ul>
-                      <li><a href="#">News Archives</a></li>
-                      <li><a href="#">Past Events</a></li>
+                      <li><a href="archive.html">News Archives</a></li>
                     </ul>
                   </li>
                 </ul>
