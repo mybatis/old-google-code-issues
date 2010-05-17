@@ -4,7 +4,7 @@
 
 === Documentation ===
 
-  * [http://mybatis.org/java.html Downloadable User Guides (PDF)]
+  * [http://mybatis.org/software.html Downloadable User Guides (PDF)]
   * [DocContrib Contribute Documentation]
   * [DocMavenTutorial MyBatis Maven Tutorial]
   * [DocUpgrade3 Upgrading to 3.x]
