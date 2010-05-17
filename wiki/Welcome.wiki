@@ -1,7 +1,5 @@
 #summary Welcome to the *mybatis* wiki.
 
-=Welcome=
-
 Here you will find up-to-date on the most recent releases and features of *mybatis*.
 
 This site is maintained by the *mybatis* development community.
