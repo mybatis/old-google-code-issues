@@ -8,7 +8,9 @@ bend in the road.  As with a corner when driving, there is a slight adjustment t
 
 == Questions ==
 
-  * *Do I have to change my code?*  No.  Initially the !MyBatis releases will be fully backward compatible.  We have
+  * *Do I have to change my code?*
+
+     No.  Initially the !MyBatis releases will be fully backward compatible.  We have
      no intention to ever change the package name (maybe in version 4 someday).  The only think that may need to be
      changed in the not to distant future is the DTD location.  Instructions are below.  Don't worry though, your
      code won't explode if you don't.  It will just mean you can't use some of the newer features in the future until
