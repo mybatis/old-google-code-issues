@@ -1,0 +1,103 @@
+= Getting Started =
+
+During this tutorial we will create a small maven project with a testcase showing the basic functionality of MyBatis 3 using the in memory h2 database.
+
+= Create Maven Project =
+
+Create a new maven project using the quickstart archetype
+
+{{{
+mvn archetype:create -DarchetypeGroupId=org.apache.maven.archetypes -DgroupId=org.mybatis -DartifactId=ibatis3-tutorial
+}}}
+
+This will create the following directory layout:
+
+{{{
+src
+|_main
+|  |_java
+|     |_org
+|        |_mybatis
+|_test
+   |_java
+      |_org
+         |_mybatis
+}}}
+
+Add the ibatis and h2 dependencies to the pom.xml and change the default sorce version to 1.5 so it looks like:
+
+{{{
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.apache.ibatis</groupId>
+  <artifactId>ibatis3-tutorial</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>ibatis3-tutorial</name>
+  <url>http://maven.apache.org</url>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.0.2</version>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>ibatis-3-core</artifactId>
+      <version>3.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>1.1.113</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.6</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>
+}}}
+
+Run a maven build to see if the dependencies can be properly resolved:
+
+{{{
+[INFO] ------------------------------------------------------------------------
+    [INFO] BUILD SUCCESSFUL
+    [INFO] ------------------------------------------------------------------------
+    [INFO] Total time: 5 seconds
+    [INFO] Finished at: Sun May 31 20:43:08 CEST 2009
+    [INFO] Final Memory: 11M/20M
+    [INFO] ------------------------------------------------------------------------
+}}}
+
+= Database Schema =
+
+In this example we will assume that we have an existing database structure that we want to query and manipulate using MyBatis. For this tutorial we will use the following database structure:
+
+{{{
+/src/test/resources/database.ddl
+
+CREATE TABLE PERSON(
+    PER_ID NUMBER (5, 0) NOT NULL,
+    PER_FIRST_NAME VARCHAR (40) NOT NULL,
+    PER_LAST_NAME VARCHAR (40) NOT NULL,
+    PER_BIRTH_DATE DATETIME ,
+    PER_WEIGHT_KG NUMBER (4, 2) NOT NULL,
+    PER_HEIGHT_M NUMBER (4, 2) NOT NULL,
+    PRIMARY KEY (PER_ID)
+  );
+);
+}}}
