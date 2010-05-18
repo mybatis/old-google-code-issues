@@ -20,9 +20,9 @@ fork, and more like a bend in the road.  As with a corner when driving, there is
 
 There are only a few simple steps to follow, some to do now, and some to do when you're ready.
 
-  # Sign up for new mailing lists *(NOW)*
-  # Use the new issue tracker and wiki *(NOW)*
-  # Change bookmarks / links to our site *(NOW)*
+  # Sign up for new mailing lists *(now)*
+  # Use the new issue tracker and wiki *(now)*
+  # Change bookmarks / links to our site *(now)*
   # Download new build (when you need your next build)
   # Change DTD/Doctype in XML Headers (at your next opportunity)
 
