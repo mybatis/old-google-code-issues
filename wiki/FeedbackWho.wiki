@@ -2,7 +2,7 @@
 
 = Introduction =
 
-The following is a list of users who voluntarily listed themselves here as users of the iBATIS framework.  While MyBatis is different in name, it is the future of the framework.  Thus the following usages and testimonials apply to MyBatis as well.
+The following is a list of users who voluntarily listed themselves here as users of the iBATIS framework.  While MyBatis is different in name, it is the future of the framework.  Thus the following usages and testimonials apply to !MyBatis as well.
 
 = Public Sites =
 
