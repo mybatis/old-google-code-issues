@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary Articles and books about the framework.
 
 = Introduction =
 
