@@ -20,10 +20,6 @@
   * [FeedbackArticles Articles and Books]
   * [FeedbackWho Feedback and Testimonials]
 
-=== Whiteboards === 
-
-  * [WhiteboardVersion3 Version 3 Whiteboard]
-
 === Process === 
  
   * [ProcessRelease Release Process]
