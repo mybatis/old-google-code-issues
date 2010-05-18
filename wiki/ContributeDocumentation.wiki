@@ -3,5 +3,5 @@
 You make the best author of the documentation, because you are a user of the framework and therefore have a better perspective for what it takes to explain and use !MyBatis.
 
 There are a couple ways you can contribute to the documentation:
-  * Checkout the Wiki from SVN and create a page that you can submit as an [http://code.google.com/p/mybatis/issues/list Issue] with a patch.
+  * Checkout the Wiki from [http://code.google.com/p/mybatis/source/checkout SVN] and create a page that you can submit as an [http://code.google.com/p/mybatis/issues/list Issue] with a patch.
   * Make a request to the user list regarding documentation that is missing.
