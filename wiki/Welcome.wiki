@@ -4,4 +4,6 @@ Use the menu to the right to find the information you're looking for.
 
 If you can't find it here, join our [http://groups.google.com/group/mybatis-user discussion group] and ask us.  Once you find the answer to your question, if this situation warrants, then it would be awesome for you to contribute what you've learned back to this site as a wiki page. See the section titled [DocContrib Contribute Documentation] for more information.
 
-If you're are moving from iBATIS to MyBatis, be sure to read the simple [DocIbatis2MyBatis 5-step guide] to doing so.
+=== New Here? ===
+
+*If you're are moving from iBATIS to !MyBatis, be sure to read the simple [DocIbatis2MyBatis 5-step guide] to doing so.*
