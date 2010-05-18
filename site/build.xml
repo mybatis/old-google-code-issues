@@ -33,6 +33,8 @@
             <include name="**/*.jpg"/>
             <include name="**/*.js"/>
             <include name="**/*.ico"/>
+            <include name="**/*.txt"/>
+            <include name="**/*.dtd"/>
             <include name="**/*.html"/>
           </fileset>
         </copy>
