@@ -1,0 +1,22 @@
+<wiki:toc max_depth="1" />
+
+= Opportunity for Change. =
+== How to work with this page. ==
+= Themes for iBATIS 3.0 =
+= The Methodology =
+= Design...Feature by Feature =
+== Interface Binding ==
+== Transactions, Sessions, and Factories – MapperFactory ==
+= Multilevel Configuration =
+== Configuration by Convention ==
+== Relationships ==
+== Standard SQL? What's that? ==
+== Some Possible Configuration Options ==
+== Configuration with Annotations ==
+== Configuration with XML ==
+== Configuration with Java API ==
+= Caching =
+= Dynamic SQL =
+= XML Parameters and Results =
+= Features Recommended for Exclusion from iBATIS 3.0 =
+= Timeline =
