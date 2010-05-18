@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary Feedback and testimonials from users of the framework.
 
 == Introduction ==
 
