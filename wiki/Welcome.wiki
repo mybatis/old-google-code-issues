@@ -13,7 +13,7 @@ This site is maintained by the *!MyBatis* development community.
   * For more visit, the official !MyBatis Website.
 
 ==Brainstorming==
-  * !MyBatis 3.0 Whiteboard (!MyBatis 3.0 Whiteboard - Korean)
+  * [WhiteboardVersion3 MyBatis 3.0 Whiteboard] (!MyBatis 3.0 Whiteboard - Korean)
 
 ==Information==
   * Who is using !MyBatis?
