@@ -7,7 +7,7 @@ This site is maintained by the *!MyBatis* development community.
 =!MyBatis 3=
 
 ==Documentation==
-  * Contribute Documentation
+  * [ContributeDocumentation Contribute Documentation]
   * !MyBatis 3 Maven project tutorial
   * Porting sqlMapConfig and sqlMap XML from 2.x to 3.0 (draft)
   * For more visit, the official !MyBatis Website.
