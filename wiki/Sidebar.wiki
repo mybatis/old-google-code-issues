@@ -18,13 +18,11 @@
 
   * [FeedbackWho Who's using MyBatis]
   * [FeedbackArticles Articles and Books]
-  * [FeedbackWho Feedback and Testimonials]
+  * [FeedbackTestimonial Feedback and Testimonials]
 
 === Process === 
  
   * [ProcessRelease Release Process]
-
-
 
 
 
