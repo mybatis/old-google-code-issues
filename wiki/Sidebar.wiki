@@ -12,7 +12,7 @@
   * [DocContrib Contribute Documentation]
   * [DocMavenTutorial MyBatis Maven Tutorial]
   * [DocUpgrade3 Upgrading to 3.x]
-  * [DocIbatis2Mybatis From iBATIS to MyBatis]
+  * [DocIbatis2MyBatis From iBATIS to MyBatis]
 
 === Feedback and Testimonials ===
 
