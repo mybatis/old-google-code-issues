@@ -85,7 +85,7 @@ All future releases will be distributed via Google Code and archived here:
 
 === 5. Update your DTD/Doctype Headers ===
 
-*After* you've updated to a build *later* than "3.0 GA Candidate", you can update your DTD headers.
+*After* you've updated to a build *later* than "3.0 GA Candidate", you can update your DOCTYPE headers in your Configuration and Mapper XML files.
 
 {{{
 #
