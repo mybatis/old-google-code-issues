@@ -2,9 +2,9 @@
 
 == Introduction ==
 
-!MyBatis is a direct fork of the iBATIS code.  At the time of this writing, there are no known plans to continue the
-iBATIS project within the Apache software foundation, and thus it is somewhat less of a for, and more like just a
-bend in the road.  As with a corner when driving, there is a slight adjustment to be made.
+!MyBatis is a direct fork of the iBATIS code.  At the time of this writing, the code is identical, but there are no
+known plans to continue the iBATIS project within the Apache software foundation. Therefore it is somewhat less of a
+fork, and more like a bend in the road.  As with a corner when driving, there is a slight adjustment to be made.
 
 == Questions ==
 
