@@ -1,0 +1,17 @@
+#summary Migration Steps when Switching from iBATIS to MyBatis
+
+== Introduction ==
+
+MyBatis is a direct fork of the iBATIS code.  At the time of this writing, there are no known plans to continue the
+iBATIS project within the Apache software foundation, and thus it is somewhat less of a for, and more like just a
+bend in the road.  As with a corner when driving, there is a slight adjustment to be made.
+
+== Steps ==
+
+There are only a few simple steps to follow.
+
+  * Sign up for new mailing lists
+  * Use the new issue tracker and wiki
+  * Download new build
+  * Change DTD/Doctype in XML Headers
+  * Change bookmarks / links to our site
