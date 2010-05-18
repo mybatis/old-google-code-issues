@@ -1,49 +1,7 @@
-Here you will find up-to-date on the most recent releases and features of *!MyBatis*.
+= Welcome =
 
-This site is maintained by the *!MyBatis* development community.
+Use the menu to the right to find the information you're looking for.  
 
-----
+If you can't find it here, join our [http://groups.google.com/group/mybatis-user discussion group] and ask us.  Once you find the answer to your question, if this situation warrants, then it would be awesome for you to contribute what you've learned back to this site as a wiki page. See the section titled [DocContrib Contribute Documentation] for more information.
 
-=!MyBatis 3=
-
-==Documentation==
-  * [DocContrib Contribute Documentation]
-  * !MyBatis 3 Maven project tutorial
-  * Porting sqlMapConfig and sqlMap XML from 2.x to 3.0 (draft)
-  * For more visit, the official !MyBatis Website.
-
-==Brainstorming==
-  * [WhiteboardVersion3 MyBatis 3.0 Whiteboard] (!MyBatis 3.0 Whiteboard - Korean)
-
-==Information==
-  * Who is using !MyBatis?
-  * Articles and other coverage of !MyBatis
-  * Feedback and Experiences
-
-==Committer Resources==
-  * !MyBatis Release Process
-  * Updating the Website
-
-----
-
-=!MyBatis 2=
-
-==Support Resources==
-  * Quick Start Guide
-  * Frequently Asked Questions
-  * Not Yet Documented
-  * Environment Specific Information
-  * 3rd Party Contributions
-  * 3rd Party !MyBatis Generator Plugins
-  * Type Handler Callbacks
-  * Converting !MyBatis DAO to Spring DAO
-
-==Work In Progress==
-===Old 2.x stuff===
-  * Roadmap
-  * Improved Dynamic SQL Whiteboard
-  * Oracle REF CURSOR Solutions
-  * Logging Long Running Queries
-  * Improved Stored Procedure Support Whiteboard
-
-==Building from source==
+If you're are moving from iBATIS to MyBatis, be sure to read the simple [DocIbatis2MyBatis 5-step guide] to doing so.
