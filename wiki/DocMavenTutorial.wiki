@@ -1,6 +1,6 @@
 = Getting Started =
 
-During this tutorial we will create a small maven project with a testcase showing the basic functionality of MyBatis 3 using the in memory h2 database.
+During this tutorial we will create a small maven project with a testcase showing the basic functionality of !MyBatis 3 using the in memory h2 database.
 
 = Create Maven Project =
 
