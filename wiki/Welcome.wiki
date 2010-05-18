@@ -1,34 +1,34 @@
-#summary Welcome to the *MyBatis* wiki.
+#summary Welcome to the *!MyBatis* wiki.
 
 Here you will find up-to-date on the most recent releases and features of *MyBatis*.
 
-This site is maintained by the *MyBatis* development community.
+This site is maintained by the *!MyBatis* development community.
 
 ----
 
-=MyBatis 3=
+=!MyBatis 3=
 
 ==Documentation==
   * Contribute Documentation
-  * MyBatis 3 Maven project tutorial
+  * !MyBatis 3 Maven project tutorial
   * Porting sqlMapConfig and sqlMap XML from 2.x to 3.0 (draft)
-  * For more visit, the official MyBatis Website.
+  * For more visit, the official !MyBatis Website.
 
 ==Brainstorming==
-  * MyBatis 3.0 Whiteboard (MyBatis 3.0 Whiteboard - Korean)
+  * !MyBatis 3.0 Whiteboard (!MyBatis 3.0 Whiteboard - Korean)
 
 ==Information==
-  * Who is using MyBatis?
-  * Articles and other coverage of MyBatis
+  * Who is using !MyBatis?
+  * Articles and other coverage of !MyBatis
   * Feedback and Experiences
 
 ==Committer Resources==
-  * MyBatis Release Process
+  * !MyBatis Release Process
   * Updating the Website
 
 ----
 
-=MyBatis 2=
+=!MyBatis 2=
 
 ==Support Resources==
   * Quick Start Guide
@@ -36,9 +36,9 @@ This site is maintained by the *MyBatis* development community.
   * Not Yet Documented
   * Environment Specific Information
   * 3rd Party Contributions
-  * 3rd Party MyBatis Generator Plugins
+  * 3rd Party !MyBatis Generator Plugins
   * Type Handler Callbacks
-  * Converting MyBatis DAO to Spring DAO
+  * Converting !MyBatis DAO to Spring DAO
 
 ==Work In Progress==
 ===Old 2.x stuff===
