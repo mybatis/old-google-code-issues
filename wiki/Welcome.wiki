@@ -1,6 +1,4 @@
-#summary Welcome to the *!MyBatis* wiki.
-
-Here you will find up-to-date on the most recent releases and features of *MyBatis*.
+Here you will find up-to-date on the most recent releases and features of *!MyBatis*.
 
 This site is maintained by the *!MyBatis* development community.
 
