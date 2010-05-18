@@ -2,7 +2,7 @@
 
 = Introduction =
 
-The following articles are about iBATIS in name, but are perfectly useful for MyBatis as well.
+The following articles are about iBATIS in name, but are perfectly useful for !MyBatis as well.
 
 = iBATIS 2.x =
 
