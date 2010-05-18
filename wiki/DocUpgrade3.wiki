@@ -113,4 +113,4 @@ Replacement:
 </if>
 }}}
 
-Note you will have to replace the closing tags </isNotNull> with </if> also.
+Note you will have to replace the closing tags !</isNotNull> with !</if> also.
