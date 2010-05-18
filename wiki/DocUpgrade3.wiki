@@ -102,13 +102,15 @@ The most common dynamic SQL in my project is "isNotNull". Here is an example rep
 Pattern:
 
 {{{
-<isNotNull.*?property=\"(.*?)\"
+<isNotNull.*?property=\"(.*?)\">
+</isNotNull>
 }}}
 
 Replacement:
 
 {{{
-<if test="$1 != null"
+<if test="$1 != null">
+</if>
 }}}
 
 Note you will have to replace the closing tags </isNotNull> with </if> also.
