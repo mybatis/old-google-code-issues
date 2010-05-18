@@ -2,7 +2,7 @@
 
 = Opportunity for Change. =
 == How to work with this page. ==
-= Themes for MyBatis 3.0 =
+= Themes for !MyBatis 3.0 =
 = The Methodology =
 = Design...Feature by Feature =
 == Interface Binding ==
@@ -18,5 +18,5 @@
 = Caching =
 = Dynamic SQL =
 = XML Parameters and Results =
-= Features Recommended for Exclusion from MyBatis 3.0 =
+= Features Recommended for Exclusion from !MyBatis 3.0 =
 = Timeline =
