@@ -15,3 +15,32 @@ There are only a few simple steps to follow.
   * Download new build
   * Change DTD/Doctype in XML Headers
   * Change bookmarks / links to our site
+
+=== Mailing Lists ===
+
+First, unsubscribe from the old mailing lists by sending an email to each one that you are signed up for.
+
+Most users of the Java framework will only be signed up for the user list.
+
+  * [mailto:user-java-unsubscribe@ibatis.apache.org] - Java User List
+  * [mailto:dev-unsubscribe@ibatis.apache.org] - Developer List
+  * [mailto:commits-unsubscribe@ibatis.apache.org] - Commits List
+
+There are no replacements for the developer or commits lists.  Commits are easy to find with subversion or on the
+[http://code.google.com/p/mybatis/source/list Source/Changes] tab of the Google Projects page
+
+Now you're ready to sign up to the new MyBatis Google Group.  If you already have a Google Account, you won't
+have much to do...
+
+  * Log into Google (GMail, YouTube, etc.) or sign up if you don't have an account.
+  * Then go to the group: [http://groups.google.com/group/mybatis-user]
+  * Click join.
+
+You can leave and re-join the group any time using the same page.  You can also search the group right there on the discussion
+page.
+
+
+
+
+
+
