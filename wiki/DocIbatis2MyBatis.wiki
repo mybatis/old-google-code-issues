@@ -16,6 +16,10 @@ fork, and more like a bend in the road.  As with a corner when driving, there is
      code won't explode if you don't.  It will just mean you can't use some of the newer features in the future until
      you do.
 
+  * *Did the license change?*
+
+     No.  The copyright for future code will change.  But the license is still the Apache License 2.0.
+
 == Steps ==
 
 There are only a few simple steps to follow, some to do now, and some to do when you're ready.
