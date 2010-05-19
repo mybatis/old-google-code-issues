@@ -8,13 +8,14 @@
 <div class="post">
   <div class="post-bgtop">
     <div class="post-bgbtm">
-      <h2 class="title">Persistence Framework 3.0 GA Candidate</h2>
-      <p class="byline">[Status: <b>Release Candidate</b> | Apr 17, 2010 | Java 5+]</p>
+      <h2 class="title">MyBatis Persistence Framework 3.0.1 GA</h2>
+      <p class="byline">[May 19, 2010]</p>
       <div class="entry">
         <ul>
           <li>
-            <a href="http://mybatis.googlecode.com/files/ibatis-core-3.0-bundle.zip">
-              <b>Download the Persistence Framework</b></a>
+            <a href="http://mybatis.googlecode.com/files/mybatis-3.0.1-bundle.zip">
+              <b>Download the Persistence Framework</b>
+            </a>
           </li>
           <li>
             <a href="http://mybatis.googlecode.com/svn/trunk/doc/en/iBATIS-3-User-Guide.pdf">
@@ -29,13 +30,14 @@
 <div class="post">
   <div class="post-bgtop">
     <div class="post-bgbtm">
-      <h2 class="title">Schema Migration System 3.0 GA Candidate</h2>
-      <p class="byline">[Status: <b>Release Candidate</b> | Apr 17, 2010 | Java 5+]</p>
+      <h2 class="title">MyBatis Schema Migrations 3.0.1 GA</h2>
+      <p class="byline">[May 19, 2010]</p>
       <div class="entry">
         <ul>
           <li>
-            <a href="http://mybatis.googlecode.com/files/ibatis-core-3.0-migrations.zip">
-              <b>Download the Schema Migrations System</b></a>
+            <a href="http://mybatis.googlecode.com/files/mybatis-3.0.1-migrations.zip">
+              <b>Download the Schema Migrations System</b>
+            </a>
             <br/>
           <li>
             <a href="http://mybatis.googlecode.com/svn/trunk/doc/en/iBATIS-3-Migrations.pdf">
@@ -55,7 +57,7 @@
   <div class="post-bgtop">
     <div class="post-bgbtm">
       <h2 class="title">Past Release 2.3.4</h2>
-      <p class="byline">[Status: <b>GA</b> | Sep 19, 2008 | Java 5+]</p>
+      <p class="byline">[Sep 19, 2008]</p>
       <div class="entry">
         <h4></h4>
         <ul>
