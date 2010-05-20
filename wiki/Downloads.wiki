@@ -1,0 +1,13 @@
+#summary Archive of all MyBatis related downloads.
+
+= Downloads =
+
+Please select a filter to find the downloads most relevant to your needs:
+
+  * [http://code.google.com/p/mybatis/downloads/list?can=1 All Downloads]
+
+  * [http://code.google.com/p/mybatis/downloads/list?can=2 Current Downloads]
+
+  * [http://code.google.com/p/mybatis/downloads/list?can=3 Featured Downloads]
+
+  * [http://code.google.com/p/mybatis/downloads/list?can=4 Deprecated Downloads]
