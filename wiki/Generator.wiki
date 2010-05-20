@@ -1,4 +1,4 @@
-#summary An introduction to the code generation tool for !MyBatis
+#summary An introduction to the code generation tool for MyBatis
 
 == Introduction to !MyBatis Generator ==
 
