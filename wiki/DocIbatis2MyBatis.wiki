@@ -37,6 +37,7 @@ First, unsubscribe from the old mailing lists by sending an email to each one th
 Most users of the Java framework will only be signed up for the user list.
 
   * [mailto:user-java-unsubscribe@ibatis.apache.org] - Java User List
+  * [mailto:user-java-unsubscribe@ibatis.apache.org] - .NET User List
   * [mailto:dev-unsubscribe@ibatis.apache.org] - Developer List
   * [mailto:commits-unsubscribe@ibatis.apache.org] - Commits List
 
