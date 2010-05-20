@@ -56,11 +56,7 @@ If you've not previously installed MyBatis Generator, use the built in Eclipse i
    # Take the "Help>Software Updates..." Menu Option
    # Select the "Available Software" Tab
    # Press the "Add Site" button
-   # Enter the following information:
-
-      Location:
-          <Need a new web path for MyBatis Generator>
-
+   # Enter the following location: <Need a new web path for MyBatis Generator>
    # Press OK
    # Check the box next to "MyBatis Generator Feature"
    # Press the "Install" button
@@ -112,12 +108,10 @@ If you've not already installed Abator, then you can use the built in Eclipse in
    # Select the "Search for new features to install" radio button, press "Next"
    # Press the "New Remote Site" button
    # Enter the following information:
-
-      Name:
+     Name:
           Abator for Eclipse Update Site
-      URL:
+     URL:
           <Need a new web path for MyBatis Generator>
-
    # Press OK
    # Check the box next to "Abator for Eclipse Update Site"
    # Follow the remainder of the install wizard
