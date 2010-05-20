@@ -10,6 +10,7 @@
 
   * [DocContrib Contribute Documentation]
   * [DocMavenTutorial MyBatis Maven Tutorial]
+  * [Generator MyBatis Generator]
   * [DocUpgrade3 Upgrading to 3.x]
   * [DocIbatis2MyBatis From iBATIS to MyBatis]
   * [http://mybatis.googlecode.com/svn/trunk/doc/en/ Downloadable User Guides (PDF)]
@@ -23,4 +24,3 @@
 === Process === 
  
   * [ProcessRelease Release Process]
-
