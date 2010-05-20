@@ -9,7 +9,7 @@
   <div class="post-bgtop">
     <div class="post-bgbtm">
       <h2 class="title">MyBatis Persistence Framework 3.0.1 GA</h2>
-      <p class="byline">[May 19, 2010]</p>
+      <p class="byline">This is the core SQL mapping framework.</p>
       <div class="entry">
         <ul>
           <li>
@@ -31,7 +31,7 @@
   <div class="post-bgtop">
     <div class="post-bgbtm">
       <h2 class="title">MyBatis Schema Migrations 3.0.1 GA</h2>
-      <p class="byline">[May 19, 2010]</p>
+      <p class="byline">This is the command line utility for managing your database schema, similar to Rails migrations.</p>
       <div class="entry">
         <ul>
           <li>
@@ -56,10 +56,35 @@
 <div class="post">
   <div class="post-bgtop">
     <div class="post-bgbtm">
-      <h2 class="title">Past Release 2.3.4</h2>
-      <p class="byline">[Sep 19, 2008]</p>
+      <h2 class="title">MyBatis Generator</h2>
+      <p class="byline">
+        This is the popular code generator for MyBatis.  Please be patient.  We're updating the release
+        for the MyBatis Generator. Until it's ready, we recommend building from source.
+      </p>
       <div class="entry">
-        <h4></h4>
+        <ul>
+          <li>
+            <a href="http://mybatis.googlecode.com/svn/sub-projects/generator/trunk/">
+              <b>Check out and Build the MyBatis Generator code generation tool. (SVN/Maven)</b>
+            </a>
+            <br/>
+          <li>
+            <a href="http://code.google.com/p/mybatis/wiki/Generator">
+              Learn more about the MyBatis Generator
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="post">
+  <div class="post-bgtop">
+    <div class="post-bgbtm">
+      <h2 class="title">Past Release 2.3.4</h2>
+      <p class="byline">This is an older, but highly popular version of the SQL mapping framework.</p>
+      <div class="entry">
         <ul>
           <li>
             <a href="http://mybatis.googlecode.com/files/ibatis-2.3.4.726.zip">
