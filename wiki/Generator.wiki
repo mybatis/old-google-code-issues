@@ -1,6 +1,6 @@
 #summary An introduction to the code generation tool for !MyBatis
 
-Introduction to !MyBatis Generator
+== Introduction to !MyBatis Generator ==
 
 !MyBatis Generator is a code generator for !MyBatis. !MyBatis Generator will introspect a database table (or many tables) and will generate !MyBatis artifacts that can be used to access the table(s). This abates some of the initial nuisance of setting up objects and configuration files to interact with database tables. !MyBatis Generator seeks to make a major impact on the large percentage of database operations that are simple CRUD (Create, Retrieve, Update, Delete). You will still need to hand code SQL and objects for custom queries, or stored procedures.
 
