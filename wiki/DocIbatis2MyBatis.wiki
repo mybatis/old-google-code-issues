@@ -10,7 +10,7 @@ fork, and more like a bend in the road.  As with a corner when driving, there is
 
   * *Do I have to change my code?*
 
-     No.  Initially the !MyBatis releases will be fully backward compatible.  We have
+     No.  The !MyBatis releases will be fully backward compatible.  We have
      no intention to ever change the package name (maybe in version 4 someday).  The only think that may need to be
      changed in the not to distant future is the DTD location.  Instructions are below.  Don't worry though, your
      code won't explode if you don't.  It will just mean you can't use some of the newer features in the future until
@@ -19,6 +19,17 @@ fork, and more like a bend in the road.  As with a corner when driving, there is
   * *Did the license change?*
 
      No.  The copyright for future code will change.  But the license is still the Apache License 2.0.
+
+  * *Which versions will be supported?*
+
+    iBATIS 2 and 3 will be supported, with both 2.3.5 and 3.0.1 GA releases becoming available immediately.
+    iBATIS.NET 1.x and 3.x will be supported, with a new release coming available soon.
+
+ * What will happen to the Apache iBATIS project?
+
+   Apache won't delete any existing resources.  They'll be available in a read-only form.
+   The Apache project will be archived in the "Apache Attic" when it becomes stale
+
 
 == Steps ==
 
@@ -48,8 +59,9 @@ Now you're ready to sign up to the new !MyBatis Google Group.  If you already ha
 have much to do...
 
   * Log into Google (GMail, YouTube, etc.) or sign up if you don't have an account.
-  * Then go to the group: [http://groups.google.com/group/mybatis-user]
-  * Click join.
+  * Then join one or both of these groups: 
+    * [http://groups.google.com/group/mybatis-user]
+    * [http://groups.google.com/group/mybatisnet-user]
 
 You can leave and re-join the group any time using the same page.  You can also search the group right there on the discussion
 page.
@@ -64,8 +76,14 @@ We've moved all of the open issues (all new featurs) for iBATIS 3 to the new Goo
 
 You can find the new Issue Tracker and Wiki here:
 
+Java
   * [http://code.google.com/p/mybatis/issues/list Issue Tracker]
   * [http://code.google.com/p/mybatis/wiki/Welcome Wiki]
+
+.NET
+  * [http://code.google.com/p/mybatisnet/issues/list Issue Tracker]
+  * [http://code.google.com/p/mybatisnet/wiki/Welcome Wiki]
+
 
 === 3. Bookmarks and Links ===
 
@@ -73,22 +91,23 @@ Of course you don't want to be left with outdated or dead links.  So be sure to 
 and any links to our site:
 
   * [http://www.mybatis.org] - Homepage
-  * [http://code.google.com/p/mybatis/] - Google Code Project
+  * [http://code.google.com/p/mybatis/] - Java Google Code Project
+  * [http://code.google.com/p/mybatisnet/] - .NET Google Code Project
 
-=== 4. Update to the Latest Build ===
+=== 4. Update to the Latest Build (Java only at this time) ===
 
 There's no need to do this immediately.  But when you're ready to upgrade to the latest release or the 3.0 GA release
 of !MyBatis, you should do so from this site.  There are no known plans to release any further from the Apache site.
 
 When the time comes, you'll find the new releases summarized here:
 
-  * [http://mybatis.org/software.html] - software download page at mybatis.org
+  * [http://mybatis.org/java.html] - software download page at mybatis.org
 
 All future releases will be distributed via Google Code and archived here:
 
   * [http://code.google.com/p/mybatis/downloads/list] - Google Code project download page
 
-=== 5. Update your DTD/Doctype Headers ===
+=== 5. Update your DTD/Doctype Headers (Java only at this time) ===
 
 *After* you've updated to a build *later* than "3.0 GA Candidate", you can update your DOCTYPE headers in your Configuration and Mapper XML files.
 
