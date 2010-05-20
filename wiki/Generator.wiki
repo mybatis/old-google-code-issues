@@ -53,32 +53,32 @@ If you've already installed a prior version of MyBatis Generator, simply run the
 
 If you've not previously installed MyBatis Generator, use the built in Eclipse install support by following these steps:
 
-   1. Take the "Help>Software Updates..." Menu Option
-   2. Select the "Available Software" Tab
-   3. Press the "Add Site" button
-   4. Enter the following information:
+   # Take the "Help>Software Updates..." Menu Option
+   # Select the "Available Software" Tab
+   # Press the "Add Site" button
+   # Enter the following information:
 
       Location:
           <Need a new web path for MyBatis Generator>
 
-   5. Press OK
-   6. Check the box next to "MyBatis Generator Feature"
-   7. Press the "Install" button
-   8. Follow the remainder of the install wizard
+   # Press OK
+   # Check the box next to "MyBatis Generator Feature"
+   # Press the "Install" button
+   # Follow the remainder of the install wizard
 
 Manual Eclipse Install
 
 The automatic install is much preferred, but you can also install MyBatis Generator manually if you desire. To install manually, download the file MyBatis GeneratorForEclipse1.2.1.zip and unzip the file to some convenient location. After unzipping the update site archive, follow these steps in Eclipse:
 
-   1. Take the "Help>Software Updates..." Menu Option
-   2. Select the "Available Software" Tab
-   3. Press the "Add Site" button
-   4. Press the "Local" button
-   5. Navigate to the location where you unzipped the site archive
-   6. Press OK
-   7. Check the box next to "MyBatis Generator Feature"
-   8. Press the "Install" button
-   9. Follow the remainder of the install wizard
+   # Take the "Help>Software Updates..." Menu Option
+   # Select the "Available Software" Tab
+   # Press the "Add Site" button
+   # Press the "Local" button
+   # Navigate to the location where you unzipped the site archive
+   # Press OK
+   # Check the box next to "MyBatis Generator Feature"
+   # Press the "Install" button
+   # Follow the remainder of the install wizard
 
 Legacy Abator Software Downloads and Documentation
 
@@ -108,27 +108,27 @@ If you've already installed a prior version of Abator, simply run the Eclipse In
 
 If you've not already installed Abator, then you can use the built in Eclipse install support by following these steps:
 
-   1. Take the "Help>Software Updates>Find and Install" Menu Option
-   2. Select the "Search for new features to install" radio button, press "Next"
-   3. Press the "New Remote Site" button
-   4. Enter the following information:
+   # Take the "Help>Software Updates>Find and Install" Menu Option
+   # Select the "Search for new features to install" radio button, press "Next"
+   # Press the "New Remote Site" button
+   # Enter the following information:
 
       Name:
           Abator for Eclipse Update Site
       URL:
           <Need a new web path for MyBatis Generator>
 
-   5. Press OK
-   6. Check the box next to "Abator for Eclipse Update Site"
-   7. Follow the remainder of the install wizard
+   # Press OK
+   # Check the box next to "Abator for Eclipse Update Site"
+   # Follow the remainder of the install wizard
 
 Manual Eclipse Install
 
 The automatic install is much preferred, but you can also install Abator manually if you desire. To install manually, download the file AbatorForEclipse1.1.0.zip and unzip the file to some convenient location. After unzipping the update site archive, follow these steps in Eclipse:
 
-   1. Take the "Help>Software Updates>Find and Install" Menu Option
-   2. Select the "Search for new features to install" radio button, press "Next"
-   3. Press the "New Local Site" button
-   4. Navigate to the location where you unzipped the file.
-   5. Press OK
-   6. Follow the remainder of the install wizard
+   # Take the "Help>Software Updates>Find and Install" Menu Option
+   # Select the "Search for new features to install" radio button, press "Next"
+   # Press the "New Local Site" button
+   # Navigate to the location where you unzipped the file.
+   # Press OK
+   # Follow the remainder of the install wizard
