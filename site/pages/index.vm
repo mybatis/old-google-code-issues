@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>mybatis home</title>
+  <title>MyBatis Home</title>
   <script type="text/javascript" src="popup.js">
   </script>
 </head>
@@ -43,7 +43,7 @@
           repored.  And those too have been fixed in this release.  Enjoy.</p>
       </div>
       <div class="meta">
-        <p><a href="software.html" class="more">Go get it!</a></p>
+        <p><a href="java.html" class="more">Go get it!</a></p>
       </div>
     </div>
   </div>

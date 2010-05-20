@@ -8,12 +8,12 @@
         <h2 class="title">About MyBatis</h2>
 
         <div class="entry">
-
+          <br/>
           <h2>The Apache License</h2>
 
-          <p> The MyBatis source code and documentation is distributed under the <a class="external"
-                                                                                   href="http://www.apache.org/licenses/LICENSE-2.0"
-                                                                                   target="_new">Apache License 2.0</a>.
+          <p> The MyBatis source code and documentation is distributed under the
+            <a class="external" href="http://www.apache.org/licenses/LICENSE-2.0" target="_new">Apache License 2.0</a>.
+            This product includes software developed by The Apache Software Foundation.   
           </p>
 
           <h2>A little history...</h2>
