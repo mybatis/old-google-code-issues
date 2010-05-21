@@ -1,6 +1,6 @@
-= MyBatis & Maven =
+= !MyBatis & Maven =
 
-The following is the Maven group, artifact and version for MyBatis. 
+The following is the Maven group, artifact and version for !MyBatis. 
 
 {{{
   <dependency>
