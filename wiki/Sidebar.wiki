@@ -9,7 +9,7 @@
 === Documentation ===
 
   * [DocContrib Contribute Documentation]
-  * [DocMavenTutorial MyBatis Maven Tutorial]
+  * [DocMavenTutorial MyBatis & Maven]
   * [DocUpgrade3 Upgrading to 3.x]
   * [DocIbatis2MyBatis From iBATIS to MyBatis]
   * [http://mybatis.googlecode.com/svn/trunk/doc/en/ Downloadable User Guides (PDF)]
