@@ -55,16 +55,6 @@
             <div id="sidebar-bgtop">
               <div id="sidebar-bgbtm">
                 <ul>
-                  <li id="search">
-                    <h2>Search</h2>
-
-                    <form method="get" action="http://code.google.com/p/mybatis/w/list?can=2&colspec=PageName+Summary+Changed+ChangedBy">
-                      <fieldset>
-                        <input type="text" id="seach-text" name="q" value=""/>
-                        <input type="submit" id="search-submit" value="Search"/>
-                      </fieldset>
-                    </form>
-                  </li>
                   <li>
                     <h2>Projects</h2>
                     <ul>
@@ -73,14 +63,23 @@
                     </ul>
                   </li>
                   <li>
-                    <h2>Community</h2>
+                    <h2>Java Community</h2>
                     <ul>
-                      <li><a href="http://groups.google.com/group/mybatis-user" target="mybatis-list">Mailing List</a></li>
-                      <li><a href="http://code.google.com/p/mybatis/wiki/Welcome" target="mybatis-wiki">Wiki</a></li>
-                      <li><a href="http://code.google.com/p/mybatis/issues/list" target="mybatis-issues">Issue Tracking</a></li>
-                      <li><a href="http://code.google.com/p/mybatis/source/checkout" target="mybatis-source">Source Code</a></li>
+                      <li><a href="http://groups.google.com/group/mybatis-user" target="mybatis-list">Java Mailing List</a></li>
+                      <li><a href="http://code.google.com/p/mybatis/wiki/Welcome" target="mybatis-wiki">Java Wiki</a></li>
+                      <li><a href="http://code.google.com/p/mybatis/issues/list" target="mybatis-issues">Java Issue Tracking</a></li>
+                      <li><a href="http://code.google.com/p/mybatis/source/checkout" target="mybatis-source">Java Source Code</a></li>
                     </ul>
                   </li>                 
+                  <li>
+                    <h2>.NET Community</h2>
+                    <ul>
+                      <li><a href="http://groups.google.com/group/mybatisnet-user" target="mybatis-list">.NET Mailing List</a></li>
+                      <li><a href="http://code.google.com/p/mybatisnet/wiki/Welcome" target="mybatis-wiki">.NET Wiki</a></li>
+                      <li><a href="http://code.google.com/p/mybatisnet/issues/list" target="mybatis-issues">.NET Issue Tracking</a></li>
+                      <li><a href="http://code.google.com/p/mybatisnet/source/checkout" target="mybatis-source">.NET Source Code</a></li>
+                    </ul>
+                  </li>
                   <li>
                     <h2>Archives</h2>
                     <ul>

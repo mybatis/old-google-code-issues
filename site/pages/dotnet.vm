@@ -9,7 +9,13 @@
   <div class="post-bgtop">
     <div class="post-bgbtm">
       <h2 class="title">MyBatis.NET Data Mapper 1.6.2 GA</h2>
-      <p class="byline">This is the core data mapping framework for .NET.</p>
+
+      <p class="byline">
+        This is the core data mapping framework for .NET. Please be patient.
+        We're updating the release for the MyBatis.NET Data Access Framework.
+        Until it's ready, we recommend building from source.
+      </p>
+
       <div class="entry">
         <ul>
           <li>
@@ -31,14 +37,18 @@
   <div class="post-bgtop">
     <div class="post-bgbtm">
       <h2 class="title">MyBatis.NET Data Access Framework 1.9.2 ga</h2>
-      <p class="byline">This is the data abstraction framework for .NET.</p>
+
+      <p class="byline">This is the data abstraction framework for .NET. Please be patient.
+        We're updating the release for the MyBatis.NET Data Access Framework.
+        Until it's ready, we recommend building from source.</p>
+
       <div class="entry">
         <ul>
           <li>
             <a href="http://mybatisnet.googlecode.com/files/IBatis.DataAccess.1.9.2.bin.zip">
               <b>Download the Data Access Framework</b>
             </a>
-            <br/>
+          </li>
           <li>
             <a href="http://mybatisnet.googlecode.com/files/Doc-DataAccess-1.9.2.zip">
               Download the Data Access Framework User Guide (English)
