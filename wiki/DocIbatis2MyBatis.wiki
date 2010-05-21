@@ -25,9 +25,9 @@ fork, and more like a bend in the road.  As with a corner when driving, there is
     iBATIS 2 and 3 will be supported, with both 2.3.5 and 3.0.1 GA releases becoming available immediately.
     iBATIS.NET 1.x and 3.x will be supported, with a new release coming available soon.
 
- * What will happen to the Apache iBATIS project?
+ * *What will happen to the Apache iBATIS project?*
 
-   Apache won't delete any existing resources.  They'll be available in a read-only form.
+   Nothing really.  Apache won't delete any existing resources.  They'll be available in a read-only form.
    The Apache project will be archived in the "Apache Attic" when it becomes stale
 
 
