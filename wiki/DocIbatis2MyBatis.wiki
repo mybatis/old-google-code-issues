@@ -107,7 +107,7 @@ All future releases will be distributed via Google Code and archived here:
 
   * [http://code.google.com/p/mybatis/downloads/list] - Google Code project download page
 
-For Maven users, your new dependency definition is:
+For Maven users, your new dependency coordinates are:
 
 {{{
   <dependency>
