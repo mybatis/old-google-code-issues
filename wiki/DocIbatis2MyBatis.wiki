@@ -107,6 +107,16 @@ All future releases will be distributed via Google Code and archived here:
 
   * [http://code.google.com/p/mybatis/downloads/list] - Google Code project download page
 
+For Maven users, your new dependency definition is:
+
+{{{
+  <dependency>
+    <groupId>org.mybatis</groupId>
+    <artifactId>mybatis</artifactId>
+    <version>3.0.1</version>
+  </dependency>
+}}}
+
 === 5. Update your DTD/Doctype Headers (Java only at this time) ===
 
 *After* you've updated to a build *later* than "3.0 GA Candidate", you can update your DOCTYPE headers in your Configuration and Mapper XML files.
