@@ -1,6 +1,6 @@
-= Getting Started =
+= MyBatis & Maven =
 
-The following is the Maven group, artifact and version. 
+The following is the Maven group, artifact and version for MyBatis. 
 
 {{{
   <dependency>
