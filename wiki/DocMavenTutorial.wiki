@@ -2,8 +2,10 @@
 
 The following is the Maven group, artifact and version. 
 
+{{{
   <dependency>
     <groupId>org.mybatis</groupId>
     <artifactId>mybatis</artifactId>
     <version>3.0.1</version>
   </dependency>
+}}}
