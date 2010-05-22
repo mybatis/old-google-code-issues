@@ -123,7 +123,7 @@ public class TransactionTest extends BaseSqlMapTest {
     Account account = newAccount6();
 
     try {
-      sqlMap.startTransaction(Connection.TRANSACTION_READ_UNCOMMITTED);
+      sqlMap.startTransaction();
       sqlMap.update("insertAccountViaParameterMap", account);
       //sqlMap.commitTransaction();
     } finally {
