@@ -4,18 +4,18 @@
 
 There are many ways to get involved.
 
-  * Be active and helpful on the mailing lists
+  * *Be active and helpful on the mailing lists*
 
-  * Find bugs
+  * *Find bugs*
       * Submit issues with failing unit tests
       * Submit patches that make the tests pass
 
-  * Create a new feature or modification
+  * *Create a new feature or modification*
       * Discuss your changes on the user mailing list to get feedback from the community
       * Submit new feature to the issue tracking system with passing tests
       * Attach the patch file (or even just the complete files if that works... we can diff easily enough)
 
-  * Write documentation
+  * *Write documentation*
       * Submit documentation contributions or changes directly in the body of the issue (which supports wiki markup).  We'll add it to the official guide.
 
 The issue tracking system is here:
