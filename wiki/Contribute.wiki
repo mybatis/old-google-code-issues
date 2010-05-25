@@ -18,11 +18,12 @@ There are many ways to get involved.
   * Write documentation
       * Submit documentation contributions or changes directly in the body of the issue (which supports wiki markup).  We'll add it to the official guide.
 
+The issue tracking system is here:
+
+[http://code.google.com/p/mybatis/issues/list]
+
 The instructions for checking out the source are here:
 
 [http://code.google.com/p/mybatis/source/checkout]
 
-The issue tracking system is here:
-
-[http://code.google.com/p/mybatis/issues/list]
- 
+After a few good contributions, we'll often provide commit access directly to the repository.
