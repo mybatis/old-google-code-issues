@@ -16,7 +16,7 @@
 
 === Tools ===
 
-  * [Contribute How to Contribute]
+  * [Contribute Get Involved]
   * [Generator MyBatis Generator]
 
 === Process === 
