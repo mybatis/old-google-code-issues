@@ -20,7 +20,7 @@
             </a>
           </li>
           <li>
-            <a href="http://mybatis.googlecode.com/svn/trunk/doc/en/iBATIS-3-User-Guide.pdf">
+            <a href="http://mybatis.googlecode.com/svn/trunk/doc/en/MyBatis-3-User-Guide.pdf">
               Download the Framework User Guide (English)</a>
           </li>
         </ul>
@@ -45,7 +45,7 @@
             </a>
           </li>
           <li>
-            <a href="http://mybatis.googlecode.com/svn/trunk/doc/en/iBATIS-3-Migrations.pdf">
+            <a href="http://mybatis.googlecode.com/svn/trunk/doc/en/MyBatis-3-Migrations.pdf">
               Download the Migrations User Guide (English)
             </a>
           </li>
