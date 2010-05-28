@@ -71,7 +71,7 @@
       <div class="entry">
         <ul>
           <li>
-            <a href="http://mybatis.googlecode.com/svn/sub-projects/generator/trunk/">
+            <a href="http://mybatis.googlecode.com/svn/sub-projects/generator/trunk/core/">
               <b>Check out and Build the MyBatis Generator code generation tool. (SVN/Maven)</b>
             </a>
             <br/>
