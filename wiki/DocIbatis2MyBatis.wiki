@@ -61,10 +61,10 @@ have much to do...
   * Log into Google (GMail, YouTube, etc.) or sign up if you don't have an account.
   * Then join one or both of these groups: 
 
-    * Java:  
+    * *Java*
         * [http://groups.google.com/group/mybatis-user]
 
-    * .NET:  
+    * *.NET*
         * [http://groups.google.com/group/mybatisnet-user]
 
 You can leave and re-join the group any time using the same page.  You can also search the group right there on the discussion
