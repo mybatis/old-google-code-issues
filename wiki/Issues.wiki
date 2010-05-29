@@ -14,6 +14,6 @@
 
   * [http://code.google.com/p/mybatis/issues/list?can=1&q=label%3AType-Defect%20status%3AFixed%2CDuplicate%2CInvalid%2CWontFix Closed Defects]
 
-  * [http://code.google.com/p/mybatis/issues/list?can=1&q=label%3AType-Feature%20status%3AFixed%2CDuplicate%2CInvalid%2CWontFix Closed Defects]
+  * [http://code.google.com/p/mybatis/issues/list?can=1&q=label%3AType-Feature%20status%3AFixed%2CDuplicate%2CInvalid%2CWontFix Closed Features]
 
-  * [http://code.google.com/p/mybatis/issues/list?can=1&q=label%3AType-Documentation%20status%3AFixed%2CDuplicate%2CInvalid%2CWontFix Closed Defects]
+  * [http://code.google.com/p/mybatis/issues/list?can=1&q=label%3AType-Documentation%20status%3AFixed%2CDuplicate%2CInvalid%2CWontFix Closed Documentation]
