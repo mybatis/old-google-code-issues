@@ -1,8 +1,8 @@
 #summary Quick Links to Issue Tracker Filters
 
-* *[http://code.google.com/p/mybatis/issues/entry Submit New Issue]*
+  * *[http://code.google.com/p/mybatis/issues/entry Submit New Issue]*
 
-* *[http://code.google.com/p/mybatis/issues/list List or Search All Issues]*
+  * *[http://code.google.com/p/mybatis/issues/list List or Search All Issues]*
 
 == Defects ==
 
