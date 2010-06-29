@@ -26,4 +26,8 @@ public class BaseAction implements ActionBean {
 		return title;
 	}
 
+	protected boolean nullOrZero(Integer id) {
+		return null == id || 0 == id;
+	}
+
 }
