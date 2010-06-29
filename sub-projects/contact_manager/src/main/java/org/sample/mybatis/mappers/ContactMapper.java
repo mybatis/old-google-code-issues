@@ -2,11 +2,13 @@ package org.sample.mybatis.mappers;
 
 import org.sample.beans.Contact;
 
+import java.util.List;
+
 public interface ContactMapper {
 
 	Integer insert(Contact contact);
 
-	Contact selectAll(Integer id);
+	List<Contact> selectAll();
 
 	Contact select(Integer id);
 
