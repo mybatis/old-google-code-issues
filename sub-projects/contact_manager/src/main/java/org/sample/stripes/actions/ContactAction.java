@@ -20,7 +20,7 @@ public class ContactAction extends BaseAction {
 
 	List<Contact> contactList;
 	Integer id;
-	Contact contact = new Contact();
+	Contact contact;
 
 	@Inject
 	public ContactAction(ContactMapper contactMapper) {
@@ -59,14 +59,6 @@ public class ContactAction extends BaseAction {
 
 	public List<Contact> getContactList() {
 		return contactList;
-	}
-
-	public void setContactList(List<Contact> contactList) {
-		this.contactList = contactList;
-	}
-
-	public Integer getId() {
-		return id;
 	}
 
 	public void setId(Integer id) {
