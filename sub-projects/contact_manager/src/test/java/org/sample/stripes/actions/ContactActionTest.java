@@ -16,30 +16,51 @@ public class ContactActionTest extends RoundTripTestBase<ContactAction> {
 
 	@Test
 	public void list() throws Exception {
+
 		trip.execute();
+
 		assertEquals(ContactAction.LIST, trip.getDestination());
+
 		assertNotNull(action.getContactList());
+
 	}
 
 	@Test
 	public void create() throws Exception {
+
 		trip.execute("create");
+
 		assertNotNull(action.getContact());
+
+		assertEquals(ContactAction.EDIT, trip.getDestination());
+
 	}
 
 	@Test
 	public void edit() throws Exception {
+
 		trip.setParameter("id", "1");
+
 		trip.execute("edit");
+
 		verify(contactMapper).select(1);
+
+		assertEquals(ContactAction.EDIT, trip.getDestination());
+
 	}
 
 	@Test
 	public void saveInsert() throws Exception {
 
+		trip.setParameter("contact.firstName", "Larry");
+
 		trip.execute("save");
 
 		verify(contactMapper).insert(any(Contact.class));
+
+		// todo: got to be a better way
+		assertEquals("/actions/Contact.action", trip.getDestination());
+
 
 	}
 
@@ -51,6 +72,23 @@ public class ContactActionTest extends RoundTripTestBase<ContactAction> {
 		trip.execute("save");
 
 		verify(contactMapper).update(any(Contact.class));
+
+		// todo: got to be a better way
+		assertEquals("/actions/Contact.action", trip.getDestination());
+
+	}
+
+	@Test
+	public void delete() throws Exception {
+
+		trip.setParameter("contact.id", "1");
+
+		trip.execute("delete");
+
+		verify(contactMapper).delete(1);
+
+		// todo: got to be a better way
+		assertEquals("/actions/Contact.action", trip.getDestination());
 
 	}
 
