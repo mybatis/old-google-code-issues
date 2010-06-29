@@ -20,7 +20,7 @@ public class ContactAction extends BaseAction {
 
 	List<Contact> contactList;
 	Integer id;
-	Contact contact;
+	Contact contact = new Contact();
 
 	@Inject
 	public ContactAction(ContactMapper contactMapper) {
