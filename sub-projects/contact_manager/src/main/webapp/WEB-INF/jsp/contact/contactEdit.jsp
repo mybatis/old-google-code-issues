@@ -24,9 +24,9 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<stripes:submit name="save" value="save" />
-				<stripes:submit name="list" value="cancel" />
-				<stripes:submit name="delete" value="delete" />
+				<stripes:submit name="save" />
+				<stripes:submit name="list" value="Cancel" />
+				<stripes:submit name="delete" />
 			</td>
 		</tr>
 	</table>
