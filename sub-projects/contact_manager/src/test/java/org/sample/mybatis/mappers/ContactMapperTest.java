@@ -13,7 +13,7 @@ import static junit.framework.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
-public class ContactMapperTest {
+public class ContactMapperTest extends MapperTestBase {
 
 	ContactMapper contactMapper;
 	SqlSessionManager ssm;
