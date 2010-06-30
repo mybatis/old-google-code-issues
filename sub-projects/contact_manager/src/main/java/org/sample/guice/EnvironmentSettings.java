@@ -9,13 +9,17 @@ public class EnvironmentSettings {
 
 	Database database = new Database();
 
-	public EnvironmentSettings() {
+	public EnvironmentSettings(String resource) {
 		try {
-			Properties properties = Resources.getResourceAsProperties("environment.properties");
+			Properties properties = Resources.getResourceAsProperties(resource);
 			BeanUtils.copyProperties(this, properties);
 		} catch (Exception e) {
 			throw new RuntimeException(e.getLocalizedMessage(), e);
 		}
+	}
+
+	public EnvironmentSettings() {
+		this("environment.properties");
 	}
 
 	public static class Database {
@@ -61,7 +65,4 @@ public class EnvironmentSettings {
 		return database;
 	}
 
-	public void setDatabase(Database database) {
-		this.database = database;
-	}
 }
