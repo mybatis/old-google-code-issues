@@ -10,12 +10,12 @@ import org.apache.ibatis.session.SqlSessionManager;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import org.apache.ibatis.type.TypeHandler;
 import org.apache.log4j.Logger;
-import org.postgresql.ds.PGPoolingDataSource;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Set;
+import org.hsqldb.jdbc.JDBCDataSource;
 
 public class WebModule extends AbstractModule {
 
@@ -55,12 +55,11 @@ public class WebModule extends AbstractModule {
 	}
 
 	public DataSource getDataSource() {
-		PGPoolingDataSource ds = new PGPoolingDataSource();
-		ds.setUser(settings.getDatabase().getUser());
-		ds.setPassword(settings.getDatabase().getPassword());
-		ds.setServerName(settings.getDatabase().getServerName());
-		ds.setDatabaseName(settings.getDatabase().getDatabaseName());
 
+		JDBCDataSource ds = new JDBCDataSource();
+		ds.setUser(settings.getDatabase().getUser());
+		ds.setDatabase(settings.getDatabase().getDatabaseName());
+		
 		// validate connection pool setup
 		if (!validateDataSource(ds)) {
 			throw new RuntimeException("Unable to validate data source.");

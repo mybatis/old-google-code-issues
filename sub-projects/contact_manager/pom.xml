@@ -5,7 +5,7 @@
 	<artifactId>contact_manager</artifactId>
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
-	<name>contact_manager Maven Webapp</name>
+	<name>contact_manager</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -52,9 +52,9 @@
 	</profiles>
 	<dependencies>
 		<dependency>
-			<groupId>postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>8.4-701.jdbc4</version>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>2.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>net.sourceforge.stripes</groupId>
