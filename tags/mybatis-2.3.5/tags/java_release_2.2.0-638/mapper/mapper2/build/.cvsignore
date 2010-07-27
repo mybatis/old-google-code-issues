@@ -1,0 +1,7 @@
+*.ser
+*.zip
+deploy
+reports
+temp
+junit*.properties
+work
