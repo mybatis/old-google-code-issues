@@ -1,0 +1,116 @@
+<html>
+<head>
+  <title>MyBatis for Java</title>
+</head>
+
+<body>
+
+<div class="post">
+  <div class="post-bgtop">
+    <div class="post-bgbtm">
+      <h2 class="title">MyBatis Persistence Framework 3.0.1 GA</h2>
+
+      <p class="byline">This is the core SQL mapping framework.</p>
+
+      <div class="entry">
+        <ul>
+          <li>
+            <a href="http://mybatis.googlecode.com/files/mybatis-3.0.1-bundle.zip">
+              <b>Download the Persistence Framework</b>
+            </a>
+          </li>
+          <li>
+            <a href="http://mybatis.googlecode.com/svn/trunk/doc/en/MyBatis-3-User-Guide.pdf">
+              Download the Framework User Guide (English)</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="post">
+  <div class="post-bgtop">
+    <div class="post-bgbtm">
+      <h2 class="title">MyBatis Schema Migrations 3.0.1 GA</h2>
+
+      <p class="byline">This is the command line utility for managing your database schema, similar to Rails
+        migrations.</p>
+
+      <div class="entry">
+        <ul>
+          <li>
+            <a href="http://mybatis.googlecode.com/files/mybatis-3.0.1-migrations.zip">
+              <b>Download the Schema Migrations System</b>
+            </a>
+          </li>
+          <li>
+            <a href="http://mybatis.googlecode.com/svn/trunk/doc/en/MyBatis-3-Migrations.pdf">
+              Download the Migrations User Guide (English)
+            </a>
+          </li>
+          <li>
+            <a href="migrations_video.html">Watch the Video!</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="post">
+  <div class="post-bgtop">
+    <div class="post-bgbtm">
+      <h2 class="title">MyBatis Generator</h2>
+
+      <p class="byline">
+        This is the popular code generator for MyBatis. Please be patient. We're updating the release
+        for the MyBatis Generator. Until it's ready, we recommend building from source.
+      </p>
+
+      <div class="entry">
+        <ul>
+          <li>
+            <a href="http://mybatis.googlecode.com/svn/sub-projects/generator/trunk/core/">
+              <b>Check out and Build the MyBatis Generator code generation tool. (SVN/Maven)</b>
+            </a>
+            <br/>
+          </li>
+          <li>
+            <a href="http://code.google.com/p/mybatis/wiki/Generator">
+              Learn more about the MyBatis Generator
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="post">
+  <div class="post-bgtop">
+    <div class="post-bgbtm">
+      <h2 class="title">Past Release 2.3.4</h2>
+
+      <p class="byline">This is an older, but highly popular version of the SQL mapping framework.</p>
+
+      <div class="entry">
+        <ul>
+          <li>
+            <a href="http://mybatis.googlecode.com/files/ibatis-2.3.4.726.zip">
+              <b>Download the Persistence Framework</b>
+            </a>
+          </li>
+          <li>
+            <a href="http://mybatis.googlecode.com/svn/branches/mybatis-2-maintenance/mybatis-2-docs/">
+              Get Documentation for 2.x releases
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
