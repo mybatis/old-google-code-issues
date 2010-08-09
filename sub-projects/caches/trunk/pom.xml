@@ -385,11 +385,18 @@
             </resource>
 
             <resource>
+                <directory>.</directory>
+                <targetPath>META-INF</targetPath>
+                <includes>
+                    <include>NOTICE</include>
+                </includes>
+            </resource>
+
+            <resource>
                 <directory>..</directory>
                 <targetPath>META-INF</targetPath>
                 <includes>
                     <include>LICENSE</include>
-                    <include>NOTICE</include>
                 </includes>
             </resource>
         </resources>
@@ -454,7 +461,7 @@
     <modules>
         <module>ehcache</module>
         <module>hazelcast</module>
-	    <module>oscache</module>
-	</modules>
+        <module>oscache</module>
+    </modules>
 
 </project>
