@@ -450,6 +450,7 @@
     </dependencies>
 
     <modules>
+        <module>cache-assembly</module>
         <module>ehcache</module>
         <module>hazelcast</module>
         <module>oscache</module>
