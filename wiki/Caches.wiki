@@ -92,3 +92,5 @@ If users need to log cache operations, they can plug the Cache logging version:
 
 </mapper>
 }}}
+
+Please refer to the official Hazelcast Near Cache [http://www.hazelcast.com/documentation.jsp#MapNearCache documentation] to know more details how to configure Hazelcast as Cache.
