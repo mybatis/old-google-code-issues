@@ -1,0 +1,52 @@
+#summary 3rd part cache implementations integration
+
+= Introduction =
+
+The MyBatis community supports as well 3rd part cache implementations, follow below which one are currently supported in the 1.0.0-RC1 release:
+
+
+== Ehcache ==
+
+[http://ehcache.org/ Ehcache] is a widely used java distributed cache for general purpose caching, Java EE and light-weight containers.
+
+The Ehcache integration is built on top of the `ehcache-core` and comes without any Ehcache 3rd part applications. Please refeer to official Ehcache documentation if you need Ehcache [http://ehcache.org/documentation/index.html plugins].
+
+Users that want to use Ehcache into their applications, have to download the zip [http://code.google.com/p/mybatis/downloads/detail?name=mybatis-ehcache-1.0.0-RC1-bundle.zip bundle], decompress it and add the jars in the classpath; Apache Maven users instead can simply add in the `pom.xm`l the following dependency:
+
+{{{
+<dependencies>
+    ...
+    <dependency>
+        <groupId>org.mybatis.caches</groupId>
+        <artifactId>mybatis-ehcache</artifactId>
+        <version>1.0.0-RC1</version>
+    </dependency>
+    ...
+</dependencies>
+}}}
+
+then, just configure it in the mapper XML:
+
+{{{
+<mapper namespace="org.acme.FooMapper">
+
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+
+    ...
+
+</mapper>
+}}}
+
+If users need to log cache operations, they can plug the Cache logging version:
+
+{{{
+<mapper namespace="org.acme.FooMapper">
+
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcacheCache"/>
+
+    ...
+
+</mapper>
+}}}
+
+Users that need to configure Ehcache through XML configuration file, have to put in the classpath the `/ehcache.xml` resource; please refeer to the official Ehcache [http://ehcache.org/documentation/configuration.html documentation<] to know more details.
