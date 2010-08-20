@@ -74,7 +74,7 @@ then, just configure it in the mapper XML:
 {{{
 <mapper namespace="org.acme.FooMapper">
 
-    <cache type="org.mybatis.caches.ehcache.HazelcastCache"/>
+    <cache type="org.mybatis.caches.hazelcast.HazelcastCache"/>
 
     ...
 
@@ -86,7 +86,7 @@ If users need to log cache operations, they can plug the Cache logging version:
 {{{
 <mapper namespace="org.acme.FooMapper">
 
-    <cache type="org.mybatis.caches.ehcache.LoggingHazelcastCache"/>
+    <cache type="org.mybatis.caches.hazelcast.LoggingHazelcastCache"/>
 
     ...
 
@@ -94,3 +94,47 @@ If users need to log cache operations, they can plug the Cache logging version:
 }}}
 
 Please refer to the official Hazelcast Near Cache [http://www.hazelcast.com/documentation.jsp#MapNearCache documentation] to know more details how to configure Hazelcast as Cache.
+
+== OSCache ==
+
+[http://www.opensymphony.com/oscache/ OSCache] is a high performances caching solution developed and maintained by [http://www.opensymphony.com/ Open Symphony] and easily integrated in MyBatis since the iBATIS version 2.X.
+
+Users that want to use OSCache into their applications, have to download the zip [http://code.google.com/p/mybatis/downloads/detail?name=mybatis-oscache-1.0.0-RC1-bundle.zip bundle], decompress it and add the jars in the classpath; Apache Maven users instead can simply add in the `pom.xm` the following dependency:
+
+{{{
+<dependencies>
+    ...
+    <dependency>
+        <groupId>org.mybatis.caches</groupId>
+        <artifactId>mybatis-oscace</artifactId>
+        <version>1.0.0-RC1</version>
+    </dependency>
+    ...
+</dependencies>
+}}}
+
+then, just configure it in the mapper XML:
+
+{{{
+<mapper namespace="org.acme.FooMapper">
+
+    <cache type="org.mybatis.caches.oscache.OSCache"/>
+
+    ...
+
+</mapper>
+}}}
+
+If users need to log cache operations, they can plug the Cache logging version:
+
+{{{
+<mapper namespace="org.acme.FooMapper">
+
+    <cache type="org.mybatis.caches.oscache.LoggingOSCache"/>
+
+    ...
+
+</mapper>
+}}}
+
+For proper OSCache configuration please read the official [http://wiki.opensymphony.com/display/CACHE/Configuration reference]
