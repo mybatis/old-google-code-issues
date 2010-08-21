@@ -53,7 +53,7 @@ voxware incorporated
 
 I read about a lot of people complaining about struts, but I think that if they added this to their system then they wouldn't complain so much. Its a wonder that, AFAIK, this hasn't become either the standard or at least an option in the struts jar. Oh, and !DispatchAction does not count.
 
-(I know... [OT], now I'll pretend to tie this in to iBatis) I used to use lots of Lists and Maps but now with iBatis and that new struts package, now my code is looking much more object oriented with much less boiler plate code."
+(I know... [!OT], now I'll pretend to tie this in to iBatis) I used to use lots of Lists and Maps but now with iBatis and that new struts package, now my code is looking much more object oriented with much less boiler plate code."
 
 Mark Bennet
 
@@ -111,7 +111,7 @@ Adib Saikali
 
 ---- 
 
-A pretty cool things in iBatis is that in QueryForObject it raises an exception when there are several results. It protected my code from mistakes
+A pretty cool things in iBatis is that in !QueryForObject it raises an exception when there are several results. It protected my code from mistakes
 
 Xavier Combelle
 
