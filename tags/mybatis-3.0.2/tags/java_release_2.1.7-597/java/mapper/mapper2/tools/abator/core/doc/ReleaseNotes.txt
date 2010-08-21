@@ -1,9 +1,0 @@
-Version 0.6.0:
-
-1. Restructured as a standalone JAR file with no Eclipse dependencies
-2. Added an Ant task
-3. Added support for wrapping primitive data types in the "by example" methods
-4. Removed dependency on JDOM
-5. Greatly improved extensibility of the default code generators
-6. Added support for disovering the case sensitivity of the database in regard to
-   table names.
