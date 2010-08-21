@@ -7,7 +7,7 @@ The following testimonials and mini-case studies are a testament to the success 
 == Testimonials ==
 
 I didn't want to talk about it until it was a 'core' piece of our
-architecture, but MySpace.com is now running IBatis for a good portion of
+architecture, but !MySpace.com is now running IBatis for a good portion of
 its data access abstraction layer.
 
 We like the flexibility. I came in from a 'heavier' ORM background but very
@@ -18,17 +18,17 @@ databases.
 <...>
 
 All-in-all I really like the system. I thought it was pretty cool that the
-SqlMapper interface was so nicely abstracted that you could plug in generic
+!SqlMapper interface was so nicely abstracted that you could plug in generic
 collections from 2.0 without a rewrite:
-
+{{{
 List<MyObject> l = new List<MyObject>();
 Mapper.QueryForList("GetMyObjects",myParam,l);
-
+}}}
 <...>
 
 Chris Bissell
 Managing Architect
-MySpace.com
+!MySpace.com
 
 ---- 
 
@@ -36,7 +36,7 @@ MySpace.com
 
 A year ago, we were naive Pojo-persistence beginners, and fell into usual the Hibernate trap pretty quickly. Complex code configuration with Middlegen, a gratuitously complicated data model, and the bloat and complexity that personifies Hibernate led us into a year-long period of darkness.
 
-But Spring came early, in the form of a completely redone, simplified data model based on Spring DAO using Spring's Ibatis support (Spring class SqlMapClientDaoSupport).
+But Spring came early, in the form of a completely redone, simplified data model based on Spring DAO using Spring's Ibatis support (Spring class !SqlMapClientDaoSupport).
 
 The results are - quite frankly - astonishing. So simple, yet so powerful and easy-to-modify. Ibatis works perfectly, even for BLOBs, CLOBs, and the rest. IBATIS has dealt with our demanding application effectively and quickly with only a small amount of development effort invested thus far. The resulting Ibatis maps are simple and clear, and easy to understand and modify. And our performance is over 30% better than what we were seeing with sleepy Hibernate, all other things being equal.
 
@@ -49,9 +49,9 @@ voxware incorporated
 
 ---- 
 
-"Here is a gratuitous ego booster for Clinton, but I must say that I love the extra struts package in in the JPetStore that allows mapping to bean methods. The use of thread local context is so nice not having to pass the servlet objects around.
+"Here is a gratuitous ego booster for Clinton, but I must say that I love the extra struts package in in the !JPetStore that allows mapping to bean methods. The use of thread local context is so nice not having to pass the servlet objects around.
 
-I read about a lot of people complaining about struts, but I think that if they added this to their system then they wouldn't complain so much. Its a wonder that, AFAIK, this hasn't become either the standard or at least an option in the struts jar. Oh, and DispatchAction does not count.
+I read about a lot of people complaining about struts, but I think that if they added this to their system then they wouldn't complain so much. Its a wonder that, AFAIK, this hasn't become either the standard or at least an option in the struts jar. Oh, and !DispatchAction does not count.
 
 (I know... [OT], now I'll pretend to tie this in to iBatis) I used to use lots of Lists and Maps but now with iBatis and that new struts package, now my code is looking much more object oriented with much less boiler plate code."
 
