@@ -97,7 +97,7 @@ Please refer to the official Hazelcast Near Cache [http://www.hazelcast.com/docu
 
 == OSCache ==
 
-[http://www.opensymphony.com/oscache/ OSCache] is a high performances caching solution developed and maintained by [http://www.opensymphony.com/ Open Symphony] and easily integrated in MyBatis since the iBATIS version 2.X.
+[http://www.opensymphony.com/oscache/ OSCache] is a high performances caching solution developed and maintained by [http://www.opensymphony.com/ Open Symphony] and easily integrated in !MyBatis since the iBATIS version 2.X.
 
 Users that want to use OSCache into their applications, have to download the zip [http://code.google.com/p/mybatis/downloads/detail?name=mybatis-oscache-1.0.0-RC1-bundle.zip bundle], decompress it and add the jars in the classpath; Apache Maven users instead can simply add in the `pom.xm` the following dependency:
 
