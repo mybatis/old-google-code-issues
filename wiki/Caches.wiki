@@ -2,7 +2,7 @@
 
 = Introduction =
 
-The MyBatis community supports as well 3rd part cache implementations, follow below which one are currently supported in the 1.0.0-RC1 release:
+The !MyBatis community supports as well 3rd part cache implementations, follow below which one are currently supported in the 1.0.0-RC1 release:
 
 
 == Ehcache ==
