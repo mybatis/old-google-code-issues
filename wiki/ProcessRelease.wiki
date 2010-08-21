@@ -39,3 +39,7 @@ The release plugin for maven is already configured in the MyBatis pom file so al
 {{{ mvn release:prepare }}}
  # Perform
 {{{ mvn release:perform -Dgpg.passphrase=thephrase}}}
+
+Now you can checkout the new release ( or just use the one left over from the release in target/checkout) and issue the following to build the artifacts for the site.
+
+{{{mvn assembly:assembly}}}
