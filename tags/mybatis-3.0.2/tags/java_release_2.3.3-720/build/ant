@@ -1,0 +1,3 @@
+. setenv.sh
+echo $BUILD_CP
+$JAVA_HOME/bin/java -classpath $BUILD_CP org.apache.tools.ant.Main -buildfile build.xml $1

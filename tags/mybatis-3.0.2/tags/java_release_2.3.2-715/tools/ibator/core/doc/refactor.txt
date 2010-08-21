@@ -1,0 +1,6 @@
+Notes Regarding Refactoring
+
+
+Java Model Generator:
+
+Flat Model
