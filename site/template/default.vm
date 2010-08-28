@@ -66,6 +66,7 @@
                     <h2>Java Community</h2>
                     <ul>
                       <li><a href="http://groups.google.com/group/mybatis-user" target="mybatis-list">Java Mailing List</a></li>
+                      <li><a href="http://mybatis-user.963551.n3.nabble.com/" target="mybatis-list">Nabble Archive for China</a></li>
                       <li><a href="http://code.google.com/p/mybatis/wiki/Welcome?tm=6" target="mybatis-wiki">Java Wiki</a></li>
                       <li><a href="http://code.google.com/p/mybatis/wiki/Issues?tm=3" target="mybatis-issues">Java Issue Tracking</a></li>
                       <li><a href="http://code.google.com/p/mybatis/source/checkout" target="mybatis-source">Java Source Code</a></li>

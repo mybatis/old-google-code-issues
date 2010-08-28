@@ -5,6 +5,22 @@
 
 <body>
 
+<div class="post">
+  <div class="post-bgtop">
+    <div class="post-bgbtm">
+      <h2 class="title">MyBatis 3.0.1 GA</h2>
+      <p class="byline">Posted by Clinton Begin on May 19, 2010</p>
+      <div class="entry">
+        <p>New name, same software.  MyBatis 3.0.1 is the GA release of the iBATIS 3.0 codebase.  This is a very stable
+          release which many people have been using for weeks, with only a couple of very minor edge case issues
+          repored.  And those too have been fixed in this release.  Enjoy.</p>
+      </div>
+      <div class="meta">
+        <p><a href="java.html" class="more">Go get it!</a></p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="post">
   <div class="post-bgtop">
