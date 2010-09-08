@@ -4,7 +4,7 @@
 
 The !MyBatis 3 User Guide is excellent, but is lacking in examples.  This selection of How Tos aims to help novice users quickly implement every day features which make MyBatis so powerful.
 
-Where possible, the contact [http://code.google.com/p/mybatis/source/browse/#svn/sub-projects/contact_manager%3Fstate%3Dclosed manger example] will be used
+Where possible, the examples from the User Guide or the [http://code.google.com/p/mybatis/source/browse/#svn/sub-projects/contact_manager%3Fstate%3Dclosed contact manger example] will be used
 
 = How Tos =
 
