@@ -51,6 +51,7 @@ public final class Ibatis2MyBatis {
         }
 
         File dest = destination.isDirectory() ? new File(destination, sqlMapFile.getName()) : destination;
+        System.out.println("Converting " + sqlMapFile + " into " + dest);
         this.executors.execute(new XsltProcessor(sqlMapFile, dest, this.saxTransformerFactory.newTransformer()));
     }
 
@@ -73,7 +74,7 @@ public final class Ibatis2MyBatis {
         config.getDest().mkdirs();
 
         Ibatis2MyBatis ibatis2MyBatis = new Ibatis2MyBatis();
-        ibatis2MyBatis.transform(config.getSource(), config.getSource());
+        ibatis2MyBatis.transform(config.getSource(), config.getDest());
     }
 
 }
