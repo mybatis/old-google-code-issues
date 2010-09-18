@@ -518,26 +518,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.apache.cocoon.pipeline</groupId>
-            <artifactId>cocoon-pipeline</artifactId>
-            <version>3.0.0-alpha-2</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.cocoon.sax</groupId>
-            <artifactId>cocoon-sax</artifactId>
-            <version>3.0.0-alpha-2</version>
-            <scope>compile</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.cocoon</groupId>
-                    <artifactId>cocoon-xml</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
             <groupId>xalan</groupId>
             <artifactId>xalan</artifactId>
             <version>2.7.1</version>
