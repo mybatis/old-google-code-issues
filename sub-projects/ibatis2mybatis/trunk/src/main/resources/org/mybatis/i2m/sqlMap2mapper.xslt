@@ -18,7 +18,10 @@
 <!--
     version: $Id$
 -->
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet
+        version="1.0"
+        xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+        xmlns:regexp="http://xml.apache.org/xalan/java/org.mybatis.i2m.RegexpReplacer">
 
     <xsl:output method="xml" encoding="UTF-8" />
 
@@ -382,12 +385,17 @@
 
     <xsl:template match="typeAlias|statement|cacheModel|dynamic|isPropertyAvailable|isNotPropertyAvailable|isNotParameterPresent|isParameterPresent">
         <xsl:comment>
-            Sorry, I can't migrate <xsl:value-of select="@*"/>
+            Sorry, I can't migrate <xsl:value-of select="@*" />
             See console output for further details 
         </xsl:comment>
         <xsl:message>
-            Sorry, I can't migrate: <xsl:copy-of select="."/>
+            Sorry, I can't migrate: <xsl:copy-of select="." />
         </xsl:message> 
     </xsl:template>
+
+    <xsl:for-each select="*/text()">
+        <xsl:variable name="currentText" select="." />
+        <xsl:value-of select="regexp:replace($currentText)" />
+    </xsl:for-each>
 
 </xsl:stylesheet>
