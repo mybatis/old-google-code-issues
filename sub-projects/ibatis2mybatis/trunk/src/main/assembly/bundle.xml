@@ -30,24 +30,11 @@
 
     <files>
         <file>
-            <source>target/${project.artifactId}-${project.version}.${project.packaging}</source>
-        </file>
-        <file>
-            <source>target/${project.artifactId}-${project.version}-javadoc.${project.packaging}</source>
-        </file>
-        <file>
-            <source>target/${project.artifactId}-${project.version}-sources.${project.packaging}</source>
+            <source>target/${project.artifactId}-${project.version}-shaded.${project.packaging}</source>
         </file>
         <file>
             <source>LICENSE</source>
         </file>
     </files>
-
-    <dependencySets>
-        <dependencySet>
-            <outputDirectory>lib</outputDirectory>
-            <useProjectArtifact>false</useProjectArtifact>
-        </dependencySet>
-    </dependencySets>
 
 </assembly>

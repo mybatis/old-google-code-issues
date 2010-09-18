@@ -294,6 +294,20 @@
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>1.4</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
                 <version>1.0-beta-1</version>
                 <executions>
@@ -367,36 +381,6 @@
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.7</version>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>2.0.4</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.4.3</version>
             </plugin>
@@ -416,7 +400,7 @@
                 </configuration>
             </plugin>
 
-            <plugin>
+            <!-- <plugin>
                 <groupId>com.agilejava.docbkx</groupId>
                 <artifactId>docbkx-maven-plugin</artifactId>
                 <version>2.0.7</version>
@@ -439,12 +423,10 @@
                             <includes>index.xml</includes>
                             <xincludeSupported>true</xincludeSupported>
                             <sourceDirectory>${basedir}/src/docbkx</sourceDirectory>
-                            <foCustomization>${basedir}/src/docbkx/xsl/fopdf.xsl</foCustomization>
-                            <!-- use extensions -->
+                            <foCustomization>${basedir}/src/docbkx/xsl/fopdf.xsl</foCustomization
                             <useExtensions>1</useExtensions>
                             <highlightSource>1</highlightSource>
                             <highlightDefaultLanguage />
-                            <!-- callouts -->
                             <calloutsExtension>1</calloutsExtension>
                             <postProcess>
                                 <move file="target/docbkx/pdf/index.pdf" tofile="target/docbkx/pdf/${project.artifactId}-${project.version}-reference.pdf" failonerror="false" />
@@ -452,7 +434,7 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin> -->
 
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
