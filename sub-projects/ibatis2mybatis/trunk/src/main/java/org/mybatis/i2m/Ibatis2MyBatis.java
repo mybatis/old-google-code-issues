@@ -38,7 +38,7 @@ public final class Ibatis2MyBatis {
 
     private Ibatis2MyBatis() {
         this.saxTransformerFactory = (SAXTransformerFactory) TransformerFactory.newInstance();
-        this.saxTransformerFactory.setAttribute("translet-name", "CompiledXslt");
+        this.saxTransformerFactory.setAttribute("translet-name", "SqlMap2Mapper");
         this.saxTransformerFactory.setAttribute("package-name", "org.mybatis.i2m");
     }
 
