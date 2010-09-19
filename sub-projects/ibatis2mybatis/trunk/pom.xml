@@ -287,6 +287,7 @@
                         <manifest>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                             <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                            <mainClass>org.mybatis.i2m.Ibatis2MyBatis</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
