@@ -69,6 +69,10 @@
         </plugins>
     </build>
 
+    <properties>
+        <findbugs.onlyAnalyze>org.mybatis.i2m.*</findbugs.onlyAnalyze>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.beust</groupId>
