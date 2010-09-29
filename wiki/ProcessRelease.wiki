@@ -15,7 +15,7 @@ This page will guide the development team with setting up their environment to p
 As of Maven 2.1.0 you can now encrypt your servers passwords.  We highly recommend that you follow this [http://maven.apache.org/guides/mini/guide-encryption.html guide] to set your master password and use it to encrypt your Sonatype password in the next section.
 
 === Sonatype ===
-Using the instructions from the previous step encrypt your Sonatype password and add the following servers to your ~/.m2/settings.xml file.  You may already have other servers in this file.  If not just create the file.
+Using the instructions from the previous step encrypt your Sonatype password and add the following servers to your `~/.m2/settings.xml` file.  You may already have other servers in this file.  If not just create the file.
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <settings>
@@ -36,7 +36,7 @@ Using the instructions from the previous step encrypt your Sonatype password and
 }}}
 
 === Google Code ===
-Using the instructions from the previous step encrypt your Google Code password and add the following server to your ~/.m2/settings.xml file.  You may already have other servers in this file.  If not just create the file.
+Using the instructions from the previous step encrypt your Google Code password and add the following server to your `~/.m2/settings.xml` file.  You may already have other servers in this file.  If not just create the file.
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <settings>
