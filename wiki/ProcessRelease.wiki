@@ -75,7 +75,7 @@ The parent pom inherits settings from the Sonatype's one, moreover defines:
 
 Users that intend use the parent pom have to configure the properties below:
 
- * `findbugs.onlyAnalyze` the package name (usually followed by .*) under findbug analysis
+ * `findbugs.onlyAnalyze` the package name (usually followed by .`*`) under findbug analysis
 
 When creating a new subproject, make sure following resources are present at same level of `src` dir:
 
