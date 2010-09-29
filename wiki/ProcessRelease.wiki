@@ -84,7 +84,7 @@ When creating a new subproject, make sure following resources are present at sam
 
 Moreover there are predefined, not active by default, profiles for a common behavior of the release process.
 
- * `docbook`: useful to generate pdf users guide, it expects `src/docbkx/index.xml` file and will produce a `target/docbkx/pdf/${project.artifactId}-${project.version}-reference.pdf`; this profile can be activated using `-Pdocbook` option when launching Maven on shell;
+ * `docbook`: useful to generate pdf users guide, it expects `${project.build.sourceDirectory}/docbkx/index.xml` file and will produce a `${project.build.directory}/docbkx/pdf/${project.artifactId}-${project.version}-reference.pdf`; this profile can be activated using `-Pdocbook` option when launching Maven on shell;
  * `bundle`: it creates the 99% typical distribution `${project.build.directory}/${project.artifactId}-${project.version}-bundle.zip` package to be uploaded on MyBatis space on Google Code (requires `sonatype-oss-release` and `docbook` profiles active); this profile can be activated using `-Pbundle` option when launching Maven on shell;
  * `gupload`: upload the zip bundle on MyBatis space on Google Code, adding `${project.description} ${project.version} release` as summary and `Featured,Type-Archive` as labels (requires `sonatype-oss-release`, `docbook` and `bundle` profiles active); this profile can be activated using `-Pgupload` option when launching Maven on shell;
 
