@@ -67,7 +67,7 @@
                 </executions>
                 <configuration>
                     <executable>java</executable>
-                    <classpathScope>test</classpathScope>
+                    <classpathScope>runtime</classpathScope>
                     <arguments>
                         <argument>-classpath</argument>
                         <classpath />
