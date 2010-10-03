@@ -21,6 +21,7 @@ import java.util.concurrent.Executors;
 
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.stream.StreamSource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +34,8 @@ import com.beust.jcommander.JCommander;
  */
 public final class Ibatis2MyBatis {
 
+    private final StreamSource stylesheet;
+
     private final ExecutorService executors = Executors.newFixedThreadPool(10);
 
     private final XMLFilter xmlFilter = new XMLFilter();
@@ -40,6 +43,8 @@ public final class Ibatis2MyBatis {
     private final TransformerFactory saxTransformerFactory;
 
     private Ibatis2MyBatis() {
+        this.stylesheet = new StreamSource(this.getClass().getResource("sqlMap2mapper.xslt").toString());
+
         this.saxTransformerFactory = TransformerFactory.newInstance();
         this.saxTransformerFactory.setAttribute("translet-name", "SqlMap2Mapper");
         this.saxTransformerFactory.setAttribute("package-name", "org.mybatis.i2m");
@@ -54,7 +59,7 @@ public final class Ibatis2MyBatis {
         }
 
         File dest = destination.isDirectory() ? new File(destination, sqlMapFile.getName()) : destination;
-        Transformer transformer = this.saxTransformerFactory.newTransformer();
+        Transformer transformer = this.saxTransformerFactory.newTransformer(this.stylesheet);
         this.executors.execute(new XsltProcessor(sqlMapFile, dest, transformer));
     }
 
