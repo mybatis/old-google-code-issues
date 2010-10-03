@@ -54,6 +54,36 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.1</version>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <executable>java</executable>
+                    <classpathScope>test</classpathScope>
+                    <arguments>
+                        <argument>-classpath</argument>
+                        <classpath />
+                        <argument>org.apache.xalan.xsltc.cmdline.Compile</argument>
+                        <argument>-d</argument>
+                        <argument>target/classes</argument>
+                        <argument>-p</argument>
+                        <argument>org.mybatis.i2m</argument>
+                        <argument>-o</argument>
+                        <argument>SqlMap2Mapper</argument>
+                        <argument>src/main/resources/org/mybatis/i2m/sqlMap2mapper.xslt</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>1.4</version>
