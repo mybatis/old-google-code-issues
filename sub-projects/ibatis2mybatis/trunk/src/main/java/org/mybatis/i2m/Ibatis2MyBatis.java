@@ -20,7 +20,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.sax.SAXTransformerFactory;
 
 import com.beust.jcommander.JCommander;
 
@@ -34,10 +33,10 @@ public final class Ibatis2MyBatis {
 
     private final XMLFilter xmlFilter = new XMLFilter();
 
-    private final SAXTransformerFactory saxTransformerFactory;
+    private final TransformerFactory saxTransformerFactory;
 
     private Ibatis2MyBatis() {
-        this.saxTransformerFactory = (SAXTransformerFactory) TransformerFactory.newInstance();
+        this.saxTransformerFactory = TransformerFactory.newInstance();
         this.saxTransformerFactory.setAttribute("translet-name", "SqlMap2Mapper");
         this.saxTransformerFactory.setAttribute("package-name", "org.mybatis.i2m");
     }
