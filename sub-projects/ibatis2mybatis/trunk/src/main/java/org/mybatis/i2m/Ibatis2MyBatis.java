@@ -19,7 +19,11 @@ import java.io.File;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.beust.jcommander.JCommander;
 
@@ -50,10 +54,13 @@ public final class Ibatis2MyBatis {
         }
 
         File dest = destination.isDirectory() ? new File(destination, sqlMapFile.getName()) : destination;
-        this.executors.execute(new XsltProcessor(sqlMapFile, dest, this.saxTransformerFactory.newTransformer()));
+        Transformer transformer = this.saxTransformerFactory.newTransformer();
+        this.executors.execute(new XsltProcessor(sqlMapFile, dest, transformer));
     }
 
     public static void main(String[] args) throws Exception {
+        final Logger logger = LoggerFactory.getLogger(Ibatis2MyBatis.class);
+
         Config config = new Config();
         JCommander commander = new JCommander(config, args);
 
@@ -65,7 +72,7 @@ public final class Ibatis2MyBatis {
         }
 
         if (!config.getSource().exists()) {
-            System.out.println("-s --source must be an existing dir/XML file");
+            logger.error("-s --source must be an existing dir/XML file");
             System.exit(-1);
         }
 
