@@ -21,7 +21,8 @@
 <xsl:stylesheet
         version="1.0"
         xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-        xmlns:regexp="http://xml.apache.org/xalan/java/org.mybatis.i2m.RegexpReplacer">
+        extension-element-prefixes="regexp"
+        xmlns:regexp="xalan://org.mybatis.i2m.RegexpReplacer">
 
     <xsl:output method="xml" encoding="UTF-8" />
 
@@ -397,9 +398,9 @@
         </xsl:message> 
     </xsl:template>
 
-    <xsl:for-each select="*/text()">
+    <xsl:template select="*/text()">
         <xsl:variable name="currentText" select="." />
         <xsl:value-of select="regexp:replace($currentText)" />
-    </xsl:for-each>
+    </xsl:template>
 
 </xsl:stylesheet>
