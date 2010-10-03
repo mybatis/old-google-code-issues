@@ -78,7 +78,7 @@
                         <argument>org.mybatis.i2m</argument>
                         <argument>-o</argument>
                         <argument>SqlMap2Mapper</argument>
-                        <argument>src/main/resources/org/mybatis/i2m/sqlMap2mapper.xslt</argument>
+                        <argument>${basedir}/src/main/resources/org/mybatis/i2m/sqlMap2mapper.xslt</argument>
                     </arguments>
                 </configuration>
             </plugin>
