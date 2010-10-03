@@ -26,16 +26,20 @@
     <xsl:output method="xml" encoding="UTF-8" />
 
     <xsl:template match="/">
+        <xsl:apply-templates select="sqlMap" />
+    </xsl:template>
+
+    <xsl:template match="sqlMap">
         <xsl:text disable-output-escaping="yes" >
             <![CDATA[<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">]]>
         </xsl:text>
         <xsl:element name="mapper">
-            <xsl:attribute name="namespace"><xsl:value-of select="/sqlMap/@namespace" /></xsl:attribute>
+            <xsl:attribute name="namespace"><xsl:value-of select="@namespace" /></xsl:attribute>
             <xsl:apply-templates />
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="/sqlMap/select">
+    <xsl:template match="select">
         <xsl:element name="select">
             <xsl:attribute name="id"><xsl:value-of select="@id" /></xsl:attribute>
 
@@ -71,7 +75,7 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="/sqlMap/insert">
+    <xsl:template match="insert">
         <xsl:element name="insert">
             <xsl:attribute name="id"><xsl:value-of select="@id" /></xsl:attribute>
 
@@ -88,7 +92,7 @@
           </xsl:element>
     </xsl:template>
 
-    <xsl:template match="/sqlMap/update">
+    <xsl:template match="update">
         <xsl:element name="update">
             <xsl:attribute name="id"><xsl:value-of select="@id" /></xsl:attribute>
 
@@ -104,7 +108,7 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="/sqlMap/procedure">
+    <xsl:template match="procedure">
         <xsl:element name="update">
             <xsl:attribute name="id"><xsl:value-of select="@id" /></xsl:attribute>
 
@@ -122,7 +126,7 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="/sqlMap/delete">
+    <xsl:template match="delete">
         <xsl:element name="delete">
             <xsl:attribute name="id"><xsl:value-of select="@id" /></xsl:attribute>
 
@@ -138,7 +142,7 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="/sqlMap/resultMap">
+    <xsl:template match="resultMap">
         <xsl:element name="resultMap">
             <xsl:attribute name="id"><xsl:value-of select="@id" /></xsl:attribute>
 
@@ -156,7 +160,7 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="/sqlMap/parameterMap">
+    <xsl:template match="parameterMap">
         <xsl:element name="parameterMap">
             <xsl:attribute name="id"><xsl:value-of select="@id" /></xsl:attribute>
 
@@ -168,11 +172,11 @@
       </xsl:element>
     </xsl:template>
 
-    <xsl:template match="/sqlMap/parameterMap/parameter">
+    <xsl:template match="parameterMap/parameter">
         <xsl:copy-of select="." />
     </xsl:template>
 
-    <xsl:template match="/sqlMap/resultMap/result">
+    <xsl:template match="resultMap/result">
         <xsl:choose>
             <xsl:when test="@resultMap">
                 <xsl:element name="collection">
@@ -233,7 +237,7 @@
         </xsl:choose>
     </xsl:template>
 
-    <xsl:template match="/sqlMap/sql">
+    <xsl:template match="sql">
         <xsl:element name="sql">
             <xsl:attribute name="id"><xsl:value-of select="@id" /></xsl:attribute>
 
