@@ -64,17 +64,15 @@
       <h2 class="title">MyBatis Generator</h2>
 
       <p class="byline">
-        This is the popular code generator for MyBatis. Please be patient. We're updating the release
-        for the MyBatis Generator. Until it's ready, we recommend building from source.
+        This is the popular code generator for MyBatis.
       </p>
 
       <div class="entry">
         <ul>
           <li>
-            <a href="http://mybatis.googlecode.com/svn/sub-projects/generator/trunk/core/">
-              <b>Check out and Build the MyBatis Generator code generation tool. (SVN/Maven)</b>
+            <a href="http://code.google.com/p/mybatis/downloads/list?can=3">
+              <b>Download the MyBatis Generator</b>
             </a>
-            <br/>
           </li>
           <li>
             <a href="http://code.google.com/p/mybatis/wiki/Generator">
