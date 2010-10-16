@@ -6,123 +6,19 @@
 
 !MyBatis Generator will generate:
 
-    * SqlMap XML Files
+    * !SqlMap XML Files
     * Java Classes to match the primary key and fields of the table(s)
-    * DAO Classes that use the above objects (optional)
+    * Java Client Classes that use the above objects (optional)
 
-!MyBatis Generator can run as a standalone JAR file, or as an Ant task, or as an Eclipse plugin.
-About the Name
+!MyBatis Generator can run as a standalone JAR file, as an Ant task, or as a Maven plugin.
 
-!MyBatis Generator is an !MyBatis stylized version of the English word "abator". Abator means "one who abates a nuisance".
-!MyBatis Generator News
+== Get !MyBatis Generator ==
 
-(December 22, 2008) !MyBatis Generator version 1.2.1 is released. This version fixes a couple of bugs that manifested in the Eclipse plugin, enhances the Plugin API, and adds a couple of features to the Eclipse plugin. Even though this is a relatively minor release, we recommend that everyone upgrade.
+=== Google Code ===
+!MyBatis generator is available from the !MyBatis site at http://mybatis.org/java.html  The bundle includes documentation for the generator.
 
-(December 11, 2008) !MyBatis Generator version 1.2.0 is released. This version has several important enhancements over Abator 1.1.0. See the What's New? section of the online documentation for full details. Note that !MyBatis Generator requires Java 5.0 or greater. The Eclipse plugin requires Eclipse 3.4.1 or greater. !MyBatis Generator generates code compatible with !MyBatis version 2.2.0 or greater.
-
-(April 14, 2008) Due to a trade registration dispute, Abator is renamed to !MyBatis Generator. The !MyBatis Generator is currently under development. The initial source code drop can be checked out from SVN at http://mybatis.googlecode.com/svn/sub-projects/generator/trunk/
-
-(March 20, 2008) Updated Abator and the Eclipse plugin to version 1.1.0. This is an extensive update that includes quite a few minor enhancements, two major enhancements (two new methods can be generated), and a few bug fixes. See the What's New? section of the online documentation for full details.
-
-(August 20, 2006) Updated Abator and the Eclipse plugin to version 1.0.0. This is an extensive update that includes many new features including the ability to generate code for Java 5, generate different types of domain models, and hugely improved "by example" methods. See the "What's New?" section of the online documentation for full details.
-!MyBatis Generator Software Downloads and Documentation
-
-Download the standalone JAR if you are using an IDE other than Eclipse. The standalone JAR includes an Ant task to run !MyBatis Generator, or you can run !MyBatis Generator from the command line of from Java code.
-
-    * !MyBatis Generator 1.2.1 w/Binaries and Source 
-
-Documentation for the core functions of !MyBatis Generator is available online. This documentation set is also included in the downloads, and is integrated into the Eclipse help system if you are using the Eclipse plugin.
-
-Documentation for the Eclipse specific features is integrated into the Eclipse help system and is not available online.
-
-    * !MyBatis Generator Documentation
-
-Eclipse Plugin
-
-When run as an Eclipse plugin, !MyBatis Generator will persist the generated Java classes and SqlMap files in Eclipse projects. !MyBatis Generator can be run iteratively multiple time as the database design matures - and any hand coded additions to generated Java classes or SqlMap files will remain undisturbed.
-
-Documentation for !MyBatis Generator is integrated into the Eclipse help system.
-Requirements
-
-    * Eclipse 3.4.1 or higher (Note: if you are stuck with prior versions, then the legacy Abator code is still available - see below)
-    * JDK 5.0 or Higher
-
-Automatic Eclipse Install
-
-If you've already installed a prior version of !MyBatis Generator, simply run the Eclipse Update tool and the new version will be found automatically.
-
-If you've not previously installed !MyBatis Generator, use the built in Eclipse install support by following these steps:
-
-   # Take the "Help>Software Updates..." Menu Option
-   # Select the "Available Software" Tab
-   # Press the "Add Site" button
-   # Enter the following location: <Need a new web path for !MyBatis Generator>
-   # Press OK
-   # Check the box next to "!MyBatis Generator Feature"
-   # Press the "Install" button
-   # Follow the remainder of the install wizard
-
-Manual Eclipse Install
-
-The automatic install is much preferred, but you can also install !MyBatis Generator manually if you desire. To install manually, download the file !MyBatis GeneratorForEclipse1.2.1.zip and unzip the file to some convenient location. After unzipping the update site archive, follow these steps in Eclipse:
-
-   # Take the "Help>Software Updates..." Menu Option
-   # Select the "Available Software" Tab
-   # Press the "Add Site" button
-   # Press the "Local" button
-   # Navigate to the location where you unzipped the site archive
-   # Press OK
-   # Check the box next to "!MyBatis Generator Feature"
-   # Press the "Install" button
-   # Follow the remainder of the install wizard
-
-Legacy Abator Software Downloads and Documentation
-
-Download the standalone JAR if you are using an IDE other than Eclipse. The standalone JAR includes an Ant task to run Abator, or you can run Abator from the command line of from Java code.
-
-    * Abator 1.1.0 w/Binaries and Source 
-
-Documentation for the core functions of Abator is available online. This documentation set is also included in the downloads, and is integrated into the Eclipse help system if you are using the Eclipse plugin.
-
-Documentation for the Eclipse specific features is integrated into the Eclipse help system and is not available online.
-
-    * Abator Documentation
-
-Legacy Abator Eclipse Plugin
-
-When run as an Eclipse plugin, Abator will persist the generated Java classes and SqlMap files in Eclipse projects. Abator can be run iteratively multiple time as the database design matures - and any hand coded additions to generated Java classes or SqlMap files will remain undisturbed.
-
-Documentation for Abator is integrated into the Eclipse help system.
-Requirements
-
-    * Eclipse 3.2 or higher (Note: if you are stuck on Eclipse 3.0, or version 6.0 of the Rational development tools, the prior version of the plugin is still available on the update site)
-    * JDK 1.4 or Higher
-
-Automatic Eclipse Install
-
-If you've already installed a prior version of Abator, simply run the Eclipse Install/Update tool and the new version will be found automatically.
-
-If you've not already installed Abator, then you can use the built in Eclipse install support by following these steps:
-
-   # Take the "Help>Software Updates>Find and Install" Menu Option
-   # Select the "Search for new features to install" radio button, press "Next"
-   # Press the "New Remote Site" button
-   # Enter the following information:
-     Name:
-          Abator for Eclipse Update Site
-     URL:
-          <Need a new web path for !MyBatis Generator>
-   # Press OK
-   # Check the box next to "Abator for Eclipse Update Site"
-   # Follow the remainder of the install wizard
-
-Manual Eclipse Install
-
-The automatic install is much preferred, but you can also install Abator manually if you desire. To install manually, download the file AbatorForEclipse1.1.0.zip and unzip the file to some convenient location. After unzipping the update site archive, follow these steps in Eclipse:
-
-   # Take the "Help>Software Updates>Find and Install" Menu Option
-   # Select the "Search for new features to install" radio button, press "Next"
-   # Press the "New Local Site" button
-   # Navigate to the location where you unzipped the file.
-   # Press OK
-   # Follow the remainder of the install wizard
+=== Maven ===
+!MyBatis generator is available in the Maven central repository at:
+||*Group*||org.mybatis.generator||
+||*Artifact*||mybatis-generator-maven-plugin||
+||*Version*||1.3.0||
