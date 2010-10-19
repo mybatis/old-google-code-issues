@@ -7,7 +7,8 @@ This page will guide the development team with setting up their environment to p
 
  * Install/Configure GPG - The artifacts that are deployed to the central maven repositories need to be signed.  To do this you will need to have a public and private keypair.  There is a very good [http://www.sonatype.com/people/2010/01/how-to-generate-pgp-signatures-with-maven/ guide] that will walk you though this.
 
- * Install Maven 2.2.1 or higher.  2.2.0 has a bug that will produce invalid checksums.
+ * Install Maven 2.2.1 or higher.  2.2.0 has a bug that will produce invalid checksums;
+ * We strongly encourage our developers to install Maven 3.0.
 
 == Configuration ==
 
@@ -51,18 +52,18 @@ Using the instructions from the previous step encrypt your Google Code password 
 }}}
 
 === Configure the MyBatis parent pom ===
-If you're stared a new subproject, please use the already configured _parent pom_ (actually version 1.0.0) to avoid replicate the same meta inf in every project:
+If you're stared a new subproject, please use the already configured _parent pom_ (actually version 3) to avoid replicate the same meta inf in every project:
 {{{
 <parent>
     <groupId>org.mybatis</groupId>
     <artifactId>mybatis-parent</artifactId>
-    <version>1.0.0</version>
+    <version>3</version>
 </parent>
 }}}
 
 Even if follows below a guide that illustrates how to simplify the development, please take a look at the source code to see what has been already declared and don't invest time on something already done.
 
-The parent pom inherits settings from the Sonatype's one, moreover defines:
+The parent pom defines:
 
  * the inception year;
  * the organization;
@@ -85,8 +86,8 @@ When creating a new subproject, make sure following resources are present at sam
 Moreover there are predefined, not active by default, profiles for a common behavior of the release process.
 
  * `docbook`: useful to generate pdf users guide, it expects `src/docbkx/index.xml` file and will produce a `${project.build.directory}/docbkx/pdf/${project.artifactId}-${project.version}-reference.pdf`; this profile can be activated using `-Pdocbook` option when launching Maven on shell;
- * `bundle`: it creates the 99% typical distribution `${project.build.directory}/${project.artifactId}-${project.version}-bundle.zip` package to be uploaded on MyBatis space on Google Code (requires `sonatype-oss-release` and `docbook` profiles active); this profile can be activated using `-Pbundle` option when launching Maven on shell;
- * `gupload`: upload the zip bundle on MyBatis space on Google Code, adding `${project.description} ${project.version} release` as summary and `Featured,Type-Archive` as labels (requires `sonatype-oss-release`, `docbook` and `bundle` profiles active); this profile can be activated using `-Pgupload` option when launching Maven on shell;
+ * `bundle`: it creates the 99% typical distribution `${project.build.directory}/${project.artifactId}-${project.version}-bundle.zip` package to be uploaded on MyBatis space on Google Code (requires `release` and `docbook` profiles active); this profile can be activated using `-Pbundle` option when launching Maven on shell;
+ * `gupload`: upload the zip bundle on MyBatis space on Google Code, adding `${project.description} ${project.version} release` as summary and `Featured,Type-Archive` as labels (requires `release`, `docbook` and `bundle` profiles active); this profile can be activated using `-Pgupload` option when launching Maven on shell;
 
 To activate profiles during the release process, it is strongly suggested to configure the release plugin:
 {{{
