@@ -96,7 +96,7 @@ To activate profiles during the release process, it is strongly suggested to con
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-release-plugin</artifactId>
             <configuration>
-                <arguments>-Psonatype-oss-release,docbook,bundle,gupload</arguments>
+                <arguments>-Prelease,docbook,bundle,gupload</arguments>
             </configuration>
         </plugin>
     </plugins>
