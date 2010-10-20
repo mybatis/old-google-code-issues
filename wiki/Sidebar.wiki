@@ -14,8 +14,8 @@
   * [DocIbatis2MyBatis From iBATIS to MyBatis]
   * [Logging]
   * [http://mybatis.googlecode.com/svn/trunk/doc/ Downloadable User Guides (PDF)]
-    * [http://mybatis.googlecode.com/svn/trunk/doc/en English]
-    * [http://mybatis.googlecode.com/svn/trunk/doc/zh_cn Simplified Chinese]
+      * [http://mybatis.googlecode.com/svn/trunk/doc/en English]
+      * [http://mybatis.googlecode.com/svn/trunk/doc/zh_cn Simplified Chinese]
 
 === Tools ===
 
