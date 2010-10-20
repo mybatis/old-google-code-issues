@@ -20,16 +20,12 @@
             </a>
           </li>
           <li>
-            <a href="http://mybatis.googlecode.com/svn/trunk/doc/en/MyBatis-3-User-Guide.pdf">
+            <a href="http://mybatis.googlecode.com/svn/trunk/doc/en/">
               Download the Framework User Guide (English)</a>
           </li>
           <li>
-            <a href="http://mybatis.googlecode.com/svn/trunk/doc/zh_cn/MyBatis%203%20User%20Guide%20Simplified%20Chinese.pdf">
+            <a href="http://mybatis.googlecode.com/svn/trunk/doc/zh_cn/">
               Download the Framework User Guide (Simplified Chinese)</a>
-          </li>
-          <li>
-            <a href="http://mybatis.googlecode.com/svn/trunk/doc/">
-              Browse All Languages</a>
           </li>
         </ul>
       </div>
