@@ -52,12 +52,12 @@ Using the instructions from the previous step encrypt your Google Code password 
 }}}
 
 === Configure the MyBatis parent pom ===
-If you're stared a new subproject, please use the already configured _parent pom_ (actually version 3) to avoid replicate the same meta inf in every project:
+If you're stared a new subproject, please use the already configured _parent pom_ (actually version 4) to avoid replicate the same meta inf in every project:
 {{{
 <parent>
     <groupId>org.mybatis</groupId>
     <artifactId>mybatis-parent</artifactId>
-    <version>3</version>
+    <version>4</version>
 </parent>
 }}}
 
@@ -77,6 +77,7 @@ The parent pom defines:
 Users that intend use the parent pom have to configure the properties below:
 
  * `findbugs.onlyAnalyze` the package name (usually followed by .`*`) under findbug analysis
+ * `clirr.comparisonVersion` the version to compare the current code against, default value is: `${project.version}`
 
 When creating a new subproject, make sure following resources are present at same level of `src` dir:
 
@@ -118,3 +119,13 @@ The release plugin for maven is already configured in the MyBatis pom file so al
 Now you can checkout the new release ( or just use the one left over from the release in target/checkout) and issue the following to build the artifacts for the site.
 
 {{{mvn package}}}
+
+== Managing Sonatypes' Nexus ==
+The mybatis-parent v4 is configured to work with Sonatype's Nexus to simplify the Staging Repository close and promote operation, without logging in on Nexus using the browser.
+First of all, add in the `~/.m2/settings.xml`the following snippet:
+
+{{{<pluginGroups>
+        <pluginGroup>org.sonatype.plugins</pluginGroup>
+    </pluginGroups>}}}
+
+then in the project dir you can use the nexus goals described on the [http://www.sonatype.com/books/nexus-book/reference/staging-sect-managing-plugin.html plugin page]
