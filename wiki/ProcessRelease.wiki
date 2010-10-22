@@ -124,8 +124,8 @@ Now you can checkout the new release ( or just use the one left over from the re
 The mybatis-parent v4 is configured to work with Sonatype's Nexus to simplify the Staging Repository close and promote operation, without logging in on Nexus using the browser.
 First of all, add in the `~/.m2/settings.xml`the following snippet:
 
-{{{<pluginGroups>
+{{{ <pluginGroups>
         <pluginGroup>org.sonatype.plugins</pluginGroup>
-    </pluginGroups>}}}
+    </pluginGroups> }}}
 
 then in the project dir you can use the nexus goals described on the [http://www.sonatype.com/books/nexus-book/reference/staging-sect-managing-plugin.html plugin page]
