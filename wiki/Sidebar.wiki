@@ -18,6 +18,7 @@
 
   * [Contribute Get Involved]
   * [Generator MyBatis Generator]
+  * [Spring Spring Integration]
 
 === Extras ===
 
