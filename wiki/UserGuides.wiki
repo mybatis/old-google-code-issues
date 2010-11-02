@@ -1,5 +1,5 @@
-= User Guides =
 
+==Current Guides==
 You can find all of the current user guides in the downloads which can be found [http://code.google.com/p/mybatis/downloads/list?can=3&q=Docs here].
 
 ==Available Languages==
