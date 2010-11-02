@@ -7,10 +7,7 @@
   * [http://code.google.com/p/mybatis/w/list Page List]
 
 === Documentation ===
-
-  * [http://mybatis.googlecode.com/svn/trunk/doc/ Downloadable User Guides (PDF)]
-    # [http://mybatis.googlecode.com/svn/trunk/doc/en English]
-    # [http://mybatis.googlecode.com/svn/trunk/doc/zh_cn Simplified Chinese]
+  * [UserGuides User Guides]
   * [DocMavenTutorial MyBatis & Maven]
   * [DocUpgrade3 Upgrading to 3.x]
   * [DocIbatis2MyBatis From iBATIS to MyBatis]
