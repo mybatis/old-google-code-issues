@@ -1,5 +1,11 @@
 = User Guides =
 
-We have user guides in multiple languages.  You can find all of the current user guides in the downloads which can be found [http://code.google.com/p/mybatis/downloads/list?can=3&q=Docs here].
+You can find all of the current user guides in the downloads which can be found [http://code.google.com/p/mybatis/downloads/list?can=3&q=Docs here].
 
-If you are looking to use a SNAPSHOT release you can find their user guides in svn.
+==Available Languages==
+  * English
+  * Simplified Chinese
+
+If you have the ability and desire to translate into other languages we would love to add more to the above list.
+
+For those of you living on the edge and helping the community to test out new features with snapshot releases you can find their user guides in svn.
