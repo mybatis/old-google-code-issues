@@ -16,6 +16,7 @@ In !MyBatis-Spring, an !SqlSessionFactoryBean is used to create an !SqlSessionFa
 }}}
 
 Notice that the !SqlSessionFactory requires a !DataSource. This can be any !DataSource and should be configured just like any other Spring database connection.
+
 Assume you have a data mapper class defined like the following:
 
 {{{
