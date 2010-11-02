@@ -1,4 +1,4 @@
-#summary An introduction to !MyBatis-Spring integration
+#summary An introduction to MyBatis-Spring integration
 
 == Introduction to !MyBatis-Spring ==
 
