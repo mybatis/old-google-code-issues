@@ -34,9 +34,9 @@ This interface is added to Spring using a !MapperFactoryBean like the following:
 </bean>
 }}}
 
-Note that the mapper class specified must be an interface, not an actual implementation class. In this example,annotations are used to specify the SQL, but a !MyBatis mapper XML file could also be used.
-Once configured, you can inject mappers directly into your business/service objects in the same way you inject any other Spring bean. The !MapperFactoryBean handles creating an !SqlSession as well as closing it. If there is
-a Spring transaction in progress, the session will also be committed or rolled back when the transaction completes. Finally, any exceptions will be translated into Spring !DataAccessExceptions. 
+Note that the mapper class specified must be an interface, not an actual implementation class. In this example, annotations are used to specify the SQL, but a !MyBatis mapper XML file could also be used.
+
+Once configured, you can inject mappers directly into your business/service objects in the same way you inject any other Spring bean. The !MapperFactoryBean handles creating an !SqlSession as well as closing it. If there is a Spring transaction in progress, the session will also be committed or rolled back when the transaction completes. Finally, any exceptions will be translated into Spring !DataAccessExceptions. 
 
 Calling !MyBatis data methods is now only one line of code:
 
