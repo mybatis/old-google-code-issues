@@ -1,13 +1,13 @@
-#summary An introduction to MyBatis-Spring integration
+#summary An introduction to !MyBatis-Spring integration
 
 == Introduction to !MyBatis-Spring ==
 
-!MyBatis-Spring helps you integrate your MyBatis code seamlessly with Spring. Using the classes in this library, Spring will load the necessary MyBatis factory and session classes for you. This library also provides an easy way to inject MyBatis data mappers into your service beans. Finally, MyBatis-Spring will handle transactions and translate MyBatis exceptions into Spring DataAccessExceptions.
+!MyBatis-Spring helps you integrate your !MyBatis code seamlessly with Spring. Using the classes in this library, Spring will load the necessary !MyBatis factory and session classes for you. This library also provides an easy way to inject !MyBatis data mappers into your service beans. Finally, !MyBatis-Spring will handle transactions and translate !MyBatis exceptions into Spring !DataAccessExceptions.
 
 == Quick Setup ==
 
-To use MyBatis with Spring you need at least two things defined in the Spring application context: an SqlSessionFactory and at least one data mapper class.
-In MyBatis-Spring, an SqlSessionFactoryBean is used to create an SqlSessionFactory. To configure the factory bean, put the following in the Spring XML configuration file:
+To use !MyBatis with Spring you need at least two things defined in the Spring application context: an !SqlSessionFactory and at least one data mapper class.
+In !MyBatis-Spring, an !SqlSessionFactoryBean is used to create an !SqlSessionFactory. To configure the factory bean, put the following in the Spring XML configuration file:
 
 {{{
 <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -15,7 +15,7 @@ In MyBatis-Spring, an SqlSessionFactoryBean is used to create an SqlSessionFacto
 </bean>
 }}}
 
-Notice that the SqlSessionFactory requires a DataSource. This can be any DataSource and should be configured just like any other Spring database connection.
+Notice that the !SqlSessionFactory requires a !DataSource. This can be any !DataSource and should be configured just like any other Spring database connection.
 Assume you have a data mapper class defined like the following:
 
 {{{
@@ -25,7 +25,7 @@ public interface UserMapper {
 }
 }}}
 
-This interface is added to Spring using a MapperFactoryBean like the following:
+This interface is added to Spring using a !MapperFactoryBean like the following:
 
 {{{
 <bean id="userMapper" class="org.mybatis.spring.MapperFactoryBean">
@@ -34,11 +34,11 @@ This interface is added to Spring using a MapperFactoryBean like the following:
 </bean>
 }}}
 
-Note that the mapper class specified must be an interface, not an actual implementation class. In this example,annotations are used to specify the SQL, but a MyBatis mapper XML file could also be used.
-Once configured, you can inject mappers directly into your business/service objects in the same way you inject any other Spring bean. The MapperFactoryBean handles creating an SqlSession as well as closing it. If there is
-a Spring transaction in progress, the session will also be committed or rolled back when the transaction completes. Finally, any exceptions will be translated into Spring DataAccessExceptions. 
+Note that the mapper class specified must be an interface, not an actual implementation class. In this example,annotations are used to specify the SQL, but a !MyBatis mapper XML file could also be used.
+Once configured, you can inject mappers directly into your business/service objects in the same way you inject any other Spring bean. The !MapperFactoryBean handles creating an !SqlSession as well as closing it. If there is
+a Spring transaction in progress, the session will also be committed or rolled back when the transaction completes. Finally, any exceptions will be translated into Spring !DataAccessExceptions. 
 
-Calling MyBatis data methods is now only one line of code:
+Calling !MyBatis data methods is now only one line of code:
 
 {{{
 User user = userMapper.getUser(userId);
