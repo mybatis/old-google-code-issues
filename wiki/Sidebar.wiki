@@ -27,6 +27,7 @@
 === Process === 
  
   * [ProcessRelease Release Process]
+ * [GPGKeys GPG keys]
 
 === Feedback and Testimonials ===
 
