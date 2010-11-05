@@ -45,12 +45,18 @@ Calling !MyBatis data methods is now only one line of code:
 User user = userMapper.getUser(userId);
 }}}
 
-== Get !MyBatis-Spring ==
+== Installation ==
 
 !MyBatis-Spring code and detailed documentation is available from the !MyBatis site at http://code.google.com/p/mybatis/downloads.
 
-=== Maven ===
-!MyBatis-Spring is available in the Maven central repository at:
-||*Group*||org.mybatis||
-||*Artifact*||mybatis-spring||
-||*Version*||1.0.0-RC2||
+To use the MyBatis-Spring module, you just need to include the mybatis-spring-1.0.0-RC2.jar file and its dependencies in the classpath.
+
+If you are using Maven just add the following dependency to your pom.xml:
+
+{{{
+<dependency>
+  <groupId>org.mybatis</groupId>
+  <artifactId>mybatis-spring</artifactId>
+  <version>1.0.0-RC2</version>
+</dependency>
+}}}
