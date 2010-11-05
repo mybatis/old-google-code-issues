@@ -109,12 +109,36 @@ To activate profiles during the release process, it is strongly suggested to con
 Users that have the need to customize the above behaviors can reconfigure the plugins in their POM, please don't take them as a dogma, they have been added only because they match with the 99% of the cases (see subprojects)
 
 == Release ==
-The release plugin for maven is already configured in the MyBatis pom file so all you need to do is execute the following two steps to complete the release.  The first step will create the release tag and update the pom with the correct release and snapshot versions.  The second step will sign and deploy the artifacts to the Sonatype open source repository.  This repository is synced every hour to the central Maven repositories.  If you don't supply the optional gpg.passphrase then you will be prompted for it.
 
- # Prepare the release
+=== Release the parent pom ===
+
+To release the parent pom developers have to enable the `parent-release` profile:
+
+ * Prepare the release
+{{{ mvn release:prepare -Pparent-release }}}
+ * Perform
+{{{ mvn release:perform -Pparent-release -Dgpg.passphrase=thephrase }}}
+
+or just
+
+{{{ mvn release:perform -Pparent-release }}}
+
+and type the gpg passphrase when prompted
+
+=== Release a !MyBatis module ===
+
+The release plugin for maven is already configured in the !MyBatis parent pom file so all you need to do is execute the following two steps to complete the release.  The first step will create the release tag and update the pom with the correct release and snapshot versions.  The second step will sign and deploy the artifacts to the Sonatype open source repository.  This repository is synced every hour to the central Maven repositories.  If you don't supply the optional gpg.passphrase then you will be prompted for it.
+
+ * Prepare the release
 {{{ mvn release:prepare }}}
- # Perform
+ * Perform
 {{{ mvn release:perform -Dgpg.passphrase=thephrase}}}
+
+or just
+
+{{{ mvn release:perform -Pparent-release }}}
+
+and type the gpg passphrase when prompted
 
 Now you can checkout the new release ( or just use the one left over from the release in target/checkout) and issue the following to build the artifacts for the site.
 
