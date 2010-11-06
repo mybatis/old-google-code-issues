@@ -8,9 +8,9 @@ Indeed, this small library intends to create the missing perfect glue between th
 
 == Quick Look ==
 
-Core components are contained in the org.mybatis.guice package, providing a set of reusable Google Guice com.google.inject.Providers and com.google.inject.Modules that alleviate users the task to create !MyBatis objects.
+Core components are contained in the org.mybatis.guice package, providing a set of reusable Google Guice `com.google.inject.Providers` and `com.google.inject.Modules` that alleviate users the task to create !MyBatis objects.
 
-The core component of the Guice approach is represented by the org.mybatis.guice.!MyBatisModule that's able to create, through a serie of required and optional com.google.inject.Providers, the core !MyBatis, !SqlSessionFactory, !SqlSessionManager and the user defined Mappers.
+The core component of the Guice approach is represented by the org.mybatis.guice.!MyBatisModule that's able to create, through a serie of required and optional `com.google.inject.Providers`, the core !MyBatis, !SqlSessionFactory, !SqlSessionManager and the user defined Mappers.
 
 {{{
 Class<? extends Provider<DataSource>> dataSourceProviderClass = [...];
