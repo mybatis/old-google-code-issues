@@ -47,7 +47,7 @@ User user = userMapper.getUser(userId);
 
 == Installation ==
 
-!MyBatis-Spring code and detailed documentation is available from the !MyBatis site at http://code.google.com/p/mybatis/downloads.
+!MyBatis-Spring code and detailed documentation is available at the downloads section. 
 
 To use the !MyBatis-Spring module, you just need to include the mybatis-spring-1.0.0-RC2.jar file and its dependencies in the classpath.
 
