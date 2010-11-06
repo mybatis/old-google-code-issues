@@ -1,19 +1,22 @@
 #summary Archive of all MyBatis related downloads.
 
-= Downloads =
-
-Please select a filter to find the downloads most relevant to your needs:
+= MyBatis  =
 
   * *[http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DMyBatis MyBatis Core Framework]*
 
-  * *[http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DGenerator MyBatis Generator]*
+= Tools =
+
+  * *[http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DGenerator MyBatis Generator Tool]*
+
+  * *[http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DMigrations Migrations Database Change Management Tool]*
+
+= Extensions =
 
   * *[http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DSpring MyBatis Spring Integration]*
 
   * *[http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DGuice MyBatis Guice Integration]*
 
   * *[http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DCache MyBatis Cache Extensions]*
-
 
 == Can't find what you need? ==
 
