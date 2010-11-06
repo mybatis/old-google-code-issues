@@ -33,19 +33,26 @@ For example, users can request directly the configured Mapper interfaces:
 {{{
 @Singleton
 public final class MyMappersClient {
-  @Inject
-  private PeopleMapper peopleMapper;
-  @Inject
-  private ContactsMapper contactsMapper;
-  
-  public void setPeopleMapper(PeopleMapper peopleMapper) {
-    this.peopleMapper = peopleMapper; 
-  }
 
-  public void setContactsMapper(ContactsMapper contactsMapper) {
-    this.contactsMapper = contactsMapper;
-  }
-...
+    @Inject
+    private FooMapper fooMapper;
+
+    @Inject
+    private BarMapper barMapper;
+  
+    // setters here
+
+    @Transactional(
+        executorType = ExecutorType.BATCH,
+        isolationLevel = TransactionIsolationLevel.READ_UNCOMMITTED,
+        rethrowExceptionsAs = MyCustomException.class,
+        exceptionMessage = "Something went wrong while foobaring {0} argument"
+    )
+    public void doFooBar(String arg) {
+        this.fooMapper.doFoo(arg);
+        this.barMapper.doBar(arg);
+    }
+
 }}}
 
 Please refer to the reference manual to know all about !MyBatis-Guice features
