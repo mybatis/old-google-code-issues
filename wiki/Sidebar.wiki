@@ -18,10 +18,10 @@
 
   * [Contribute Get Involved]
   * [Generator MyBatis Generator]
-  * [Spring Spring Integration]
 
 === Extras ===
 
+ * [Spring Spring Integration]
  * [Caches 3rd part caches]
 
 === Process === 
