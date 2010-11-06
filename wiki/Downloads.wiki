@@ -1,6 +1,6 @@
 #summary Archive of all MyBatis related downloads.
 
-= MyBatis! =
+= !MyBatis =
 
   * *[http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DMyBatis MyBatis Core Framework]*
 
