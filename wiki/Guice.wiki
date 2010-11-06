@@ -1,6 +1,6 @@
 #summary An introduction to MyBatis integration with Google Guice
 
-== Introduction ==
+== Introduction to MyBatis-Guice ==
 
 In our daily work we've been strongly using both !MyBatis Sql Mapper and Google Guice frameworks and once noticed we'd been continuosly repeating the same code snippets in different projects, according to the DRY _don't repeat yourself principle_, we started realizing something that alleviate us the task to create our stuff.
 
