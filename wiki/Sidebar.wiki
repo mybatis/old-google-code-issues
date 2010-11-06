@@ -21,6 +21,7 @@
 
 === Extras ===
 
+ * [Guice Guice Integration]
  * [Spring Spring Integration]
  * [Caches 3rd part caches]
 
