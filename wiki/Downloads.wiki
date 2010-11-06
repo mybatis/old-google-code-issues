@@ -4,8 +4,20 @@
 
 Please select a filter to find the downloads most relevant to your needs:
 
-  * *[http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DMyBatis MyBatis Core Framework Files]*
+  * *[http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DMyBatis MyBatis Core Framework]*
 
+  * *[http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DGenerator MyBatis Generator]*
+
+  * *[http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DSpring MyBatis Spring Integration]*
+
+  * *[http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DGuice MyBatis Guice Integration]*
+
+  * *[http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DCache MyBatis Cache Extensions]*
+
+
+== Can't find what you need? ==
+
+Try these alternative filters.
 
   *  *[http://code.google.com/p/mybatis/downloads/list?can=3 Featured Downloads]* -- All files that we currently recommend for use.
 
