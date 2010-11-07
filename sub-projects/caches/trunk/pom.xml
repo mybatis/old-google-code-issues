@@ -23,7 +23,7 @@
     <parent>
         <groupId>org.mybatis</groupId>
         <artifactId>mybatis-parent</artifactId>
-        <version>5</version>
+        <version>6</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -39,6 +39,10 @@
         <connection>scm:svn:https://mybatis.googlecode.com/svn/sub-projects/caches/trunk</connection>
         <developerConnection>scm:svn:https://mybatis.googlecode.com/svn/sub-projects/caches/trunk</developerConnection>
     </scm>
+
+    <properties>
+        <gcu.product>Cache</gcu.product>
+    </properties>
 
     <build>
         <plugins>
@@ -70,11 +74,5 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <modules>
-        <module>ehcache</module>
-        <module>hazelcast</module>
-        <module>oscache</module>
-    </modules>
 
 </project>

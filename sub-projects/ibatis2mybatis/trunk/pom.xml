@@ -23,7 +23,7 @@
     <parent>
         <groupId>org.mybatis</groupId>
         <artifactId>mybatis-parent</artifactId>
-        <version>5</version>
+        <version>6</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -102,6 +102,7 @@
     <properties>
         <findbugs.onlyAnalyze>org.mybatis.i2m.*</findbugs.onlyAnalyze>
         <slf4j.version>1.6.1</slf4j.version>
+        <gcu.product>TBD</gcu.product>
     </properties>
 
     <dependencies>
