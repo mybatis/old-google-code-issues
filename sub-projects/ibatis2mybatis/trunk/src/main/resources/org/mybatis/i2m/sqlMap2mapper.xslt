@@ -23,7 +23,6 @@
     extension-element-prefixes="regexp" xmlns:regexp="xalan://org.mybatis.i2m.RegexpReplacer">
 
     <xsl:template match="/sqlMapConfig">
-        <xsl:comment>Converted at: <xsl:value-of select="string(java:java.util.Date.new())" /></xsl:comment>
         <xsl:text disable-output-escaping="yes"><![CDATA[<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD SQL Map Config 3.0//EN""http://mybatis.org/dtd/mybatis-3-config.dtd">]]></xsl:text>
         <xsl:element name="configuration">
             <xsl:apply-templates select="/sqlMapConfig/settings" />
@@ -131,7 +130,6 @@
     </xsl:template>
 
     <xsl:template match="/sqlMap">
-        <xsl:comment>Converted at: <xsl:value-of select="string(java:java.util.Date.new())" /></xsl:comment>
         <xsl:text disable-output-escaping="yes"><![CDATA[<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">]]></xsl:text>
         <xsl:element name="mapper">
             <xsl:attribute name="namespace"><xsl:value-of select="@namespace" /></xsl:attribute>
