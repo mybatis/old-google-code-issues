@@ -36,13 +36,14 @@ public final class Ibatis2MyBatis {
 
     private final StreamSource stylesheet;
 
-    private final ExecutorService executors = Executors.newFixedThreadPool(10);
+    private final ExecutorService executors;
 
     private final XMLFilter xmlFilter = new XMLFilter();
 
     private final TransformerFactory saxTransformerFactory;
 
-    private Ibatis2MyBatis() {
+    private Ibatis2MyBatis(final int threadPoolSize) {
+        this.executors = Executors.newFixedThreadPool(threadPoolSize);
         this.stylesheet = new StreamSource(this.getClass().getResource("sqlMap2mapper.xslt").toString());
 
         this.saxTransformerFactory = TransformerFactory.newInstance();
@@ -83,7 +84,7 @@ public final class Ibatis2MyBatis {
 
         config.getDest().mkdirs();
 
-        Ibatis2MyBatis ibatis2MyBatis = new Ibatis2MyBatis();
+        Ibatis2MyBatis ibatis2MyBatis = new Ibatis2MyBatis(config.getThreads());
         ibatis2MyBatis.transform(config.getSource(), config.getDest());
     }
 

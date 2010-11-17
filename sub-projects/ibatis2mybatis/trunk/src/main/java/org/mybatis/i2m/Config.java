@@ -26,22 +26,28 @@ import com.beust.jcommander.Parameter;
 public final class Config {
 
     @Parameter(
-            names = { "-s", "--source" },
-            description = "The XML Sql Map source dir",
-            converter = FileConverter.class
+        names = { "-s", "--source" },
+        description = "The XML Sql Map source dir",
+        converter = FileConverter.class
     )
     private File source;
 
     @Parameter(
-            names = { "-d", "--dest" },
-            description = "The XML Mapper destination dir",
-            converter = FileConverter.class
+        names = { "-d", "--dest" },
+        description = "The XML Mapper destination dir",
+        converter = FileConverter.class
     )
     private File dest;
 
     @Parameter(
-            names = { "-h", "--help" },
-            description = "Prints this usage message"
+        names = { "-T", "--threads" },
+        description = "The XML Mapper destination dir"
+    )
+    private int threads = 1;
+
+    @Parameter(
+        names = { "-h", "--help" },
+        description = "Prints this usage message"
     )
     private boolean help;
 
@@ -59,6 +65,14 @@ public final class Config {
 
     public void setDest(File dest) {
         this.dest = dest;
+    }
+
+    public int getThreads() {
+        return this.threads;
+    }
+
+    public void setThreads(int threads) {
+        this.threads = threads;
     }
 
     public void setHelp(boolean help) {
