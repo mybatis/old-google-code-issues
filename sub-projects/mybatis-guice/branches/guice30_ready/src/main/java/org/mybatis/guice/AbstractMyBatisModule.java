@@ -27,6 +27,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Binder;
 import com.google.inject.Scopes;
 import com.google.inject.matcher.Matchers;
+import com.google.inject.util.Jsr330;
 
 /**
  *
@@ -66,7 +67,9 @@ abstract class AbstractMyBatisModule extends AbstractModule {
     }
 
     private static <T> void bindMapper(Binder binder, Class<T> mapperType) {
-        binder.bind(mapperType).toProvider(new MapperProvider<T>(mapperType)).in(Scopes.SINGLETON);
+        MapperProvider<T> mapperProvider = new MapperProvider<T>(mapperType);
+        binder.requestInjection(mapperProvider);
+        binder.bind(mapperType).toProvider(Jsr330.guicify(mapperProvider)).in(Scopes.SINGLETON);
     }
 
 }
