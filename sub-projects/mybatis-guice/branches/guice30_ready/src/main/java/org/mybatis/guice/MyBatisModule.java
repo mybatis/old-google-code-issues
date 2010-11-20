@@ -43,6 +43,7 @@ import org.mybatis.guice.datasource.builtin.UnpooledDataSourceProvider;
 import org.mybatis.guice.environment.EnvironmentProvider;
 import org.mybatis.guice.session.SqlSessionFactoryProvider;
 
+import com.google.inject.Binder;
 import com.google.inject.Module;
 import com.google.inject.Provider;
 import com.google.inject.Scopes;
@@ -148,7 +149,9 @@ public final class MyBatisModule extends AbstractMyBatisModule {
             }
         });
         this.bind(ObjectFactory.class).to(this.objectFactoryType).in(Scopes.SINGLETON);
+
         this.bind(SqlSessionFactory.class).toProvider(SqlSessionFactoryProvider.class);
+        bindToConstructor(this.binder(), SqlSessionFactoryProvider.class, Configuration.class);
 
         // optional bindings
 
@@ -178,6 +181,14 @@ public final class MyBatisModule extends AbstractMyBatisModule {
         if (!this.mapperClasses.isEmpty()) {
             this.bind(new TypeLiteral<Set<Class<?>>>() {}).annotatedWith(Mappers.class).toInstance(this.mapperClasses);
             bindMappers(this.binder(), this.mapperClasses);
+        }
+    }
+
+    private static <T> void bindToConstructor(Binder binder, Class<T> type, Class<?>...argumentsType) {
+        try {
+            binder.bind(type).toConstructor(type.getConstructor(argumentsType));
+        } catch (Exception e) {
+            binder.addError(e);
         }
     }
 
