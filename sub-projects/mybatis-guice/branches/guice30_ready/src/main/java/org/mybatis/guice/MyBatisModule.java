@@ -137,7 +137,9 @@ public final class MyBatisModule extends AbstractMyBatisModule {
         this.bind(DataSource.class).toProvider(this.dataSourceProviderType);
         this.bind(TransactionFactory.class).to(this.transactionFactoryType).in(Scopes.SINGLETON);
         this.bind(Environment.class).toProvider(EnvironmentProvider.class);
+
         this.bind(Configuration.class).toProvider(ConfigurationProvider.class);
+        bindToConstructor(this.binder(), ConfigurationProvider.class, Environment.class);
         this.bindListener(Matchers.only(new TypeLiteral<ConfigurationProvider>(){}), new TypeListener() {
             public <I> void hear(TypeLiteral<I> injectableType, TypeEncounter<I> encounter) {
                 encounter.register(new InjectionListener<I>() {
