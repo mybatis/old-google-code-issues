@@ -17,6 +17,7 @@ package org.mybatis.guice;
 
 import java.util.Set;
 
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionManager;
 import org.mybatis.guice.mappers.MapperProvider;
 import org.mybatis.guice.session.SqlSessionManagerProvider;
@@ -42,11 +43,20 @@ abstract class AbstractMyBatisModule extends AbstractModule {
     protected void configure() {
         // sql session manager
         this.bind(SqlSessionManager.class).toProvider(SqlSessionManagerProvider.class).asEagerSingleton();
+        bindToConstructor(this.binder(), SqlSessionManagerProvider.class, SqlSessionFactory.class);
 
         // transactional interceptor
         TransactionalMethodInterceptor interceptor = new TransactionalMethodInterceptor();
         this.requestInjection(interceptor);
         this.bindInterceptor(Matchers.any(), Matchers.annotatedWith(Transactional.class), interceptor);
+    }
+
+    protected static <T> void bindToConstructor(Binder binder, Class<T> type, Class<?>...argumentsType) {
+        try {
+            binder.bind(type).toConstructor(type.getConstructor(argumentsType));
+        } catch (Exception e) {
+            binder.addError(e);
+        }
     }
 
     /**
