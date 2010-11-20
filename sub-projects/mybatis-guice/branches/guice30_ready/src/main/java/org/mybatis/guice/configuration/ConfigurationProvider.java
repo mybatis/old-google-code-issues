@@ -20,6 +20,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import javax.inject.Provider;
+import javax.inject.Singleton;
+
 import org.apache.ibatis.executor.ErrorContext;
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.plugin.Interceptor;
@@ -28,12 +31,12 @@ import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.type.TypeHandler;
 
 import com.google.inject.Inject;
-import com.google.inject.Provider;
-import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 
 /**
  * Provides the myBatis Configuration.
+ *
+ * WARNING this class is not 100% JSR330'ed.
  *
  * @version $Id$
  */
