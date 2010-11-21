@@ -15,18 +15,20 @@
  */
 package org.mybatis.guice.environment;
 
+import javax.inject.Inject;
+import javax.inject.Provider;
+import javax.inject.Singleton;
 import javax.sql.DataSource;
 
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.transaction.TransactionFactory;
 
-import com.google.inject.Inject;
-import com.google.inject.Provider;
-import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 
 /**
  * Provides the myBatis Environment.
+ *
+ * WARNING this class is not 100% JSR330'ed.
  *
  * @version $Id$
  */
@@ -36,27 +38,33 @@ public final class EnvironmentProvider implements Provider<Environment> {
     /**
      * The Environment reference.
      */
-    private final Environment environment;
-
-    /**
-     * Creates a new myBatis Environment Provider.
-     *
-     * @param id the environment id.
-     * @param transactionFactory the myBatis TransactionFactory.
-     * @param dataSource the DataSource.
-     */
     @Inject
-    public EnvironmentProvider(@Named("mybatis.environment.id") final String id,
-            final TransactionFactory transactionFactory,
-            final DataSource dataSource) {
-        this.environment = new Environment(id, transactionFactory, dataSource);
+    @Named("mybatis.environment.id")
+    private String id;
+
+    @Inject
+    private TransactionFactory transactionFactory;
+
+    @Inject
+    private DataSource dataSource;
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setTransactionFactory(TransactionFactory transactionFactory) {
+        this.transactionFactory = transactionFactory;
+    }
+
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 
     /**
      * {@inheritDoc}
      */
     public Environment get() {
-        return this.environment;
+        return new Environment(this.id, this.transactionFactory, this.dataSource);
     }
 
 }
