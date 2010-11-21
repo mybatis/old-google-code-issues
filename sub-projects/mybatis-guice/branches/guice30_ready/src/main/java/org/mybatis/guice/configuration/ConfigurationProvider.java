@@ -16,6 +16,7 @@
 package org.mybatis.guice.configuration;
 
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.inject.Provider;
@@ -59,7 +60,6 @@ public final class ConfigurationProvider implements Provider<Configuration> {
      *
      * @param environment the needed myBatis Environment.
      */
-    @Inject
     public ConfigurationProvider(final Environment environment) {
         this.configuration = new Configuration(environment);
     }
@@ -71,12 +71,18 @@ public final class ConfigurationProvider implements Provider<Configuration> {
      */
     public void init() {
         try {
-            this.iterate(this.typeAliases.entrySet(), new EachAlias());
-            this.iterate(this.typeHandlers.entrySet(), new EachTypeHandler());
+            this.iterate(this.typeAliases, new EachAlias());
+            this.iterate(this.typeHandlers, new EachTypeHandler());
             this.iterate(this.mapperClasses, new EachMapper());
             this.iterate(this.plugins, new EachInterceptor());
         } finally {
             ErrorContext.instance().reset();
+        }
+    }
+
+    private <K, V> void iterate(Map<K, V> map, Each<Entry<K, V>> each) {
+        if (map != null) {
+            this.iterate(map.entrySet(), each);
         }
     }
 
