@@ -29,7 +29,7 @@ public interface UserMapper {
 This interface is added to Spring using a !MapperFactoryBean like the following:
 
 {{{
-<bean id="userMapper" class="org.mybatis.spring.MapperFactoryBean">
+<bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
   <property name="mapperInterface" value="org.mybatis.spring.sample.mapper.UserMapper" />
   <property name="sqlSessionFactory" ref="sqlSessionFactory" />
 </bean>
@@ -57,6 +57,6 @@ If you are using Maven just add the following dependency to your pom.xml:
 <dependency>
   <groupId>org.mybatis</groupId>
   <artifactId>mybatis-spring</artifactId>
-  <version>1.0.0-RC2</version>
+  <version>1.0.0-RC3</version>
 </dependency>
 }}}
