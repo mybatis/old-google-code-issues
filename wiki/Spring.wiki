@@ -42,7 +42,6 @@ Once configured, you can inject mappers directly into your business/service obje
 Calling !MyBatis data methods is now only one line of code:
 
 {{{
-@Service
 public class FooServiceImpl implements FooService {
 
     private UserMapper userMapper;
