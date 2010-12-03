@@ -45,8 +45,11 @@ Calling !MyBatis data methods is now only one line of code:
 @Service
 public class FooServiceImpl implements FooService {
 
-    @Autowired
     private UserMapper userMapper;
+
+    public void setUserMapper(UserMapper userMapper) {
+        this.userMapper = userMapper;
+    }
 
     public User doSomeBusinessStuff(String userId) {
         return this.userMapper.getUser(userId);
