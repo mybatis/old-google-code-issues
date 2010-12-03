@@ -43,7 +43,7 @@ Calling !MyBatis data methods is now only one line of code:
 
 {{{
 @Service
-public class FooServiceMapperImpl implements FooService {
+public class FooServiceImpl implements FooService {
 
     @Autowired
     private UserMapper userMapper;
