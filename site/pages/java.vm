@@ -89,5 +89,27 @@
   </div>
 </div>
 
+<div class="post">
+  <div class="post-bgtop">
+    <div class="post-bgbtm">
+      <h2 class="title">Development Snapshots</h2>
+
+      <p class="byline">
+        Development snapshots are not regularly scheduled, but will be posted here when available:
+      </p>
+
+      <div class="entry">
+        <ul>
+          <li>
+            <a href="https://oss.sonatype.org/content/repositories/snapshots/org/mybatis/">
+              <b>https://oss.sonatype.org/content/repositories/snapshots/org/mybatis/</b>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
