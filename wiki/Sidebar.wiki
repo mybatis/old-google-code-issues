@@ -10,7 +10,7 @@
   * [UserGuides User Guides]
   * [Samples Code Samples]
   * [DocMavenTutorial MyBatis & Maven]
-  * [DocUpgrade3 Upgrading to 3.x]
+  * [DocUpgrade3 From iBATIS 2.x to MyBatis]
   * [DocIbatis2MyBatis From iBATIS 3.x to MyBatis]
   * [Logging]
   * [DocContrib Contribute Documentation]
