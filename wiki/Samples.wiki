@@ -9,6 +9,6 @@ This sample shows how to build a full Web application in a simple way and coding
 Check it out from [http://mybatis.googlecode.com/svn/sub-projects/jpetstore-6/trunk]
 
 ==Contact Manager==
-A simple application build with Stripes, Google Guice and !MyBatis 3 that lets you manage a contact list.
+A simple application built with Stripes, Google Guice and !MyBatis 3 that lets you manage a contact list.
 
 Check it out from [http://mybatis.googlecode.com/svn/sub-projects/contact_manager]
