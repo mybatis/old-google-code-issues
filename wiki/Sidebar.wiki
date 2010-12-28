@@ -8,6 +8,7 @@
 
 === Documentation ===
   * [UserGuides User Guides]
+  * [Samples Code Samples]
   * [DocMavenTutorial MyBatis & Maven]
   * [DocUpgrade3 Upgrading to 3.x]
   * [DocIbatis2MyBatis From iBATIS to MyBatis]
