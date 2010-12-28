@@ -16,6 +16,8 @@ New sqlMap (`*`.map.xml) DTD:
 
     * Root configuration tag `<sqlMapConfig>` is now `<configuration>`
 
+== Settings ==
+
 Within the root configuration tag:
 
 {{{
@@ -39,11 +41,11 @@ and
 
 can be removed, since the use of namespaces has become mandatory.
 
-    * `<typeAlias>`
+== `<typeAlias>` ==
+
+`<typeAlias>` must be moved out of the `<sqlMap>` element to `<configuration><typeAliases></typeAliases></configuration>`
 
 {{{
-<typeAlias> must be moved out of the <sqlMap> element to <configuration><typeAliases></typeAliases></configuration>
-
 <configuration>
     <settings>
     ...
@@ -54,7 +56,7 @@ can be removed, since the use of namespaces has become mandatory.
 </configuration>
 }}}
 
-    * `<transactionManager>` and `<dataSource>`
+== `<transactionManager>` and `<dataSource>` ==
 
 {{{
 <transactionManager type="JDBC" commitRequired="false">
@@ -75,7 +77,7 @@ is now:
 </environments>
 }}}
 
-    * `<sqlMap>`
+== `<sqlMap>` ==
 
 {{{
 <sqlMap resource=... />
@@ -91,12 +93,14 @@ is now:
 </mappers>
 }}}
 
+
 = Mapping =
 
     * The root element `<sqlMap>` is now `<mapper>`
     * The attribute `parameterClass` should be changed to `parameterType`
     * The attribute `resultClass` should be changed to `resultType`
     * The attribute `class` should be changed to `type`
+    * the `columnIndex` attribute does not exist anymore for the `<result>` tag 
     * The `groupBy` attribute has been eliminated.  Here is an example of `groupBy` from a 2.x sqlMap:
     
 {{{
@@ -119,7 +123,8 @@ New:
 </resultMap>
 }}}
 
-	* Nested resultMaps should now be specified using the `<association>` tag:
+== Nested resultMaps ==
+These should now be specified using the `<association>` tag.
 	
 {{{
 <resultMap ...>
@@ -137,16 +142,15 @@ is now:
 </resultMap>
 }}}
 
-    * the `columnIndex` attribute does not exist anymore for the `<result>` tag 
-
-    * Although `<parameterMap>` is deprecated, it can be used as in iBatis 2.  However for versions up to 3.0.3 there is a bug when using `type="map"` and not specifying `javaType` for a parameter.  This will result in
+== `<parameterMap>` ==
+Although this tag is deprecated, it can be used as in iBatis 2.  However for versions up to 3.0.3 there is a bug when using `type="map"` and not specifying `javaType` for a parameter.  This will result in
 {{{
 There is no getter for property named '...' in 'interface java.util.Map'    
 }}}
     
     This should be solved in MyBatis 3.0.4.  For versions 3.0.3 and earlier the workaround is to explicitly specify `javaType`.
     
-    * inline parameters:
+== Inline parameters ==
 
 {{{
 #value#
@@ -158,7 +162,7 @@ is now:
 #{value}
 }}}
 
-    * `jdbcType` changes:
+== `jdbcType` changes ==
 
 {{{
 jdbcType="ORACLECURSOR"
@@ -182,7 +186,7 @@ is now:
 jdbcType="NUMERIC"
 }}}
 
-== Stored Procedures ==
+== Stored procedures ==
 
     * the `<procedure>` tag doesn't exist anymore.  Use `<select>`, `<insert>` or `<update>`. 
 
