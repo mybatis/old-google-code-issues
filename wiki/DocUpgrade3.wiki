@@ -1,4 +1,4 @@
-This page provides some information that is useful when migrating a project from iBatis 2 to MyBatis 3.  It is probably not 100% complete.
+This page provides some information that is useful when migrating a project from iBatis 2 to mybatis 3.  It is probably not 100% complete.
 
 New sqlMapConfig.xml DTD:
 
@@ -148,7 +148,7 @@ Although this tag is deprecated, it can be used as in iBatis 2.  However for ver
 There is no getter for property named '...' in 'interface java.util.Map'    
 }}}
     
-    This should be solved in MyBatis 3.0.4.  For versions 3.0.3 and earlier the workaround is to explicitly specify `javaType`.
+    This should be solved in mybatis 3.0.4.  For versions 3.0.3 and earlier the workaround is to explicitly specify `javaType`.
     
 == Inline parameters ==
 
@@ -247,7 +247,7 @@ Also common is the use of `isEqual`, you can replace this by a similar `<if>` ta
 
 = Java code =
 
-== SqlMapClient == 
+== !SqlMapClient == 
 
     * This class doesn't exist anymore.  Use `SqlSessionFactory` instead (see User Guide).
 	
