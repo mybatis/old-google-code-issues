@@ -1,14 +1,14 @@
-==Samples==
-You can find full Web applications developed with !MyBatis in !MyBatis SVN.
+= Code Samples =
+You can find full Web applications developed with !MyBatis in SVN.
 
-==JPetStore 6==
+== JPetStore 6 ==
 6th version of the JPetStore family. Built on !MyBatis 3, Stripes and Spring.
  
 This sample shows how to build a full Web application in a simple way and coding as less as possible. This version of JPetStore is composed by just 24 java classes.
 
-Check it out from [http://mybatis.googlecode.com/svn/sub-projects/jpetstore-6/trunk]
+Check it out from [http://code.google.com/p/mybatis/source/browse/#svn%2Fsub-projects%2Fjpetstore-6%2Ftrunk]
 
-==Contact Manager==
+== Contact Manager ==
 A simple application built with Stripes, Google Guice and !MyBatis 3 that lets you manage a contact list.
 
-Check it out from [http://mybatis.googlecode.com/svn/sub-projects/contact_manager]
+Check it out from [http://code.google.com/p/mybatis/source/browse/#svn%2Fsub-projects%2Fcontact_manager]
