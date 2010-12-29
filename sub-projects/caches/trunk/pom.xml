@@ -41,6 +41,7 @@
     </scm>
 
     <properties>
+        <findbugs.onlyAnalyze>org.mybatis.caches.*</findbugs.onlyAnalyze>
         <gcu.product>Cache</gcu.product>
     </properties>
 
@@ -58,7 +59,9 @@
     </build>
 
     <dependencies>
-        <!-- Provided dependencies -->
+        <!--
+         | Provided dependencies
+        -->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
@@ -66,7 +69,9 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- Test dependencies -->
+        <!--
+         | Test dependencies
+        -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -74,5 +79,11 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <modules>
+        <module>ehcache</module>
+        <module>hazelcast</module>
+        <module>oscache</module>
+    </modules>
 
 </project>
