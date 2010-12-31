@@ -25,13 +25,13 @@
     <artifactId>mybatis-caches-parent</artifactId>
     <name>MyBatis Caches :: Parent</name>
     <description>3rd part cache implementations integration for MyBatis sql mapping framework.</description>
-    <version>2-SNAPSHOT</version>
+    <version>2</version>
     <packaging>pom</packaging>
 
     <scm>
-        <url>scm:svn:http://mybatis.googlecode.com/svn/sub-projects/caches/trunk</url>
-        <connection>scm:svn:https://mybatis.googlecode.com/svn/sub-projects/caches/trunk</connection>
-        <developerConnection>scm:svn:https://mybatis.googlecode.com/svn/sub-projects/caches/trunk</developerConnection>
+        <url>scm:svn:http://mybatis.googlecode.com/svn/sub-projects/caches/tags/mybatis-caches-parent-2</url>
+        <connection>scm:svn:https://mybatis.googlecode.com/svn/sub-projects/caches/tags/mybatis-caches-parent-2</connection>
+        <developerConnection>scm:svn:https://mybatis.googlecode.com/svn/sub-projects/caches/tags/mybatis-caches-parent-2</developerConnection>
     </scm>
 
     <build>
