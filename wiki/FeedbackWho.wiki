@@ -39,6 +39,7 @@ The following is a list of users who voluntarily listed themselves here as users
 ||	Telecom Italia's OpenID Provider	||	http://openid.alice.it (Italian)	||
 ||	!TrycksaksTorget - personalised printing online	||	http://www.trycksakstorget.se (Swedish)	||
 ||	Goom Radio backend services	||	http://www.goomradio.com (France - USA)	||
+||     Indizen Technologies - Corporate projects	||	http://www.indizen.com (Spain)	||
 
 == Other Projects ==
 
