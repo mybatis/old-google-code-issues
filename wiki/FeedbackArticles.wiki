@@ -4,6 +4,11 @@
 
 The following articles are about iBATIS in name, but are perfectly useful for !MyBatis as well.
 
+= iBATIS 3.X - MyBatis =
+
+    * Using iBatis 3.0 with Scala
+          o http://vasilrem.com/blog/software-development/using-ibatis-3-0-with-scala/
+
 = iBATIS 2.x =
 
     * iBATIS in Action book
