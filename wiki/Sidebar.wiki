@@ -14,10 +14,11 @@
   * [DocIbatis2MyBatis From iBATIS 3.x to MyBatis]
   * [Logging]
   * [DocContrib Contribute Documentation]
+  * [Contribute Get Involved]
 
 === Tools ===
 
-  * [Contribute Get Involved]
+  * [Migration Migration Tool]
   * [Generator MyBatis Generator]
 
 === Extras ===
