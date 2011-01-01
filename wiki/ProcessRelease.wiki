@@ -51,13 +51,13 @@ Using the instructions from the previous step encrypt your Google Code password 
 </settings>
 }}}
 
-=== Configure the MyBatis parent pom ===
-If you're stared a new subproject, please use the already configured _parent pom_ (actually version 4) to avoid replicate the same meta inf in every project:
+=== Configure the !MyBatis parent pom ===
+If you're stared a new subproject, please use the already configured _parent pom_ to avoid replicate the same meta inf in every project:
 {{{
 <parent>
     <groupId>org.mybatis</groupId>
     <artifactId>mybatis-parent</artifactId>
-    <version>4</version>
+    <version>8</version>
 </parent>
 }}}
 
