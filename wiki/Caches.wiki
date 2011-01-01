@@ -2,7 +2,7 @@
 
 = Introduction =
 
-The !MyBatis community supports as well 3rd part cache implementations, follow below which one are currently supported in the 1.0.0-RC1 release:
+The !MyBatis community supports as well 3rd part cache implementations, follow below which one are currently supported in the 1.0.0 release:
 
 
 == Ehcache ==
@@ -17,9 +17,9 @@ Users that want to use Ehcache into their applications, have to download the zip
 <dependencies>
     ...
     <dependency>
-        <groupId>org.mybatis.caches</groupId>
+        <groupId>org.mybatis</groupId>
         <artifactId>mybatis-ehcache</artifactId>
-        <version>1.0.0-RC1</version>
+        <version>1.0.0</version>
     </dependency>
     ...
 </dependencies>
@@ -61,9 +61,9 @@ Users that want to use Hazelcast into their applications, have to download the z
 <dependencies>
     ...
     <dependency>
-        <groupId>org.mybatis.caches</groupId>
+        <groupId>org.mybatis</groupId>
         <artifactId>mybatis-hazelcast</artifactId>
-        <version>1.0.0-RC1</version>
+        <version>1.0.0</version>
     </dependency>
     ...
 </dependencies>
@@ -105,9 +105,9 @@ Users that want to use OSCache into their applications, have to download the zip
 <dependencies>
     ...
     <dependency>
-        <groupId>org.mybatis.caches</groupId>
+        <groupId>org.mybatis</groupId>
         <artifactId>mybatis-oscace</artifactId>
-        <version>1.0.0-RC1</version>
+        <version>1.0.0</version>
     </dependency>
     ...
 </dependencies>
