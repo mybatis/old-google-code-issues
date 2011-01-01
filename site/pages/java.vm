@@ -92,6 +92,87 @@
 <div class="post">
   <div class="post-bgtop">
     <div class="post-bgbtm">
+      <h2 class="title">MyBatis-Google Guice integration module</h2>
+
+      <p class="byline">
+        The perfect glue between the two popular frameworks.
+      </p>
+
+      <div class="entry">
+        <ul>
+          <li>
+            <a href="http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DGuice">
+              <b>Download the MyBatis-Guice module</b>
+            </a>
+          </li>
+          <li>
+            <a href="http://code.google.com/p/mybatis/wiki/Guice">
+              Learn more about the MyBatis-Guice
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="post">
+  <div class="post-bgtop">
+    <div class="post-bgbtm">
+      <h2 class="title">MyBatis-Spring integration module</h2>
+
+      <p class="byline">
+        Integrate your MyBatis code seamlessly with Spring.
+      </p>
+
+      <div class="entry">
+        <ul>
+          <li>
+            <a href="http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DSpring">
+              <b>Download the MyBatis-Guice module</b>
+            </a>
+          </li>
+          <li>
+            <a href="http://code.google.com/p/mybatis/wiki/Spring">
+              Learn more about the MyBatis-Spring
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="post">
+  <div class="post-bgtop">
+    <div class="post-bgbtm">
+      <h2 class="title">Caches</h2>
+
+      <p class="byline">
+        3rd part cache implementations integration.
+      </p>
+
+      <div class="entry">
+        <ul>
+          <li>
+            <a href="http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DCache">
+              <b>Download the MyBatis-Guice module</b>
+            </a>
+          </li>
+          <li>
+            <a href="http://code.google.com/p/mybatis/wiki/Caches">
+              Learn more about the MyBatis-Caches
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="post">
+  <div class="post-bgtop">
+    <div class="post-bgbtm">
       <h2 class="title">Development Snapshots</h2>
 
       <p class="byline">
