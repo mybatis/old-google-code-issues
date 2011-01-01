@@ -70,6 +70,6 @@ Apache Maven users instead can easily adding the following dependency in their P
 <dependency>
   <groupId>org.mybatis</groupId>
   <artifactId>mybatis-guice</artifactId>
-  <version>1.0.0-RC4</version>
+  <version>1.0.0</version>
 </dependency>
 }}}
