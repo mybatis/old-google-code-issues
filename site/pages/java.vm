@@ -173,6 +173,33 @@
 <div class="post">
   <div class="post-bgtop">
     <div class="post-bgbtm">
+      <h2 class="title">Samples</h2>
+
+      <p class="byline">
+        MyBatis 3 code samples.
+      </p>
+
+      <div class="entry">
+        <ul>
+          <li>
+            <a href="http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DSample">
+              <b>Download MyBatis code samples</b>
+            </a>
+          </li>
+          <li>
+            <a href="http://code.google.com/p/mybatis/wiki/Samples">
+              Learn more about the code samples
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="post">
+  <div class="post-bgtop">
+    <div class="post-bgbtm">
       <h2 class="title">Development Snapshots</h2>
 
       <p class="byline">
