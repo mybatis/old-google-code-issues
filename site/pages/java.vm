@@ -129,7 +129,7 @@
         <ul>
           <li>
             <a href="http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DSpring">
-              <b>Download the MyBatis-Guice module</b>
+              <b>Download the MyBatis-Spring module</b>
             </a>
           </li>
           <li>
@@ -156,7 +156,7 @@
         <ul>
           <li>
             <a href="http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DCache">
-              <b>Download the MyBatis-Guice module</b>
+              <b>Download the MyBatis Cache modules</b>
             </a>
           </li>
           <li>
@@ -176,7 +176,7 @@
       <h2 class="title">Samples</h2>
 
       <p class="byline">
-        MyBatis 3 code samples.
+        MyBatis code samples.
       </p>
 
       <div class="entry">
