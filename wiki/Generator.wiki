@@ -15,7 +15,7 @@
 == Get !MyBatis Generator ==
 
 === Google Code ===
-!MyBatis generator is available from the !MyBatis site at http://mybatis.org/java.html  The bundle includes documentation for the generator.
+!MyBatis generator is available from the !MyBatis site at http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DGenerator  The bundle includes documentation for the generator.
 
 === Maven ===
 !MyBatis generator is available in the Maven central repository at:
