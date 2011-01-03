@@ -30,7 +30,7 @@
  * [Spring Spring Integration]
  * [Caches 3rd part caches]
 
-=== Process === 
+=== Process ===
  
  * [ProcessRelease Release Process]
  * [GPGKeys GPG keys]
