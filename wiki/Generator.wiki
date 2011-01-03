@@ -21,4 +21,4 @@
 !MyBatis generator is available in the Maven central repository at:
 ||*Group*||org.mybatis.generator||
 ||*Artifact*||mybatis-generator-maven-plugin||
-||*Version*||1.3.0||
+||*Version*||1.3.1||
