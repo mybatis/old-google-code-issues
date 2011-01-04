@@ -220,10 +220,12 @@ is now:
 is now:
 
 {{{
-<cache flushInterval="86400000" type="LRU"/>
+<cache flushInterval="86400000" eviction="LRU"/>
 }}}
 
-    * the `<flushOnExectute>` tag is replaced by the `flushCache` attribute for the statements and the cache will be used by all select statements by default.
+Note: you can omit `eviction="LRU"` since it is the default.
+
+    * the `<flushOnExecute>` tag is replaced by the `flushCache` attribute for the statements and the cache will be used by all select statements by default.
 
 == Dynamic SQL ==
 
