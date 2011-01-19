@@ -19,7 +19,7 @@ Here is a basic setup of a log4j.xml file to enable logging with !MyBatis.
     <category name="java.sql">
         <priority value="debug" />
     </category>
-    <category name="com.ibatis">
+    <category name="org.apache.ibatis">
         <priority value="debug" />
     </category>
     <root>
