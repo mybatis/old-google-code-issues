@@ -57,6 +57,11 @@ public class FooServiceImpl implements FooService {
 }
 }}}
 
+== More info? ==
+
+Download the pdf manual. You can find it in downloads.
+http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DSpring
+
 == Installation ==
 
 !MyBatis-Spring code and detailed documentation is available at the downloads section. 
