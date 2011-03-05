@@ -2,11 +2,11 @@ This page provides some information that is useful when migrating a project from
 
 = Migration Tool =
 
-There is a tool available in the downloads section that will help you to convert your iBATIS 2.x sqlmap files into MyBatis 3.x xml mapper files.
+There is a tool available in the downloads section that will help you to convert your iBATIS 2.x sqlmap files into !MyBatis 3.x xml mapper files.
 
 Get it from http://mybatis.googlecode.com/files/ibatis2mybatis.zip
 
-Beware that this tool may not do a complete translation. So you will need fix them manually. For that purpose please follow this guide.
+The tool is designed around an xslt transformation and some text replacements packaged in an ant task and tries to deliver a good starting point before the more complex work begins.
 
 = New DTDs =
 
