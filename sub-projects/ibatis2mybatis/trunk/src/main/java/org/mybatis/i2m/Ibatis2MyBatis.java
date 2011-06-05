@@ -158,8 +158,6 @@ public final class Ibatis2MyBatis
             // StatusPrinter should handle this
         }
 
-        config.getDest().mkdirs();
-
         System.out.println( " _  ____         _______  _____   _____   ___    __  __         ____          _    _" );
         System.out.println( "(_)|  _ \\    /\\ |__   __||_   _| / ____| |__ \\  |  \\/  |       |  _ \\        | |  (_)" );
         System.out.println( " _ | |_) |  /  \\   | |     | |  | (___      ) | | \\  / | _   _ | |_) |  __ _ | |_  _  ___ " );
@@ -171,7 +169,9 @@ public final class Ibatis2MyBatis
 
         Ibatis2MyBatis ibatis2MyBatis = new Ibatis2MyBatis( config.getThreads() );
 
-        logger.info( "");
+        config.getDest().mkdirs();
+
+        logger.info( "" );
         logger.info( "------------------------------------------------------------------------" );
         logger.info( "iBATIS 2 MyBatis converting config files from '{}' to '{}'",
                     config.getSource(),
