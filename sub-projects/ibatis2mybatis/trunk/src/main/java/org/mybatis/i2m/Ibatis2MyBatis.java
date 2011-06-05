@@ -83,7 +83,7 @@ public final class Ibatis2MyBatis
         Options config = new Options();
         JCommander commander = new JCommander( config, args );
 
-        if ( config.isHelp() || config.getSource() == null || config.getDest() == null )
+        if ( config.isHelp() )
         {
             commander.usage();
             System.exit( 0 );
