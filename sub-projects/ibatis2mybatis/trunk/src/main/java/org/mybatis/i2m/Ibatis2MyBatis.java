@@ -159,6 +159,15 @@ public final class Ibatis2MyBatis
 
         config.getDest().mkdirs();
 
+        System.out.println( " _  ____         _______  _____   _____   ___    __  __         ____          _    _" );
+        System.out.println( "(_)|  _ \\    /\\ |__   __||_   _| / ____| |__ \\  |  \\/  |       |  _ \\        | |  (_)" );
+        System.out.println( " _ | |_) |  /  \\   | |     | |  | (___      ) | | \\  / | _   _ | |_) |  __ _ | |_  _  ___ " );
+        System.out.println( "| ||  _ <  / /\\ \\  | |     | |   \\___ \\    / /  | |\\/| || | | ||  _ <  / _` || __|| |/ __|" );
+        System.out.println( "| || |_) |/ ____ \\ | |    _| |_  ____) |  / /_  | |  | || |_| || |_) || (_| || |_ | |\\__ \\" );
+        System.out.println( "|_||____//_/    \\_\\|_|   |_____||_____/  |____| |_|  |_| \\__, ||____/  \\__,_| \\__||_||___/" );
+        System.out.println( "                                                          __/ |" );
+        System.out.println( "                                                         |___/" );
+
         Ibatis2MyBatis ibatis2MyBatis = new Ibatis2MyBatis( config.getThreads() );
         ibatis2MyBatis.transform( config.getSource(), config.getDest() );
     }
