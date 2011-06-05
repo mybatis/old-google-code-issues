@@ -23,7 +23,7 @@ import com.beust.jcommander.Parameter;
  * 
  * @version $Id$
  */
-public final class Config {
+public final class Options {
 
     @Parameter(
         names = { "-s", "--source" },

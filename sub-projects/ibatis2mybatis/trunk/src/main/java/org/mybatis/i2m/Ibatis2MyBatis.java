@@ -67,7 +67,7 @@ public final class Ibatis2MyBatis {
     public static void main(String[] args) throws Exception {
         final Logger logger = LoggerFactory.getLogger(Ibatis2MyBatis.class);
 
-        Config config = new Config();
+        Options config = new Options();
         JCommander commander = new JCommander(config, args);
 
         if (config.isHelp()
