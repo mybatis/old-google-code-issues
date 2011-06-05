@@ -16,6 +16,9 @@
 package org.mybatis.i2m;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -77,6 +80,44 @@ public final class Ibatis2MyBatis {
             System.exit(0);
         }
 
+        if (config.isPrintVersion()) {
+            Properties properties = new Properties();
+            InputStream input = Ibatis2MyBatis.class.getClassLoader().getResourceAsStream("META-INF/maven/org.mybatis/ibatis2mybatis/pom.properties");
+
+            if (input != null) {
+                try {
+                    properties.load(input);
+                } catch (IOException e) {
+                    // ignore, just don't load the properties
+                } finally {
+                    try {
+                        input.close();
+                    } catch (IOException e) {
+                        // close quietly
+                    }
+                }
+            }
+
+            System.out.printf("iBATIS to MyBatis %s (%s)%n",
+                    properties.getProperty("version"),
+                    properties.getProperty("build"));
+            System.out.printf("Java version: %s, vendor: %s%n",
+                    System.getProperty("java.version"),
+                    System.getProperty("java.vendor"));
+            System.out.printf("Java home: %s%n", System.getProperty("java.home"));
+            System.out.printf("Default locale: %s_%s, platform encoding: %s%n",
+                    System.getProperty("user.language"),
+                    System.getProperty("user.country"),
+                    System.getProperty("sun.jnu.encoding"));
+            System.out.printf("OS name: \"%s\", version: \"%s\", arch: \"%s\", family: \"%s\"%n",
+                    System.getProperty("os.name"),
+                    System.getProperty("os.version"),
+                    System.getProperty("os.arch"),
+                    getOsFamily());
+
+            System.exit(-1);
+        }
+
         if (!config.getSource().exists()) {
             logger.error("-s --source must be an existing dir/XML file");
             System.exit(-1);
@@ -86,6 +127,37 @@ public final class Ibatis2MyBatis {
 
         Ibatis2MyBatis ibatis2MyBatis = new Ibatis2MyBatis(config.getThreads());
         ibatis2MyBatis.transform(config.getSource(), config.getDest());
+    }
+
+    private static final String getOsFamily() {
+        String osName = System.getProperty("os.name").toLowerCase();
+        String pathSep = System.getProperty("path.separator");
+
+        if (osName.indexOf("windows") != -1) {
+            return "windows";
+        } else if (osName.indexOf("os/2") != -1) {
+            return "os/2";
+        } else if (osName.indexOf("z/os") != -1
+                || osName.indexOf("os/390") != -1) {
+            return "z/os";
+        } else if (osName.indexOf("os/400") != -1) {
+            return "os/400";
+        } else if (pathSep.equals(";")) {
+            return "dos";
+        } else if (osName.indexOf("mac") != -1) {
+            if (osName.endsWith("x")) {
+                return "mac"; // MACOSX
+            }
+            return "unix";
+        } else if (osName.indexOf("nonstop_kernel") != -1) {
+            return "tandem";
+        } else if (osName.indexOf("openvms") != -1) {
+            return "openvms";
+        } else if (pathSep.equals(":")) {
+            return "unix";
+        }
+
+        return "undefined";
     }
 
 }
