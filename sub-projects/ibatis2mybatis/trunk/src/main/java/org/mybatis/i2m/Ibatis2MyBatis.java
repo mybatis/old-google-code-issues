@@ -29,6 +29,10 @@ import javax.xml.transform.stream.StreamSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.classic.joran.JoranConfigurator;
+import ch.qos.logback.core.joran.spi.JoranException;
+
 import com.beust.jcommander.JCommander;
 
 /**
@@ -68,8 +72,6 @@ public final class Ibatis2MyBatis {
     }
 
     public static void main(String[] args) throws Exception {
-        final Logger logger = LoggerFactory.getLogger(Ibatis2MyBatis.class);
-
         Options config = new Options();
         JCommander commander = new JCommander(config, args);
 
@@ -119,8 +121,25 @@ public final class Ibatis2MyBatis {
         }
 
         if (!config.getSource().exists()) {
-            logger.error("-s --source must be an existing dir/XML file");
+            System.out.println("-s --source must be an existing dir/XML file");
             System.exit(-1);
+        }
+
+        // logging stuff
+        final Logger logger = LoggerFactory.getLogger(Ibatis2MyBatis.class);
+
+        // assume SLF4J is bound to logback in the current environment
+        final LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
+
+        try {
+            JoranConfigurator configurator = new JoranConfigurator();
+            configurator.setContext(lc);
+            // the context was probably already configured by default configuration 
+            // rules
+            lc.reset();
+            configurator.doConfigure(Ibatis2MyBatis.class.getClassLoader().getResourceAsStream("logback-config.xml"));
+        } catch (JoranException je) {
+            // StatusPrinter should handle this
         }
 
         config.getDest().mkdirs();
