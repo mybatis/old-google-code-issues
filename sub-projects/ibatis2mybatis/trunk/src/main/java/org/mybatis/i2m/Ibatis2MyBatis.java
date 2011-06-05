@@ -167,9 +167,8 @@ public final class Ibatis2MyBatis
         System.out.println( "                                                          __/ |" );
         System.out.println( "                                                         |___/" );
 
-        Ibatis2MyBatis ibatis2MyBatis = new Ibatis2MyBatis( config.getThreads() );
-
-        config.getDest().mkdirs();
+        long start = System.currentTimeMillis();
+        int exit = 0;
 
         logger.info( "" );
         logger.info( "------------------------------------------------------------------------" );
@@ -179,11 +178,12 @@ public final class Ibatis2MyBatis
         logger.info( "------------------------------------------------------------------------" );
         logger.info( "" );
 
-        long start = System.currentTimeMillis();
-        int exit = 0;
-
         try
         {
+            Ibatis2MyBatis ibatis2MyBatis = new Ibatis2MyBatis( config.getThreads() );
+
+            config.getDest().mkdirs();
+
             ibatis2MyBatis.transform( config.getSource(), config.getDest() );
         }
         catch ( Throwable t )
