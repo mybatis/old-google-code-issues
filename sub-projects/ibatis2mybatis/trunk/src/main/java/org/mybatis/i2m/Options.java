@@ -47,9 +47,15 @@ public final class Options {
 
     @Parameter(
         names = { "-h", "--help" },
-        description = "Prints this usage message"
+        description = "Display help information."
     )
     private boolean help;
+
+    @Parameter(
+        names = { "-v", "--version" },
+        description = "Display version information."
+    )
+    private boolean printVersion;
 
     public File getSource() {
         return source;
@@ -81,6 +87,16 @@ public final class Options {
 
     public boolean isHelp() {
         return help;
+    }
+
+    public boolean isPrintVersion()
+    {
+        return printVersion;
+    }
+
+    public void setPrintVersion( boolean printVersion )
+    {
+        this.printVersion = printVersion;
     }
 
 }
