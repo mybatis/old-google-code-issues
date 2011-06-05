@@ -18,6 +18,7 @@ package org.mybatis.i2m;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -117,7 +118,7 @@ public final class Ibatis2MyBatis
                 }
             }
 
-            System.out.printf( "iBATIS to MyBatis %s (%s)%n", properties.getProperty( "version" ),
+            System.out.printf( "iBATIS 2 MyBatis %s (%s)%n", properties.getProperty( "version" ),
                                properties.getProperty( "build" ) );
             System.out.printf( "Java version: %s, vendor: %s%n", System.getProperty( "java.version" ),
                                System.getProperty( "java.vendor" ) );
@@ -169,7 +170,44 @@ public final class Ibatis2MyBatis
         System.out.println( "                                                         |___/" );
 
         Ibatis2MyBatis ibatis2MyBatis = new Ibatis2MyBatis( config.getThreads() );
-        ibatis2MyBatis.transform( config.getSource(), config.getDest() );
+
+        logger.info( "");
+        logger.info( "------------------------------------------------------------------------" );
+        logger.info( "iBATIS 2 MyBatis converting config files from '{}' to '{}'",
+                    config.getSource(),
+                    config.getDest() );
+        logger.info( "------------------------------------------------------------------------" );
+        logger.info( "" );
+
+        long start = System.currentTimeMillis();
+        int exit = 0;
+
+        try
+        {
+            ibatis2MyBatis.transform( config.getSource(), config.getDest() );
+        }
+        catch ( Throwable t )
+        {
+            logger.error( "An error occurred during the migration process", t );
+            exit = -1;
+        }
+        finally
+        {
+            logger.info( "" );
+            logger.info( "------------------------------------------------------------------------" );
+            logger.info( "iBATIS 2 MyBatis {}", ( exit < 0 ) ? "FAILURE" : "SUCCESS" );
+            logger.info( "Total time: {}s", ( ( System.currentTimeMillis() - start ) / 1000 ) );
+            logger.info( "Finished at: {}", new Date() );
+
+            final Runtime runtime = Runtime.getRuntime();
+            final int megaUnit = 1024 * 1024;
+            logger.info( "Final Memory: {}M/{}M", ( runtime.totalMemory() - runtime.freeMemory() ) / megaUnit,
+                         runtime.totalMemory() / megaUnit );
+
+            logger.info( "------------------------------------------------------------------------" );
+
+            System.exit( exit );
+        }
     }
 
     private static final String getOsFamily()
