@@ -20,13 +20,15 @@ import java.io.File;
 import com.beust.jcommander.IStringConverter;
 
 /**
- * 
  * @version $Id$
  */
-public final class FileConverter implements IStringConverter<File> {
+public final class FileConverter
+    implements IStringConverter<File>
+{
 
-    public File convert(String value) {
-        return new File(value);
+    public File convert( String value )
+    {
+        return new File( value );
     }
 
 }
