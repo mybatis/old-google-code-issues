@@ -27,12 +27,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
  * @version $Id$
  */
-final class XsltProcessor implements Runnable {
+final class XsltProcessor
+    implements Runnable
+{
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(XsltProcessor.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger( XsltProcessor.class );
 
     private static final String LOG_INFO_PATTERN = "Converted {} into {}";
 
@@ -48,22 +49,27 @@ final class XsltProcessor implements Runnable {
 
     private final Transformer transformer;
 
-    public XsltProcessor(File source, File dest, Transformer transformer) {
+    public XsltProcessor( File source, File dest, Transformer transformer )
+    {
         this.source = source;
 
-        this.xmlSource = new StreamSource(source);
+        this.xmlSource = new StreamSource( source );
         this.dest = dest;
 
-        this.outputTarget = new StreamResult(dest);
+        this.outputTarget = new StreamResult( dest );
         this.transformer = transformer;
     }
 
-    public void run() {
-        try {
-            this.transformer.transform(this.xmlSource, this.outputTarget);
-            LOGGER.info(LOG_INFO_PATTERN, this.source, this.dest);
-        } catch (Exception e) {
-            LOGGER.error(LOG_ERROR_PATTERN, new Object[] {this.source, this.dest, e.getMessage()});
+    public void run()
+    {
+        try
+        {
+            this.transformer.transform( this.xmlSource, this.outputTarget );
+            LOGGER.info( LOG_INFO_PATTERN, this.source, this.dest );
+        }
+        catch ( Exception e )
+        {
+            LOGGER.error( LOG_ERROR_PATTERN, new Object[] { this.source, this.dest, e.getMessage() } );
         }
     }
 

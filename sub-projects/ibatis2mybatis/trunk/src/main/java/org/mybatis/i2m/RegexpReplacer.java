@@ -19,10 +19,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * 
  * @version $Id$
  */
-public final class RegexpReplacer {
+public final class RegexpReplacer
+{
 
     private static final RegexpReplacer INSTANCE = new RegexpReplacer();
 
@@ -34,38 +34,43 @@ public final class RegexpReplacer {
 
     private static final int PROPERTY_JDBC_TYPE = 3;
 
-    public static String replace(String text) {
-        return INSTANCE.covertProperties(text);
+    public static String replace( String text )
+    {
+        return INSTANCE.covertProperties( text );
     }
 
-    private final Pattern propertyPattern = Pattern.compile("([\\$#])([a-zA-Z0-9.\\[\\]_]+)(?::([A-Z]+))?\\1", Pattern.MULTILINE);
+    private final Pattern propertyPattern = Pattern.compile( "([\\$#])([a-zA-Z0-9.\\[\\]_]+)(?::([A-Z]+))?\\1",
+                                                             Pattern.MULTILINE );
 
     /**
      * This class can't be instantiated
      */
-    private RegexpReplacer() {
+    private RegexpReplacer()
+    {
         // do nothing
     }
 
-    private String covertProperties(String text) {
-        Matcher matcher = this.propertyPattern.matcher(text);
+    private String covertProperties( String text )
+    {
+        Matcher matcher = this.propertyPattern.matcher( text );
 
         StringBuffer result = new StringBuffer();
-        while (matcher.find()) {
-            StringBuilder replacement = new StringBuilder(Matcher.quoteReplacement(matcher.group(PROPERTY_MARKER)))
-                    .append('{')
-                    .append(matcher.group(PROPERTY_NAME));
+        while ( matcher.find() )
+        {
+            StringBuilder replacement =
+                new StringBuilder( Matcher.quoteReplacement( matcher.group( PROPERTY_MARKER ) ) ).append( '{' ).append( matcher.group( PROPERTY_NAME ) );
 
-            String jdbcType = matcher.group(PROPERTY_JDBC_TYPE);
-            if (jdbcType != null && jdbcType.length() != 0) {
-                replacement.append(JDBC_TYPE_PREFIX).append(jdbcType);
+            String jdbcType = matcher.group( PROPERTY_JDBC_TYPE );
+            if ( jdbcType != null && jdbcType.length() != 0 )
+            {
+                replacement.append( JDBC_TYPE_PREFIX ).append( jdbcType );
             }
 
-            replacement.append('}');
+            replacement.append( '}' );
 
-            matcher.appendReplacement(result, replacement.toString());
+            matcher.appendReplacement( result, replacement.toString() );
         }
-        matcher.appendTail(result);
+        matcher.appendTail( result );
 
         return result.toString();
     }

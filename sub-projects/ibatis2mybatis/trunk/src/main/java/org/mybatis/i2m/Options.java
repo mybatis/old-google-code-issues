@@ -20,72 +20,63 @@ import java.io.File;
 import com.beust.jcommander.Parameter;
 
 /**
- * 
  * @version $Id$
  */
-public final class Options {
+public final class Options
+{
 
-    @Parameter(
-        names = { "-s", "--source" },
-        description = "The XML Sql Map source dir",
-        converter = FileConverter.class
-    )
+    @Parameter( names = { "-s", "--source" }, description = "The XML Sql Map source dir", converter = FileConverter.class )
     private File source;
 
-    @Parameter(
-        names = { "-d", "--dest" },
-        description = "The XML Mapper destination dir",
-        converter = FileConverter.class
-    )
+    @Parameter( names = { "-d", "--dest" }, description = "The XML Mapper destination dir", converter = FileConverter.class )
     private File dest;
 
-    @Parameter(
-        names = { "-T", "--threads" },
-        description = "The XML Mapper destination dir"
-    )
+    @Parameter( names = { "-T", "--threads" }, description = "The XML Mapper destination dir" )
     private int threads = 1;
 
-    @Parameter(
-        names = { "-h", "--help" },
-        description = "Display help information."
-    )
+    @Parameter( names = { "-h", "--help" }, description = "Display help information." )
     private boolean help;
 
-    @Parameter(
-        names = { "-v", "--version" },
-        description = "Display version information."
-    )
+    @Parameter( names = { "-v", "--version" }, description = "Display version information." )
     private boolean printVersion;
 
-    public File getSource() {
+    public File getSource()
+    {
         return source;
     }
 
-    public void setSource(File source) {
+    public void setSource( File source )
+    {
         this.source = source;
     }
 
-    public File getDest() {
+    public File getDest()
+    {
         return dest;
     }
 
-    public void setDest(File dest) {
+    public void setDest( File dest )
+    {
         this.dest = dest;
     }
 
-    public int getThreads() {
+    public int getThreads()
+    {
         return this.threads;
     }
 
-    public void setThreads(int threads) {
+    public void setThreads( int threads )
+    {
         this.threads = threads;
     }
 
-    public void setHelp(boolean help) {
+    public void setHelp( boolean help )
+    {
         this.help = help;
     }
 
-    public boolean isHelp() {
+    public boolean isHelp()
+    {
         return help;
     }
 

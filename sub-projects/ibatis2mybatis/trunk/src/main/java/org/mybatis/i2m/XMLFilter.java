@@ -19,15 +19,17 @@ import java.io.File;
 import java.io.FileFilter;
 
 /**
- * 
  * @version $Id$
  */
-final class XMLFilter implements FileFilter {
+final class XMLFilter
+    implements FileFilter
+{
 
     private final String XML_EXT = ".xml";
 
-    public boolean accept(File pathname) {
-        return pathname.getName().endsWith(XML_EXT);
+    public boolean accept( File pathname )
+    {
+        return pathname.getName().endsWith( XML_EXT );
     }
 
 }
