@@ -62,7 +62,7 @@ public class FooServiceImpl implements FooService {
 Download the pdf manual. You can find it in downloads.
 http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DSpring
 
-And have a look at JPetStore 6 that is built on top on !MyBatis, Spring and Stripes:
+And have a look at JPetStore 6 that is built on top of !MyBatis, Spring and Stripes:
 http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DSample
 
 == Installation ==
