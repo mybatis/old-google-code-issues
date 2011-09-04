@@ -1,9 +1,9 @@
-
 ==Current Guides==
 You can find all of the current user guides in the downloads which can be found [http://code.google.com/p/mybatis/downloads/list?can=3&q=Docs here].
 
 ==Available Languages==
   * English
+  * Korean
   * Simplified Chinese
 
 If you have the ability and desire to translate into other languages we would love to add more to the above list.
