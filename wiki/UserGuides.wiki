@@ -3,8 +3,9 @@ You can find all of the current user guides in the downloads which can be found 
 
 ==Available Languages==
   * English
-  * Korean
-  * Simplified Chinese
+  * 한국의 (Korean)
+  * 中国 (Simplified Chinese)
+  * Español (Spanish)
 
 If you have the ability and desire to translate into other languages we would love to add more to the above list.
 
