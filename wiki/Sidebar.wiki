@@ -30,6 +30,10 @@
  * [Spring Spring Integration]
  * [Caches 3rd part caches]
 
+=== Related Projects ===
+
+  * [MyBatis Eclipse Editor]
+
 === Process ===
 
  * [ProcessRelease Release Process]
