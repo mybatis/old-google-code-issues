@@ -32,7 +32,7 @@
 
 === Related Projects ===
 
-  * [Related Other MyBatis related projects]
+  * [Related MyBatis related projects]
 
 === Process ===
 
