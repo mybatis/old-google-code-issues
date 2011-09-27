@@ -32,7 +32,7 @@
 
 === Related Projects ===
 
-  * [mybatiseditor MyBatis Eclipse Editor]
+  * [Related Other MyBatis related projects]
 
 === Process ===
 
