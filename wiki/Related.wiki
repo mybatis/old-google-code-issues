@@ -1,0 +1,12 @@
+#summary Related 3rd party projects
+
+= Introduction =
+
+The following is a list of external projects related to !MyBatis. 
+
+Please let us know if you are developing a tool or a plugin, so we can add it to this list. 
+
+= External projects =
+
+|| !MyBatis related projects ||	Description || Site ||
+|| !MyBatisEditor || !MyBatis Eclipse Plugin || http://code.google.com/a/eclipselabs.org/p/mybatiseditor/ ||
