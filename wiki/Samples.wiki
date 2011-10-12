@@ -15,13 +15,17 @@ Steps to run JPetStore 6:
  # Run Eclipse
  # Go to Help/Eclipse Marketplace
  # Add m2e plugin to Eclipse (maven)
+ # Add m2e-wtp plugin to Eclipse (maven for wtp)
  # Add subclipse plugin to Eclipse (subversion)
  # Download and unzip Tomcat 7
+ # Go to SVN tab.
  # In SVN add a new repository http://mybatis.googlecode.com/svn
- # In SVN go to sub-projects/jpetstore-6/trunk/
+ # In SVN go to sub-projects/jpetstore-6/trunk/ 
  # Mouse right click and select "Check out", name the project as  "jpetstore"
- # Go to projects. Right click on jpetstore project and select "run on server"
- # Select Tomcat 7 Server and set your installation directory
+ # Go to Java EE tab.
+ # Right click on jpetstore project and select "Configure/Convert to Maven Project" 
+ # Right click on jpetstore project and select "Run on server"
+ # Select Tomcat 7 Server and set your tomcat directory
  # JPetStore home page should be shown
 
 == Contact Manager ==
