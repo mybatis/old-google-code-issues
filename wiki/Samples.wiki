@@ -9,11 +9,12 @@ This sample shows how to build a full Web application in a simple way and coding
 Get it from [http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DSample]
 
 Steps to run JPetStore 6:
- # Install a Subversion client
- # Install Eclipse
+ # Download and install a JDK
+ # Download and install a Subversion client
+ # Download and install Eclipse
  # Run Eclipse
+ # Go to Help/Eclipse Marketplace
  # Add m2e plugin to Eclipse (maven)
- # Add m2e-wtp plugin to Eclipse
  # Add subclipse plugin to Eclipse (subversion)
  # Download and unzip Tomcat 7
  # In SVN add a new repository http://mybatis.googlecode.com/svn
