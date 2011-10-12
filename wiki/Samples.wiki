@@ -11,13 +11,13 @@ Get it from [http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DS
 Steps to run JPetStore 6:
  # Download and install a JDK
  # Download and install a Subversion client
- # Download and install Eclipse
+ # Download and upzip Eclipse
+ # Download and unzip Tomcat 7
  # Run Eclipse
  # Go to Help/Eclipse Marketplace
  # Add m2e plugin to Eclipse (maven)
  # Add m2e-wtp plugin to Eclipse (maven for wtp)
  # Add subclipse plugin to Eclipse (subversion)
- # Download and unzip Tomcat 7
  # Go to SVN tab.
  # In SVN add a new repository http://mybatis.googlecode.com/svn
  # In SVN go to sub-projects/jpetstore-6/trunk/ 
