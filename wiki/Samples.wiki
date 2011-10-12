@@ -8,6 +8,21 @@ This sample shows how to build a full Web application in a simple way and coding
 
 Get it from [http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DSample]
 
+Steps to run JPetStore 6:
+ # Install a Subversion client
+ # Install Eclipse
+ # Run Eclipse
+ # Add m2e plugin to Eclipse (maven)
+ # Add m2e-wtp plugin to Eclipse
+ # Add subclipse plugin to Eclipse (subversion)
+ # Download and unzip Tomcat 7
+ # In SVN add a new repository http://mybatis.googlecode.com/svn
+ # In SVN go to sub-projects/jpetstore-6/trunk/
+ # Mouse right click and select "Check out", name the project as  "jpetstore"
+ # Go to projects. Right click on jpetstore project, right click and select "run on server"
+ # Select Tomcat 7 Server and set your installation directory
+ # JPetStore home page should be shown
+
 == Contact Manager ==
 A simple application built with Stripes, Google Guice and !MyBatis 3 that lets you manage a contact list.
 
