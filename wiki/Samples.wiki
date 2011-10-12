@@ -11,7 +11,7 @@ Get it from [http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DS
 Steps to run JPetStore 6:
  # Download and install a JDK
  # Download and install a Subversion client
- # Download and upzip Eclipse
+ # Download and unzip Eclipse
  # Download and unzip Tomcat 7
  # Run Eclipse
  # Go to Help/Eclipse Marketplace
@@ -25,7 +25,7 @@ Steps to run JPetStore 6:
  # Go to Java EE tab.
  # Right click on jpetstore project and select "Configure/Convert to Maven Project" 
  # Right click on jpetstore project and select "Run on server"
- # Select Tomcat 7 Server and set your tomcat directory
+ # Select Apache Tomcat 7 Server and set your tomcat directory
  # JPetStore home page should be shown
 
 == Contact Manager ==
