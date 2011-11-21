@@ -18,6 +18,7 @@
 
   * [DocContrib Contribute Documentation]
   * [Contribute Get Involved]
+  * [CLA Contributor License Agreements]
 
 === Tools ===
 
