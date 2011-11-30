@@ -83,7 +83,7 @@ public class MigratorTest {
     try {
       File f = getExampleDir();
 
-      safeMigratorMain(args("--path=" + f.getAbsolutePath(), "bootstrap", "--env=development"));
+      safeMigratorMain(args("--path=" + f.getAbsolutePath(), "--env=development", "bootstrap"));
       assertTrue(buffer.toString().contains("--  Bootstrap.sql"));
       buffer.clear();
 

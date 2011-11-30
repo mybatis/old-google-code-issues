@@ -1,6 +1,5 @@
 package org.apache.ibatis.migration.commands;
 
-import java.io.File;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
@@ -10,14 +9,23 @@ import org.apache.ibatis.jdbc.SqlRunner;
 import org.apache.ibatis.migration.Change;
 import org.apache.ibatis.migration.MigrationException;
 import org.apache.ibatis.migration.MigrationReader;
+import org.apache.ibatis.migration.MigrationsOptions;
 
+import com.beust.jcommander.Parameter;
+import com.beust.jcommander.Parameters;
+
+@Parameters( commandDescription = "Undoes migrations applied to the database. ONE by default or 'n' specified." )
 public class DownCommand extends BaseCommand {
 
-  public DownCommand(File repository, String environment, boolean force) {
-    super(repository, environment, force);
+  @Parameter( description = "[n]" )
+  public int limit;
+
+  public DownCommand(MigrationsOptions options)
+  {
+    super(options);
   }
 
-  public void execute(String... params) {
+  public void execute() {
     try {
       Change lastChange = getLastAppliedChange();
       List<Change> migrations = getMigrations();
@@ -25,7 +33,7 @@ public class DownCommand extends BaseCommand {
       int steps = 0;
       for (Change change : migrations) {
         if (change.getId().equals(lastChange.getId())) {
-          printStream.println(horizontalLine("Undoing: " + change.getFilename(), 80));
+          options.printStream.println(horizontalLine("Undoing: " + change.getFilename(), 80));
           ScriptRunner runner = getScriptRunner();
           try {
             runner.runScript(new MigrationReader(scriptFileReader(scriptFile(change.getFilename())), true, environmentProperties()));
@@ -35,11 +43,10 @@ public class DownCommand extends BaseCommand {
           if (changelogExists()) {
             deleteChange(change);
           } else {
-            printStream.println("Changelog doesn't exist. No further migrations will be undone (normal for the last migration).");
+            options.printStream.println("Changelog doesn't exist. No further migrations will be undone (normal for the last migration).");
           }
-          printStream.println();
+          options.printStream.println();
           steps++;
-          final int limit = getStepCountParameter(1, params);
           if (steps == limit) {
             break;
           }

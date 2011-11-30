@@ -1,34 +1,40 @@
 package org.apache.ibatis.migration.commands;
 
-import org.apache.ibatis.migration.Change;
-import org.apache.ibatis.migration.MigrationException;
-import org.apache.ibatis.migration.MigrationReader;
-
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
-import java.util.StringTokenizer;
 
+import org.apache.ibatis.migration.Change;
+import org.apache.ibatis.migration.MigrationException;
+import org.apache.ibatis.migration.MigrationReader;
+import org.apache.ibatis.migration.MigrationsOptions;
+
+import com.beust.jcommander.Parameter;
+import com.beust.jcommander.Parameters;
+
+@Parameters( commandDescription = "Generates a delta migration script from version v1 to v2 (undo if v1 > v2)." )
 public class ScriptCommand extends BaseCommand {
 
-  public ScriptCommand(File repository, String environment, boolean force) {
-    super(repository, environment, force);
+  @Parameter(
+    arity = 2,
+    description = "<v1> <v2>",
+    converter = VersionConverterValidator.class,
+    validateWith = VersionConverterValidator.class
+  )
+  public List<BigDecimal> versions;
+
+  public ScriptCommand(MigrationsOptions options)
+  {
+    super(options);
   }
 
-  public void execute(String... sparams) {
+  public void execute() {
     try {
-      if (sparams == null || sparams.length < 1 || sparams[0] == null) {
-        throw new MigrationException("The script command requires a range of versions from v1 - v2.");
-      }
-      StringTokenizer parser = new StringTokenizer(sparams[0]);
-      if (parser.countTokens() != 2) {
-        throw new MigrationException("The script command requires a range of versions from v1 - v2.");
-      }
-      BigDecimal v1 = new BigDecimal(parser.nextToken());
-      BigDecimal v2 = new BigDecimal(parser.nextToken());
+      BigDecimal v1 = versions.get( 0 );
+      BigDecimal v2 = versions.get( 1 );
       boolean undo = v1.compareTo(v2) > 0;
       Properties variables = environmentProperties();
       List<Change> migrations = getMigrations();
@@ -38,19 +44,19 @@ public class ScriptCommand extends BaseCommand {
       }
       for (Change change : migrations) {
         if (shouldRun(change, v1, v2)) {
-          printStream.println("-- " + change.getFilename());
+          options.printStream.println("-- " + change.getFilename());
           File file = scriptFile(change.getFilename());
           MigrationReader migrationReader = new MigrationReader(scriptFileReader(file), undo, variables);
           char[] cbuf = new char[1024];
           int l;
           while ((l = migrationReader.read(cbuf)) == cbuf.length) {
-            printStream.print(new String(cbuf, 0, l));
+            options.printStream.print(new String(cbuf, 0, l));
           }
-          printStream.print(new String(cbuf, 0, l - 1));
-          printStream.println();
-          printStream.println();
-          printStream.println(undo ? generateVersionDelete(change) : generateVersionInsert(change));
-          printStream.println();
+          options.printStream.print(new String(cbuf, 0, l - 1));
+          options.printStream.println();
+          options.printStream.println();
+          options.printStream.println(undo ? generateVersionDelete(change) : generateVersionInsert(change));
+          options.printStream.println();
         }
       }
     } catch (IOException e) {
