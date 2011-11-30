@@ -1,25 +1,30 @@
 package org.apache.ibatis.migration.commands;
 
-import org.apache.ibatis.migration.MigrationException;
-
 import java.io.File;
 import java.util.Properties;
 
+import org.apache.ibatis.migration.MigrationException;
+import org.apache.ibatis.migration.MigrationsOptions;
+
+import com.beust.jcommander.Parameters;
+
+@Parameters( commandDescription = "Creates (if necessary) and initializes a migration path." )
 public class InitializeCommand extends BaseCommand {
 
-  public InitializeCommand(File repository, String environment, boolean force) {
-    super(repository, environment, force);
+  public InitializeCommand(MigrationsOptions options)
+  {
+    super(options);
   }
 
-  public void execute(String... args) {
-    printStream.println("Initializing: " + basePath);
+  public void execute() {
+    options.printStream.println("Initializing: " + options.basePath);
 
-    createDirectoryIfNecessary(basePath);
-    ensureDirectoryIsEmpty(basePath);
+    createDirectoryIfNecessary(options.basePath);
+    ensureDirectoryIsEmpty(options.basePath);
 
-    createDirectoryIfNecessary(envPath);
-    createDirectoryIfNecessary(scriptPath);
-    createDirectoryIfNecessary(driverPath);
+    createDirectoryIfNecessary(options.envPath);
+    createDirectoryIfNecessary(options.scriptPath);
+    createDirectoryIfNecessary(options.driverPath);
 
     copyResourceTo("org/apache/ibatis/migration/template_README", baseFile("README"));
     copyResourceTo("org/apache/ibatis/migration/template_environment.properties", environmentFile());
@@ -31,8 +36,8 @@ public class InitializeCommand extends BaseCommand {
             setProperty("description", "First migration.");
           }
         });
-    printStream.println("Done!");
-    printStream.println();
+    options.printStream.println("Done!");
+    options.printStream.println();
   }
 
   protected void ensureDirectoryIsEmpty(File path) {
@@ -48,7 +53,7 @@ public class InitializeCommand extends BaseCommand {
 
   protected void createDirectoryIfNecessary(File path) {
     if (!path.exists()) {
-      printStream.println("Creating: " + path.getName());
+      options.printStream.println("Creating: " + path.getName());
       if (!path.mkdirs()) {
         throw new MigrationException("Could not create directory path for an unknown reason. Make sure you have access to the directory.");
       }

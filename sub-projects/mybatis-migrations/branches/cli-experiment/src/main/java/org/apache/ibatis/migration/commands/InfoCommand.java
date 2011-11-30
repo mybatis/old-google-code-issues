@@ -5,18 +5,26 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Properties;
 
+import com.beust.jcommander.Parameters;
+
+@Parameters( commandDescription = "Display build version informations." )
 public final class InfoCommand
     implements Command
 {
 
-    private final PrintStream out;
+    private PrintStream out;
 
-    public InfoCommand( PrintStream out )
+    public void init()
     {
-        this.out = out;
+        // not needed
     }
 
-    public void execute( String... params )
+    public void setPrintStream( PrintStream printStream )
+    {
+        out = printStream;
+    }
+
+    public void execute()
     {
         Properties properties = new Properties();
         InputStream input = getClass().getClassLoader().getResourceAsStream( "META-INF/maven/org.mybatis/mybatis-migrations/pom.properties" );

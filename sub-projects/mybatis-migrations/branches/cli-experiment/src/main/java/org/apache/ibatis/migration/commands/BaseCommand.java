@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
-import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
@@ -32,46 +31,20 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.jdbc.SqlRunner;
 import org.apache.ibatis.migration.Change;
 import org.apache.ibatis.migration.MigrationException;
+import org.apache.ibatis.migration.MigrationsOptions;
 import org.apache.ibatis.parsing.PropertyParser;
 
 public abstract class BaseCommand implements Command {
 
   private static final String DATE_FORMAT = "yyyyMMddHHmmss";
-  protected PrintStream printStream = System.out;
-  protected File basePath;
-  protected File envPath;
-  protected File scriptPath;
-  protected File driverPath;
-  protected String environment;
-  protected String template;
-  protected boolean force;
+
   private ClassLoader driverClassLoader;
 
-  protected BaseCommand(File repository, String environment, boolean force) {
-    this.basePath = repository;
-    this.envPath = subdirectory(repository, "environments");
-    this.scriptPath = subdirectory(repository, "scripts");
-    this.driverPath = subdirectory(repository, "drivers");
-    this.environment = environment;
-    this.force = force;
-  }
+  protected final MigrationsOptions options;
 
-  protected BaseCommand(File repository, String environment, String template, boolean force) {
-    this.basePath = repository;
-    this.envPath = subdirectory(repository, "environments");
-    this.scriptPath = subdirectory(repository, "scripts");
-    this.driverPath = subdirectory(repository, "drivers");
-    this.environment = environment;
-    this.template = template;
-    this.force = force;
-  }
-
-  public PrintStream getPrintStream() {
-    return printStream;
-  }
-
-  public void setPrintStream(PrintStream printStream) {
-    this.printStream = printStream;
+  public BaseCommand(MigrationsOptions options)
+  {
+    this.options = options;
   }
 
   public ClassLoader getDriverClassLoader() {
@@ -87,9 +60,9 @@ public abstract class BaseCommand implements Command {
   }
 
   protected List<Change> getMigrations() {
-    String[] filenames = scriptPath.list();
+    String[] filenames = options.scriptPath.list();
     if (filenames == null) {
-      throw new MigrationException(scriptPath + " does not exist.");
+      throw new MigrationException(options.scriptPath + " does not exist.");
     }
     Arrays.sort(filenames);
     List<Change> migrations = new ArrayList<Change>();
@@ -181,7 +154,7 @@ public abstract class BaseCommand implements Command {
   }
 
   protected void copyResourceTo(String resource, File toFile, Properties variables) {
-    printStream.println("Creating: " + toFile.getName());
+    options.printStream.println("Creating: " + toFile.getName());
     try {
       LineNumberReader reader = new LineNumberReader(Resources.getResourceAsReader(this.getClass().getClassLoader(), resource));
       try {
@@ -204,7 +177,7 @@ public abstract class BaseCommand implements Command {
   }
 
   protected void copyExternalResourceTo(String resource, File toFile, Properties variables) {
-    printStream.println("Creating: " + toFile.getName());
+    options.printStream.println("Creating: " + toFile.getName());
     try {
       File sourceFile = new File(resource);
       ExternalResources.copyExternalResource(sourceFile, toFile);
@@ -240,11 +213,11 @@ public abstract class BaseCommand implements Command {
       String url = props.getProperty("url");
       String username = props.getProperty("username");
       String password = props.getProperty("password");
-      PrintWriter outWriter = new PrintWriter(printStream);
+      PrintWriter outWriter = new PrintWriter(options.printStream);
       UnpooledDataSource dataSource = new UnpooledDataSource(driverClassLoader, driver, url, username, password);
       dataSource.setAutoCommit(false);
       ScriptRunner scriptRunner = new ScriptRunner(dataSource.getConnection());
-      scriptRunner.setStopOnError(!force);
+      scriptRunner.setStopOnError(!options.force);
       scriptRunner.setLogWriter(outWriter);
       scriptRunner.setErrorLogWriter(outWriter);
       setPropertiesFromFile(scriptRunner, props);
@@ -263,15 +236,15 @@ public abstract class BaseCommand implements Command {
   }
 
   protected File baseFile(String fileName) {
-    return new File(basePath.getAbsolutePath() + File.separator + fileName);
+    return new File(options.basePath.getAbsolutePath() + File.separator + fileName);
   }
 
   protected File environmentFile(String fileName) {
-    return new File(envPath.getAbsolutePath() + File.separator + fileName);
+    return new File(options.envPath.getAbsolutePath() + File.separator + fileName);
   }
 
   protected File scriptFile(String fileName) {
-    return new File(scriptPath.getAbsolutePath() + File.separator + fileName);
+    return new File(options.scriptPath.getAbsolutePath() + File.separator + fileName);
   }
 
   protected File driverFile(String fileName) {
@@ -279,7 +252,7 @@ public abstract class BaseCommand implements Command {
   }
 
   protected File environmentFile() {
-    return environmentFile(environment + ".properties");
+    return environmentFile(options.environment + ".properties");
   }
 
   protected File existingEnvironmentFile() {
@@ -366,12 +339,8 @@ public abstract class BaseCommand implements Command {
     if (customDriverPath != null && customDriverPath.length() > 0) {
       return new File(customDriverPath);
     } else {
-      return driverPath;
+      return options.driverPath;
     }
-  }
-
-  private File subdirectory(File base, String sub) {
-    return new File(base.getAbsoluteFile() + File.separator + sub);
   }
 
   private Change parseChangeFromFilename(String filename) {

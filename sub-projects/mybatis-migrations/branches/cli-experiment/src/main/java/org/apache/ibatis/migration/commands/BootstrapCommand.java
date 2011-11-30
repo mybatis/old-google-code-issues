@@ -3,32 +3,37 @@ package org.apache.ibatis.migration.commands;
 import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.migration.MigrationException;
 import org.apache.ibatis.migration.MigrationReader;
+import org.apache.ibatis.migration.MigrationsOptions;
+
+import com.beust.jcommander.Parameters;
 
 import java.io.File;
 
+@Parameters( commandDescription = "Runs the bootstrap SQL script (see scripts/bootstrap.sql for more)." )
 public class BootstrapCommand extends BaseCommand {
 
-  public BootstrapCommand(File repository, String environment, boolean force) {
-    super(repository, environment, force);
+  public BootstrapCommand( MigrationsOptions options )
+  {
+    super(options);
   }
 
-  public void execute(String... params) {
+  public void execute() {
     try {
-      if (changelogExists() && !force) {
-        printStream.println("For your safety, the bootstrap SQL script will only run before migrations are applied (i.e. before the changelog exists).  If you're certain, you can run it using the --force option.");
+      if (changelogExists() && !options.force) {
+        options.printStream.println("For your safety, the bootstrap SQL script will only run before migrations are applied (i.e. before the changelog exists).  If you're certain, you can run it using the --force option.");
       } else {
         File bootstrap = scriptFile("bootstrap.sql");
         if (bootstrap.exists()) {
-          printStream.println(horizontalLine("Applying: bootstrap.sql", 80));
+          options.printStream.println(horizontalLine("Applying: bootstrap.sql", 80));
           ScriptRunner runner = getScriptRunner();
           try {
             runner.runScript(new MigrationReader(scriptFileReader(bootstrap), false, environmentProperties()));
           } finally {
             runner.closeConnection();
           }
-          printStream.println();
+          options.printStream.println();
         } else {
-          printStream.println("Error, could not run bootstrap.sql.  The file does not exist.");
+            options.printStream.println("Error, could not run bootstrap.sql.  The file does not exist.");
         }
       }
     } catch (Exception e) {
