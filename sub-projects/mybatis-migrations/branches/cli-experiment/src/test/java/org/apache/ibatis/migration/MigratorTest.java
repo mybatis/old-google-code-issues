@@ -171,7 +171,7 @@ public class MigratorTest {
     safeMigratorMain(args("--path=" + basePath.getAbsolutePath(), "init"));
     assertNotNull(basePath.list());
     assertEquals(4, basePath.list().length);
-    File scriptPath = new File(basePath.getCanonicalPath() + File.separator + "scripts");
+    File scriptPath = new File(basePath.getCanonicalPath(), "scripts");
     assertEquals(3, scriptPath.list().length);
     safeMigratorMain(args("--path=" + basePath.getAbsolutePath(), "new", "test new migration"));
     assertEquals(4, scriptPath.list().length);
@@ -184,7 +184,7 @@ public class MigratorTest {
     safeMigratorMain(args("--path=" + basePath.getAbsolutePath(), "init"));
     assertNotNull(basePath.list());
     assertEquals(4, basePath.list().length);
-    File scriptPath = new File(basePath.getCanonicalPath() + File.separator + "scripts");
+    File scriptPath = new File(basePath.getCanonicalPath(), "scripts");
     assertEquals(3, scriptPath.list().length);
 
     File templatePath = File.createTempFile("customTemplate","sql");
@@ -201,7 +201,7 @@ public class MigratorTest {
     safeMigratorMain(args("--path=" + basePath.getAbsolutePath(), "init"));
     assertNotNull(basePath.list());
     assertEquals(4, basePath.list().length);
-    File scriptPath = new File(basePath.getCanonicalPath() + File.separator + "scripts");
+    File scriptPath = new File(basePath.getCanonicalPath(), "scripts");
     assertEquals(3, scriptPath.list().length);
 
     File templatePath = File.createTempFile("customTemplate", "sql");
@@ -219,7 +219,7 @@ public class MigratorTest {
     safeMigratorMain(args("--path=" + basePath.getAbsolutePath(), "init"));
     assertNotNull(basePath.list());
     assertEquals(4, basePath.list().length);
-    File scriptPath = new File(basePath.getCanonicalPath() + File.separator + "scripts");
+    File scriptPath = new File(basePath.getCanonicalPath(), "scripts");
     assertEquals(3, scriptPath.list().length);
 
     safeMigratorMain(args("--path=" + basePath.getAbsolutePath(), "new", "test new migration"));
