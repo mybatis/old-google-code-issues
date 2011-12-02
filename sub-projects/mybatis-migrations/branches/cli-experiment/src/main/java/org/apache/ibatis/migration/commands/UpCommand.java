@@ -16,8 +16,8 @@ public class UpCommand extends BaseCommand {
 
   private final boolean runOneStepOnly;
 
-  @Parameter( description = "[n]" )
-  public int limit;
+  @Parameter( description = "[n]", arity = 1 )
+  public List<Integer> limits;
 
   public UpCommand(MigrationsOptions options)
   {
@@ -31,6 +31,7 @@ public class UpCommand extends BaseCommand {
   }
 
   public void execute() {
+    int limit = limits.get(0);
     try {
       Change lastChange = null;
       if (changelogExists()) {

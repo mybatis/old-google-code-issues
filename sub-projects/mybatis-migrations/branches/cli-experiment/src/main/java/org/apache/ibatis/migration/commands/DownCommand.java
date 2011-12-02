@@ -17,8 +17,8 @@ import com.beust.jcommander.Parameters;
 @Parameters( commandDescription = "Undoes migrations applied to the database. ONE by default or 'n' specified." )
 public class DownCommand extends BaseCommand {
 
-  @Parameter( description = "[n]" )
-  public int limit;
+  @Parameter( description = "[n]", arity = 1 )
+  public List<Integer> limits;
 
   public DownCommand(MigrationsOptions options)
   {
@@ -26,6 +26,7 @@ public class DownCommand extends BaseCommand {
   }
 
   public void execute() {
+    int limit = limits.get(0);
     try {
       Change lastChange = getLastAppliedChange();
       List<Change> migrations = getMigrations();
