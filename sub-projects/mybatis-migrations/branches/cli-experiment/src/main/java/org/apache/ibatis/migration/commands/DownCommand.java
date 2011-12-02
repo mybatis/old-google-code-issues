@@ -26,7 +26,12 @@ public class DownCommand extends BaseCommand {
   }
 
   public void execute() {
-    int limit = limits.get(0);
+    int limit;
+    if (limits != null && !limits.isEmpty()) {
+      limit = limits.get(0);
+    } else {
+      limit = 1;
+    }
     try {
       Change lastChange = getLastAppliedChange();
       List<Change> migrations = getMigrations();
