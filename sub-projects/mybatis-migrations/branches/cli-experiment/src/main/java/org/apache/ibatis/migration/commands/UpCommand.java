@@ -16,7 +16,7 @@ public class UpCommand extends BaseCommand {
 
   private final boolean runOneStepOnly;
 
-  @Parameter( description = "[n]", arity = 1 )
+  @Parameter( description = "[n]", arity = 1, required = false )
   public List<Integer> limits;
 
   public UpCommand(MigrationsOptions options)
