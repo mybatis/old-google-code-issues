@@ -189,7 +189,7 @@ public class MigratorTest {
 
     File templatePath = File.createTempFile("customTemplate","sql");
     templatePath.createNewFile();
-    safeMigratorMain(args("--path=" + basePath.getAbsolutePath(), "new", "test new migration", "--template=" + templatePath.getAbsolutePath()));
+    safeMigratorMain(args("--path=" + basePath.getAbsolutePath(), "--template=" + templatePath.getAbsolutePath(), "new", "test new migration"));
     assertEquals(4, scriptPath.list().length);
 
     templatePath.delete();
