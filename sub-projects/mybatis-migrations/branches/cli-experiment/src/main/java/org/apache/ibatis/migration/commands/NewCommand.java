@@ -1,5 +1,6 @@
 package org.apache.ibatis.migration.commands;
 
+import java.util.List;
 import java.io.FileNotFoundException;
 import java.util.Properties;
 
@@ -17,8 +18,12 @@ public class NewCommand extends BaseCommand {
   private static final String CUSTOM_NEW_COMMAND_TEMPATE_PROPERTY = "new_command.template";
   private static final String MIGRATIONS_PROPERTIES = "migration.properties";
 
-  @Parameter( description = "<description>", validateWith = DescriptionValidator.class, required = true )
-  public String description;
+  @Parameter(
+    description = "<description>",
+    validateWith = DescriptionValidator.class,
+    required = true,
+    arity = 1 )
+  public List<String> descriptions;
 
   public NewCommand(MigrationsOptions options)
   {
@@ -26,6 +31,7 @@ public class NewCommand extends BaseCommand {
   }
 
   public void execute() {
+    String description = descriptions.get(0);
     Properties variables = new Properties();
     variables.setProperty("description", description);
     existingEnvironmentFile();
