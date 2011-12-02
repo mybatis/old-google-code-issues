@@ -17,7 +17,7 @@ public class NewCommand extends BaseCommand {
   private static final String CUSTOM_NEW_COMMAND_TEMPATE_PROPERTY = "new_command.template";
   private static final String MIGRATIONS_PROPERTIES = "migration.properties";
 
-  @Parameter( description = "<description>", validateWith = DescriptionValidator.class )
+  @Parameter( description = "<description>", validateWith = DescriptionValidator.class, required = true )
   public String description;
 
   public NewCommand(MigrationsOptions options)
