@@ -14,14 +14,20 @@ import com.beust.jcommander.Parameters;
 @Parameters( commandDescription = "Run unapplied migrations, ALL by default, or 'n' specified." )
 public class UpCommand extends BaseCommand {
 
-  private boolean runOneStepOnly = false;
+  private final boolean runOneStepOnly;
 
   @Parameter( description = "[n]" )
   private int limit;
 
   public UpCommand(MigrationsOptions options)
   {
+    this(options, false);
+  }
+
+  public UpCommand(MigrationsOptions options, boolean runOneStepOnly)
+  {
     super(options);
+    this.runOneStepOnly = runOneStepOnly;
   }
 
   public void execute() {
