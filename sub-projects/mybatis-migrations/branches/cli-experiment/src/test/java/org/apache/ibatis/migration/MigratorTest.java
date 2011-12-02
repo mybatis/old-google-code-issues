@@ -206,7 +206,7 @@ public class MigratorTest {
 
     File templatePath = File.createTempFile("customTemplate", "sql");
     templatePath.createNewFile();
-    safeMigratorMain(args("--path=" + basePath.getAbsolutePath(), "new", "test new migration", "--template="));
+    safeMigratorMain(args("--path=" + basePath.getAbsolutePath(), "--template=", "new", "test new migration"));
     assertEquals(4, scriptPath.list().length);
 
     templatePath.delete();
