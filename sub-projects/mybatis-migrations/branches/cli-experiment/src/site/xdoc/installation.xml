@@ -105,11 +105,12 @@
         <p>The MyBatis Migrations package is small and simple. The following is the contents of the unzipped package:</p>
         <ul>
           <li>./lib/mybatis-${project.version}.jar</li>
+          <li>./lib/mybatis-migrations-${project.version}.jar</li>
           <li>./bin/migrate</li>
           <li>./bin/migrate.cmd</li>
           <li>LICENSE</li>
           <li>NOTICE</li>
-          <li>MIGRATIONS-README</li>
+          <li>README</li>
         </ul>
         <p>The single MyBatis JAR file is the only dependency that MyBatis Migrations has. script files do the same
   thing, but as you can see, one is for *nix shells and the other is for Windows (Note: cygwin users should still call
