@@ -13,8 +13,8 @@ import com.beust.jcommander.Parameters;
 @Parameters( commandDescription = "Migrates the database up or down to the specified version." )
 public class VersionCommand extends BaseCommand {
 
-  @Parameter( description = "<version>" )
-  public BigDecimal version;
+  @Parameter( description = "<version>", arity = 1, required = true )
+  public List<BigDecimal> versions;
 
   public VersionCommand(MigrationsOptions options)
   {
@@ -22,6 +22,8 @@ public class VersionCommand extends BaseCommand {
   }
 
   public void execute() {
+    BigDecimal version = versions.get(0);
+
     ensureVersionExists(version);
 
     Change change = getLastAppliedChange();
