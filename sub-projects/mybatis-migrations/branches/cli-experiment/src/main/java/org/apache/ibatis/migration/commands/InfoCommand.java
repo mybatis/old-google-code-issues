@@ -56,6 +56,11 @@ public final class InfoCommand
                     properties.getProperty( "name" ),
                     properties.getProperty( "version" ),
                     properties.getProperty( "build" ) );
+
+        String migrationsHome = System.getenv( "MIGRATIONS_HOME" );
+        out.printf( "Migrations home: %s%n",
+                    ( migrationsHome != null && migrationsHome.length() > 0 ) ? migrationsHome : "UNKNOWN" );
+
         out.printf( "Java version: %s, vendor: %s%n",
                     System.getProperty( "java.version" ),
                     System.getProperty( "java.vendor" ) );
