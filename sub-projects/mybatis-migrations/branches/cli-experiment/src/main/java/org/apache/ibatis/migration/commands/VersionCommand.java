@@ -27,7 +27,7 @@ public class VersionCommand extends BaseCommand {
     Change change = getLastAppliedChange();
     if (version.compareTo(change.getId()) > 0) {
       options.printStream.println("Upgrading to: " + version);
-      Command up = new UpCommand(options);
+      Command up = new UpCommand(options, true);
       // Command up = new UpCommand(basePath, environment, force, true);
       while (!version.equals(change.getId())) {
         up.execute();
