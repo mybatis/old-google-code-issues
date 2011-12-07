@@ -14,10 +14,10 @@ MyBatis Developers:
 ************************************ PLEASE NOTE **********************************************************
 
         Edit this file in SVN at
-        https://mybatis.googlecode.com/svn/KEYS
-        
+        https://mybatis.googlecode.com/svn/committers/KEYS
+
         N.B. use a command such as the following to check it out without downloading every project:
-        svn co --depth=files https://mybatis.googlecode.com/svn
+        svn co https://mybatis.googlecode.com/svn/committers
 
 ************************************************************************************************************
 pub   1024D/41A0D191 2010-02-06
