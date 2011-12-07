@@ -2,7 +2,7 @@
 
 The file located on
 
-{{{ https://mybatis.googlecode.com/svn/KEYS }}}
+{{{ https://mybatis.googlecode.com/svn/committers/KEYS }}}
 
 contains the !MyBatis developers GPG keys. Users can import the keys to verify the artifact signatures.
 
@@ -10,7 +10,7 @@ contains the !MyBatis developers GPG keys. Users can import the keys to verify t
 
 Checkout the file by running
 
-{{{ svn co --depth=files https://mybatis.googlecode.com/svn }}}
+{{{ svn co https://mybatis.googlecode.com/svn/committers }}}
 
 and run
 
@@ -20,7 +20,7 @@ and run
 
 Checkout the file by running
 
-{{{ svn co --depth=files https://mybatis.googlecode.com/svn }}}
+{{{ svn co https://mybatis.googlecode.com/svn/committers }}}
 
 and run
 
