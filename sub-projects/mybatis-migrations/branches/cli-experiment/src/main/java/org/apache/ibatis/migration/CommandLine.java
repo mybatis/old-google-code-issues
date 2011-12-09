@@ -93,17 +93,13 @@ public class CommandLine {
 
   private final JCommander jCommander = new JCommander( this );
 
-  private final String[] args;
-
   public File envPath;
 
   public File scriptPath;
 
   public File driverPath;
 
-  public CommandLine(String[] args) {
-    this.args = args;
-
+  public CommandLine() {
     jCommander.setProgramName( "migrate" );
     registerCommand( "bootstrap", new BootstrapCommand(this), "bs" );
     registerCommand( "down", new DownCommand(this), "d" );
@@ -131,7 +127,7 @@ public class CommandLine {
     return this.printStream;
   }
 
-  public void execute() {
+  public void execute(String[] args) {
     jCommander.parse( args );
 
     if ( help )
