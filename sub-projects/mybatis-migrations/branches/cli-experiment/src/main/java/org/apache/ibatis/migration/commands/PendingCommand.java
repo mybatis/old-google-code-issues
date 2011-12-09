@@ -21,18 +21,18 @@ import java.util.List;
 
 import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.migration.Change;
+import org.apache.ibatis.migration.CommandLine;
 import org.apache.ibatis.migration.MigrationException;
 import org.apache.ibatis.migration.MigrationReader;
-import org.apache.ibatis.migration.MigrationsOptions;
 
 import com.beust.jcommander.Parameters;
 
 @Parameters( commandDescription = "Force executes pending migrations out of order (not recommended)." )
 public class PendingCommand extends BaseCommand {
 
-  public PendingCommand(MigrationsOptions options)
+  public PendingCommand(CommandLine commandLine)
   {
-    super(options);
+    super(commandLine);
   }
 
   public void execute() {
@@ -41,9 +41,9 @@ public class PendingCommand extends BaseCommand {
         throw new MigrationException("Change log doesn't exist, no migrations applied.  Try running 'up' instead.");
       }
       List<Change> pending = getPendingChanges();
-      options.printStream.println("WARNING: Running pending migrations out of order can create unexpected results.");
+      commandLine.getPrintStream().println("WARNING: Running pending migrations out of order can create unexpected results.");
       for (Change change : pending) {
-        options.printStream.println(horizontalLine("Applying: " + change.getFilename(), 80));
+        commandLine.getPrintStream().println(horizontalLine("Applying: " + change.getFilename(), 80));
         ScriptRunner runner = getScriptRunner();
         try {
           runner.runScript(new MigrationReader(scriptFileReader(scriptFile(change.getFilename())), false, environmentProperties()));
@@ -51,7 +51,7 @@ public class PendingCommand extends BaseCommand {
           runner.closeConnection();
         }
         insertChangelog(change);
-        options.printStream.println();
+        commandLine.getPrintStream().println();
       }
     } catch (Exception e) {
       throw new MigrationException("Error executing command.  Cause: " + e, e);

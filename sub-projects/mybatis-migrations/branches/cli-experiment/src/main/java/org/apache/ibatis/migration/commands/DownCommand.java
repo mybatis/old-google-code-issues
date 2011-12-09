@@ -22,9 +22,9 @@ import java.util.List;
 import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.jdbc.SqlRunner;
 import org.apache.ibatis.migration.Change;
+import org.apache.ibatis.migration.CommandLine;
 import org.apache.ibatis.migration.MigrationException;
 import org.apache.ibatis.migration.MigrationReader;
-import org.apache.ibatis.migration.MigrationsOptions;
 
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
@@ -35,9 +35,9 @@ public class DownCommand extends BaseCommand {
   @Parameter( description = "[n]", arity = 1, required = false )
   public List<Integer> limits;
 
-  public DownCommand(MigrationsOptions options)
+  public DownCommand(CommandLine commandLine)
   {
-    super(options);
+    super(commandLine);
   }
 
   public void execute() {
@@ -54,7 +54,7 @@ public class DownCommand extends BaseCommand {
       int steps = 0;
       for (Change change : migrations) {
         if (change.getId().equals(lastChange.getId())) {
-          options.printStream.println(horizontalLine("Undoing: " + change.getFilename(), 80));
+          commandLine.getPrintStream().println(horizontalLine("Undoing: " + change.getFilename(), 80));
           ScriptRunner runner = getScriptRunner();
           try {
             runner.runScript(new MigrationReader(scriptFileReader(scriptFile(change.getFilename())), true, environmentProperties()));
@@ -64,9 +64,9 @@ public class DownCommand extends BaseCommand {
           if (changelogExists()) {
             deleteChange(change);
           } else {
-            options.printStream.println("Changelog doesn't exist. No further migrations will be undone (normal for the last migration).");
+            commandLine.getPrintStream().println("Changelog doesn't exist. No further migrations will be undone (normal for the last migration).");
           }
-          options.printStream.println();
+          commandLine.getPrintStream().println();
           steps++;
           if (steps == limit) {
             break;

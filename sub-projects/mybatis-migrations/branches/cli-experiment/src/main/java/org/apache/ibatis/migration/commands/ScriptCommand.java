@@ -23,9 +23,9 @@ import java.util.List;
 import java.util.Properties;
 
 import org.apache.ibatis.migration.Change;
+import org.apache.ibatis.migration.CommandLine;
 import org.apache.ibatis.migration.MigrationException;
 import org.apache.ibatis.migration.MigrationReader;
-import org.apache.ibatis.migration.MigrationsOptions;
 
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
@@ -41,9 +41,9 @@ public class ScriptCommand extends BaseCommand {
   )
   public List<BigDecimal> versions;
 
-  public ScriptCommand(MigrationsOptions options)
+  public ScriptCommand(CommandLine commandLine)
   {
-    super(options);
+    super(commandLine);
   }
 
   public void execute() {
@@ -59,19 +59,19 @@ public class ScriptCommand extends BaseCommand {
       }
       for (Change change : migrations) {
         if (shouldRun(change, v1, v2)) {
-          options.printStream.println("-- " + change.getFilename());
+          commandLine.getPrintStream().println("-- " + change.getFilename());
           File file = scriptFile(change.getFilename());
           MigrationReader migrationReader = new MigrationReader(scriptFileReader(file), undo, variables);
           char[] cbuf = new char[1024];
           int l;
           while ((l = migrationReader.read(cbuf)) == cbuf.length) {
-            options.printStream.print(new String(cbuf, 0, l));
+            commandLine.getPrintStream().print(new String(cbuf, 0, l));
           }
-          options.printStream.print(new String(cbuf, 0, l - 1));
-          options.printStream.println();
-          options.printStream.println();
-          options.printStream.println(undo ? generateVersionDelete(change) : generateVersionInsert(change));
-          options.printStream.println();
+          commandLine.getPrintStream().print(new String(cbuf, 0, l - 1));
+          commandLine.getPrintStream().println();
+          commandLine.getPrintStream().println();
+          commandLine.getPrintStream().println(undo ? generateVersionDelete(change) : generateVersionInsert(change));
+          commandLine.getPrintStream().println();
         }
       }
     } catch (IOException e) {

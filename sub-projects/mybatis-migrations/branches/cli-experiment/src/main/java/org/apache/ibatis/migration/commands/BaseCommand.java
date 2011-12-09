@@ -45,8 +45,8 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.jdbc.SqlRunner;
 import org.apache.ibatis.migration.Change;
+import org.apache.ibatis.migration.CommandLine;
 import org.apache.ibatis.migration.MigrationException;
-import org.apache.ibatis.migration.MigrationsOptions;
 import org.apache.ibatis.parsing.PropertyParser;
 
 public abstract class BaseCommand implements Command {
@@ -55,11 +55,11 @@ public abstract class BaseCommand implements Command {
 
   private ClassLoader driverClassLoader;
 
-  protected final MigrationsOptions options;
+  protected final CommandLine commandLine;
 
-  public BaseCommand(MigrationsOptions options)
+  public BaseCommand(CommandLine options)
   {
-    this.options = options;
+    this.commandLine = options;
   }
 
   public ClassLoader getDriverClassLoader() {
@@ -75,9 +75,9 @@ public abstract class BaseCommand implements Command {
   }
 
   protected List<Change> getMigrations() {
-    String[] filenames = options.scriptPath.list();
+    String[] filenames = commandLine.scriptPath.list();
     if (filenames == null) {
-      throw new MigrationException(options.scriptPath + " does not exist.");
+      throw new MigrationException(commandLine.scriptPath + " does not exist.");
     }
     Arrays.sort(filenames);
     List<Change> migrations = new ArrayList<Change>();
@@ -169,7 +169,7 @@ public abstract class BaseCommand implements Command {
   }
 
   protected void copyResourceTo(String resource, File toFile, Properties variables) {
-    options.printStream.println("Creating: " + toFile.getName());
+    commandLine.getPrintStream().println("Creating: " + toFile.getName());
     try {
       LineNumberReader reader = new LineNumberReader(Resources.getResourceAsReader(this.getClass().getClassLoader(), resource));
       try {
@@ -192,7 +192,7 @@ public abstract class BaseCommand implements Command {
   }
 
   protected void copyExternalResourceTo(String resource, File toFile, Properties variables) {
-    options.printStream.println("Creating: " + toFile.getName());
+    commandLine.getPrintStream().println("Creating: " + toFile.getName());
     try {
       File sourceFile = new File(resource);
       ExternalResources.copyExternalResource(sourceFile, toFile);
@@ -228,11 +228,11 @@ public abstract class BaseCommand implements Command {
       String url = props.getProperty("url");
       String username = props.getProperty("username");
       String password = props.getProperty("password");
-      PrintWriter outWriter = new PrintWriter(options.printStream);
+      PrintWriter outWriter = new PrintWriter(commandLine.getPrintStream());
       UnpooledDataSource dataSource = new UnpooledDataSource(driverClassLoader, driver, url, username, password);
       dataSource.setAutoCommit(false);
       ScriptRunner scriptRunner = new ScriptRunner(dataSource.getConnection());
-      scriptRunner.setStopOnError(!options.force);
+      scriptRunner.setStopOnError(!commandLine.force);
       scriptRunner.setLogWriter(outWriter);
       scriptRunner.setErrorLogWriter(outWriter);
       setPropertiesFromFile(scriptRunner, props);
@@ -251,15 +251,15 @@ public abstract class BaseCommand implements Command {
   }
 
   protected File baseFile(String fileName) {
-    return new File(options.basePath.getAbsolutePath() + File.separator + fileName);
+    return new File(commandLine.basePath.getAbsolutePath() + File.separator + fileName);
   }
 
   protected File environmentFile(String fileName) {
-    return new File(options.envPath.getAbsolutePath() + File.separator + fileName);
+    return new File(commandLine.envPath.getAbsolutePath() + File.separator + fileName);
   }
 
   protected File scriptFile(String fileName) {
-    return new File(options.scriptPath.getAbsolutePath() + File.separator + fileName);
+    return new File(commandLine.scriptPath.getAbsolutePath() + File.separator + fileName);
   }
 
   protected File driverFile(String fileName) {
@@ -267,7 +267,7 @@ public abstract class BaseCommand implements Command {
   }
 
   protected File environmentFile() {
-    return environmentFile(options.environment + ".properties");
+    return environmentFile(commandLine.environment + ".properties");
   }
 
   protected File existingEnvironmentFile() {
@@ -354,7 +354,7 @@ public abstract class BaseCommand implements Command {
     if (customDriverPath != null && customDriverPath.length() > 0) {
       return new File(customDriverPath);
     } else {
-      return options.driverPath;
+      return commandLine.driverPath;
     }
   }
 
