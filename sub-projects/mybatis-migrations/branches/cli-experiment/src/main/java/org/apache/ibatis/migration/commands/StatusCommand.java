@@ -20,21 +20,21 @@ import java.util.Collections;
 import java.util.List;
 
 import org.apache.ibatis.migration.Change;
-import org.apache.ibatis.migration.MigrationsOptions;
+import org.apache.ibatis.migration.CommandLine;
 
 import com.beust.jcommander.Parameters;
 
 @Parameters( commandDescription = "Prints the changelog from the database if the changelog table exists." )
 public class StatusCommand extends BaseCommand {
 
-  public StatusCommand(MigrationsOptions options)
+  public StatusCommand(CommandLine commandLine)
   {
-    super(options);
+    super(commandLine);
   }
 
   public void execute() {
-    options.printStream.println("ID             Applied At          Description");
-    options.printStream.println(horizontalLine("", 80));
+    commandLine.getPrintStream().println("ID             Applied At          Description");
+    commandLine.getPrintStream().println(horizontalLine("", 80));
     List<Change> merged = new ArrayList<Change>();
     List<Change> migrations = getMigrations();
     if (changelogExists()) {
@@ -52,9 +52,9 @@ public class StatusCommand extends BaseCommand {
       merged.addAll(migrations);
     }
     for (Change change : merged) {
-      options.printStream.println(change);
+      commandLine.getPrintStream().println(change);
     }
-    options.printStream.println();
+    commandLine.getPrintStream().println();
   }
 
 

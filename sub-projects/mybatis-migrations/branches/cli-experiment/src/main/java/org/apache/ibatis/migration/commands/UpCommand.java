@@ -19,9 +19,9 @@ import java.util.List;
 
 import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.migration.Change;
+import org.apache.ibatis.migration.CommandLine;
 import org.apache.ibatis.migration.MigrationException;
 import org.apache.ibatis.migration.MigrationReader;
-import org.apache.ibatis.migration.MigrationsOptions;
 
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
@@ -34,14 +34,14 @@ public class UpCommand extends BaseCommand {
   @Parameter( description = "[n]", arity = 1, required = false )
   public List<Integer> limits;
 
-  public UpCommand(MigrationsOptions options)
+  public UpCommand(CommandLine commandLine)
   {
-    this(options, false);
+    this(commandLine, false);
   }
 
-  public UpCommand(MigrationsOptions options, boolean runOneStepOnly)
+  public UpCommand(CommandLine commandLine, boolean runOneStepOnly)
   {
-    super(options);
+    super(commandLine);
     this.runOneStepOnly = runOneStepOnly;
   }
 
@@ -61,7 +61,7 @@ public class UpCommand extends BaseCommand {
       int steps = 0;
       for (Change change : migrations) {
         if (lastChange == null || change.getId().compareTo(lastChange.getId()) > 0) {
-          options.printStream.println(horizontalLine("Applying: " + change.getFilename(), 80));
+          commandLine.getPrintStream().println(horizontalLine("Applying: " + change.getFilename(), 80));
           ScriptRunner runner = getScriptRunner();
           try {
             runner.runScript(new MigrationReader(scriptFileReader(scriptFile(change.getFilename())), false, environmentProperties()));
@@ -69,7 +69,7 @@ public class UpCommand extends BaseCommand {
             runner.closeConnection();
           }
           insertChangelog(change);
-          options.printStream.println();
+          commandLine.getPrintStream().println();
           steps++;
           if (steps == limit || runOneStepOnly) {
             break;

@@ -15,12 +15,12 @@
  */
 package org.apache.ibatis.migration.commands;
 
-import java.util.List;
 import java.io.FileNotFoundException;
+import java.util.List;
 import java.util.Properties;
 
 import org.apache.ibatis.io.ExternalResources;
-import org.apache.ibatis.migration.MigrationsOptions;
+import org.apache.ibatis.migration.CommandLine;
 
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
@@ -40,9 +40,9 @@ public class NewCommand extends BaseCommand {
     arity = 1 )
   public List<String> descriptions;
 
-  public NewCommand(MigrationsOptions options)
+  public NewCommand(CommandLine commandLine)
   {
-    super(options);
+    super(commandLine);
   }
 
   public void execute() {
@@ -59,23 +59,23 @@ public class NewCommand extends BaseCommand {
       migrationsHome = System.getProperty(MIGRATIONS_HOME_PROPERTY);
     }
 
-    if (options.template != null) {
-      copyExternalResourceTo(options.template, scriptFile(filename), variables);
+    if (commandLine.template != null) {
+      copyExternalResourceTo(commandLine.template, scriptFile(filename), variables);
     } else if ((migrationsHome != null) && (!migrationsHome.equals(""))) {
       try {
         //get template name from properties file
         final String customConfiguredTemplate = ExternalResources.getConfiguredTemplate(migrationsHome + "/" + MIGRATIONS_PROPERTIES, CUSTOM_NEW_COMMAND_TEMPATE_PROPERTY);
         copyExternalResourceTo(migrationsHome + "/" + customConfiguredTemplate, scriptFile(filename), variables);
       } catch (FileNotFoundException e) {
-        options.printStream.append("Your migrations configuration did not find your custom template.  Using the default template.");
+        commandLine.getPrintStream().append("Your migrations configuration did not find your custom template.  Using the default template.");
         copyDefaultTemplate(variables, filename);
       }
     } else {
       copyDefaultTemplate(variables, filename);
     }
 
-    options.printStream.println("Done!");
-    options.printStream.println();
+    commandLine.getPrintStream().println("Done!");
+    commandLine.getPrintStream().println();
   }
 
   private void copyDefaultTemplate(Properties variables, String filename) {
