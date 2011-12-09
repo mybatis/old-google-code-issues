@@ -93,7 +93,9 @@ public class CommandLine {
       boolean error = false;
       try
       {
-        runCommand( parsedCommand, command );
+        if (command != null) {
+          runCommand( parsedCommand, command );
+        }
       }
       catch ( Exception e )
       {
