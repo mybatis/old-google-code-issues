@@ -19,7 +19,7 @@ public class Migrator {
 
   public static void main(String[] args) throws Exception {
     try {
-      new CommandLine(args).execute();
+      new CommandLine().execute(args);
     } catch (Exception e) {
       e.printStackTrace();
       System.exit(1);
