@@ -23,7 +23,6 @@ import java.util.Map;
 import org.apache.ibatis.migration.commands.BootstrapCommand;
 import org.apache.ibatis.migration.commands.Command;
 import org.apache.ibatis.migration.commands.DownCommand;
-import org.apache.ibatis.migration.commands.InfoCommand;
 import org.apache.ibatis.migration.commands.InitializeCommand;
 import org.apache.ibatis.migration.commands.NewCommand;
 import org.apache.ibatis.migration.commands.PendingCommand;
@@ -52,7 +51,6 @@ public class CommandLine {
     jCommander.setProgramName( "migrate" );
     registerCommand( "bootstrap", new BootstrapCommand(options) );
     registerCommand( "down", new DownCommand(options) );
-    registerCommand( "info", new InfoCommand() );
     registerCommand( "init", new InitializeCommand(options) );
     registerCommand( "new", new NewCommand(options) );
     registerCommand( "pending", new PendingCommand(options) );
