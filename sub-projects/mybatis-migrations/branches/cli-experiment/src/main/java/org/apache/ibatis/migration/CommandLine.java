@@ -49,21 +49,22 @@ public class CommandLine {
     this.args = args;
 
     jCommander.setProgramName( "migrate" );
-    registerCommand( "bootstrap", new BootstrapCommand(options) );
-    registerCommand( "down", new DownCommand(options) );
-    registerCommand( "init", new InitializeCommand(options) );
-    registerCommand( "new", new NewCommand(options) );
-    registerCommand( "pending", new PendingCommand(options) );
-    registerCommand( "script", new ScriptCommand(options) );
-    registerCommand( "status", new StatusCommand(options) );
-    registerCommand( "up", new UpCommand(options) );
-    registerCommand( "version", new VersionCommand(options) );
+    registerCommand( "bootstrap", new BootstrapCommand(options), "bs" );
+    registerCommand( "down", new DownCommand(options), "d" );
+    registerCommand( "init", new InitializeCommand(options), "i" );
+    registerCommand( "new", new NewCommand(options), "n" );
+    registerCommand( "pending", new PendingCommand(options), "p" );
+    registerCommand( "script", new ScriptCommand(options), "sc" );
+    registerCommand( "status", new StatusCommand(options), "st" );
+    registerCommand( "up", new UpCommand(options), "u" );
+    registerCommand( "version", new VersionCommand(options), "v" );
   }
 
-  private void registerCommand( String name, Command command )
+  private void registerCommand( String name, Command command, String alias )
   {
     commands.put( name, command );
-    jCommander.addCommand( name, command );
+    commands.put( alias, command );
+    jCommander.addCommand( name, command, alias );
   }
 
   public void setPrintStream(PrintStream out) {
@@ -86,7 +87,7 @@ public class CommandLine {
       options.printStream = printStream;
       options.init();
 
-      String parsedCommand = jCommander.getParsedCommand();
+      String parsedCommand = jCommander.getParsedAlias();
       Command command = commands.get( parsedCommand );
 
       boolean error = false;
