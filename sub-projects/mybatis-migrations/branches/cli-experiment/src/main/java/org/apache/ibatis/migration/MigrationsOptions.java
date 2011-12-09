@@ -30,10 +30,16 @@ import com.beust.jcommander.Parameters;
 public final class MigrationsOptions
 {
 
-  @Parameter( names = "--trace", description = "Shows additional error details (if any)." )
+  @Parameter(
+    names = "--trace",
+    description = "Shows additional error details (if any)."
+  )
   public boolean trace = false;
 
-  @Parameter( names = "--help", description = "Displays this usage message." )
+  @Parameter(
+    names = "--help",
+    description = "Displays this usage message."
+  )
   public boolean help = false;
 
   @Parameter(
@@ -44,16 +50,28 @@ public final class MigrationsOptions
   )
   public File basePath = new File( System.getProperty( "user.dir" ) );
 
-  @Parameter( names = { "--env" }, description = "Environment to configure." )
+  @Parameter(
+    names = { "--env" },
+    description = "Environment to configure."
+  )
   public String environment = "development";
 
-  @Parameter( names = { "--template" }, description = "Path to custom template for creating new sql scripts." )
+  @Parameter(
+    names = { "--template" },
+    description = "Path to custom template for creating new sql scripts."
+  )
   public String template;
 
-  @Parameter( names = { "--force" } )
+  @Parameter(
+    names = { "--force" },
+    description = "Produce execution debug output"
+  )
   public boolean force = false;
 
-  @Parameter( names = { "--version" } )
+  @Parameter(
+    names = { "--version" },
+    description = "Display version information"
+  )
   public boolean showVersion = false;
 
   public PrintStream printStream;
