@@ -16,7 +16,10 @@
 package org.apache.ibatis.migration;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.Properties;
 
 import org.apache.ibatis.migration.commands.MigrationsPathConverterValidator;
 
@@ -50,6 +53,9 @@ public final class MigrationsOptions
   @Parameter( names = { "--force" } )
   public boolean force = false;
 
+  @Parameter( names = { "--version" } )
+  public boolean showVersion = false;
+
   public PrintStream printStream;
 
   public File envPath;
@@ -63,6 +69,106 @@ public final class MigrationsOptions
     this.envPath = subdirectory(basePath, "environments");
     this.scriptPath = subdirectory(basePath, "scripts");
     this.driverPath = subdirectory(basePath, "drivers");
+
+    if (showVersion) {
+        Properties properties = new Properties();
+        InputStream input = getClass().getClassLoader().getResourceAsStream( "META-INF/maven/org.mybatis/mybatis-migrations/pom.properties" );
+
+        if ( input != null )
+        {
+            try
+            {
+                properties.load( input );
+            }
+            catch ( IOException e )
+            {
+                // ignore, just don't load the properties
+            }
+            finally
+            {
+                try
+                {
+                    input.close();
+                }
+                catch ( IOException e )
+                {
+                    // close quietly
+                }
+            }
+        }
+
+        printStream.printf( "%s %s (%s)%n",
+                            properties.getProperty( "name" ),
+                            properties.getProperty( "version" ),
+                            properties.getProperty( "build" ) );
+
+        String migrationsHome = System.getenv( "MIGRATIONS_HOME" );
+        printStream.printf( "Migrations home: %s%n",
+                            ( migrationsHome != null && migrationsHome.length() > 0 ) ? migrationsHome : "UNKNOWN" );
+
+        printStream.printf( "Java version: %s, vendor: %s%n",
+                            System.getProperty( "java.version" ),
+                            System.getProperty( "java.vendor" ) );
+        printStream.printf( "Java home: %s%n", System.getProperty( "java.home" ) );
+        printStream.printf( "Default locale: %s_%s, platform encoding: %s%n",
+                            System.getProperty( "user.language" ),
+                            System.getProperty( "user.country" ),
+                            System.getProperty( "sun.jnu.encoding" ) );
+        printStream.printf( "OS name: \"%s\", version: \"%s\", arch: \"%s\", family: \"%s\"%n",
+                            System.getProperty( "os.name" ).toLowerCase(),
+                            System.getProperty( "os.version" ),
+                            System.getProperty( "os.arch" ),
+                            getOsFamily() );
+    }
+  }
+
+  private static final String getOsFamily()
+  {
+      String osName = System.getProperty( "os.name" ).toLowerCase();
+      String pathSep = System.getProperty( "path.separator" );
+
+      if ( osName.indexOf( "windows" ) != -1 )
+      {
+          return "windows";
+      }
+      else if ( osName.indexOf( "os/2" ) != -1 )
+      {
+          return "os/2";
+      }
+      else if ( osName.indexOf( "z/os" ) != -1 || osName.indexOf( "os/390" ) != -1 )
+      {
+          return "z/os";
+      }
+      else if ( osName.indexOf( "os/400" ) != -1 )
+      {
+          return "os/400";
+      }
+      else if ( pathSep.equals( ";" ) )
+      {
+          return "dos";
+      }
+      else if ( osName.indexOf( "mac" ) != -1 )
+      {
+          if ( osName.endsWith( "x" ) )
+          {
+              return "mac"; // MACOSX
+          }
+          return "unix";
+      }
+      else if ( osName.indexOf( "nonstop_kernel" ) != -1 )
+      {
+          return "tandem";
+      }
+      else if ( osName.indexOf( "openvms" ) != -1 )
+      {
+          return "openvms";
+      }
+      else if ( pathSep.equals( ":" ) )
+      {
+          return "unix";
+      }
+
+      return "undefined";
   }
 
   private File subdirectory(File base, String sub) {
