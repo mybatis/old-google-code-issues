@@ -31,19 +31,19 @@ public final class MigrationsOptions
 {
 
   @Parameter(
-    names = "--trace",
+    names = { "-X", "--trace" },
     description = "Shows additional error details (if any)."
   )
   public boolean trace = false;
 
   @Parameter(
-    names = "--help",
+    names = { "-h", "--help" },
     description = "Displays this usage message."
   )
   public boolean help = false;
 
   @Parameter(
-   names = { "--path" },
+   names = { "-p", "--path" },
    converter = MigrationsPathConverterValidator.class,
    validateWith = MigrationsPathConverterValidator.class,
    description = "Path to repository.  Default current working directory."
@@ -51,25 +51,25 @@ public final class MigrationsOptions
   public File basePath = new File( System.getProperty( "user.dir" ) );
 
   @Parameter(
-    names = { "--env" },
+    names = { "-e", "--env" },
     description = "Environment to configure."
   )
   public String environment = "development";
 
   @Parameter(
-    names = { "--template" },
+    names = { "-t", "--template" },
     description = "Path to custom template for creating new sql scripts."
   )
   public String template;
 
   @Parameter(
-    names = { "--force" },
-    description = "Produce execution debug output"
+    names = { "-f", "--force" },
+    description = "Forces script to continue even if SQL errors are encountered."
   )
   public boolean force = false;
 
   @Parameter(
-    names = { "--version" },
+    names = { "-v", "--version" },
     description = "Display version information"
   )
   public boolean showVersion = false;
