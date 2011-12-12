@@ -42,6 +42,8 @@ The following is a list of users who voluntarily listed themselves here as users
 ||     Indizen Technologies - Corporate projects	||	http://www.indizen.com (Spain)	||
 ||     Abercrombie and Fitch - ecommerce	||	http://www.abercrombie.com (US)	||
 ||     Bosch Software Innovations 	||	http://www.bosch-si.com (German)	||
+||     Alfresco - content management 	||	http://www.alfresco.com (UK)	||
+||     Activiti - bpm 	||	http://www.activiti.com (UK)	||
 
 == Other Projects ==
 
