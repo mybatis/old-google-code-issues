@@ -63,7 +63,7 @@ The following articles are about iBATIS in name, but are perfectly useful for !M
           o http://www.onjava.com/pub/a/onjava/excerpt/BFLJava_chap8/index1.html
 
     * Struts And iBATIS - Rick Reumann's classic iBATIS and Struts lesson. Well written.
-          o http://reumann.net/struts/ibatisLesson1.do
+          o http://www.learntechnology.net/content/ibatis/ibatis_lesson1.jsp
 
     * Using iBatis SQL Maps for Java Data Access
           o http://www.developer.com/lang/article.php/10924_3346301_1
