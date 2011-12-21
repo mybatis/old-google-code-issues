@@ -25,8 +25,8 @@
   * *[http://www.mybatis.org/spring/ MyBatis Samples]*
 
 
-==Current Guides==
-You can find all of the current user guides in the downloads which can be found [http://code.google.com/p/mybatis/downloads/list?can=3&q=Docs here].
+== Can't find what you need? ==
+Try searching for old version or different language guides in the downloads which can be found [http://code.google.com/p/mybatis/downloads/list?can=3&q=Docs here].
 
 ==Available Languages==
   * English
