@@ -32,7 +32,7 @@
 
 = Samples =
 
-  * *[http://www.mybatis.org/spring/sample.html MyBatis Spring Samples]*
+  * *[http://www.mybatis.org/spring/sample.html JPetStore 6]*
 
 
 == Can't find what you need? ==
