@@ -12,11 +12,17 @@
 
 = Extensions =
 
+== DI/IoC ==
+
   * *[http://www.mybatis.org/spring MyBatis Spring Integration]*
 
   * *[http://www.mybatis.org/guice MyBatis Guice Integration]*
 
+== Languages integrations ==
+
   * *[http://www.mybatis.org/scala MyBatis Scala Integration]*
+
+== Caches ==
 
   * *[http://www.mybatis.org/caches/oscache MyBatis OSCache Extension]*
 
