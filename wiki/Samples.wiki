@@ -17,7 +17,7 @@ Check it out from [http://code.google.com/p/mybatis/source/browse/#svn%2Fsub-pro
 
 = 3rd Party Samples and Tutorials =
 
-== The IdleWorx Monster MyBatis Tutorial ==
+== The !IdleWorx Monster !MyBatis Tutorial ==
 
 Detailed and concise tutorial about developing a full Web application in Eclipse based on MyBatis, Tomcat, MySQL. Thanks to IdleWorkx.
 
