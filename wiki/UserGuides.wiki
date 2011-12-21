@@ -10,6 +10,8 @@
 
   * *[http://www.mybatis.org/migrations Migrations Database Change Management Tool]*
 
+  * *[http://mybatis.org/maven-migration-plugin/ Migrations Database Change Management Tool plugin for Apache Maven]*
+
 = Extensions =
 
 == DI/IoC ==
