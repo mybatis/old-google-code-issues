@@ -18,7 +18,11 @@
 
   * *[http://www.mybatis.org/scala MyBatis Scala Integration]*
 
-  * *[http://www.mybatis.org/caches MyBatis Cache Extensions]*
+  * *[http://www.mybatis.org/caches/oscache MyBatis OSCache Extension]*
+
+  * *[http://www.mybatis.org/caches/ehcache MyBatis EhCache Extension]*
+
+  * *[http://www.mybatis.org/caches/hazelcast MyBatis Hazelcast Extensions]*
 
 = Samples =
 
