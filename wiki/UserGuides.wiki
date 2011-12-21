@@ -22,7 +22,7 @@
 
 = Samples =
 
-  * *[http://www.mybatis.org/spring/ MyBatis Samples]*
+  * *[http://www.mybatis.org/spring/samples.html MyBatis Samples]*
 
 
 == Can't find what you need? ==
