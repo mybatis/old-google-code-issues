@@ -8,8 +8,6 @@
 
   * *[http://www.mybatis.org/core MyBatis Generation Tool]*
 
-  * *[http://www.mybatis.org/core MyBatis Generation Tool]*
-
   * *[http://www.mybatis.org/migrations Migrations Database Change Management Tool]*
 
 = Extensions =
