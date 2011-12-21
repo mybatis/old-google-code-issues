@@ -1,3 +1,32 @@
+#summary Archive of all MyBatis related manuals.
+
+= !MyBatis =
+
+  * *[http://www.mybatis.org/core MyBatis Core Framework]*
+
+= Tools =
+
+  * *[http://www.mybatis.org/core MyBatis Generation Tool]*
+
+  * *[http://www.mybatis.org/core MyBatis Generation Tool]*
+
+  * *[http://www.mybatis.org/migrations Migrations Database Change Management Tool]*
+
+= Extensions =
+
+  * *[http://www.mybatis.org/spring MyBatis Spring Integration]*
+
+  * *[http://www.mybatis.org/guice MyBatis Guice Integration]*
+
+  * *[http://www.mybatis.org/scala MyBatis Scala Integration]*
+
+  * *[http://www.mybatis.org/caches MyBatis Cache Extensions]*
+
+= Samples =
+
+  * *[http://www.mybatis.org/spring/ MyBatis Samples]*
+
+
 ==Current Guides==
 You can find all of the current user guides in the downloads which can be found [http://code.google.com/p/mybatis/downloads/list?can=3&q=Docs here].
 
