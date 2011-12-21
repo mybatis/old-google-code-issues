@@ -6,7 +6,7 @@
 
 = Tools =
 
-  * *[http://www.mybatis.org/core MyBatis Generation Tool]*
+  * *[http://mybatis.org/generator/ MyBatis Generator Tool]*
 
   * *[http://www.mybatis.org/migrations Migrations Database Change Management Tool]*
 
@@ -22,7 +22,7 @@
 
 = Samples =
 
-  * *[http://www.mybatis.org/spring/samples.html MyBatis Samples]*
+  * *[http://www.mybatis.org/spring/samples.html MyBatis Spring Samples]*
 
 
 == Can't find what you need? ==
