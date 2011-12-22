@@ -1,6 +1,4 @@
 = Code Samples =
-You can find full Web applications developed with !MyBatis 3.
-
 == JPetStore 6 ==
 6th version of the JPetStore family. Built on !MyBatis 3, Stripes and Spring.
  
