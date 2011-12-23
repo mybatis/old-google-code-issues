@@ -17,6 +17,6 @@ Check it out from [http://code.google.com/p/mybatis/source/browse/#svn%2Fsub-pro
 
 == The !IdleWorx Monster !MyBatis Tutorial ==
 
-Detailed and concise tutorial about developing a full Web application in Eclipse based on !MyBatis, Tomcat and MySQL. Thanks to !IdleWorkx.
+Detailed and concise tutorial about developing a full Web application in Eclipse based on !MyBatis, Tomcat and MySQL. Thanks to !idleworx.
 
 http://blog.idleworx.com/2011/02/mybatis-3-tomcat-mysql-eclipse.html
