@@ -6,7 +6,7 @@ This sample shows how to build a full Web application in a simple way and coding
 
 Get it from [http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DSample]
 
-And have a look at its documentation at [http://www.mybatis.org/spring/samples.html]
+And have a look at its documentation at [http://www.mybatis.org/spring/sample.html]
 
 == Contact Manager ==
 A simple application built with Stripes, Google Guice and !MyBatis 3 that lets you manage a contact list.
