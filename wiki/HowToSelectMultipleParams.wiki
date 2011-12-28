@@ -43,7 +43,7 @@ public interface UserMapper{
 <select id=”selectUser” parameterType=”map” resultType=”User”>
   select id, username, hashedPassword
   from some_table
-  where usrename = #{username}
+  where username = #{username}
   and hashedPassword = #{hashedPassword}
 </sql>
 }}}
