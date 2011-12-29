@@ -20,12 +20,7 @@
             </a>
           </li>
           <li>
-            <a href="http://mybatis.googlecode.com/svn/trunk/doc/en/">
-              Download the Framework User Guide (English)</a>
-          </li>
-          <li>
-            <a href="http://mybatis.googlecode.com/svn/trunk/doc/zh_cn/">
-              Download the Framework User Guide (Simplified Chinese)</a>
+            <a href="http://www.mybatis.org/core/">User Guide</a>
           </li>
         </ul>
       </div>
@@ -49,8 +44,11 @@
             </a>
           </li>
           <li>
-            <a href="http://mybatis.googlecode.com/svn/trunk/doc/en/">
-              Download the Migrations User Guide (English)
+            <a href="http://www.mybatis.org/migrations/">User Guide (English only)</a>
+          </li>
+          <li>
+            <a href="http://www.mybatis.org/maven-migration-plugin/">
+              Learn how to use the MyBatis Migrations inside Apache Maven
             </a>
           </li>
           <li>
@@ -79,9 +77,7 @@
             </a>
           </li>
           <li>
-            <a href="http://code.google.com/p/mybatis/wiki/Generator">
-              Learn more about the MyBatis Generator
-            </a>
+            <a href="http://www.mybatis.org/generator/">Learn more about the MyBatis Generator</a>
           </li>
         </ul>
       </div>
@@ -106,9 +102,7 @@
             </a>
           </li>
           <li>
-            <a href="http://code.google.com/p/mybatis/wiki/Guice">
-              Learn more about the MyBatis-Guice
-            </a>
+            <a href="http://www.mybatis.org/guice/">Learn more about the MyBatis-Guice</a>
           </li>
         </ul>
       </div>
@@ -133,9 +127,7 @@
             </a>
           </li>
           <li>
-            <a href="http://code.google.com/p/mybatis/wiki/Spring">
-              Learn more about the MyBatis-Spring
-            </a>
+            <a href="http://www.mybatis.org/spring/">Learn more about the MyBatis-Spring</a>
           </li>
         </ul>
       </div>
@@ -160,9 +152,13 @@
             </a>
           </li>
           <li>
-            <a href="http://code.google.com/p/mybatis/wiki/Caches">
-              Learn more about the MyBatis-Caches
-            </a>
+            <a href="http://www.mybatis.org/caches/ehcache/">Learn more about the MyBatis-EHCACHE</a>
+          </li>
+          <li>
+            <a href="http://www.mybatis.org/caches/hazelcast/">Learn more about the MyBatis-Hazelcast</a>
+          </li>
+          <li>
+            <a href="http://www.mybatis.org/caches/oscache/">Learn more about the MyBatis-OSCache</a>
           </li>
         </ul>
       </div>
