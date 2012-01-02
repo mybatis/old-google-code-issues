@@ -1,6 +1,5 @@
 #summary Contents
 
-
 === Wiki ===
 
   * [Welcome Welcome Page] 
@@ -8,7 +7,7 @@
 
 === Documentation ===
   * [UserGuides User Guides]
-  * [Samples Code Samples]
+  * [Samples Code Samples & Tutorials]
   * [DocMavenTutorial MyBatis & Maven]
   * [DocUpgrade3 From iBATIS 2.x to MyBatis]
   * [DocIbatis2MyBatis From iBATIS 3.x to MyBatis]
@@ -27,9 +26,9 @@
 
 === Extras ===
 
- * [Guice Guice Integration]
- * [Spring Spring Integration]
- * [Caches 3rd part caches]
+  * [Guice Guice Integration]
+  * [Spring Spring Integration]
+  * [Caches 3rd part caches]
 
 === Related Projects ===
 
@@ -37,8 +36,8 @@
 
 === Process ===
 
- * [ProcessRelease Release Process]
- * [GPGKeys GPG keys]
+  * [ProcessRelease Release Process]
+  * [GPGKeys GPG keys]
 
 === Feedback and Testimonials ===
 
