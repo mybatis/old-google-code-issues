@@ -1,5 +1,7 @@
 #summary MyBatis reference guides and javadocs.
 
+Follows below the list of URL of each sub-project where reference documentation, samples, javadocs and project reports can be found.
+
 = !MyBatis =
 
   * *[http://www.mybatis.org/core MyBatis Core Framework]*
