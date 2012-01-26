@@ -1,4 +1,4 @@
-#summary Archive of all MyBatis related manuals.
+#summary MyBatis reference guides and javadocs.
 
 = !MyBatis =
 
