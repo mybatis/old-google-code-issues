@@ -2,11 +2,9 @@
 
 = Introduction =
 
-!MyBatis is a community project. That means that is it built not just with committer's work but also with the help of users like you.
-
 We appreciate that uses fill issues with bug reports, feature suggestions or new ideas. This is in fact the basis of the evoution of !MyBatis.
 
-To facilitate the adoption of your idea or to demonstrate a failure you found we would ask you to code a JUnit Test. A test will make life easier for everyone, it will be easier for you to demostrate the idea or problem and for team members to understand it and take an action.
+To facilitate the adoption of your idea or to demonstrate a failure we would like to ask you to provide unit tests. A test will make life easier for everyone, it will be easier for you to explain the idea or problem and for team members to understand it and take an action.
 
 = Base Unit Test =
 
