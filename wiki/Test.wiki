@@ -2,9 +2,9 @@
 
 = Introduction =
 
-MyBatis is a community project. That means that is it built not just with committer's work but also with the help of users like you.
+!MyBatis is a community project. That means that is it built not just with committer's work but also with the help of users like you.
 
-We appreciate that uses fill issues with bug reports, feature suggestions or new ideas. This is in fact the basis of the evoution of MyBatis.
+We appreciate that uses fill issues with bug reports, feature suggestions or new ideas. This is in fact the basis of the evoution of !MyBatis.
 
 To facilitate the adoption of your idea or to demonstrate a failure you found we would ask you to code a JUnit Test. A test will make life easier for everyone, it will be easier for you to demostrate the idea or problem and for team members to understand it and take an action.
 
@@ -12,10 +12,10 @@ To facilitate the adoption of your idea or to demonstrate a failure you found we
 
 Even if you are not familiarized with unit testing you will see that coding a unit test is an easy task.
 
-MyBatis provides a sample base test that to serve as a basis for your test. Check it out from here http://mybatis.googlecode.com/svn/trunk/src/test/java/org/apache/ibatis/submitted/basetest/
+!MyBatis provides a sample base test that to serve as a basis for your test. Check it out from here http://mybatis.googlecode.com/svn/trunk/src/test/java/org/apache/ibatis/submitted/basetest/
 
 This test is quite simple, it is composed by the following files:
- * A JUnit test program called BaseTest
+ * A JUnit test program called !BaseTest
  * A POJO called User
  * A Mapper interface called Mapper
  * A mybatis-config file called mybatis-config.xml
@@ -23,7 +23,7 @@ This test is quite simple, it is composed by the following files:
  * A database script called CreateDB.sql
 
 This is how it works. 
- * BaseTest#setUp() method creates an in memory database and populates it with the statements read from CreateDB.sql.  
+ * !BaseTest#setUp method creates an in memory database and populates it with the statements read from CreateDB.sql.  
 {{{
 Class.forName("org.hsqldb.jdbcDriver");
 conn = DriverManager.getConnection("jdbc:hsqldb:mem:basetest", "sa", "");
@@ -35,13 +35,13 @@ runner.runScript(reader);
 conn.commit();
 reader.close();
 }}}
- * Then it builds a SqlSessionFactory. This method is just run once.
+ * Then it builds a !SqlSessionFactory. This method is just run once.
 {{{
 reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/basetest/mybatis-config.xml");
 sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
 reader.close();
 }}}
- * BaseTest#shouldGetAUser() gets the mapper and uses it to retrieve a user. Then it calls assertEquals to check that the returned data is what was expected.
+ * !BaseTest#shouldGetAUser gets the mapper and uses it to retrieve a user. Then it calls JUnit's method assertEquals to check that the returned data is what was expected.
 {{{
 @Test
 public void shouldGetAUser() {
@@ -60,8 +60,8 @@ public void shouldGetAUser() {
 
 Taking base test as a basis these are the modifications you should do to build your own test:
  * Change package name from org.apache.ibatis.submitted.basetest to org.apache.ibatis.submitted.xxx where xxx is your test name
- * Note that you should also change String literals that hold the package in BaseTest#setUp (twice), in mybatis-config and in Mapper.xml.
- * Change database name both in BaseTest and mybatis-config.xml from jdbc:hsqldb:mem:basetest to jdbc:hsqldb:mem:xxx where xxx is your test name.
+ * Note that you should also change String literals that hold the package in !BaseTest#setUp (twice), in mybatis-config and in Mapper.xml.
+ * Change database name both in !BaseTest and mybatis-config.xml from jdbc:hsqldb:mem:basetest to jdbc:hsqldb:mem:xxx where xxx is your test name.
  * Add your own code.
 
 Your test is ready to be attached to an issue. 
