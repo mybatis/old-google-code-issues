@@ -35,7 +35,7 @@ runner.runScript(reader);
 conn.commit();
 reader.close();
 }}}
- * Then it builds a !SqlSessionFactory. This method is just run once.
+ * Then it builds a !SqlSessionFactory.
 {{{
 reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/basetest/mybatis-config.xml");
 sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
