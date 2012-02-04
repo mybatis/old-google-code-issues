@@ -16,7 +16,7 @@
 === Contributions ===
 
   * [Contribute Get Involved]
-  * [Test Creating a Test]
+  * [Test Create a Test]
   * [DocContrib Contribute Documentation]
   * [CLA Contributor License Agreements]
 
