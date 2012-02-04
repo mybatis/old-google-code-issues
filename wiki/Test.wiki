@@ -1,7 +1,5 @@
 #summary How to create a Test to submit an issue.
 
-= Introduction =
-
 We appreciate that uses fill issues with bug reports, feature suggestions or new ideas. This is in fact the basis of the evoution of !MyBatis.
 
 To facilitate the adoption of your idea or to demonstrate a failure we would like to ask you to provide unit tests. A test will make life easier for everyone, it will be easier for you to explain the idea or problem and for team members to understand it and take an action.
