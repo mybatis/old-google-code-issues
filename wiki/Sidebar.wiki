@@ -12,12 +12,12 @@
   * [DocUpgrade3 From iBATIS 2.x to MyBatis]
   * [DocIbatis2MyBatis From iBATIS 3.x to MyBatis]
   * [Logging]
-  * [Test Creating a Test]
 
 === Contributions ===
 
-  * [DocContrib Contribute Documentation]
   * [Contribute Get Involved]
+  * [Test Creating a Test]
+  * [DocContrib Contribute Documentation]
   * [CLA Contributor License Agreements]
 
 === Tools ===
