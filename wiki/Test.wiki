@@ -12,7 +12,7 @@ To facilitate the adoption of your idea or to demonstrate a failure you found we
 
 Even if you are not familiarized with unit testing you will see that coding a unit test is an easy task.
 
-!MyBatis provides a sample base test that to serve as a basis for your test. Check it out from here http://mybatis.googlecode.com/svn/trunk/src/test/java/org/apache/ibatis/submitted/basetest/
+!MyBatis provides a sample base test that serves as a basis for your test. Check it out from here http://mybatis.googlecode.com/svn/trunk/src/test/java/org/apache/ibatis/submitted/basetest/
 
 This test is quite simple, it is composed by the following files:
  * A JUnit test program called !BaseTest
