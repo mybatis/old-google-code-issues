@@ -19,25 +19,31 @@ This test is quite simple, it is composed by the following files:
  * A database script called CreateDB.sql
 
 This is how it works. 
- * !BaseTest#setUp method creates an in memory database and populates it with the statements read from CreateDB.sql.  
+ * !BaseTest.setUp() method builds an !SqlSessionFactory that uses an in-memory HSQLDB database:
 {{{
-Class.forName("org.hsqldb.jdbcDriver");
-conn = DriverManager.getConnection("jdbc:hsqldb:mem:basetest", "sa", "");
-Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/basetest/CreateDB.sql");
-ScriptRunner runner = new ScriptRunner(conn);
-runner.setLogWriter(null);
-runner.setErrorLogWriter(null);
-runner.runScript(reader);
-conn.commit();
-reader.close();
+ @BeforeClass
+  public static void setUp() throws Exception {
+    // create a SqlSessionFactory
+    Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/basetest/mybatis-config.xml");
+    sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+    reader.close();
 }}}
- * Then it builds a !SqlSessionFactory.
+  }}}}
+ * Then it populates the database with the content of CreateDB.sql file:
 {{{
-reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/basetest/mybatis-config.xml");
-sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-reader.close();
+    // populate in-memory database
+    SqlSession session = sqlSessionFactory.openSession();
+    Connection conn = session.getConnection();
+    reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/basetest/CreateDB.sql");
+    ScriptRunner runner = new ScriptRunner(conn);
+    runner.setLogWriter(null);
+    runner.setErrorLogWriter(null);
+    runner.runScript(reader);
+    conn.commit();
+    conn.close();
+    reader.close();
 }}}
- * !BaseTest#shouldGetAUser gets the mapper and uses it to retrieve a user. Then it calls JUnit's method assertEquals to check that the returned data is what was expected.
+ * !BaseTest.shouldGetAUser() gets a mapper and uses it to retrieve a User. Then it calls JUnit's method assertEquals to check that the returned data is what was expected:
 {{{
 @Test
 public void shouldGetAUser() {
