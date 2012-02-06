@@ -24,11 +24,12 @@ This is how it works.
  @BeforeClass
   public static void setUp() throws Exception {
     // create a SqlSessionFactory
-    Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/basetest/mybatis-config.xml");
+    Reader reader =
+      Resources.getResourceAsReader
+        ("org/apache/ibatis/submitted/basetest/mybatis-config.xml");
     sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
     reader.close();
 }}}
-  }}}}
  * Then it populates the database with the content of CreateDB.sql file:
 {{{
     // populate in-memory database
