@@ -21,7 +21,7 @@ This test is quite simple, it is composed by the following files:
 This is how it works. 
  * !BaseTest.setUp() method builds an !SqlSessionFactory that uses an in-memory HSQLDB database:
 {{{
-Reader reader = Resources.getResourceAsReader        ("org/apache/ibatis/submitted/basetest/mybatis-config.xml");
+Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/basetest/mybatis-config.xml");
 sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
 reader.close();
 }}}
