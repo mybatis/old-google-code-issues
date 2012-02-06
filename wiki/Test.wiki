@@ -62,5 +62,3 @@ Taking base test as a basis these are the modifications you should do to build y
  * Re-run the test. It should finish OK.
  * Add your own code.
  * Once you are done, create a patch with all your changes (including the test) and attach it to an issue.
-
-Your test is ready to be attached to an issue. 
