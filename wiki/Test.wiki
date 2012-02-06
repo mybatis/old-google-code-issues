@@ -27,17 +27,16 @@ reader.close();
 }}}
  * Then it populates the database with the content of CreateDB.sql file:
 {{{
-    // populate in-memory database
-    SqlSession session = sqlSessionFactory.openSession();
-    Connection conn = session.getConnection();
-    reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/basetest/CreateDB.sql");
-    ScriptRunner runner = new ScriptRunner(conn);
-    runner.setLogWriter(null);
-    runner.setErrorLogWriter(null);
-    runner.runScript(reader);
-    conn.commit();
-    conn.close();
-    reader.close();
+SqlSession session = sqlSessionFactory.openSession();
+Connection conn = session.getConnection();
+reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/basetest/CreateDB.sql");
+ScriptRunner runner = new ScriptRunner(conn);
+runner.setLogWriter(null);
+runner.setErrorLogWriter(null);
+runner.runScript(reader);
+conn.commit();
+conn.close();
+reader.close();
 }}}
  * !BaseTest.shouldGetAUser() gets a mapper and uses it to retrieve a User. Then it calls JUnit's method assertEquals to check that the returned data is what was expected:
 {{{
