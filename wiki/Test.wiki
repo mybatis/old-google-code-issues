@@ -56,9 +56,8 @@ public void shouldGetAUser() {
 
 Taking base test as a basis these are the modifications you should do to build your own test:
  * Change package name from org.apache.ibatis.submitted.basetest to org.apache.ibatis.submitted.xxx where xxx is your test name
- * Run the test. It should finish OK.
  * Note that you should also change String literals that hold the package in !BaseTest#setUp (twice), in mybatis-config and in Mapper.xml.
  * Change database name both in !BaseTest and mybatis-config.xml from jdbc:hsqldb:mem:basetest to jdbc:hsqldb:mem:xxx where xxx is your test name.
- * Re-run the test. It should finish OK.
+ * Run the test. It should finish OK.
  * Add your own code.
  * Once you are done, create a patch with all your changes (including the test) and attach it to an issue.
