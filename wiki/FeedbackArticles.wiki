@@ -2,7 +2,7 @@
 
 = !MyBatis 3.x =
 
-    * Developing a full Web application with !MyBatis.
+    * Developing a full Web application with !MyBatis, Tomcat, MySQL and Eclipse.
           o http://blog.idleworx.com/2011/02/mybatis-3-tomcat-mysql-eclipse.html
 
     * Using iBatis 3.0 with Scala
