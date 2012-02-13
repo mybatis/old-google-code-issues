@@ -12,11 +12,3 @@ And have a look at its documentation at [http://www.mybatis.org/spring/sample.ht
 A simple application built with Stripes, Google Guice and !MyBatis 3 that lets you manage a contact list.
 
 Check it out from [http://code.google.com/p/mybatis/source/browse/#svn%2Fsub-projects%2Fcontact_manager]
-
-= 3rd Party Samples and Tutorials =
-
-== The !IdleWorx Monster !MyBatis Tutorial ==
-
-Detailed and concise tutorial about developing a full Web application in Eclipse based on !MyBatis, Tomcat and MySQL. Thanks to idleworx.
-
-http://blog.idleworx.com/2011/02/mybatis-3-tomcat-mysql-eclipse.html
