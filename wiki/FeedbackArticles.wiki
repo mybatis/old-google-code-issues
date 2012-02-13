@@ -4,13 +4,16 @@
 
 The following articles are about iBATIS in name, but are perfectly useful for !MyBatis as well.
 
-= iBATIS 3.X - !MyBatis =
+= MyBatis 3.x
 
     * Developing a full Web application with !MyBatis.
           o http://blog.idleworx.com/2011/02/mybatis-3-tomcat-mysql-eclipse.html
 
     * Using iBatis 3.0 with Scala
           o http://vasilrem.com/blog/software-development/using-ibatis-3-0-with-scala/
+
+    * What is new in iBATIS 3 (IBM)
+          o http://www.ibm.com/developerworks/java/library/os-ibatis3/index.html?ca=drs-
 
 = iBATIS 2.x =
 
