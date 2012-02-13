@@ -1,9 +1,5 @@
 #summary Articles and books about the framework.
 
-= Introduction =
-
-The following articles are about iBATIS in name, but are perfectly useful for !MyBatis as well.
-
 = !MyBatis 3.x =
 
     * Developing a full Web application with !MyBatis.
