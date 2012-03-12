@@ -57,7 +57,7 @@ If you're stared a new subproject, please use the already configured _parent pom
 <parent>
     <groupId>org.mybatis</groupId>
     <artifactId>mybatis-parent</artifactId>
-    <version>8</version>
+    <version>14</version>
 </parent>
 }}}
 
