@@ -71,7 +71,7 @@ Please refer to the reference manual to know all about !MyBatis-Guice features
 
 == Installation ==
 
-Installing the !MyBatis-Guice module it is very easy, just put the mybatis-guice-3.0.jar and related dependencies in the classpath!
+Installing the !MyBatis-Guice module it is very easy, just put the mybatis-guice-3.2.jar and related dependencies in the classpath!
 
 Apache Maven users instead can easily adding the following dependency in their POMs :
 
@@ -79,6 +79,6 @@ Apache Maven users instead can easily adding the following dependency in their P
 <dependency>
   <groupId>org.mybatis</groupId>
   <artifactId>mybatis-guice</artifactId>
-  <version>3.0</version>
+  <version>3.2</version>
 </dependency>
 }}}
