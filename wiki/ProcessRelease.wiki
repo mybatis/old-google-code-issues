@@ -7,8 +7,7 @@ This page will guide the development team with setting up their environment to p
 
  * Install/Configure GPG - The artifacts that are deployed to the central maven repositories need to be signed.  To do this you will need to have a public and private keypair.  There is a very good [http://www.sonatype.com/people/2010/01/how-to-generate-pgp-signatures-with-maven/ guide] that will walk you though this.
 
- * Install Maven 2.2.1 or higher.  2.2.0 has a bug that will produce invalid checksums;
- * We strongly encourage our developers to install Maven 3.0.
+ * Install Maven 3
 
 == Configuration ==
 
