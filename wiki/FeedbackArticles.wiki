@@ -2,7 +2,7 @@
 
 = !MyBatis 3.x =
 
-    * Loiane Groner's MyBatis tutorials.
+    * Loiane Groner's !MyBatis tutorials.
           o http://loianegroner.com/category/ibatis-mybatis/
 
     * !MyBatis: A User Guide Companion (Thorny Dev)
