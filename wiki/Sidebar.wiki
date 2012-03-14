@@ -6,7 +6,7 @@
   * [http://code.google.com/p/mybatis/w/list Page List]
 
 === Documentation ===
-  * [UserGuides User Guides & Javadocs]
+  * [UserGuides User Guides]
   * [Samples Code Samples]
   * [FeedbackArticles Tutorials and Books]
   * [DocMavenTutorial MyBatis & Maven]
