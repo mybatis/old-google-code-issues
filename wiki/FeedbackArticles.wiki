@@ -3,7 +3,7 @@
 = !MyBatis 3.x =
 
 
-    * MyBatis: A User Guide Companion.
+    * !MyBatis: A User Guide Companion.
           o http://thornydev.blogspot.com/2012/03/mybatis-user-guide-companion.html
 
     * Developing a full Web application with !MyBatis, Tomcat, MySQL and Eclipse.
