@@ -7,7 +7,8 @@
 
 === Documentation ===
   * [UserGuides User Guides & Javadocs]
-  * [Samples Code Samples & Tutorials]
+  * [Samples Code Samples]
+  * [FeedbackArticles Tutorials and Books]
   * [DocMavenTutorial MyBatis & Maven]
   * [DocUpgrade3 From iBATIS 2.x to MyBatis]
   * [Logging]
@@ -42,5 +43,4 @@
 === Feedback and Testimonials ===
 
   * [FeedbackWho Who's using MyBatis]
-  * [FeedbackArticles Articles and Books]
   * [FeedbackTestimonial Feedback and Testimonials]
