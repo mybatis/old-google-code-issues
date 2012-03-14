@@ -2,11 +2,13 @@
 
 = !MyBatis 3.x =
 
+    * Loiane Groner's MyBatis tutorials.
+          o http://loianegroner.com/category/ibatis-mybatis/
 
-    * !MyBatis: A User Guide Companion.
+    * !MyBatis: A User Guide Companion (Thorny Dev)
           o http://thornydev.blogspot.com/2012/03/mybatis-user-guide-companion.html
 
-    * Developing a full Web application with !MyBatis, Tomcat, MySQL and Eclipse.
+    * Developing a full Web application with !MyBatis, Tomcat, MySQL and Eclipse (IdleWorx)
           o http://blog.idleworx.com/2011/02/mybatis-3-tomcat-mysql-eclipse.html
 
     * Using iBatis 3.0 with Scala
