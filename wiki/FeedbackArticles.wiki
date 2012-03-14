@@ -8,7 +8,7 @@
     * !MyBatis: A User Guide Companion (Thorny Dev)
           o http://thornydev.blogspot.com/2012/03/mybatis-user-guide-companion.html
 
-    * Developing a full Web application with !MyBatis, Tomcat, MySQL and Eclipse (IdleWorx)
+    * Developing a full Web application with !MyBatis, Tomcat, MySQL and Eclipse (!IdleWorx)
           o http://blog.idleworx.com/2011/02/mybatis-3-tomcat-mysql-eclipse.html
 
     * Using iBatis 3.0 with Scala
