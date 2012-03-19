@@ -2,6 +2,9 @@
 
 = !MyBatis 3.x =
 
+    * MyBatis for Scala (Frank D. Martínez M.)
+          o http://www.fdmtech.org/2011/12/mybatis-for-scala-1-0-beta-released
+
     * Loiane Groner's !MyBatis tutorials.
           o http://loianegroner.com/category/ibatis-mybatis/
 
