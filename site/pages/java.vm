@@ -138,6 +138,31 @@
 <div class="post">
   <div class="post-bgtop">
     <div class="post-bgbtm">
+      <h2 class="title">MyBatis-Scala integration module</h2>
+
+      <p class="byline">
+         A lightweight wrapper, it supports a 100% of the framework functionality, taking advantage of the elegant Scala syntax and its type system.
+      </p>
+
+      <div class="entry">
+        <ul>
+          <li>
+            <a href="http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DScala">
+              <b>Download the MyBatis-Scala module</b>
+            </a>
+          </li>
+          <li>
+            <a href="http://www.mybatis.org/spring/">Learn more about the MyBatis-Spring</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="post">
+  <div class="post-bgtop">
+    <div class="post-bgbtm">
       <h2 class="title">Caches</h2>
 
       <p class="byline">
