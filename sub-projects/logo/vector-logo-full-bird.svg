@@ -7,6 +7,7 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="792pt"
@@ -16,11 +17,32 @@
    inkscape:version="0.48.2 r9819"
    sodipodi:docname="vector-logo-full-bird.svg"
    version="1.0"
-   inkscape:export-filename="/home/eduardo/Descargas/ibatis-vector-logo-bird-simplified.png"
+   inkscape:export-filename="/home/eduardo/Descargas/mybatis-logo-bird.png"
    inkscape:export-xdpi="300"
    inkscape:export-ydpi="300">
   <defs
-     id="defs4" />
+     id="defs4">
+    <linearGradient
+       id="linearGradient3038">
+      <stop
+         style="stop-color:#757769;stop-opacity:1;"
+         offset="0"
+         id="stop3040" />
+      <stop
+         style="stop-color:#fff8cb;stop-opacity:1;"
+         offset="1"
+         id="stop3042" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3038"
+       id="linearGradient3006"
+       x1="2.8356823"
+       y1="315.94816"
+       x2="915.59414"
+       y2="315.94816"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -28,9 +50,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="604.04183"
-     inkscape:cy="400.50408"
+     inkscape:zoom="0.78039216"
+     inkscape:cx="495"
+     inkscape:cy="382.5"
      inkscape:document-units="px"
      inkscape:current-layer="BirdBatis"
      inkscape:window-width="1366"
@@ -48,7 +70,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -61,7 +83,7 @@
        inkscape:label="#g2568"
        transform="matrix(0.428474,0,0,0.428474,290.0398,209.1822)">
       <path
-         style="fill:#f5efd7;fill-opacity:1"
+         style="fill:url(#linearGradient3006);fill-opacity:1"
          d="m 509.51122,574.97223 c 101.09905,12.8487 206.26786,-19.20938 287.20363,-79.76475 41.86137,-41.72205 61.26578,-95.95223 92.67288,-145.39853 20.49832,-55.74794 24.30293,-97.45558 24.55869,-154.92774 -2.0247,-57.82939 5.92544,-116.48825 -1.81479,-173.780202 C 887.14185,-31.615644 818.20588,-37.988791 766.77366,-33.670794 695.48958,-22.399746 652.16234,41.047023 604.91336,88.916652 561.40953,139.55039 513.94978,186.50013 464.34031,230.98299 404.53617,291.7328 352.29226,359.29387 302.48448,428.21724 230.89593,511.83267 128.84322,559.13412 44.390942,627.46413 c -20.63674,6.23479 -66.48327,60.26265 -24.29478,30.13514 C 106.02972,601.61729 191.1638,537.86313 292.05011,512.15689 c 47.65942,-10.38328 101.67585,-5.04866 139.53178,28.23298 24.18964,15.01786 49.92623,28.42105 77.92933,34.58236 z"
          id="Body"
          inkscape:connector-curvature="0"
