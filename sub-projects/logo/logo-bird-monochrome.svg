@@ -83,6 +83,39 @@
            in="SourceGraphic" />
       </feMerge>
     </filter>
+    <filter
+       id="filter3937"
+       inkscape:label="Drop shadow"
+       width="1.5"
+       height="1.5"
+       x="-.25"
+       y="-.25">
+      <feGaussianBlur
+         id="feGaussianBlur3939"
+         in="SourceAlpha"
+         stdDeviation="2"
+         result="blur" />
+      <feColorMatrix
+         id="feColorMatrix3941"
+         result="bluralpha"
+         type="matrix"
+         values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.5 0 " />
+      <feOffset
+         id="feOffset3943"
+         in="bluralpha"
+         dx="4"
+         dy="4"
+         result="offsetBlur" />
+      <feMerge
+         id="feMerge3945">
+        <feMergeNode
+           id="feMergeNode3947"
+           in="offsetBlur" />
+        <feMergeNode
+           id="feMergeNode3949"
+           in="SourceGraphic" />
+      </feMerge>
+    </filter>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -91,9 +124,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.50976565"
+     inkscape:zoom="1.0195313"
      inkscape:cx="508.41152"
-     inkscape:cy="194.28379"
+     inkscape:cy="390.45236"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:window-width="1366"
@@ -115,7 +148,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -199,7 +232,7 @@
          inkscape:connector-curvature="0"
          id="WingBackground"
          d="m 561.17182,217.22052 c 17.04236,12.12707 34.28687,30.30453 34.15771,53.41216 -2.55806,23.85244 -17.06672,35.67863 -45.58108,45.78679 -19.5927,9.89723 -47.59321,17.19261 -77.02441,25.39474 -47.55174,14.96359 -91.17363,21.12714 -137.93144,32.58157 -26.2954,3.00262 7.0306,-35.73066 14.46294,-46.30704 26.72961,-41.62824 61.06031,-78.44605 102.91239,-103.11722 25.98864,-16.16817 57.62227,-26.75021 87.59349,-17.45964 7.51812,2.16701 14.76808,5.40438 21.4104,9.70864 z"
-         style="fill:#1a1a1a;fill-opacity:1;stroke-width:6;stroke-miterlimit:4;stroke-dasharray:none" />
+         style="fill:#1a1a1a;fill-opacity:1;stroke-width:6;stroke-miterlimit:4;stroke-dasharray:none;filter:url(#filter3937)" />
       <path
          style="fill:#ffffff;stroke:none"
          d="m 331.99339,368.64421 c 22.54861,-13.92622 31.05908,-18.78349 54.83444,-29.70263 -6.46177,4.47839 -14.41902,6.81483 -25.30839,17.58473 9.7251,-2.26566 17.45136,-7.31516 40.49312,-11.78353 11.52088,-2.23418 -1.14903,2.11678 -5.5536,5.20285 26.15656,-2.57604 65.57809,-14.137 67.945,-13.72181 -19.58139,-50.93405 -99.86227,-2.151 -132.41057,32.42039 z"
