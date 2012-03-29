@@ -2,6 +2,10 @@
 
 = !MyBatis 3.x =
 
+
+    * Presentation de !MyBatis (Dridi Boukelmoune)
+          o http://blog.zenika.com/index.php?post/2012/03/28/Presentation-de-MyBatis
+
     * !MyBatis for Scala (Frank D. Martínez M.)
           o http://www.fdmtech.org/2011/12/mybatis-for-scala-1-0-beta-released
 
