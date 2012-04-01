@@ -124,9 +124,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.50976565"
+     inkscape:zoom="1.0195313"
      inkscape:cx="616.7877"
-     inkscape:cy="519.74161"
+     inkscape:cy="471.39653"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:window-width="1366"
@@ -184,8 +184,14 @@
        id="g3834"
        transform="translate(9.8084247,-1.9616855)" />
     <path
+       style="fill:#ff7c08;fill-opacity:1;stroke:none"
+       d="m 633.55023,140.0598 c -28.84589,4.40296 -41.78193,16.03244 -41.78193,16.03244 0,0 31.5022,-4.06988 38.4788,-0.15026 3.41131,1.91656 3.30313,-15.88218 3.30313,-15.88218 z"
+       id="path3780"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccsc" />
+    <path
        sodipodi:type="arc"
-       style="fill:#f9f9f9;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       style="fill:#ff7c08;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="path3797"
        sodipodi:cx="616.45972"
        sodipodi:cy="234.36401"
@@ -208,11 +214,5 @@
          id="tspan3826"
          x="149.61391"
          y="608.83087">mybatis</tspan></text>
-    <path
-       style="fill:#ffffff;stroke:none"
-       d="m 633.55023,140.0598 c -28.84589,4.40296 -35.16124,21.18186 -35.16124,21.18186 0,0 22.91982,-11.67141 29.89642,-7.75179 3.41131,1.91656 5.26482,-13.43007 5.26482,-13.43007 z"
-       id="path3780"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccsc" />
   </g>
 </svg>
