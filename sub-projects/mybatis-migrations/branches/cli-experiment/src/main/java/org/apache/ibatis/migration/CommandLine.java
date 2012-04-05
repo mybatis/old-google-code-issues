@@ -149,7 +149,7 @@ public class CommandLine {
         printStream.println( "\nERROR: " + e.getMessage() );
         if ( trace )
         {
-          e.printStackTrace();
+          e.printStackTrace(printStream);
         }
       }
       finally
