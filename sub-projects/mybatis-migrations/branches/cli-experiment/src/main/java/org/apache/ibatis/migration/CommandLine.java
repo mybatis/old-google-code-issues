@@ -96,7 +96,7 @@ public class CommandLine {
   public File driverPath;
 
   public CommandLine() {
-    jCommander.setProgramName( "migrate" );
+    jCommander.setProgramName( System.getProperty("app.name") );
     jCommander.addCommand( "bootstrap", new BootstrapCommand(this), "bs" );
     jCommander.addCommand( "down", new DownCommand(this), "d" );
     jCommander.addCommand( "init", new InitializeCommand(this), "i" );
