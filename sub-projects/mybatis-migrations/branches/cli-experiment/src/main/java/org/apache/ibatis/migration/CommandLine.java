@@ -20,8 +20,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 
 import org.apache.ibatis.migration.commands.BootstrapCommand;
@@ -89,8 +87,6 @@ public class CommandLine {
 
   private PrintStream printStream = System.out;
 
-  private final Map<String, Command> commands = new HashMap<String, Command>();
-
   private final JCommander jCommander = new JCommander( this );
 
   public File envPath;
@@ -101,22 +97,15 @@ public class CommandLine {
 
   public CommandLine() {
     jCommander.setProgramName( "migrate" );
-    registerCommand( "bootstrap", new BootstrapCommand(this), "bs" );
-    registerCommand( "down", new DownCommand(this), "d" );
-    registerCommand( "init", new InitializeCommand(this), "i" );
-    registerCommand( "new", new NewCommand(this), "n" );
-    registerCommand( "pending", new PendingCommand(this), "p" );
-    registerCommand( "script", new ScriptCommand(this), "sc" );
-    registerCommand( "status", new StatusCommand(this), "st" );
-    registerCommand( "up", new UpCommand(this), "u" );
-    registerCommand( "version", new VersionCommand(this), "v" );
-  }
-
-  private void registerCommand( String name, Command command, String alias )
-  {
-    commands.put( name, command );
-    commands.put( alias, command );
-    jCommander.addCommand( name, command, alias );
+    jCommander.addCommand( "bootstrap", new BootstrapCommand(this), "bs" );
+    jCommander.addCommand( "down", new DownCommand(this), "d" );
+    jCommander.addCommand( "init", new InitializeCommand(this), "i" );
+    jCommander.addCommand( "new", new NewCommand(this), "n" );
+    jCommander.addCommand( "pending", new PendingCommand(this), "p" );
+    jCommander.addCommand( "script", new ScriptCommand(this), "sc" );
+    jCommander.addCommand( "status", new StatusCommand(this), "st" );
+    jCommander.addCommand( "up", new UpCommand(this), "u" );
+    jCommander.addCommand( "version", new VersionCommand(this), "v" );
   }
 
   public void setPrintStream(PrintStream out) {
@@ -145,12 +134,12 @@ public class CommandLine {
       }
 
       String parsedCommand = jCommander.getParsedAlias();
-      Command command = commands.get( parsedCommand );
 
       boolean error = false;
       try
       {
-        if (command != null) {
+        if (parsedCommand != null) {
+            Command command = Command.class.cast( jCommander.getCommands().get( parsedCommand ).getObjects().get( 0 ) );
           runCommand( parsedCommand, command );
         }
       }
