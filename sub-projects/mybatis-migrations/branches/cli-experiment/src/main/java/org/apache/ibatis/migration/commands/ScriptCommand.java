@@ -67,7 +67,9 @@ public class ScriptCommand extends BaseCommand {
           while ((l = migrationReader.read(cbuf)) == cbuf.length) {
             commandLine.getPrintStream().print(new String(cbuf, 0, l));
           }
-          commandLine.getPrintStream().print(new String(cbuf, 0, l - 1));
+          if (l > 0) {
+            commandLine.getPrintStream().print(new String(cbuf, 0, l - 1));
+          }
           commandLine.getPrintStream().println();
           commandLine.getPrintStream().println();
           commandLine.getPrintStream().println(undo ? generateVersionDelete(change) : generateVersionInsert(change));
