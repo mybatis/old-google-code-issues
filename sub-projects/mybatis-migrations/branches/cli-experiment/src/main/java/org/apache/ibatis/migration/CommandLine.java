@@ -41,49 +41,49 @@ import com.beust.jcommander.Parameters;
 @Parameters( separators = "=" )
 public class CommandLine {
 
-    @Parameter(
-      names = { "-X", "--trace" },
-      description = "Shows additional error details (if any)."
-    )
-    public boolean trace = false;
+  @Parameter(
+    names = { "-X", "--trace" },
+    description = "Shows additional error details (if any)."
+  )
+  public boolean trace = false;
 
-    @Parameter(
-      names = { "-h", "--help" },
-      description = "Displays this usage message."
-    )
-    public boolean help = false;
+  @Parameter(
+    names = { "-h", "--help" },
+    description = "Displays this usage message."
+  )
+  public boolean help = false;
 
-    @Parameter(
-     names = { "-p", "--path" },
-     converter = MigrationsPathConverterValidator.class,
-     validateWith = MigrationsPathConverterValidator.class,
-     description = "Path to repository.  Default current working directory."
-    )
-    public File basePath = new File( System.getProperty( "user.dir" ) );
+  @Parameter(
+   names = { "-p", "--path" },
+   converter = MigrationsPathConverterValidator.class,
+   validateWith = MigrationsPathConverterValidator.class,
+   description = "Path to repository.  Default current working directory."
+  )
+  public File basePath = new File( System.getProperty( "user.dir" ) );
 
-    @Parameter(
-      names = { "-e", "--env" },
-      description = "Environment to configure."
-    )
-    public String environment = "development";
+  @Parameter(
+    names = { "-e", "--env" },
+    description = "Environment to configure."
+  )
+  public String environment = "development";
 
-    @Parameter(
-      names = { "-t", "--template" },
-      description = "Path to custom template for creating new sql scripts."
-    )
-    public String template;
+  @Parameter(
+    names = { "-t", "--template" },
+    description = "Path to custom template for creating new sql scripts."
+  )
+  public String template;
 
-    @Parameter(
-      names = { "-f", "--force" },
-      description = "Forces script to continue even if SQL errors are encountered."
-    )
-    public boolean force = false;
+  @Parameter(
+    names = { "-f", "--force" },
+    description = "Forces script to continue even if SQL errors are encountered."
+  )
+  public boolean force = false;
 
-    @Parameter(
-      names = { "-v", "--version" },
-      description = "Display version information"
-    )
-    public boolean showVersion = false;
+  @Parameter(
+    names = { "-v", "--version" },
+    description = "Display version information"
+  )
+  public boolean showVersion = false;
 
   private PrintStream printStream = System.out;
 
@@ -136,27 +136,20 @@ public class CommandLine {
       String parsedCommand = jCommander.getParsedAlias();
 
       boolean error = false;
-      try
-      {
+      try {
         if (parsedCommand != null) {
-            Command command = Command.class.cast( jCommander.getCommands().get( parsedCommand ).getObjects().get( 0 ) );
-          runCommand( parsedCommand, command );
+          Command command = Command.class.cast( jCommander.getCommands().get( parsedCommand ).getObjects().get( 0 ) );
+          runCommand(parsedCommand, command);
         }
-      }
-      catch ( Exception e )
-      {
+      } catch ( Exception e ) {
         error = true;
-        printStream.println( "\nERROR: " + e.getMessage() );
-        if ( trace )
-        {
+        printStream.println("\nERROR: " + e.getMessage());
+        if (trace) {
           e.printStackTrace(printStream);
         }
-      }
-      finally
-      {
+      } finally {
         printStream.flush();
-        if ( error )
-        {
+        if (error) {
           System.exit( 1 );
         }
       }
@@ -201,98 +194,71 @@ public class CommandLine {
   private void printVersionInformation()
   {
     Properties properties = new Properties();
-    InputStream input = getClass().getClassLoader().getResourceAsStream( "META-INF/maven/org.mybatis/mybatis-migrations/pom.properties" );
+    InputStream input = getClass().getClassLoader().getResourceAsStream("META-INF/maven/org.mybatis/mybatis-migrations/pom.properties");
 
-    if ( input != null )
-    {
-        try
-        {
-          properties.load( input );
-        }
-        catch ( IOException e )
-        {
+    if (input != null) {
+      try {
+        properties.load(input);
+      } catch (IOException e) {
           // ignore, just don't load the properties
+      } finally {
+        try {
+          input.close();
+        } catch (IOException e) {
+          // close quietly
         }
-        finally
-        {
-          try
-          {
-            input.close();
-          }
-          catch ( IOException e )
-          {
-            // close quietly
-          }
-        }
+      }
     }
 
-    printStream.printf( "%s %s (%s)%n",
-                        properties.getProperty( "name" ),
-                        properties.getProperty( "version" ),
-                        properties.getProperty( "build" ) );
+    printStream.printf("%s %s (%s)%n",
+                       properties.getProperty("name"),
+                       properties.getProperty("version"),
+                       properties.getProperty("build"));
 
-    String migrationsHome = System.getenv( "MIGRATIONS_HOME" );
-    printStream.printf( "Migrations home: %s%n",
-                        ( migrationsHome != null && migrationsHome.length() > 0 ) ? migrationsHome : "UNKNOWN" );
+    String migrationsHome = System.getenv("MIGRATIONS_HOME");
+    printStream.printf("Migrations home: %s%n",
+                       (migrationsHome != null && migrationsHome.length() > 0) ? migrationsHome : "UNKNOWN");
 
-    printStream.printf( "Java version: %s, vendor: %s%n",
-                        System.getProperty( "java.version" ),
-                        System.getProperty( "java.vendor" ) );
-    printStream.printf( "Java home: %s%n", System.getProperty( "java.home" ) );
-    printStream.printf( "Default locale: %s_%s, platform encoding: %s%n",
-                        System.getProperty( "user.language" ),
-                        System.getProperty( "user.country" ),
-                        System.getProperty( "sun.jnu.encoding" ) );
-    printStream.printf( "OS name: \"%s\", version: \"%s\", arch: \"%s\", family: \"%s\"%n",
-                        System.getProperty( "os.name" ).toLowerCase(),
-                        System.getProperty( "os.version" ),
-                        System.getProperty( "os.arch" ),
-                        getOsFamily() );
+    printStream.printf("Java version: %s, vendor: %s%n",
+                       System.getProperty("java.version"),
+                       System.getProperty("java.vendor"));
+    printStream.printf("Java home: %s%n", System.getProperty("java.home"));
+    printStream.printf("Default locale: %s_%s, platform encoding: %s%n",
+                       System.getProperty("user.language"),
+                       System.getProperty("user.country"),
+                       System.getProperty("sun.jnu.encoding"));
+    printStream.printf("OS name: \"%s\", version: \"%s\", arch: \"%s\", family: \"%s\"%n",
+                       System.getProperty("os.name").toLowerCase(),
+                       System.getProperty("os.version"),
+                       System.getProperty("os.arch"),
+                       getOsFamily() );
   }
 
   private static final String getOsFamily()
   {
-    String osName = System.getProperty( "os.name" ).toLowerCase();
-    String pathSep = System.getProperty( "path.separator" );
+    String osName = System.getProperty("os.name").toLowerCase();
+    String pathSep = System.getProperty("path.separator");
 
-    if ( osName.indexOf( "windows" ) != -1 )
-    {
+    if (osName.indexOf("windows") != -1) {
       return "windows";
-    }
-    else if ( osName.indexOf( "os/2" ) != -1 )
-    {
+    } else if (osName.indexOf("os/2") != -1) {
       return "os/2";
-    }
-    else if ( osName.indexOf( "z/os" ) != -1 || osName.indexOf( "os/390" ) != -1 )
-    {
+    } else if (osName.indexOf("z/os") != -1 || osName.indexOf("os/390") != -1) {
       return "z/os";
-    }
-    else if ( osName.indexOf( "os/400" ) != -1 )
-    {
+    } else if (osName.indexOf("os/400") != -1) {
       return "os/400";
-    }
-    else if ( pathSep.equals( ";" ) )
-    {
+    } else if (pathSep.equals(";")) {
       return "dos";
-    }
-    else if ( osName.indexOf( "mac" ) != -1 )
-    {
-      if ( osName.endsWith( "x" ) )
-      {
+    } else if (osName.indexOf("mac") != -1) {
+      if (osName.endsWith("x")) {
         return "mac"; // MACOSX
       }
       return "unix";
-    }
-    else if ( osName.indexOf( "nonstop_kernel" ) != -1 )
-    {
+    } else if (osName.indexOf("nonstop_kernel") != -1) {
       return "tandem";
-    }
-    else if ( osName.indexOf( "openvms" ) != -1 )
-    {
+    } else if (osName.indexOf("openvms") != -1) {
       return "openvms";
-    }
-    else if ( pathSep.equals( ":" ) )
-    {
+    } else if (pathSep.equals(":")) {
       return "unix";
     }
 
