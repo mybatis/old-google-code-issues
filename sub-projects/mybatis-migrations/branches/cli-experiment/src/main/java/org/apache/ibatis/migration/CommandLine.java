@@ -87,8 +87,6 @@ public class CommandLine {
 
   private PrintStream printStream = System.out;
 
-  private final JCommander jCommander = new JCommander( this );
-
   public File envPath;
 
   public File scriptPath;
@@ -96,16 +94,6 @@ public class CommandLine {
   public File driverPath;
 
   public CommandLine() {
-    jCommander.setProgramName( System.getProperty("app.name") );
-    jCommander.addCommand( "bootstrap", new BootstrapCommand(this), "bs" );
-    jCommander.addCommand( "down", new DownCommand(this), "d" );
-    jCommander.addCommand( "init", new InitializeCommand(this), "i" );
-    jCommander.addCommand( "new", new NewCommand(this), "n" );
-    jCommander.addCommand( "pending", new PendingCommand(this), "p" );
-    jCommander.addCommand( "script", new ScriptCommand(this), "sc" );
-    jCommander.addCommand( "status", new StatusCommand(this), "st" );
-    jCommander.addCommand( "up", new UpCommand(this), "u" );
-    jCommander.addCommand( "version", new VersionCommand(this), "v" );
   }
 
   public void setPrintStream(PrintStream out) {
@@ -117,7 +105,18 @@ public class CommandLine {
   }
 
   public void execute(String[] args) {
-    jCommander.parse( args );
+    final JCommander jCommander = new JCommander(this);
+    jCommander.setProgramName(System.getProperty("app.name"));
+    jCommander.addCommand("bootstrap", new BootstrapCommand(this), "bs");
+    jCommander.addCommand("down", new DownCommand(this), "d");
+    jCommander.addCommand("init", new InitializeCommand(this), "i");
+    jCommander.addCommand("new", new NewCommand(this), "n");
+    jCommander.addCommand("pending", new PendingCommand(this), "p");
+    jCommander.addCommand("script", new ScriptCommand(this), "sc");
+    jCommander.addCommand("status", new StatusCommand(this), "st");
+    jCommander.addCommand("up", new UpCommand(this), "u");
+    jCommander.addCommand("version", new VersionCommand(this), "v");
+    jCommander.parse(args);
 
     if ( help )
     {
