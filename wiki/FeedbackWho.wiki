@@ -2,9 +2,18 @@
 
 = Introduction =
 
-The following is a list of users who voluntarily listed themselves here as users of the iBATIS framework.  While !MyBatis is different in name, it is the future of the framework.  Thus the following usages and testimonials apply to !MyBatis as well.
+The following is a list of users who voluntarily listed themselves here as users of the MyBatis 3.x or iBATIS 2.x frameworks.
 
-= Public Sites =
+= MyBatis 3.x =
+
+||	Goom Radio backend services	||	http://www.goomradio.com (France - USA)	||
+||     Indizen Technologies - Corporate projects	||	http://www.indizen.com (Spain)	||
+||     Abercrombie and Fitch - ecommerce	||	http://www.abercrombie.com (US)	||
+||     Bosch Software Innovations 	||	http://www.bosch-si.com (German)	||
+||     Alfresco - content management 	||	http://www.alfresco.com (UK)	||
+||     Activiti - bpm 	||	http://www.activiti.com (UK)	||
+
+= iBATIS 2.x =
 
 ||	Some public websites that utilize IBatis	||		||
 ||	1up.com - Gaming community 	||	http://www.1up.com	||
@@ -38,12 +47,6 @@ The following is a list of users who voluntarily listed themselves here as users
 ||	FNM Group - Ferrovie Nord Milano (Railways - Italy)	||	http://www.fnmgroup.it (Italian)	||
 ||	Telecom Italia's OpenID Provider	||	http://openid.alice.it (Italian)	||
 ||	!TrycksaksTorget - personalised printing online	||	http://www.trycksakstorget.se (Swedish)	||
-||	Goom Radio backend services	||	http://www.goomradio.com (France - USA)	||
-||     Indizen Technologies - Corporate projects	||	http://www.indizen.com (Spain)	||
-||     Abercrombie and Fitch - ecommerce	||	http://www.abercrombie.com (US)	||
-||     Bosch Software Innovations 	||	http://www.bosch-si.com (German)	||
-||     Alfresco - content management 	||	http://www.alfresco.com (UK)	||
-||     Activiti - bpm 	||	http://www.activiti.com (UK)	||
 
 == Other Projects ==
 
