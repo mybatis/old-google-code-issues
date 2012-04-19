@@ -6,7 +6,6 @@ The following is a list of users who voluntarily listed themselves here as users
 
 = !MyBatis 3.x =
 
-||	Goom Radio backend services	||	http://www.goomradio.com (France - USA)	||
 ||     Indizen Technologies - Corporate projects	||	http://www.indizen.com (Spain)	||
 ||     Abercrombie and Fitch - ecommerce	||	http://www.abercrombie.com (US)	||
 ||     Bosch Software Innovations 	||	http://www.bosch-si.com (German)	||
@@ -46,6 +45,7 @@ The following is a list of users who voluntarily listed themselves here as users
 ||	FNM Group - Ferrovie Nord Milano (Railways - Italy)	||	http://www.fnmgroup.it (Italian)	||
 ||	Telecom Italia's OpenID Provider	||	http://openid.alice.it (Italian)	||
 ||	!TrycksaksTorget - personalised printing online	||	http://www.trycksakstorget.se (Swedish)	||
+||	Goom Radio backend services	||	http://www.goomradio.com (France - USA)	||
 
 == Other Projects ==
 
