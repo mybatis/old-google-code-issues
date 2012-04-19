@@ -4,7 +4,7 @@
 
 The following is a list of users who voluntarily listed themselves here as users of the MyBatis 3.x or iBATIS 2.x frameworks.
 
-= MyBatis 3.x =
+= !MyBatis 3.x =
 
 ||	Goom Radio backend services	||	http://www.goomradio.com (France - USA)	||
 ||     Indizen Technologies - Corporate projects	||	http://www.indizen.com (Spain)	||
