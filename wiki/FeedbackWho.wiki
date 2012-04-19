@@ -15,7 +15,6 @@ The following is a list of users who voluntarily listed themselves here as users
 
 = iBATIS 2.x =
 
-||	Some public websites that utilize IBatis	||		||
 ||	1up.com - Gaming community 	||	http://www.1up.com	||
 ||	Abebooks.com - Worlds largest online marketplace for books 	||	http://www.abebooks.com	||
 ||	!AccesStream.com - Open Source Identity and Access Management Suite 	||	http://www.accesstream.com	||
