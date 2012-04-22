@@ -2,6 +2,8 @@
 
 = !MyBatis 3.x =
 
+    * Rai Studies - !MyBatis 3 tutorials
+          o http://www.raistudies.com/catagory/mybatis/
 
     * Presentation de !MyBatis (Dridi Boukelmoune)
           o http://blog.zenika.com/index.php?post/2012/03/28/Presentation-de-MyBatis
