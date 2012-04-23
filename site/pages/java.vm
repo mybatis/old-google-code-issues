@@ -183,6 +183,9 @@
             <a href="http://www.mybatis.org/caches/hazelcast/">Learn more about the MyBatis-Hazelcast</a>
           </li>
           <li>
+            <a href="http://www.mybatis.org/caches/memcached/">Learn more about the MyBatis-Memcached</a>
+          </li>
+          <li>
             <a href="http://www.mybatis.org/caches/oscache/">Learn more about the MyBatis-OSCache</a>
           </li>
         </ul>
