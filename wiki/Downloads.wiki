@@ -20,6 +20,8 @@
 
   * *[http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DCache MyBatis Cache Extensions]*
 
+  * *[http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DScripting MyBatis Scripting Extensions]*
+
 = Samples =
 
   * *[http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DSample MyBatis Samples]*
