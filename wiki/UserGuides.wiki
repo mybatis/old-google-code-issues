@@ -34,7 +34,7 @@ Follows below the list of URL of each sub-project where reference documentation,
 
   * *[http://www.mybatis.org/caches/hazelcast MyBatis Hazelcast Extensions]*
 
-= Stripting = 
+== Stripting == 
 
   * *[http://www.mybatis.org/scripting/velocity MyBatis Velocity Extension]*
 
