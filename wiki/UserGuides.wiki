@@ -34,6 +34,10 @@ Follows below the list of URL of each sub-project where reference documentation,
 
   * *[http://www.mybatis.org/caches/hazelcast MyBatis Hazelcast Extensions]*
 
+= Stripting = 
+
+  * *[http://www.mybatis.org/scripting/velocity MyBatis Velocity Extension]*
+
 = Samples =
 
   * *[http://www.mybatis.org/spring/sample.html JPetStore 6]*
