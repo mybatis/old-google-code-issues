@@ -2,6 +2,9 @@
 
 = !MyBatis 3.x =
 
+    * Using Spring 3 with Mybatis 3 Tutorial (Anirban Chowdhury)
+          o http://anirbanchowdhury.wordpress.com/2012/05/14/spring-mybatis-integration-part-1/
+
     * Rai Studies - !MyBatis 3 tutorials
           o http://www.raistudies.com/catagory/mybatis/
 
