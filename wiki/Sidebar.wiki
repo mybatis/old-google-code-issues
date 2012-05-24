@@ -11,6 +11,7 @@
   * [FeedbackArticles Tutorials and Books]
   * [DocMavenTutorial MyBatis & Maven]
   * [DocUpgrade3 From iBATIS 2.x to MyBatis]
+  * [faq Frequently Asked Questions]
 
 === Contributions ===
 
