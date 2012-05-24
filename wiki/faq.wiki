@@ -4,7 +4,7 @@
 !MyBatis interprets #{...} as a parameter marker in a JDBC prepared statement. !MyBatis interprets ${...} as string substitution.  It is important to know the difference because parameter markers cannot be used in certain places in SQL statements.
 For example, you cannot use a parameter marker to specify a table name.        Given the following code:
 {{{
-Map<String, Object> parms = new HashMap&lt;String, Object&gt;();
+Map<String, Object> parms = new HashMap<String, Object>();
 parms.put("table", "foo");
 parms.put("criteria", 37);
 List<Object> rows = mapper.generalSelect(parms);
