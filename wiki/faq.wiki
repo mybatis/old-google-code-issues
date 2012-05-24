@@ -24,7 +24,7 @@ select * from foo where col1 = ?
 There are two methods.  In the first (and preferred) method, you append
 the SQL wildcards in your Java code. For example:
 {{{
-String wildcardName = &quot;%Smi%&quot;;
+String wildcardName = "%Smi%";
 List<Name> names = mapper.selectLike(wildcardName);
 }}}
 {{{
@@ -35,7 +35,7 @@ List<Name> names = mapper.selectLike(wildcardName);
 Another method is to concatenate the wildcards in your SQL. This method
 is less safe than the method above because of possible SQL injection.           For example:
 {{{
-String wildcardName = &quot;Smi&quot;;
+String wildcardName = "Smi";
 List<Name> names = mapper.selectLike(wildcardName);
 }}}
 {{{
