@@ -26,7 +26,7 @@ Follows below the list of URL of each sub-project where reference documentation,
 
   * *[http://www.mybatis.org/guice MyBatis Guice Integration]*
 
-== Languages integrations ==
+== Language integrations ==
 
   * *[http://www.mybatis.org/scala MyBatis Scala Integration]*
 
