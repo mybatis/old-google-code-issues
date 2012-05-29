@@ -2,7 +2,7 @@
 
 = !MyBatis 3.x =
 
-    * MyBatis Koans: A Path to Enlightenment (Thorny Dev) 
+    * !MyBatis Koans: A Path to Enlightenment (Thorny Dev) 
           o http://thornydev.blogspot.com/2012/05/mybatis-koans-path-to-enlightenment.html
 
     * Using Spring 3 with Mybatis 3 Tutorial (Anirban Chowdhury)
