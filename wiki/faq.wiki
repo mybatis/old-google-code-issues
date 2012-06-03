@@ -93,8 +93,9 @@ Java reflection does not provide a way to know the name of a method parameter so
 If you want to give them a name use the @param annotation this way:
 {{{
 import org.apache.ibatis.annotations.Param;
-public interface UserMapper{
+public interface UserMapper {
    User selectUser(@Param("username") String username, @Param("hashedPassword") String hashedPassword);
+}
 }}}
 Now you can use them in your xml like follows:
 {{{
