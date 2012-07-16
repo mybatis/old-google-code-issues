@@ -32,4 +32,4 @@ Eclipse plugin, configure a new Eclipse install repository and point to this loc
 
 http://mybatis.googlecode.com/svn/sub-projects/generator/trunk/eclipse/UpdateSite/
 
-The plugin is currently developed and compiled with Eclipse Indigo SR2.  It is also tested on Eclipse Juno and know to work there.
+The plugin is currently developed and compiled with Eclipse Indigo SR2.  It is also tested on Eclipse Juno and known to work there.
