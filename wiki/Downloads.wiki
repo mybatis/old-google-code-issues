@@ -16,7 +16,7 @@
 
   * *[http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DGuice MyBatis Guice Integration]*
 
-  * *[http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DScala MyBatis Scala Integration]*
+  * *[http://code.google.com/p/mybatis/downloads/list?q=Product%3DScala MyBatis Scala Integration]*
 
   * *[http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DCache MyBatis Cache Extensions]*
 
