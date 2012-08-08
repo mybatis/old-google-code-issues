@@ -12,3 +12,10 @@ And have a look at its documentation at [http://www.mybatis.org/spring/sample.ht
 A simple application built with Stripes, Google Guice and !MyBatis 3 that lets you manage a contact list.
 
 Check it out from [http://code.google.com/p/mybatis/source/browse/#svn%2Fsub-projects%2Fcontact_manager]
+
+== Scala Code Samples (beta2) ==
+Basic code samples: 
+[https://github.com/mnesarco/mybatis-scala-samples-beta2]
+
+Play Framework 2.0 Sample Application:
+[http://www.fdmtech.org/2012/03/a-better-example-of-play-framework-2-0-with-mybatis-for-scala-beta/]
