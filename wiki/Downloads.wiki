@@ -26,6 +26,8 @@
 
   * *[http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DSample MyBatis Samples]*
 
+  * *[https://github.com/mnesarco/mybatis-scala-samples-beta2 MyBatis-For-Scala Samples]
+
 == Can't find what you need? ==
 
 Try these alternative filters.
