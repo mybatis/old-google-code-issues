@@ -6,10 +6,6 @@ Follows below the list of URL of each sub-project where reference documentation,
 
   * *[http://www.mybatis.org/core MyBatis Core Framework]*
 
-= Samples =
-
-  * *[http://www.mybatis.org/spring/sample.html JPetStore 6]*
-
 = Tools =
 
   * *[http://mybatis.org/generator/ MyBatis Generator Tool]*
@@ -41,6 +37,10 @@ Follows below the list of URL of each sub-project where reference documentation,
 == Stripting == 
 
   * *[http://www.mybatis.org/scripting/velocity MyBatis Velocity Extension]*
+
+= Samples =
+
+  * *[http://www.mybatis.org/spring/sample.html JPetStore 6]*
 
 == Can't find what you need? ==
 Try searching for old version or different language guides in the downloads which can be found [http://code.google.com/p/mybatis/downloads/list?can=3&q=Docs here].
