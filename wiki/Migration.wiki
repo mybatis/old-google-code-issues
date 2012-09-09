@@ -1,4 +1,4 @@
-#summary The MyBatis Migration tool(s)
+#summary The MyBatis Schema Migration tool
 
 = Introduction =
 
