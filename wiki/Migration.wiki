@@ -10,7 +10,7 @@ Recently, a few tools arrived and changed all of that. They did so by embracing 
 
   * *[http://www.mybatis.org/migrations MyBatis Schema Migrations Tool]* 
 
-  * [http://MyBatis.org/migrations_video.html Music Video] 
+  * [http://www.youtube.com/watch?v=c45AevIuYGk Music Video] 
 
 
 = Download =
