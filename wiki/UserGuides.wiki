@@ -14,9 +14,9 @@ Follows below the list of URL of each sub-project where reference documentation,
 
   * *[http://mybatis.org/generator/ MyBatis Generator Tool]*
 
-  * *[http://www.mybatis.org/migrations Migrations Database Change Management Tool]*
+  * *[http://www.mybatis.org/migrations MyBatis Schema Migrations Tool]* - for database change management
 
-  * *[http://mybatis.org/maven-migration-plugin/ Migrations Database Change Management Tool plugin for Apache Maven]*
+  * *[http://mybatis.org/maven-migration-plugin/ Schema Migrations Migrations plugin for Apache Maven]*
 
 = Extensions =
 
