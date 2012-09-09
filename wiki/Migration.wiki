@@ -15,7 +15,7 @@ Recently, a few tools arrived and changed all of that. They did so by embracing 
 
 = Download =
 
-  * *[http://www.mybatis.org/migrations MyBatis Schema Migrations Tool]* - for database change management
+  * *[http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DMigrations MyBatis Schema Migrations Tool]* 
 
 
 = !MyBatis Migration plugin for Apache Maven =
