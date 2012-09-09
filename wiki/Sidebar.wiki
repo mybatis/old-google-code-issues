@@ -15,7 +15,7 @@
 
 === Tools ===
 
-  * [Migration Migration Tool]
+  * [Migration Schema Migrations Tool]
   * [Generator MyBatis Generator]
 
 === Extras ===
