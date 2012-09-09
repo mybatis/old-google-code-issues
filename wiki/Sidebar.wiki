@@ -13,13 +13,6 @@
   * [DocUpgrade3 From iBATIS 2.x to MyBatis]
   * [faq Frequently Asked Questions]
 
-=== Contributions ===
-
-  * [Contribute Get Involved]
-  * [Test Create a Test]
-  * [DocContrib Contribute Documentation]
-  * [CLA Contributor License Agreements]
-
 === Tools ===
 
   * [Migration Migration Tool]
@@ -39,6 +32,13 @@
 
   * [ProcessRelease Release Process]
   * [GPGKeys GPG keys]
+
+=== Contributions ===
+
+  * [Contribute Get Involved]
+  * [Test Create a Test]
+  * [DocContrib Contribute Documentation]
+  * [CLA Contributor License Agreements]
 
 === Feedback and Testimonials ===
 
