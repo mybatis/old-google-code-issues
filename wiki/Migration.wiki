@@ -5,13 +5,20 @@
 Evolving databases has been one of the major challenges for software development. Often times, regardless of our software development methodology, the database follows a different change management process. Despite our best efforts, few tools and practices have been able to change that. The tools of the past have been GUI centric, proprietary for a particular database and/or carried a steep license cost. Yet, at the end of the day they suffered from the same challenges.
 Recently, a few tools arrived and changed all of that. They did so by embracing simplicity and a few simple rules for database evolution to follow. A couple of good examples are Rails Migrations and dbdeploy. Both tools are similar in purpose, but quite different in implementation. The !MyBatis Schema Migration System draws from both and seeks to be the best migration tool of its kind.
 
-Users interested on more details have to read the [http://mybatis.googlecode.com/files/MyBatis-3-Migrations.pdf reference] manual.
 
-An interesting [http://MyBatis.org/migrations_video.html video] is also available to show the power of !MyBatis Migrations.
+= Documentation =
+
+  * *[http://www.mybatis.org/migrations MyBatis Schema Migrations Tool]* 
+
+  * [http://MyBatis.org/migrations_video.html Music Video] 
+
+
+= Download =
+
+  * *[http://www.mybatis.org/migrations MyBatis Schema Migrations Tool]* - for database change management
+
 
 = !MyBatis Migration plugin for Apache Maven =
 
 Being _Apache Maven_ able to manage projects life cycle, and being the _!MyBatis Migration tool_ able to maintain the database structure, in order to have a fully integrated tool we started implementing a solution that
 mixes the _!MyBatis Migration tool_ power into a standard _Apache Maven_ plugin.
-
-Users interested on how use the !MyBatis Migration plugin for Apache Maven can read the [http://mybatis.googlecode.com/files/MyBatis-3-Migrations.pdf Reference] guide.
