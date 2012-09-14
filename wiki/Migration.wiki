@@ -1,6 +1,6 @@
 #summary The MyBatis Schema Migrations tool
 
-= MyBatis Schema Migrations =
+= !MyBatis Schema Migrations =
 
 Evolving databases has been one of the major challenges for software development. Often times, regardless of our software development methodology, the database follows a different change management process. Despite our best efforts, few tools and practices have been able to change that. The tools of the past have been GUI centric, proprietary for a particular database and/or carried a steep license cost. Yet, at the end of the day they suffered from the same challenges.
 Recently, a few tools arrived and changed all of that. They did so by embracing simplicity and a few simple rules for database evolution to follow. A couple of good examples are Rails Migrations and dbdeploy. Both tools are similar in purpose, but quite different in implementation. The !MyBatis Schema Migration System draws from both and seeks to be the best migration tool of its kind.
