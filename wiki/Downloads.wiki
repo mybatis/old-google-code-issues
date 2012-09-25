@@ -8,7 +8,7 @@
 
   * *[http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DGenerator MyBatis Generator Tool]*
 
-  * *[http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DMigrations Migrations Database Change Management Tool]*
+  * *[http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DMigrations Schema Migrations - Database Change Management Tool]*
 
 = Extensions =
 
