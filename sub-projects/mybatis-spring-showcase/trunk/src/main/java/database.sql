@@ -1,3 +1,5 @@
+drop table blog if exists;
+
 create table blog (
     id int not null,
     name varchar(80) not null,
