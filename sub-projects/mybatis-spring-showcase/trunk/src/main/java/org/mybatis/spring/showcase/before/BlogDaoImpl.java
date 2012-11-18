@@ -22,7 +22,7 @@ public class BlogDaoImpl implements BlogDao, RowMapper<Blog> {
 
 	public Blog selectBlog(int id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		return (Blog) jdbcTemplate.queryForObject("select * from blog where id=?", this, 1);
+		return (Blog) jdbcTemplate.queryForObject("select * from blog where id=?", this, id);
 	}
 
 	public Blog mapRow(ResultSet rs, int rowNum) throws SQLException {
