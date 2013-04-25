@@ -1,0 +1,3 @@
+WARNING! - These sources are outdated. 
+
+MyBatis project sources and history is now at https://github.com/mybatis
