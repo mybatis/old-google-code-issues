@@ -4,7 +4,7 @@
 
 !MyBatis 3.2+ supports pluggable scripting engines so that you can build your dinamic queries using your preferred language.
 
-== !Velocity ==
+== Velocity ==
 
 [http://mybatis.github.io/velocity-scripting/ Velocity] is a template engine that can be used for many purposes.
 
@@ -46,4 +46,15 @@ Optional: Set the velocity as your default scripting language:
   </settings>
   ...
 </configuration>
+}}}
+
+Now you can write dynamic statements like this one:
+
+{{{
+<select id="findPerson" lang="velocity">
+  #set( $pattern = $_parameter.name + '%' )
+  SELECT *
+  FROM person
+  WHERE name LIKE @{pattern, jdbcType=VARCHAR}
+</select>
 }}}
