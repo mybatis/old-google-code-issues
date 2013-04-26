@@ -17,9 +17,9 @@ Users that want to use Ehcache into their applications, have to download the zip
 <dependencies>
     ...
     <dependency>
-        <groupId>org.mybatis</groupId>
+        <groupId>org.mybatis.caches</groupId>
         <artifactId>mybatis-ehcache</artifactId>
-        <version>1.0.0</version>
+        <version>x.x.x</version>
     </dependency>
     ...
 </dependencies>
@@ -63,9 +63,9 @@ Users that want to use Hazelcast into their applications, have to download the z
 <dependencies>
     ...
     <dependency>
-        <groupId>org.mybatis</groupId>
+        <groupId>org.mybatis.caches</groupId>
         <artifactId>mybatis-hazelcast</artifactId>
-        <version>1.0.0</version>
+        <version>x.x.x</version>
     </dependency>
     ...
 </dependencies>
@@ -109,9 +109,9 @@ Users that want to use OSCache into their applications, have to download the zip
 <dependencies>
     ...
     <dependency>
-        <groupId>org.mybatis</groupId>
+        <groupId>org.mybatis.caches</groupId>
         <artifactId>mybatis-oscace</artifactId>
-        <version>1.0.0</version>
+        <version>x.x.x</version>
     </dependency>
     ...
 </dependencies>
