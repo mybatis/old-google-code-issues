@@ -1,4 +1,3 @@
-#summary Quick Links to Issue Tracker Filters
 
 Since !MyBatis 3.2 the project issue tracker is at [https://github.com/mybatis Github]
 
