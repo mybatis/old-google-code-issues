@@ -1,4 +1,3 @@
 
 
-
-*Find !MyBatis sources at https://github.com/mybatis
+Find !MyBatis sources at https://github.com/mybatis
