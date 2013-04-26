@@ -1,5 +1,5 @@
 #summary Quick Links to Issue Tracker Filters
 
-  * *[https://github.com/mybatis Submit New Issue]*
+Since !MyBatis 3.2 the project issue tracker is at [https://github.com/mybatis Github]
 
-  * *[http://code.google.com/p/mybatis/issues/list List or Search All Issues]*
+You can still access the [http://code.google.com/p/mybatis/issues/list old tracker] to see past issues.
