@@ -1,23 +1,5 @@
 #summary Quick Links to Issue Tracker Filters
 
-  * *[http://code.google.com/p/mybatis/issues/entry Submit New Issue]*
+  * *[https://github.com/mybatis Submit New Issue]*
 
   * *[http://code.google.com/p/mybatis/issues/list List or Search All Issues]*
-
-== Defects ==
-
-  * [http://code.google.com/p/mybatis/issues/list?can=1&q=label%3AType-Defect%20status%3ANew%2CAccepted%2CStarted Open Defects]
-
-  * [http://code.google.com/p/mybatis/issues/list?can=1&q=label%3AType-Defect%20status%3AFixed%2CDuplicate%2CInvalid%2CWontFix Closed Defects]
-
-== New Features ==
-
-  * [http://code.google.com/p/mybatis/issues/list?can=1&q=label%3AType-Feature%20status%3ANew%2CAccepted%2CStarted Open Features]
-
-  * [http://code.google.com/p/mybatis/issues/list?can=1&q=label%3AType-Feature%20status%3AFixed%2CDuplicate%2CInvalid%2CWontFix Closed Features]
-
-== Documentation ==
-
-  * [http://code.google.com/p/mybatis/issues/list?can=1&q=label%3AType-Documentation%20status%3ANew%2CAccepted%2CStarted Open Documentation]
-
-  * [http://code.google.com/p/mybatis/issues/list?can=1&q=label%3AType-Documentation%20status%3AFixed%2CDuplicate%2CInvalid%2CWontFix Closed Documentation]
