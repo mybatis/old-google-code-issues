@@ -20,8 +20,8 @@
 
 === Extras ===
 
-  * [Guice Guice Integration]
   * [Spring Spring Integration]
+  * [Guice Guice Integration]
   * [Caches 3rd party caches]
 
 === Related Projects ===
