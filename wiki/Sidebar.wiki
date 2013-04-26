@@ -23,6 +23,7 @@
   * [Spring Spring Integration]
   * [Guice Guice Integration]
   * [Caches 3rd party caches]
+  * [Scripting 3rd party scripting engines]
 
 === Related Projects ===
 
