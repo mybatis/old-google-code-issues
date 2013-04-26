@@ -6,7 +6,7 @@
 
 == Velocity ==
 
-[http://mybatis.github.io/velocity-scripting/ Velocity] is a template engine that can be used for many purposes.
+[http://velocity.apache.org Velocity] is a template engine that can be used for many purposes.
 
 If you are not familiar with apache velocity, you can learn it from its documentation site:
 
@@ -58,3 +58,5 @@ Now you can write dynamic statements like this one:
   WHERE name LIKE @{pattern, jdbcType=VARCHAR}
 </select>
 }}}
+
+For further info read the [http://mybatis.github.io/velocity-scripting/ manual]
