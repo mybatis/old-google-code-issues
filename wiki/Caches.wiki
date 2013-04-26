@@ -11,7 +11,7 @@ The !MyBatis community supports as well 3rd part cache implementations, follow b
 
 The Ehcache integration is built on top of the `ehcache-core` and comes without any Ehcache 3rd part applications. Please refeer to official Ehcache documentation if you need Ehcache [http://ehcache.org/documentation/index.html plugins].
 
-Users that want to use Ehcache into their applications, have to download the zip [http://code.google.com/p/mybatis/downloads/detail?name=mybatis-ehcache-1.0.0-RC1-bundle.zip bundle], decompress it and add the jars in the classpath; Apache Maven users instead can simply add in the `pom.xm`l the following dependency:
+Users that want to use Ehcache into their applications, have to download the zip bundle, decompress it and add the jars in the classpath; Apache Maven users instead can simply add in the `pom.xm`l the following dependency:
 
 {{{
 <dependencies>
@@ -57,7 +57,7 @@ For further info read the [http://mybatis.github.io/ehcache-cache/ manual]
 
 [http://www.hazelcast.com Hazelcast] is an open source clustering and highly scalable data distribution platform for Java.
 
-Users that want to use Hazelcast into their applications, have to download the zip [http://code.google.com/p/mybatis/downloads/detail?name=mybatis-hazelcast-1.0.0-RC1-bundle.zip bundle], decompress it and add the jars in the classpath; Apache Maven users instead can simply add in the `pom.xm`l the following dependency:
+Users that want to use Hazelcast into their applications, have to download the zip bundle, decompress it and add the jars in the classpath; Apache Maven users instead can simply add in the `pom.xm`l the following dependency:
 
 {{{
 <dependencies>
@@ -103,7 +103,7 @@ For further info read the [http://mybatis.github.io/hazelcast-cache/ manual]
 
 [http://www.opensymphony.com/oscache/ OSCache] is a high performances caching solution developed and maintained by [http://www.opensymphony.com/ Open Symphony] and easily integrated in !MyBatis since the iBATIS version 2.X.
 
-Users that want to use OSCache into their applications, have to download the zip [http://code.google.com/p/mybatis/downloads/detail?name=mybatis-oscache-1.0.0-RC1-bundle.zip bundle], decompress it and add the jars in the classpath; Apache Maven users instead can simply add in the `pom.xm` the following dependency:
+Users that want to use OSCache into their applications, have to download the zip bundle, decompress it and add the jars in the classpath; Apache Maven users instead can simply add in the `pom.xm` the following dependency:
 
 {{{
 <dependencies>
