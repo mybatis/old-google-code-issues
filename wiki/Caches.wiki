@@ -1,4 +1,4 @@
-#summary 3rd part cache implementations integration
+#summary 3rd party cache implementations integration
 
 = Introduction =
 
@@ -51,6 +51,8 @@ If users need to log cache operations, they can plug the Cache logging version:
 
 Users that need to configure Ehcache through XML configuration file, have to put in the classpath the `/ehcache.xml` resource; please refeer to the official Ehcache [http://ehcache.org/documentation/configuration.html documentation] to know more details.
 
+For further info read the [http://mybatis.github.io/ehcache-cache/ manual]
+
 == Hazelcast ==
 
 [http://www.hazelcast.com Hazelcast] is an open source clustering and highly scalable data distribution platform for Java.
@@ -95,6 +97,8 @@ If users need to log cache operations, they can plug the Cache logging version:
 
 Please refer to the official Hazelcast Near Cache [http://www.hazelcast.com/documentation.jsp#MapNearCache documentation] to know more details how to configure Hazelcast as Cache.
 
+For further info read the [http://mybatis.github.io/hazelcast-cache/ manual]
+
 == OSCache ==
 
 [http://www.opensymphony.com/oscache/ OSCache] is a high performances caching solution developed and maintained by [http://www.opensymphony.com/ Open Symphony] and easily integrated in !MyBatis since the iBATIS version 2.X.
@@ -138,3 +142,5 @@ If users need to log cache operations, they can plug the Cache logging version:
 }}}
 
 For proper OSCache configuration please read the official [http://wiki.opensymphony.com/display/CACHE/Configuration reference]
+
+For further info read the [http://mybatis.github.io/oscache-cache/ manual]
