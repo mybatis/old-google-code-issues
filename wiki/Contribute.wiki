@@ -18,12 +18,28 @@ There are many ways to get involved.
   * *Write documentation*
       * Submit documentation contributions or changes directly in the body of the issue (which supports wiki markup).  We'll add it to the official guide.
 
-The issue tracking system is here:
+= Copyright of contributions =
 
-[http://code.google.com/p/mybatis/issues/list]
+  * Everything you can find it this project is licensed under the Apache Software License 2.0
 
-The instructions for checking out the source are here:
+  * Every contribution you do *must* be licensed under the Apache Software License 2.0. Otherwise we will not be able to accept it.
 
-[http://code.google.com/p/mybatis/source/checkout]
+  * Please make sure that all the new files you create hold the following header:
 
-After a few good contributions, we'll often provide commit access directly to the repository.
+{{{
+/*
+ *    Copyright 2010-2013 the original author or authors.
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+}}}
