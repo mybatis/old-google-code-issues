@@ -28,7 +28,7 @@ There are many ways to get involved.
 
 {{{
 /*
- *    Copyright 2010-2013 the original author or authors.
+ *    Copyright [year] the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -43,3 +43,5 @@ There are many ways to get involved.
  *    limitations under the License.
  */
 }}}
+
+  * You are the author of your contributions and will always be, so you can add a @author tag with your name to the code you create.
