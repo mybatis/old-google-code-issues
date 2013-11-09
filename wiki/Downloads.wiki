@@ -1,1 +1,1 @@
-Download MyBatis binaries from [http://blog.mybatis.org/p/products.html the home site]
+Download !MyBatis binaries from [http://blog.mybatis.org/p/products.html mybatis.org]
