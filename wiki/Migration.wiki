@@ -8,14 +8,9 @@ Recently, a few tools arrived and changed all of that. They did so by embracing 
 
 = Documentation =
 
-  * *[http://www.mybatis.org/migrations MyBatis Schema Migrations Tool]* 
+  * *[mybatis.github.io/migrations MyBatis Schema Migrations Tool]* 
 
   * [http://www.youtube.com/watch?v=c45AevIuYGk Music Video] 
-
-
-= Download =
-
-  * *[http://code.google.com/p/mybatis/downloads/list?can=3&q=Product%3DMigrations MyBatis Schema Migrations Tool]* 
 
 
 = !MyBatis Migration plugin for Apache Maven =
