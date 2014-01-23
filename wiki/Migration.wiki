@@ -2,8 +2,8 @@
 
 =See migrations project at Github=
 
-  * [https://github.com/mybatis/migrations Project] *
+  * [http://github.com/mybatis/migrations Project] *
 
-  * [https://mybatis.github.io/migrations Docs] *
+  * [http://mybatis.github.io/migrations Docs] *
 
-  * [https://github.com/mybatis/migrations/releases Downloads] *
+  * [http://github.com/mybatis/migrations/releases Downloads] *
