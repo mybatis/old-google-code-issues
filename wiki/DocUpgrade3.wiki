@@ -1,5 +1,7 @@
 This page provides some information that is useful when migrating a project from iBatis 2 to !MyBatis 3.  It is probably not 100% complete.
 
+The project is currently at Github https://github.com/mybatis/ibatis2mybatis
+
 = Conversion Tool =
 
 There is a tool available in the downloads section that will help you to convert your iBATIS 2.x sqlmap files into !MyBatis 3.x xml mapper files.
