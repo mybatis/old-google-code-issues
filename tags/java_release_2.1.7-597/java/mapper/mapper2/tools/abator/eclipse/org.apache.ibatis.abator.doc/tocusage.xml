@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?NLS TYPE="org.eclipse.help.toc"?>
-
-<toc label="Usage Notes" link_to="toc.xml#usage"> 
-	<topic label="DB2" href="html/usage/db2.html" /> 
-	<topic label="MySql" href="html/usage/mysql.html" /> 
-</toc>

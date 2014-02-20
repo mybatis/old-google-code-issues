@@ -1,6 +1,0 @@
-This package contains stub classes for Oracle TopLink that
-allows the framework to be compiled without the Oracle TopLink JAR
-file.  TopLink is a commercial product that requires a license
-to distribute, and hence cannot be included directly in the
-source tree.
- 
