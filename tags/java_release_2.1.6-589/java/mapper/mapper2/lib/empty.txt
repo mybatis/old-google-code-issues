@@ -1,3 +1,0 @@
-iBATIS no longer _requires_ any 3rd party JARS.  All 3rd party dependencies are completely optional.
-
-See jar-dependencies.txt included with this distribution for information about 3rd party dependencies. 
