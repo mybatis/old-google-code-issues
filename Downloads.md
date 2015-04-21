@@ -1,0 +1,1 @@
+Download MyBatis binaries from [mybatis.org](http://blog.mybatis.org/p/products.html)
